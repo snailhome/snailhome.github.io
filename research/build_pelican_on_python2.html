@@ -492,6 +492,33 @@ code  collection  essay  extra  life  note  pages  research  static
 <div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>make devserver
 </pre></div>
 <p>修改<code>.md</code>文件保存后，直接刷新 <code>http://127.0.0.1:8000</code> 就可以看到更新后的效果了。</p>
+<h2 id="c5490b">git到github.com</h2>
+<h3 id="ec13c9">生成ssh密钥</h3>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd</span> ~/.ssh
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>ls
+config  id_rsa  id_rsa.pub  known_hosts
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir key_backup
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>cp id_rsa* key_backup
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>rm id_rsa*
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>ssh-keygen -t rsa -C <span class="s2">"邮件地址@youremail.com"</span>
+Generating public/private rsa key pair.
+Enter file in which to save the key <span class="o">(</span>/Users/your_user_directory/.ssh/id_rsa<span class="o">)</span>:&lt;回车就好&gt;
+Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>:&lt;输入加密串&gt;
+Enter same passphrase again:&lt;再次输入加密串&gt;
+</pre></div>
+<h3 id="ee2e4a">添加SSH Key到GitHub：</h3>
+<p>在本机设置SSH Key之后，需要添加到GitHub上，以完成SSH链接的设置。</p>
+<p>用文本编辑工具打开id_rsa.pub文件，如果看不到这个文件，你需要设置显示隐藏文件。准确的复制这个文件的内容，才能保证设置的成功。</p>
+<p>在GitHub的主页上点击设置按钮： </p>
+<p>选择SSH Keys项，把复制的内容粘贴进去，然后点击Add Key按钮即可。</p>
+<h3 id="124a56">ssh连接测试</h3>
+<p>可以输入下面的命令，看看设置是否成功，git@github.com的部分不要修改： </p>
+<div class="codehilite"><pre><span class="nv">$ </span>ssh -T git@github.com
+Hi &lt;em&gt;username&lt;/em&gt;! You<span class="err">'</span>ve successfully authenticated, but GitHub does not provide shell access.
+</pre></div>
+<p>如果有这个显示，就表示SSh连接是成功的。</p>
+<p>下面我们就可以git网站了。</p>
+<h3 id="a3e59c">git静态网站</h3>
 <div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>output
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git init
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git add .
@@ -504,8 +531,8 @@ code  collection  essay  extra  life  note  pages  research  static
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git commit -a
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git push -u origin master
 </pre></div>
-<p>推送成功。
-以后每次要推送时</p>
+<p>推送成功。</p>
+<p>以后每次要推送时</p>
 <div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>output
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git add -A
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git commit -m <span class="s2">"First Updated"</span>
@@ -552,7 +579,7 @@ code  collection  essay  extra  life  note  pages  research  static
                     </div>
                     <ol id="niu2-sidebar-toc-list">
                         <li><a href="#content-heading">用Pelican创建静态博客网站</a></li>
-                        <li><a href='#b41e5d'>创建虚拟环境</a></li><li><a href='#ad57b5'>安装 pelican 支持</a></li><li><a href='#a4730b'>创建静态博客文件目录结构及初始配置</a></li><li><a href='#d365c1'>安装 niu-x2-sidebar 主题模板</a><ol><li><a href='#7f70ad'>安装系统依赖</a></li><li><a href='#9baebf'>安装 python 依赖</a></li><li><a href='#f8a47d'>安装 niu-x2-sidebar 主题</a></li><li><a href='#c2bb8d'>安装 niu-x2-sidebar 主题插件</a></li><li><a href='#b39e48'>配置 pelicanconf.py</a></li><li><a href='#d3a354'>创建内容目录下的相关子目录</a></li><li><a href='#bac0a5'>生成输出文件</a></li><li><a href='#7795ac'>查看网站生成的效果</a></li><li><a href='#91d14b'>运行测试服务器</a></li></ol></li>
+                        <li><a href='#b41e5d'>创建虚拟环境</a></li><li><a href='#ad57b5'>安装 pelican 支持</a></li><li><a href='#a4730b'>创建静态博客文件目录结构及初始配置</a></li><li><a href='#d365c1'>安装 niu-x2-sidebar 主题模板</a><ol><li><a href='#7f70ad'>安装系统依赖</a></li><li><a href='#9baebf'>安装 python 依赖</a></li><li><a href='#f8a47d'>安装 niu-x2-sidebar 主题</a></li><li><a href='#c2bb8d'>安装 niu-x2-sidebar 主题插件</a></li><li><a href='#b39e48'>配置 pelicanconf.py</a></li><li><a href='#d3a354'>创建内容目录下的相关子目录</a></li><li><a href='#bac0a5'>生成输出文件</a></li><li><a href='#7795ac'>查看网站生成的效果</a></li><li><a href='#91d14b'>运行测试服务器</a></li></ol></li><li><a href='#c5490b'>git到github.com</a><ol><li><a href='#ec13c9'>生成ssh密钥</a></li><li><a href='#ee2e4a'>添加SSH Key到GitHub：</a></li><li><a href='#124a56'>ssh连接测试</a></li><li><a href='#a3e59c'>git静态网站</a></li></ol></li>
                         <li><a href="#content-comments">评论</a></li>
                     </ol>
                 </div>

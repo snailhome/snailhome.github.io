@@ -383,6 +383,33 @@ code  collection  essay  extra  life  note  pages  research  static
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;make devserver
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;修改&lt;code&gt;.md&lt;/code&gt;文件保存后，直接刷新 &lt;code&gt;http://127.0.0.1:8000&lt;/code&gt; 就可以看到更新后的效果了。&lt;/p&gt;
+&lt;h2 id="c5490b"&gt;git到github.com&lt;/h2&gt;
+&lt;h3 id="ec13c9"&gt;生成ssh密钥&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/.ssh
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;ls
+config  id_rsa  id_rsa.pub  known_hosts
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;mkdir key_backup
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;cp id_rsa* key_backup
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;rm id_rsa*
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;ssh-keygen -t rsa -C &lt;span class="s2"&gt;"邮件地址@youremail.com"&lt;/span&gt;
+Generating public/private rsa key pair.
+Enter file in which to save the key &lt;span class="o"&gt;(&lt;/span&gt;/Users/your_user_directory/.ssh/id_rsa&lt;span class="o"&gt;)&lt;/span&gt;:&amp;lt;回车就好&amp;gt;
+Enter passphrase &lt;span class="o"&gt;(&lt;/span&gt;empty &lt;span class="k"&gt;for&lt;/span&gt; no passphrase&lt;span class="o"&gt;)&lt;/span&gt;:&amp;lt;输入加密串&amp;gt;
+Enter same passphrase again:&amp;lt;再次输入加密串&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="ee2e4a"&gt;添加SSH Key到GitHub：&lt;/h3&gt;
+&lt;p&gt;在本机设置SSH Key之后，需要添加到GitHub上，以完成SSH链接的设置。&lt;/p&gt;
+&lt;p&gt;用文本编辑工具打开id_rsa.pub文件，如果看不到这个文件，你需要设置显示隐藏文件。准确的复制这个文件的内容，才能保证设置的成功。&lt;/p&gt;
+&lt;p&gt;在GitHub的主页上点击设置按钮： &lt;/p&gt;
+&lt;p&gt;选择SSH Keys项，把复制的内容粘贴进去，然后点击Add Key按钮即可。&lt;/p&gt;
+&lt;h3 id="124a56"&gt;ssh连接测试&lt;/h3&gt;
+&lt;p&gt;可以输入下面的命令，看看设置是否成功，git@github.com的部分不要修改： &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ssh -T git@github.com
+Hi &amp;lt;em&amp;gt;username&amp;lt;/em&amp;gt;! You&lt;span class="err"&gt;'&lt;/span&gt;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果有这个显示，就表示SSh连接是成功的。&lt;/p&gt;
+&lt;p&gt;下面我们就可以git网站了。&lt;/p&gt;
+&lt;h3 id="a3e59c"&gt;git静态网站&lt;/h3&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git init
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git add .
@@ -395,8 +422,8 @@ code  collection  essay  extra  life  note  pages  research  static
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git commit -a
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git push -u origin master
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;推送成功。
-以后每次要推送时&lt;/p&gt;
+&lt;p&gt;推送成功。&lt;/p&gt;
+&lt;p&gt;以后每次要推送时&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git add -A
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git commit -m &lt;span class="s2"&gt;"First Updated"&lt;/span&gt;
