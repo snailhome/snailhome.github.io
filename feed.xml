@@ -3014,7 +3014,33 @@ root  /home/html;
 &lt;p&gt;首页重新回来了
 再观察一下还会不会出现这种情况&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Mon, 15 Jun 2015 01:08:00 +0800</pubDate><guid>tag:,2015-06-15:note/yum_lnmp_in_centos7.html</guid><category>CentOS7</category><category>Yum</category><category>LNMP</category></item><item><title>劝学篇 - 荀子</title><link>/essay/study.html</link><description>&lt;h1 id="9e1d4e"&gt;劝学篇&lt;/h1&gt;
+&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Mon, 15 Jun 2015 01:08:00 +0800</pubDate><guid>tag:,2015-06-15:note/yum_lnmp_in_centos7.html</guid><category>CentOS7</category><category>Yum</category><category>LNMP</category></item><item><title>Typecho的Nginx设置</title><link>/research/nginx_setting_4typecho.html</link><description>&lt;blockquote&gt;
+&lt;p&gt;几经折腾，终于把Typecho架上来了，
+主要还是在于Nginx的配置上，
+赶紧贴出来，用于留存。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo vim /etc/nginx/sites-available/default
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;location ~ .*\.php(\/.*)*$ {
+        include fastcgi_params;
+        fastcgi_index index.php;
+        set $path_info "";
+        set $real_script_name $fastcgi_script_name;
+        if ($fastcgi_script_name ~ "^(.+?\.php)(/.+)$") {
+                set $real_script_name $1;
+                set $path_info $2;
+        }
+        fastcgi_param SCRIPT_FILENAME $document_root$real_script_name;
+        fastcgi_param SCRIPT_NAME $real_script_name;
+        fastcgi_param PATH_INFO $path_info;
+        fastcgi_pass unix:/var/run/php5-fpm.sock;
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;另外
+网站的&lt;code&gt;usr&lt;/code&gt;要开启读写权限&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;# sudo chmod 666 -R usr
+# sudo chmod 777 -R `find usr -type d`
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Sun, 14 Jun 2015 23:24:00 +0800</pubDate><guid>tag:,2015-06-14:research/nginx_setting_4typecho.html</guid><category>typecho</category><category>nginx</category></item><item><title>劝学篇 - 荀子</title><link>/essay/study.html</link><description>&lt;h1 id="9e1d4e"&gt;劝学篇&lt;/h1&gt;
 &lt;h2 id="d2585b"&gt;荀子&lt;/h2&gt;
 &lt;p&gt;君子曰：学不可以已。&lt;/p&gt;
 &lt;p&gt;青，取之于蓝，而青于蓝；冰，水为之，而寒于水。木直中绳，輮（煣）以为轮，其曲中规。虽有（又）槁暴（曝），不复挺者，輮（煣）使之然也。故木受绳则直，金就砺则利，君子博学而日参省乎己，则知明而行无过矣。&lt;/p&gt;

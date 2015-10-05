@@ -3,14 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="nginx">
-        <meta name="description" content="">
-        <title>笔记本测试环境的Nginx服务配置 - StepUp</title>
+        <meta name="keywords" content="typecho, nginx">
+        <meta name="description" content="几经折腾，终于把Typecho架上来了，主要还是在于Nginx的配置上，赶紧贴出来，用于留存。">
+        <title>Typecho的Nginx设置 - StepUp</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="/theme/font-icons/style.min.css" type="text/css" />
         <link rel="stylesheet" href="/theme/css/niu2.min.css" type="text/css" />
-        <link rel="canonical" href="/research/nginx_conf.html" />
+        <link rel="canonical" href="/research/nginx_setting_4typecho.html" />
         <script type="text/javascript">window.onload=function(){};</script>
         <!--[if lt IE 9]>
             <script src="/theme/js/html5shiv.js"></script>
@@ -104,54 +104,41 @@
 
         <div id="body-content">
             <div class="col-md-8 col-md-offset-2">
-                <h1 id="content-heading">笔记本测试环境的Nginx服务配置</h1>
+                <h1 id="content-heading">Typecho的Nginx设置</h1>
             </div>
             <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
                 <div id="niu2-main-content">
-                    <div class="codehilite"><pre><span class="c"># vim xioms_nginx.conf 配置文件</span>
+                    <blockquote>
+<p>几经折腾，终于把Typecho架上来了，
+主要还是在于Nginx的配置上，
+赶紧贴出来，用于留存。</p>
+</blockquote>
+<div class="codehilite"><pre>$ sudo vim /etc/nginx/sites-available/default
 </pre></div>
-<div class="codehilite"><pre># nginx 需要连接的中间件
-upstream xioms {
-    # 这是sock文件模式
-    server unix:///home/env/xioms/xioms.sock;
-    # 这是端口监听模式
-    # server 127.0.0.1:8001;
+<div class="codehilite"><pre>location ~ .*\.php(\/.*)*$ {
+        include fastcgi_params;
+        fastcgi_index index.php;
+        set $path_info "";
+        set $real_script_name $fastcgi_script_name;
+        if ($fastcgi_script_name ~ "^(.+?\.php)(/.+)$") {
+                set $real_script_name $1;
+                set $path_info $2;
+        }
+        fastcgi_param SCRIPT_FILENAME $document_root$real_script_name;
+        fastcgi_param SCRIPT_NAME $real_script_name;
+        fastcgi_param PATH_INFO $path_info;
+        fastcgi_pass unix:/var/run/php5-fpm.sock;
 }
-
-# 服务配置
-server {
-    # 网站端口
-    listen      8080;
-    # 域名
-    server_name localhost; # 指定为服务器IP或域名
-    charset     utf-8;
-
-    # 最大上传大小
-    client_max_body_size 75M;   # adjust to taste
-
-    # Django media 目录
-    location ^~ /media/  {
-        # Django 项目的 media 目录 
-        alias /home/env/xioms/media/;
-    }
-
-    # Django static 目录
-    location ^~ /static/ {
-        # Django 项目的 static 目录
-        alias /home/env/xioms/static/; 
-    }
-
-    # 最后把所有非静态或媒体的文件请求发给Django处理
-    location / {
-        uwsgi_pass  xioms;
-        include     uwsgi_params;  
-    }
-}
+</pre></div>
+<p>另外
+网站的<code>usr</code>要开启读写权限</p>
+<div class="codehilite"><pre># sudo chmod 666 -R usr
+# sudo chmod 777 -R `find usr -type d`
 </pre></div>
                 </div>
                 <div id="content-comments">
                     <!-- 多说评论框 start -->
-                    <div class="ds-thread" data-thread-key="/research/nginx_conf.html" data-title="笔记本测试环境的Nginx服务配置" data-url="/research/nginx_conf.html">
+                    <div class="ds-thread" data-thread-key="/research/nginx_setting_4typecho.html" data-title="Typecho的Nginx设置" data-url="/research/nginx_setting_4typecho.html">
                     </div>
                     <!-- 多说评论框 end -->
                     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
@@ -173,10 +160,11 @@ server {
             <div class="niu2-right-container col-md-2">
                 <div id="niu2-sidebar-meta" class="niu2-sidebar">
                     <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
-                    <div class="niu2-sidebar-value">2015-06-15 22:06</div>
+                    <div class="niu2-sidebar-value">2015-06-14 23:24</div>
                     <div class="niu2-sidebar-label"><i class="icon-flask"></i>分类:</div>
                     <div class="niu2-sidebar-value"><a href="/research/index.html">研究</a></div>
                     <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="/tag/typecho.html">typecho</a><sup>1</sup></div>
                     <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="/tag/nginx.html">nginx</a><sup>2</sup></div>
                 </div>
 
@@ -185,7 +173,7 @@ server {
                         <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
                     </div>
                     <ol id="niu2-sidebar-toc-list">
-                        <li><a href="#content-heading">笔记本测试环境的Nginx服务配置</a></li>
+                        <li><a href="#content-heading">Typecho的Nginx设置</a></li>
                         
                         <li><a href="#content-comments">评论</a></li>
                     </ol>
