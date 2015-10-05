@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="CentOs7, Fcitx">
+        <meta name="description" content="">
+        <title>CentOS7下安装Fcitx小企鹅输入法 - StepUp</title>
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="/theme/font-icons/style.min.css" type="text/css" />
+        <link rel="stylesheet" href="/theme/css/niu2.min.css" type="text/css" />
+        <link rel="canonical" href="/note/fcitx_in_centos7.html" />
+        <script type="text/javascript">window.onload=function(){};</script>
+        <!--[if lt IE 9]>
+            <script src="/theme/js/html5shiv.js"></script>
+            <script src="/theme/js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body> 
+        <div id="body-header">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="col-md-12">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">
+                            <i class="icon-home"></i>StepUp
+                        </a>
+                    </div>
+                    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/about.html" title="关于本网站">
+                                <i class="icon-anchor"></i>关于</a>
+                            </li>
+                            <li><a href="/tag/" title="标签">
+                                <i class="icon-tag"></i>标签</a>
+                            </li>
+                        <!-- category dropdown list -->
+                        <li class="dropdown">
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-folder-open"></i>分类<b class="caret"></b>
+                           </a>
+                           <ul class="dropdown-menu">
+                               <li><a href="/code/index.html">
+                                      <i class="icon-code"></i>代码
+                                      (1)</a></li>
+                               <li><a href="/essay/index.html">
+                                      <i class="icon-leaf"></i>随笔
+                                      (1)</a></li>
+                               <li><a href="/note/index.html">
+                                      <i class="icon-book"></i>笔记
+                                      (12)</a></li>
+                               <li><a href="/research/index.html">
+                                      <i class="icon-flask"></i>研究
+                                      (2)</a></li>
+                           </ul>
+                        </li>
+                        <!--  self defined dropdown list -->
+                        <li class="dropdown">
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                               <i class="icon-archive"></i>存档<b class="caret"></b>
+                           </a>
+                           <ul class="dropdown-menu">
+                               <li><a href="/archives.html" title="archives order by publish time">
+                                 <i class="icon-calendar"></i>存档 (按发布时间)</a>
+                               </li>
+                               <li><a href="/archives_updatedate.html" title="archives order by modify time">
+                                 <i class="icon-pencil"></i>存档 (按修改时间)</a>
+                               </li>
+                           </ul>
+                        </li>
+                        </ul>
+                        
+                        <!-- right nav bar -->
+                        <ul class="nav navbar-nav navbar-right">
+                        <!-- google custom search -->
+                        <li>
+                        <div id="niu2-cse-wrapper">
+                            <div id="niu2-cse-header-box" class="navbar-form navbar-nav">
+                                <form action="http://google.com/cse">
+                                    <input type="hidden" name="cx" value="XXXXXX" />
+                                    <input type="hidden" name="ie" value="UTF-8" />
+                                    <div class="form-group">
+                                        <input id="niu2-cse-search-input" class="niu2-cse-header form-control" 
+                                            type="text" name="q" 
+                                            placeholder="按回车开始搜索 ..."/>
+                                    </div>
+                                </form>
+                           </div>
+                           <div id="niu2-cse-ctrl-box" class="navbar-nav">
+                            <i id="niu2-cse-search-image" class="icon-search navbar-nav"></i><span id="niu2-cse-search-text">搜索</span>
+                           </div>
+                       </div>
+                       </li>
+                       </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div id="body-content">
+            <div class="col-md-8 col-md-offset-2">
+                <h1 id="content-heading">CentOS7下安装Fcitx小企鹅输入法</h1>
+            </div>
+            <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+                <div id="niu2-main-content">
+                    <p>感觉CentOS7自带的ibus输入法用得不尽人意，考虑安装个Fcitx小企鹅输入法试试，心动不如行动，Let's go～</p>
+<h2 id="8c4cab">1. 加入EPEL源</h2>
+<p>EPEL7几乎是CentOS必备的源:</p>
+<div class="codehilite"><pre><span class="nv">$ </span>sudo yum install epel-release
+</pre></div>
+<h2 id="74e7ae">2. 添加mosquito-myrepo源</h2>
+<p>mosquito-myrepo是一个私人制作的第三方源，其中包含了fcitx输入法。</p>
+<div class="codehilite"><pre>项目地址： https://github.com/1dot75cm/myrepo
+支持的发行版： Fedora 19/20/21/rawhide 以及RHEL/CentOS 7
+</pre></div>
+<div class="codehilite"><pre><span class="nv">$ </span>sudo yum-config-manager --add-repo<span class="o">=</span>https://copr.fedoraproject.org/coprs/mosquito/myrepo/repo/epel-7/mosquito-myrepo-epel-7.repo
+</pre></div>
+<h2 id="7cfd47">3. 卸载原来的ibus输入法</h2>
+<div class="codehilite"><pre><span class="nv">$ </span>sudo yum remove ibus
+<span class="nv">$ </span>sudo yum remove imsettings imsettings-libs im-chooser
+</pre></div>
+<h2 id="59570b">4. 安装输入法</h2>
+<p>可以选择下面的各种输入法中的某一个或多个:</p>
+<div class="codehilite"><pre><span class="nv">$ </span>sudo yum install fcitx-table-wbpy <span class="c"># 五笔拼音输入法</span>
+<span class="nv">$ </span>sudo yum install fcitx-googlepinyin fcitx-cloudpinyin <span class="c"># 谷歌拼音输入法</span>
+<span class="nv">$ </span>sudo yum install fcitx-qimpanel-configtool <span class="c"># 输入法面板设置</span>
+</pre></div>
+<h2 id="32dbcb">5. 配置Fcitx</h2>
+<p>在~/.bashrc中添加如下内容</p>
+<div class="codehilite"><pre><span class="nb">export </span><span class="nv">GTK_IM_MODULE</span><span class="o">=</span>fcitx
+<span class="nb">export </span><span class="nv">QT_IM_MODULE</span><span class="o">=</span>fcitx
+<span class="nb">export </span><span class="nv">XMODIFIERS</span><span class="o">=</span>”@im<span class="o">=</span>fcitx”
+</pre></div>
+<h2 id="6d107a">6. 关闭gnome-shell 对键盘的监听，然后切换输入法为fcitx:</h2>
+<div class="codehilite"><pre><span class="nv">$ </span>sudo pkill ibus-daemon
+<span class="nv">$ </span>sudo gsettings <span class="nb">set </span>org.gnome.settings-daemon.plugins.keyboard active <span class="nb">false</span>
+<span class="nv">$ </span>sudo imsettings-switch fcitx
+</pre></div>
+<h2 id="d49982">7. 清理工作</h2>
+<p>mosquito-myrepo在不断地支持更多的软件，这也进一步造成该repo中的软件与base、EPEL中的软件存在版本冲突，在该repo的项目主页中建议安装yum的优先级插件 <code>yum-plugin-priorities</code> ，这在一定程度上会缓解版本冲突问题，但无法从根本上避免。</p>
+<p>鉴于多个repo的版本冲突会造成一些麻烦，最好的办法还是在安装完需要的软件之后就禁用该repo，需要的时候再启用。</p>
+<p>编辑 <code>/etc/yum.repos.d/mosquito-myrepo-epel-7.repo</code> ，将其中的 <code>enable=1</code> 改成 <code>enable=0</code> 即可。</p>
+<h2 id="cc6739">8. 启用fcitx输入法</h2>
+<p>重启系统，fcitx自动启动，但图标藏在桌面右下角的通知栏中
+打开fcitx的配置工具，选择输入法标签点”+”可以搜索并添加输入法</p>
+<p>使用<code>Ctrl+空格</code>开关输入法</p>
+<p>使用<code>Ctrl+Shift</code>切换输入法</p>
+                </div>
+                <div id="content-comments">
+                    <!-- 多说评论框 start -->
+                    <div class="ds-thread" data-thread-key="/note/fcitx_in_centos7.html" data-title="CentOS7下安装Fcitx小企鹅输入法" data-url="/note/fcitx_in_centos7.html">
+                    </div>
+                    <!-- 多说评论框 end -->
+                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                    <script type="text/javascript">
+                        var duoshuoQuery = { short_name: 'snailhome' };
+                        (function() {
+                            var ds = document.createElement('script');
+                            ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                            ds.charset = 'UTF-8';
+                            (document.getElementsByTagName('head')[0] 
+                             || document.getElementsByTagName('body')[0]).appendChild(ds);
+                        })();
+                    </script>
+                    <!-- 多说公共JS代码 end -->
+                </div>
+
+            </div>
+            <div class="niu2-right-container col-md-2">
+                <div id="niu2-sidebar-meta" class="niu2-sidebar">
+                    <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
+                    <div class="niu2-sidebar-value">2015-09-29 23:07</div>
+                    <div class="niu2-sidebar-label"><i class="icon-book"></i>分类:</div>
+                    <div class="niu2-sidebar-value"><a href="/note/index.html">笔记</a></div>
+                    <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="/tag/centos7.html">CentOs7</a><sup>2</sup></div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="/tag/fcitx.html">Fcitx</a><sup>1</sup></div>
+                </div>
+
+                <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+                    <div class="niu2-sidebar-label">
+                        <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
+                    </div>
+                    <ol id="niu2-sidebar-toc-list">
+                        <li><a href="#content-heading">CentOS7下安装Fcitx小企鹅输入法</a></li>
+                        <li><a href='#8c4cab'>1. 加入EPEL源</a></li><li><a href='#74e7ae'>2. 添加mosquito-myrepo源</a></li><li><a href='#7cfd47'>3. 卸载原来的ibus输入法</a></li><li><a href='#59570b'>4. 安装输入法</a></li><li><a href='#32dbcb'>5. 配置Fcitx</a></li><li><a href='#6d107a'>6. 关闭gnome-shell 对键盘的监听，然后切换输入法为fcitx:</a></li><li><a href='#d49982'>7. 清理工作</a></li><li><a href='#cc6739'>8. 启用fcitx输入法</a></li>
+                        <li><a href="#content-comments">评论</a></li>
+                    </ol>
+                </div>
+            </div>
+            <div id="niu2-toolbar">
+                <ul class="list-unstyled">
+                    <li><a id="niu2-toolbar-ctrlsidebar" href="#" title="隐藏侧边栏"><i class="icon-3x icon-hide-sidebar"></i></a></li>
+                </ul>
+                <div id="niu2-toolbar-showsidebar" data-title="显示侧边栏"></div>
+                <div id="niu2-toolbar-github" data-repo=""></div>
+                <div id="niu2-toolbar-bitbucket" data-repo=""></div>
+            </div>
+            <div id="niu2-toc" data-style="fixed"></div>
+        </div>
+
+        <div class="niu2-footer">
+            <div id="body-footer" class="col-md-6 col-md-offset-2">
+                <hr/>
+                <p>
+                    Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+                    <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="https://github.com/twbs/bootstrap">Bootstrap3</a>
+                    by <a href="https://blog.mawenbao.com">Ma Wenbao</a>, icons by 
+                    <a href="https://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+                </p>
+                <p>
+                    ©
+                            2010-2015
+                    <a class="niu2-footer-link" href="">蜗牛</a>
+                    /                         <a class="niu2-footer-link" href="/about.html" title="关于">关于</a>
+                </p>
+                <p class="niu2-icons">
+                    <a class="niu2-footer-icon" href="mailto: snail.zh@gmail.com" title="我的邮箱">
+                        <i class="icon-envelope-o icon-lg"></i>
+                    </a>
+                    <a class="niu2-footer-icon" href="http://github.com/snailhome" title="我的GithubPage">
+                        <i class="icon-github-alt icon-lg"></i>
+                    </a>
+                    <a class="niu2-footer-icon" href="/feed.xml" title="RSS">
+                        <i class="icon-rss icon-lg"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div id="niu2-pygments" data-theme="github"></div>
+        <div id="niu2-lazy-load" data-loading-txt="orz 努力加载中" data-loading-icon="icon-spin icon-spinner2"></div>
+        <div id="niu2-toolbar-load" data-loading-icon="icon-spin icon-4x icon-spinner9"></div>
+        <script type="text/javascript" src="/theme/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="/theme/js/niu2.min.js"></script>
+        <script type="text/javascript" src="/theme/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            onContentLoaded();
+        </script>
+    </body>
+</html>
