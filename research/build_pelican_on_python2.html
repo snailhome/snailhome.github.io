@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="Python2, Pelican, 静态博客">
+        <meta name="description" content="本文记录了基于Python2.7使用Pelican创建静态博客网站的过程，记录下安装及配置过程，用于留存。">
+        <title>用Pelican创建静态博客网站 - StepUp</title>
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="/theme/font-icons/style.min.css" type="text/css" />
+        <link rel="stylesheet" href="/theme/css/niu2.min.css" type="text/css" />
+        <link rel="canonical" href="/research/build_pelican_on_python2.html" />
+        <script type="text/javascript">window.onload=function(){};</script>
+        <!--[if lt IE 9]>
+            <script src="/theme/js/html5shiv.js"></script>
+            <script src="/theme/js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body> 
+        <div id="body-header">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="col-md-12">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="">
+                            <i class="icon-home"></i>StepUp
+                        </a>
+                    </div>
+                    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/about.html" title="关于本网站">
+                                <i class="icon-anchor"></i>关于</a>
+                            </li>
+                            <li><a href="/tag/" title="标签">
+                                <i class="icon-tag"></i>标签</a>
+                            </li>
+                        <!-- category dropdown list -->
+                        <li class="dropdown">
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-folder-open"></i>分类<b class="caret"></b>
+                           </a>
+                           <ul class="dropdown-menu">
+                               <li><a href="/code/index.html">
+                                      <i class="icon-code"></i>代码
+                                      (1)</a></li>
+                               <li><a href="/essay/index.html">
+                                      <i class="icon-leaf"></i>随笔
+                                      (1)</a></li>
+                               <li><a href="/note/index.html">
+                                      <i class="icon-book"></i>笔记
+                                      (12)</a></li>
+                               <li><a href="/research/index.html">
+                                      <i class="icon-flask"></i>研究
+                                      (2)</a></li>
+                           </ul>
+                        </li>
+                        <!--  self defined dropdown list -->
+                        <li class="dropdown">
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                               <i class="icon-archive"></i>存档<b class="caret"></b>
+                           </a>
+                           <ul class="dropdown-menu">
+                               <li><a href="/archives.html" title="archives order by publish time">
+                                 <i class="icon-calendar"></i>存档 (按发布时间)</a>
+                               </li>
+                               <li><a href="/archives_updatedate.html" title="archives order by modify time">
+                                 <i class="icon-pencil"></i>存档 (按修改时间)</a>
+                               </li>
+                           </ul>
+                        </li>
+                        </ul>
+                        
+                        <!-- right nav bar -->
+                        <ul class="nav navbar-nav navbar-right">
+                        <!-- google custom search -->
+                        <li>
+                        <div id="niu2-cse-wrapper">
+                            <div id="niu2-cse-header-box" class="navbar-form navbar-nav">
+                                <form action="http://google.com/cse">
+                                    <input type="hidden" name="cx" value="XXXXXX" />
+                                    <input type="hidden" name="ie" value="UTF-8" />
+                                    <div class="form-group">
+                                        <input id="niu2-cse-search-input" class="niu2-cse-header form-control" 
+                                            type="text" name="q" 
+                                            placeholder="按回车开始搜索 ..."/>
+                                    </div>
+                                </form>
+                           </div>
+                           <div id="niu2-cse-ctrl-box" class="navbar-nav">
+                            <i id="niu2-cse-search-image" class="icon-search navbar-nav"></i><span id="niu2-cse-search-text">搜索</span>
+                           </div>
+                       </div>
+                       </li>
+                       </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div id="body-content">
+            <div class="col-md-8 col-md-offset-2">
+                <h1 id="content-heading">用Pelican创建静态博客网站</h1>
+            </div>
+            <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+                <div id="niu2-main-content">
+                    <blockquote>
+<p>基于 <code>Pelican</code> 的 <code>niu-x2-sidebar</code> 主题的静态博客网站在 <code>python3.4</code> 下尝试多次，均不能成功，后试过 <code>python2.7</code> ，第一次成功，后又有配置问题导致显示不正常，经过多方调试，终得以成功，记录下安装及配置的过程，用于留存。</p>
+</blockquote>
+<h2 id="b41e5d">创建虚拟环境</h2>
+<div class="codehilite"><pre><span class="nv">$ </span><span class="nb">cd</span> ~
+<span class="nv">$ </span>virtualenv -p python2 env2p
+New python executable in env2p/bin/python
+Installing setuptools, pip, wheel...done.
+
+<span class="nv">$ </span><span class="nb">cd </span>env2p
+<span class="nv">$ </span><span class="nb">source </span>bin/activate
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>pip list
+pip <span class="o">(</span>7.1.2<span class="o">)</span>
+setuptools <span class="o">(</span>18.2<span class="o">)</span>
+urllib3 <span class="o">(</span>1.12<span class="o">)</span>
+wheel <span class="o">(</span>0.24.0<span class="o">)</span>
+</pre></div>
+<h2 id="ad57b5">安装 <code>pelican</code> 支持</h2>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>pip install pelican markdown
+......
+Installing collected packages: pygments, pytz, six, feedgenerator, unidecode, python-dateutil, MarkupSafe, jinja2, docutils, blinker, pelican, markdown
+Successfully installed MarkupSafe-0.23 blinker-1.4 docutils-0.12 feedgenerator-1.7 jinja2-2.8 markdown-2.6.2 pelican-3.6.3 pygments-2.0.2 python-dateutil-2.4.2 pytz-2015.6 six-1.9.0 unidecode-0.4.18
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>pip list
+blinker <span class="o">(</span>1.4<span class="o">)</span>
+docutils <span class="o">(</span>0.12<span class="o">)</span>
+feedgenerator <span class="o">(</span>1.7<span class="o">)</span>
+Jinja2 <span class="o">(</span>2.8<span class="o">)</span>
+Markdown <span class="o">(</span>2.6.2<span class="o">)</span>
+MarkupSafe <span class="o">(</span>0.23<span class="o">)</span>
+pelican <span class="o">(</span>3.6.3<span class="o">)</span>
+pip <span class="o">(</span>7.1.2<span class="o">)</span>
+Pygments <span class="o">(</span>2.0.2<span class="o">)</span>
+python-dateutil <span class="o">(</span>2.4.2<span class="o">)</span>
+pytz <span class="o">(</span>2015.6<span class="o">)</span>
+setuptools <span class="o">(</span>18.2<span class="o">)</span>
+six <span class="o">(</span>1.9.0<span class="o">)</span>
+Unidecode <span class="o">(</span>0.4.18<span class="o">)</span>
+urllib3 <span class="o">(</span>1.12<span class="o">)</span>
+wheel <span class="o">(</span>0.24.0<span class="o">)</span>
+</pre></div>
+<h2 id="a4730b">创建静态博客文件目录结构及初始配置</h2>
+<div class="codehilite"><pre>(env2p) $ mkdir blog
+(env2p) $ cd blog
+(env2p) $ pelican-quickstart
+Welcome to pelican-quickstart v3.6.3.
+
+This script will help you create a new Pelican-based website.
+
+Please answer the following questions so this script can generate the files
+needed by Pelican.
+
+
+&gt; Where do you want to create your new web site? [.] 
+&gt; What will be the title of this web site? STEPUP
+&gt; Who will be the author of this web site? 蜗牛
+&gt; What will be the default language of this web site? [en] zh
+&gt; Do you want to specify a URL prefix? e.g., http://example.com   (Y/n) 
+&gt; What is your URL prefix? (see above example; no trailing slash) http://snailhome.github.io
+&gt; Do you want to enable article pagination? (Y/n) 
+&gt; How many articles per page do you want? [10] 
+&gt; What is your time zone? [Europe/Paris] Asia/Shanghai
+&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? (Y/n) 
+&gt; Do you want an auto-reload &amp; simpleHTTP script to assist with theme and site development? (Y/n) 
+&gt; Do you want to upload your website using FTP? (y/N) 
+&gt; Do you want to upload your website using SSH? (y/N) 
+&gt; Do you want to upload your website using Dropbox? (y/N) 
+&gt; Do you want to upload your website using S3? (y/N) 
+&gt; Do you want to upload your website using Rackspace Cloud Files? (y/N) 
+&gt; Do you want to upload your website using GitHub Pages? (y/N) y
+&gt; Is this your personal page (username.github.io)? (y/N) y
+Done. Your new project is available at /home/snail/env2p/blog
+</pre></div>
+<h2 id="d365c1">安装 <code>niu-x2-sidebar</code> 主题模板</h2>
+<h3 id="7f70ad">安装系统依赖</h3>
+<p>jpegoptim 用于make optimize，压缩jpg图片。</p>
+<p>安装(debian/ubuntu):</p>
+<div class="codehilite"><pre>$ sudo apt-get install jpegoptim
+</pre></div>
+<p>生成zh_CN.UTF-8 locale</p>
+<div class="codehilite"><pre>$ sudo locale-gen zh_CN.UTF-8
+</pre></div>
+<h3 id="9baebf">安装 <code>python</code> 依赖</h3>
+<p>上面的主题或插件的额外依赖</p>
+<p>pelican-minify: 压缩html文件
+beautifulsoup4: 解析html文件
+Pillow: PIL</p>
+<p>使用pip安装</p>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>pip install pelican-minify beautifulsoup4 Pillow
+......
+Installing collected packages: htmlmin, pelican-minify, beautifulsoup4, Pillow
+Successfully installed Pillow-3.0.0 beautifulsoup4-4.4.1 htmlmin-0.1.10 pelican-minify-0.8
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>pip list
+beautifulsoup4 <span class="o">(</span>4.4.1<span class="o">)</span>
+blinker <span class="o">(</span>1.4<span class="o">)</span>
+docutils <span class="o">(</span>0.12<span class="o">)</span>
+feedgenerator <span class="o">(</span>1.7<span class="o">)</span>
+htmlmin <span class="o">(</span>0.1.10<span class="o">)</span>
+Jinja2 <span class="o">(</span>2.8<span class="o">)</span>
+Markdown <span class="o">(</span>2.6.2<span class="o">)</span>
+MarkupSafe <span class="o">(</span>0.23<span class="o">)</span>
+pelican <span class="o">(</span>3.6.3<span class="o">)</span>
+pelican-minify <span class="o">(</span>0.8<span class="o">)</span>
+Pillow <span class="o">(</span>3.0.0<span class="o">)</span>
+pip <span class="o">(</span>7.1.2<span class="o">)</span>
+Pygments <span class="o">(</span>2.0.2<span class="o">)</span>
+python-dateutil <span class="o">(</span>2.4.2<span class="o">)</span>
+pytz <span class="o">(</span>2015.6<span class="o">)</span>
+setuptools <span class="o">(</span>18.2<span class="o">)</span>
+six <span class="o">(</span>1.9.0<span class="o">)</span>
+Unidecode <span class="o">(</span>0.4.18<span class="o">)</span>
+urllib3 <span class="o">(</span>1.12<span class="o">)</span>
+wheel <span class="o">(</span>0.24.0<span class="o">)</span>
+</pre></div>
+<h3 id="f8a47d">安装 <code>niu-x2-sidebar</code> 主题</h3>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir themes
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>themes
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git clone https://github.com/mawenbao/niu-x2-sidebar.git
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>ls
+niu-x2-sidebar
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd</span> ..
+</pre></div>
+<h3 id="c2bb8d">安装 <code>niu-x2-sidebar</code> 主题插件</h3>
+<p>extract_headings插件: 从html文件里提取h1~h6标题并生成目录列表
+niux2_hermit_player插件: 音频播放器
+niux2_lazyload_helper插件: 延迟加载图片
+pelican-update-date插件: 提取文章内的修改时间
+sitemap插件: 生成sitemap
+summary插件: 提取第一句话作为摘要</p>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir plugins
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>plugins
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git clone https://github.com/mawenbao/extract_headings.git
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git clone https://github.com/mawenbao/niux2_hermit_player.git
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git clone https://github.com/mawenbao/niux2_lazyload_helper.git
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git clone https://github.com/mawenbao/pelican-update-date.git
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd</span> ../../
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git clone https://github.com/getpelican/pelican-plugins.git
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>cp -R pelican-plugins/sitemap blog/plugins/
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>cp -R pelican-plugins/summary blog/plugins/
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>blog
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>ls plugins
+extract_headings     niux2_lazyload_helper  sitemap
+niux2_hermit_player  pelican-update-date    summary
+</pre></div>
+<h3 id="b39e48">配置 <code>pelicanconf.py</code></h3>
+<p>复制了原作者关于<a href="http://blog.atime.me/note/pelican-setup-summary.html">Pelican静态博客搭建总结</a>的配置，并作了适当修改</p>
+<div class="codehilite"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*- #</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">AUTHOR</span> <span class="o">=</span> <span class="s">u'蜗牛'</span>
+<span class="n">SITENAME</span> <span class="o">=</span> <span class="s">u'STEPUP'</span>
+<span class="n">SITEURL</span> <span class="o">=</span> <span class="s">''</span>
+
+<span class="n">TIMEZONE</span> <span class="o">=</span> <span class="s">'Asia/Shanghai'</span>
+<span class="n">DATE_FORMATS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'zh_CN'</span><span class="p">:</span> <span class="s">'%Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S'</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">DEFAULT_DATE_FORMAT</span> <span class="o">=</span> <span class="s">'%Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S'</span>
+<span class="n">DEFAULT_DATE</span> <span class="o">=</span> <span class="s">'fs'</span>  <span class="c"># use filesystem's mtime</span>
+<span class="n">LOCALE</span> <span class="o">=</span> <span class="p">(</span><span class="s">'zh_CN.utf8'</span><span class="p">,)</span>
+<span class="n">DEFAULT_LANG</span> <span class="o">=</span> <span class="s">u'zh_CN'</span>
+<span class="n">FILENAME_METADATA</span> <span class="o">=</span> <span class="s">'(?P&lt;slug&gt;.*)'</span>
+<span class="c">#GOOGLE_ANALYTICS = 'XXXXXX'</span>
+<span class="c"># feed config</span>
+<span class="n">FEED_DOMAIN</span> <span class="o">=</span> <span class="n">SITEURL</span>
+<span class="n">FEED_ALL_RSS</span> <span class="o">=</span> <span class="s">'feed.xml'</span>
+<span class="n">FEED_MAX_ITEMS</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">FEED_ALL_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">CATEGORY_FEED_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">TRANSLATION_FEED_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="c"># use directory name as category if not set</span>
+<span class="n">USE_FOLDER_AS_CATEGORY</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">DELETE_OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">DEFAULT_CATEGORY</span> <span class="o">=</span> <span class="s">'uncategorized'</span>
+<span class="n">DEFAULT_PAGINATION</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="n">READERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'html'</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">STATIC_PATHS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">'images'</span><span class="p">,</span>
+    <span class="s">'static'</span><span class="p">,</span>
+    <span class="s">'extra'</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">EXTRA_PATH_METADATA</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'extra/CNAME'</span><span class="p">:</span> <span class="p">{</span> <span class="s">'path'</span><span class="p">:</span> <span class="s">'CNAME'</span> <span class="p">},</span>
+    <span class="s">'extra/.nojekyll'</span><span class="p">:</span> <span class="p">{</span> <span class="s">'path'</span><span class="p">:</span> <span class="s">'.nojekyll'</span> <span class="p">},</span>
+    <span class="s">'extra/README'</span><span class="p">:</span> <span class="p">{</span> <span class="s">'path'</span><span class="p">:</span> <span class="s">'README.md'</span> <span class="p">},</span>
+    <span class="s">'extra/favicon.ico'</span><span class="p">:</span> <span class="p">{</span> <span class="s">'path'</span><span class="p">:</span> <span class="s">'favicon.ico'</span> <span class="p">},</span>
+    <span class="s">'extra/LICENSE.txt'</span><span class="p">:</span> <span class="p">{</span> <span class="s">'path'</span><span class="p">:</span> <span class="s">'LICENSE.txt'</span> <span class="p">},</span>
+    <span class="s">'extra/robots.txt'</span><span class="p">:</span> <span class="p">{</span> <span class="s">'path'</span><span class="p">:</span> <span class="s">'robots.txt'</span> <span class="p">},</span>
+    <span class="s">'extra/BingSiteAuth.xml'</span><span class="p">:</span> <span class="p">{</span><span class="s">'path'</span><span class="p">:</span> <span class="s">'BingSiteAuth.xml'</span> <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="n">ARTICLE_URL</span> <span class="o">=</span> <span class="s">'{category}/{slug}.html'</span>
+<span class="n">ARTICLE_SAVE_AS</span> <span class="o">=</span> <span class="n">ARTICLE_URL</span>
+<span class="n">PAGE_URL</span> <span class="o">=</span> <span class="s">'{slug}.html'</span>
+<span class="n">PAGE_SAVE_AS</span> <span class="o">=</span> <span class="n">PAGE_URL</span>
+<span class="n">CATEGORY_URL</span> <span class="o">=</span> <span class="s">'{slug}/index.html'</span>
+<span class="n">CATEGORY_SAVE_AS</span> <span class="o">=</span> <span class="n">CATEGORY_URL</span>
+<span class="n">TAG_URL</span> <span class="o">=</span> <span class="s">'tag/{slug}.html'</span>
+<span class="n">TAG_SAVE_AS</span> <span class="o">=</span> <span class="n">TAG_URL</span>
+<span class="n">TAGS_SAVE_AS</span> <span class="o">=</span> <span class="s">'tag/index.html'</span>
+<span class="c"># disable author pages</span>
+<span class="n">AUTHOR_SAVE_AS</span> <span class="o">=</span> <span class="s">''</span>
+<span class="n">AUTHORS_SAVE_AS</span> <span class="o">=</span> <span class="s">''</span>
+
+<span class="n">TEMPLATE_PAGES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"404.html"</span><span class="p">:</span> <span class="s">"404.html"</span><span class="p">,</span>
+    <span class="s">"archives_updatedate.html"</span><span class="p">:</span> <span class="s">"archives_updatedate.html"</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">JINJA_EXTENSIONS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">'jinja2.ext.ExprStmtExtension'</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c"># plugin config</span>
+<span class="n">PLUGIN_PATHS</span> <span class="o">=</span> <span class="p">[</span><span class="s">'./plugins'</span><span class="p">]</span>
+<span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c">#'pandoc_reader',</span>
+    <span class="c">#'gzip_cache',</span>
+    <span class="s">'pelican-update-date'</span><span class="p">,</span>
+    <span class="s">'extract_headings'</span><span class="p">,</span>
+    <span class="s">'sitemap'</span><span class="p">,</span>
+    <span class="s">'summary'</span><span class="p">,</span>
+    <span class="s">'niux2_lazyload_helper'</span><span class="p">,</span>
+    <span class="s">'niux2_hermit_player'</span><span class="p">,</span>
+    <span class="c">#'minify',</span>
+<span class="p">]</span>
+<span class="n">UPDATEDATE_MODE</span> <span class="o">=</span> <span class="s">'metadata'</span>
+
+<span class="c"># extrac_headings plugin config</span>
+<span class="kn">import</span> <span class="nn">md5</span>
+<span class="k">def</span> <span class="nf">my_slugify</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">sep</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">md5</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'UTF-8'</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'hex'</span><span class="p">)[:</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">MY_SLUGIFY_FUNC</span> <span class="o">=</span> <span class="n">my_slugify</span>
+<span class="n">MY_TOC_LIST_TYPE</span> <span class="o">=</span> <span class="s">'ol'</span>
+
+<span class="c"># niux2_lazyload_helper plugin config</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="k">def</span> <span class="nf">my_img_url_2_path</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">url</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'//static.atime.me'</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"ignore "</span> <span class="o">+</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s">''</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">'content'</span><span class="p">,</span> <span class="s">'static'</span><span class="p">,</span> <span class="n">url</span><span class="p">[</span><span class="mi">1</span> <span class="o">+</span> <span class="n">url</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">'/'</span><span class="p">,</span> <span class="mi">2</span><span class="p">):]))</span>
+<span class="n">MY_IMG_URL2PATH_FUNC</span> <span class="o">=</span> <span class="n">my_img_url_2_path</span>
+
+<span class="kn">from</span> <span class="nn">markdown.extensions</span> <span class="kn">import</span> <span class="n">codehilite</span>
+<span class="n">MD_EXTENSIONS</span> <span class="o">=</span> <span class="p">([</span>
+    <span class="s">'extra'</span><span class="p">,</span>
+    <span class="s">'footnotes'</span><span class="p">,</span>
+    <span class="s">'tables'</span><span class="p">,</span>
+    <span class="n">codehilite</span><span class="o">.</span><span class="n">CodeHiliteExtension</span><span class="p">(</span><span class="n">configs</span><span class="o">=</span><span class="p">[(</span><span class="s">'linenums'</span><span class="p">,</span> <span class="bp">False</span><span class="p">),</span> <span class="p">(</span><span class="s">'guess_lang'</span><span class="p">,</span> <span class="bp">False</span><span class="p">)]),</span>
+<span class="p">])</span>
+
+<span class="c"># sitemap plugin config</span>
+<span class="n">SITEMAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'format'</span><span class="p">:</span> <span class="s">'xml'</span><span class="p">,</span>
+    <span class="s">'priorities'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'articles'</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="s">'indexes'</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="s">'pages'</span><span class="p">:</span> <span class="mf">0.5</span>
+    <span class="p">},</span>
+    <span class="s">'changefreqs'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'articles'</span><span class="p">:</span> <span class="s">'weekly'</span><span class="p">,</span>
+        <span class="s">'indexes'</span><span class="p">:</span> <span class="s">'daily'</span><span class="p">,</span>
+        <span class="s">'pages'</span><span class="p">:</span> <span class="s">'monthly'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c"># cache policy, currently no cache</span>
+<span class="n">LOAD_CONTENT_CACHE</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">CACHE_CONTENT</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="c">#CHECK_MODIFIED_METHOD = 'md5'</span>
+
+<span class="c"># theme config</span>
+<span class="n">THEME</span> <span class="o">=</span> <span class="s">'./themes/niu-x2-sidebar'</span>
+<span class="n">NIUX2_DEBUG</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="c"># niu-x2 theme config</span>
+<span class="n">NIUX2_AUTHOR_TRANSL</span> <span class="o">=</span> <span class="s">'作者'</span>
+<span class="n">NIUX2_404_TITLE_TRANSL</span> <span class="o">=</span> <span class="s">'404错误 页面未找到!'</span>
+<span class="n">NIUX2_404_INFO_TRANSL</span> <span class="o">=</span> <span class="s">'请求页面未找到!'</span>
+<span class="n">NIUX2_TAG_TRANSL</span> <span class="o">=</span> <span class="s">'标签'</span>
+<span class="n">NIUX2_ARCHIVE_TRANSL</span> <span class="o">=</span> <span class="s">'存档'</span>
+<span class="n">NIUX2_ARCHIVE_UPDATEDATE_TRANSL</span> <span class="o">=</span> <span class="s">'存档 (按修改时间)'</span>
+<span class="n">NIUX2_CATEGORY_TRANSL</span> <span class="o">=</span> <span class="s">'分类'</span>
+<span class="n">NIUX2_TAG_CLEAR_TRANSL</span> <span class="o">=</span> <span class="s">'清空'</span>
+<span class="n">NIUX2_TAG_FILTER_TRANSL</span> <span class="o">=</span> <span class="s">'过滤标签，不妨试试[0-9]{3}'</span>
+<span class="n">NIUX2_HEADER_TOC_TRANSL</span> <span class="o">=</span> <span class="s">'目录'</span>
+<span class="n">NIUX2_SEARCH_TRANSL</span> <span class="o">=</span> <span class="s">'搜索'</span>
+<span class="n">NIUX2_SEARCH_PLACEHOLDER_TRANSL</span> <span class="o">=</span> <span class="s">'按回车开始搜索 ...'</span>
+<span class="n">NIUX2_COMMENTS_TRANSL</span> <span class="o">=</span> <span class="s">'评论'</span>
+<span class="n">NIUX2_PUBLISHED_TRANSL</span> <span class="o">=</span> <span class="s">'发布时间'</span>
+<span class="n">NIUX2_LASTMOD_TRANSL</span> <span class="o">=</span> <span class="s">'最后修改'</span>
+<span class="n">NIUX2_PAGE_TITLE_TRANSL</span> <span class="o">=</span> <span class="s">'页面'</span>
+<span class="n">NIUX2_RECENT_UPDATE_TRANSL</span> <span class="o">=</span> <span class="s">'最近修改'</span>
+<span class="n">NIUX2_HIDE_SIDEBAR_TRANSL</span> <span class="o">=</span> <span class="s">'隐藏侧边栏'</span>
+<span class="n">NIUX2_SHOW_SIDEBAR_TRANSL</span> <span class="o">=</span> <span class="s">'显示侧边栏'</span>
+<span class="n">NIUX2_REVISION_HISTORY_TRANSL</span> <span class="o">=</span> <span class="s">'修订历史'</span>
+<span class="n">NIUX2_VIEW_SOURCE_TRANSL</span> <span class="o">=</span> <span class="s">'查看源文件'</span>
+
+<span class="n">NIUX2_DUOSHUO_SHORTNAME</span> <span class="o">=</span> <span class="s">'snailhome'</span>
+<span class="c">#NIUX2_DUOSHUO_THREAD_KEY = 'slug'</span>
+<span class="n">NIUX2_PYGMENTS_THEME</span> <span class="o">=</span> <span class="s">'github'</span>
+<span class="n">NIUX2_PAGINATOR_LENGTH</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="n">NIUX2_RECENT_UPDATE_NUM</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">NIUX2_FAVICON_URL</span> <span class="o">=</span> <span class="s">'/favicon.ico'</span>
+<span class="n">NIUX2_GOOGLE_CSE_ID</span> <span class="o">=</span> <span class="s">'XXXXXX'</span>
+<span class="n">NIUX2_DISPLAY_TITLE</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">NIUX2_LAZY_LOAD</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">NIUX2_LAZY_LOAD_TEXT</span> <span class="o">=</span> <span class="s">'orz 努力加载中'</span>
+<span class="n">NIUX2_LAZY_LOAD_ICON</span> <span class="o">=</span> <span class="s">'icon-spin icon-spinner2'</span>
+<span class="n">NIUX2_TOOLBAR</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">NIUX2_TOOLBAR_LOAD_ICON</span> <span class="o">=</span> <span class="s">'icon-spin icon-4x icon-spinner9'</span>
+
+<span class="n">NIUX2_LIB_FONT_ICONS</span> <span class="o">=</span> <span class="s">'/theme/font-icons'</span>
+<span class="n">NIUX2_LIB_JQUERY</span> <span class="o">=</span> <span class="s">'/theme/js/jquery-1.11.0.min.js'</span>
+<span class="n">NIUX2_LIB_BOOTSTRAP</span> <span class="o">=</span> <span class="s">'/theme'</span>
+
+<span class="n">NIUX2_CATEGORY_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'code'</span><span class="p">:</span> <span class="p">(</span><span class="s">'代码'</span><span class="p">,</span> <span class="s">'icon-code'</span><span class="p">),</span>
+    <span class="s">'collection'</span><span class="p">:</span> <span class="p">(</span><span class="s">'搜藏'</span><span class="p">,</span> <span class="s">'icon-briefcase'</span><span class="p">),</span>
+    <span class="s">'essay'</span><span class="p">:</span> <span class="p">(</span><span class="s">'随笔'</span><span class="p">,</span> <span class="s">'icon-leaf'</span><span class="p">),</span>
+    <span class="s">'life'</span><span class="p">:</span> <span class="p">(</span><span class="s">'日常'</span><span class="p">,</span> <span class="s">'icon-coffee'</span><span class="p">),</span>
+    <span class="s">'note'</span><span class="p">:</span> <span class="p">(</span><span class="s">'笔记'</span><span class="p">,</span> <span class="s">'icon-book'</span><span class="p">),</span>
+    <span class="s">'research'</span><span class="p">:</span> <span class="p">(</span><span class="s">'研究'</span><span class="p">,</span> <span class="s">'icon-flask'</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">NIUX2_HEADER_SECTIONS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s">'关于'</span><span class="p">,</span> <span class="s">'关于本网站'</span><span class="p">,</span> <span class="s">'/about.html'</span><span class="p">,</span> <span class="s">'icon-anchor'</span><span class="p">),</span>
+    <span class="c">#('使用协议', '使用协议', '/agreement.html', 'icon-exclamation-circle'),</span>
+    <span class="c">#('项目', '我的项目', '/my_projects.html', 'icon-rocket'),</span>
+    <span class="p">(</span><span class="s">'标签'</span><span class="p">,</span> <span class="s">'标签'</span><span class="p">,</span> <span class="s">'/tag/'</span><span class="p">,</span> <span class="s">'icon-tag'</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="n">NIUX2_HEADER_DROPDOWN_SECTIONS</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="n">NIUX2_HEADER_DROPDOWN_SECTIONS</span><span class="p">[(</span><span class="s">'存档'</span><span class="p">,</span> <span class="s">'icon-archive'</span><span class="p">)]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s">'存档 (按发布时间)'</span><span class="p">,</span> <span class="s">'archives order by publish time'</span><span class="p">,</span> <span class="s">'/archives.html'</span><span class="p">,</span> <span class="s">'icon-calendar'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">'存档 (按修改时间)'</span><span class="p">,</span> <span class="s">'archives order by modify time'</span><span class="p">,</span> <span class="s">'/archives_updatedate.html'</span><span class="p">,</span> <span class="s">'icon-pencil'</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="n">NIUX2_FOOTER_LINKS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s">'关于'</span><span class="p">,</span> <span class="s">'关于'</span><span class="p">,</span> <span class="s">'/about.html'</span><span class="p">,</span> <span class="s">''</span><span class="p">),</span>
+    <span class="c">#('使用协议', 'terms, license and privacy etc.', '/agreement.html', ''),</span>
+    <span class="c">#('XICP备XXX号', '备案号', '/', ''),</span>
+<span class="p">]</span>
+
+<span class="n">NIUX2_FOOTER_ICONS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c">#('icon-key', 'my public key', '/my_gnupg.html'),</span>
+    <span class="p">(</span><span class="s">'icon-envelope-o'</span><span class="p">,</span> <span class="s">'我的邮箱'</span><span class="p">,</span> <span class="s">'mailto: snail.zh@gmail.com'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">'icon-github-alt'</span><span class="p">,</span> <span class="s">'我的GithubPage'</span><span class="p">,</span> <span class="s">'http://github.com/snailhome'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">'icon-rss'</span><span class="p">,</span> <span class="s">'RSS'</span><span class="p">,</span> <span class="s">'/feed.xml'</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+<h3 id="d3a354">创建内容目录下的相关子目录</h3>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>content
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir pages
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir static
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir extra
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir code
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir collection
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir essay
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir life
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir note
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir research
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>ls
+code  collection  essay  extra  life  note  pages  research  static
+</pre></div>
+<h3 id="bac0a5">生成输出文件</h3>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>
+</pre></div>
+                </div>
+                <div id="content-comments">
+                    <!-- 多说评论框 start -->
+                    <div class="ds-thread" data-thread-key="/research/build_pelican_on_python2.html" data-title="用Pelican创建静态博客网站" data-url="/research/build_pelican_on_python2.html">
+                    </div>
+                    <!-- 多说评论框 end -->
+                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                    <script type="text/javascript">
+                        var duoshuoQuery = { short_name: 'snailhome' };
+                        (function() {
+                            var ds = document.createElement('script');
+                            ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                            ds.charset = 'UTF-8';
+                            (document.getElementsByTagName('head')[0] 
+                             || document.getElementsByTagName('body')[0]).appendChild(ds);
+                        })();
+                    </script>
+                    <!-- 多说公共JS代码 end -->
+                </div>
+
+            </div>
+            <div class="niu2-right-container col-md-2">
+                <div id="niu2-sidebar-meta" class="niu2-sidebar">
+                    <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
+                    <div class="niu2-sidebar-value">2015-10-05 00:00</div>
+                    <div class="niu2-sidebar-label"><i class="icon-flask"></i>分类:</div>
+                    <div class="niu2-sidebar-value"><a href="/research/index.html">研究</a></div>
+                    <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="/tag/python2.html">Python2</a><sup>1</sup></div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="/tag/pelican.html">Pelican</a><sup>1</sup></div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="/tag/jing-tai-bo-ke.html">静态博客</a><sup>1</sup></div>
+                </div>
+
+                <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+                    <div class="niu2-sidebar-label">
+                        <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
+                    </div>
+                    <ol id="niu2-sidebar-toc-list">
+                        <li><a href="#content-heading">用Pelican创建静态博客网站</a></li>
+                        <li><a href='#b41e5d'>创建虚拟环境</a></li><li><a href='#ad57b5'>安装 pelican 支持</a></li><li><a href='#a4730b'>创建静态博客文件目录结构及初始配置</a></li><li><a href='#d365c1'>安装 niu-x2-sidebar 主题模板</a><ol><li><a href='#7f70ad'>安装系统依赖</a></li><li><a href='#9baebf'>安装 python 依赖</a></li><li><a href='#f8a47d'>安装 niu-x2-sidebar 主题</a></li><li><a href='#c2bb8d'>安装 niu-x2-sidebar 主题插件</a></li><li><a href='#b39e48'>配置 pelicanconf.py</a></li><li><a href='#d3a354'>创建内容目录下的相关子目录</a></li><li><a href='#bac0a5'>生成输出文件</a></li></ol></li>
+                        <li><a href="#content-comments">评论</a></li>
+                    </ol>
+                </div>
+            </div>
+            <div id="niu2-toolbar">
+                <ul class="list-unstyled">
+                    <li><a id="niu2-toolbar-ctrlsidebar" href="#" title="隐藏侧边栏"><i class="icon-3x icon-hide-sidebar"></i></a></li>
+                </ul>
+                <div id="niu2-toolbar-showsidebar" data-title="显示侧边栏"></div>
+                <div id="niu2-toolbar-github" data-repo=""></div>
+                <div id="niu2-toolbar-bitbucket" data-repo=""></div>
+            </div>
+            <div id="niu2-toc" data-style="fixed"></div>
+        </div>
+
+        <div class="niu2-footer">
+            <div id="body-footer" class="col-md-6 col-md-offset-2">
+                <hr/>
+                <p>
+                    Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
+                    <a href="https://github.com/mawenbao/niu-x2-sidebar">theme</a> built with <a href="https://github.com/twbs/bootstrap">Bootstrap3</a>
+                    by <a href="https://blog.mawenbao.com">Ma Wenbao</a>, icons by 
+                    <a href="https://fortawesome.github.io/Font-Awesome">Font Awesome</a>.
+                </p>
+                <p>
+                    ©
+                            2010-2015
+                    <a class="niu2-footer-link" href="">蜗牛</a>
+                    /                         <a class="niu2-footer-link" href="/about.html" title="关于">关于</a>
+                </p>
+                <p class="niu2-icons">
+                    <a class="niu2-footer-icon" href="mailto: snail.zh@gmail.com" title="我的邮箱">
+                        <i class="icon-envelope-o icon-lg"></i>
+                    </a>
+                    <a class="niu2-footer-icon" href="http://github.com/snailhome" title="我的GithubPage">
+                        <i class="icon-github-alt icon-lg"></i>
+                    </a>
+                    <a class="niu2-footer-icon" href="/feed.xml" title="RSS">
+                        <i class="icon-rss icon-lg"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div id="niu2-pygments" data-theme="github"></div>
+        <div id="niu2-lazy-load" data-loading-txt="orz 努力加载中" data-loading-icon="icon-spin icon-spinner2"></div>
+        <div id="niu2-toolbar-load" data-loading-icon="icon-spin icon-4x icon-spinner9"></div>
+        <script type="text/javascript" src="/theme/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="/theme/js/niu2.min.js"></script>
+        <script type="text/javascript" src="/theme/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            onContentLoaded();
+        </script>
+    </body>
+</html>
