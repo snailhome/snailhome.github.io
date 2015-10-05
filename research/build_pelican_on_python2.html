@@ -481,11 +481,37 @@ niux2_hermit_player  pelican-update-date    summary
 code  collection  essay  extra  life  note  pages  research  static
 </pre></div>
 <h3 id="bac0a5">生成输出文件</h3>
-<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>
-<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>
-<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>
-<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>make html
 </pre></div>
+<h3 id="7795ac">查看网站生成的效果</h3>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>make serve
+</pre></div>
+<p>然后打开浏览器，输入 <code>http://127.0.0.1:8000</code> 就可以看到网站的效果了。
+也可以把上面两步并成一步，自动检测文件更新并生成 <code>html</code></p>
+<h3 id="91d14b">运行测试服务器</h3>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>make devserver
+</pre></div>
+<p>修改<code>.md</code>文件保存后，直接刷新 <code>http://127.0.0.1:8000</code> 就可以看到更新后的效果了。</p>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>output
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git init
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git add .
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git remote add origin https://github.com/snailhome/snailhome.github.io.git
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git commit -m <span class="s2">"First Updated"</span>
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git push -u origin master
+</pre></div>
+<p>提示出错，于是</p>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git pull origin master
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git commit -a
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git push -u origin master
+</pre></div>
+<p>推送成功。
+以后每次要推送时</p>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>output
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git add -A
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git commit -m <span class="s2">"First Updated"</span>
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git push -u origin master
+</pre></div>
+<p>就可以了～～</p>
                 </div>
                 <div id="content-comments">
                     <!-- 多说评论框 start -->
@@ -526,7 +552,7 @@ code  collection  essay  extra  life  note  pages  research  static
                     </div>
                     <ol id="niu2-sidebar-toc-list">
                         <li><a href="#content-heading">用Pelican创建静态博客网站</a></li>
-                        <li><a href='#b41e5d'>创建虚拟环境</a></li><li><a href='#ad57b5'>安装 pelican 支持</a></li><li><a href='#a4730b'>创建静态博客文件目录结构及初始配置</a></li><li><a href='#d365c1'>安装 niu-x2-sidebar 主题模板</a><ol><li><a href='#7f70ad'>安装系统依赖</a></li><li><a href='#9baebf'>安装 python 依赖</a></li><li><a href='#f8a47d'>安装 niu-x2-sidebar 主题</a></li><li><a href='#c2bb8d'>安装 niu-x2-sidebar 主题插件</a></li><li><a href='#b39e48'>配置 pelicanconf.py</a></li><li><a href='#d3a354'>创建内容目录下的相关子目录</a></li><li><a href='#bac0a5'>生成输出文件</a></li></ol></li>
+                        <li><a href='#b41e5d'>创建虚拟环境</a></li><li><a href='#ad57b5'>安装 pelican 支持</a></li><li><a href='#a4730b'>创建静态博客文件目录结构及初始配置</a></li><li><a href='#d365c1'>安装 niu-x2-sidebar 主题模板</a><ol><li><a href='#7f70ad'>安装系统依赖</a></li><li><a href='#9baebf'>安装 python 依赖</a></li><li><a href='#f8a47d'>安装 niu-x2-sidebar 主题</a></li><li><a href='#c2bb8d'>安装 niu-x2-sidebar 主题插件</a></li><li><a href='#b39e48'>配置 pelicanconf.py</a></li><li><a href='#d3a354'>创建内容目录下的相关子目录</a></li><li><a href='#bac0a5'>生成输出文件</a></li><li><a href='#7795ac'>查看网站生成的效果</a></li><li><a href='#91d14b'>运行测试服务器</a></li></ol></li>
                         <li><a href="#content-comments">评论</a></li>
                     </ol>
                 </div>

@@ -372,11 +372,37 @@ niux2_hermit_player  pelican-update-date    summary
 code  collection  essay  extra  life  note  pages  research  static
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="bac0a5"&gt;生成输出文件&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;
-&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Mon, 05 Oct 2015 00:00:00 +0800</pubDate><guid>tag:,2015-10-05:research/build_pelican_on_python2.html</guid><category>Python2</category><category>Pelican</category><category>静态博客</category></item><item><title>CentOS7下安装Fcitx小企鹅输入法</title><link>/note/fcitx_in_centos7.html</link><description>&lt;p&gt;感觉CentOS7自带的ibus输入法用得不尽人意，考虑安装个Fcitx小企鹅输入法试试，心动不如行动，Let's go～&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;make html
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="7795ac"&gt;查看网站生成的效果&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;make serve
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后打开浏览器，输入 &lt;code&gt;http://127.0.0.1:8000&lt;/code&gt; 就可以看到网站的效果了。
+也可以把上面两步并成一步，自动检测文件更新并生成 &lt;code&gt;html&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="91d14b"&gt;运行测试服务器&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;make devserver
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;修改&lt;code&gt;.md&lt;/code&gt;文件保存后，直接刷新 &lt;code&gt;http://127.0.0.1:8000&lt;/code&gt; 就可以看到更新后的效果了。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git init
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git add .
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git remote add origin https://github.com/snailhome/snailhome.github.io.git
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git commit -m &lt;span class="s2"&gt;"First Updated"&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git push -u origin master
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;提示出错，于是&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git pull origin master
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git commit -a
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git push -u origin master
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;推送成功。
+以后每次要推送时&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git add -A
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git commit -m &lt;span class="s2"&gt;"First Updated"&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git push -u origin master
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;就可以了～～&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Mon, 05 Oct 2015 00:00:00 +0800</pubDate><guid>tag:,2015-10-05:research/build_pelican_on_python2.html</guid><category>Python2</category><category>Pelican</category><category>静态博客</category></item><item><title>CentOS7下安装Fcitx小企鹅输入法</title><link>/note/fcitx_in_centos7.html</link><description>&lt;p&gt;感觉CentOS7自带的ibus输入法用得不尽人意，考虑安装个Fcitx小企鹅输入法试试，心动不如行动，Let's go～&lt;/p&gt;
 &lt;h2 id="8c4cab"&gt;1. 加入EPEL源&lt;/h2&gt;
 &lt;p&gt;EPEL7几乎是CentOS必备的源:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo yum install epel-release
