@@ -1,54 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>StepUp</title><link>/</link><description></description><atom:link href="/feed.xml" rel="self"></atom:link><lastBuildDate>Tue, 06 Oct 2015 10:48:00 +0800</lastBuildDate><item><title>10 个实用的 Bash alias</title><link>/note/about_alias.html</link><description>&lt;p&gt;alias 即“别名”，为便于理解，你可以将其看成是一个命令的快捷方式。使用 alias 的最大好处是，可以简化输入，从而为你节省时间，并提高效率。定义的 alias 可以保存到 ~/.bashrc 文件中，以后在命令行中就可以直接使用了。&lt;/p&gt;
 &lt;p&gt;要设置别名&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    $ vim ~/.bashrc
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ vim ~/.bashrc
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;下面介绍了 10 个 Bash alias，个人觉得都很实用：&lt;/p&gt;
 &lt;h2 id="255b55"&gt;几个有用的别名用法&lt;/h2&gt;
 &lt;h3 id="44c31b"&gt;ssh 别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    alias server_name="ssh -v -l USERNAME IP ADDRESS"
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias server_name="ssh -v -l USERNAME IP ADDRESS"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;更改 server_name、USERNAME 及 IP 地址以适应你的需要。对于经常要使用 ssh 登录远程 shell 的同学来说，这是一个值得收藏的别名。&lt;/p&gt;
 &lt;h3 id="769102"&gt;ls 别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    alias ll="ls -l"，另一个 alias la="ls -a"
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias ll="ls -l"，另一个 alias la="ls -a"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;意思很明显，在此就不多作解释了。&lt;/p&gt;
 &lt;h3 id="5d5bd1"&gt;rm 别名&lt;/h3&gt;
-&lt;p&gt;alias rm="rm -i"，这个别名让你更加安全地执行删除操作。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias rm="rm -i"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这个别名让你更加安全地执行删除操作。&lt;/p&gt;
 &lt;h3 id="f07115"&gt;df 别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    alias df="df -h"
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias df="df -h"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;让你以 MB 或 G 为单位查看磁盘的空间。&lt;/p&gt;
 &lt;h3 id="8f5252"&gt;Firefox 别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    alias ff1="/home/jlwallen/firefox/firefox" 及 alias ff2="/home/jlwallen/firefoxb3/firefox"
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias ff1="/home/jlwallen/firefox/firefox" 及 alias ff2="/home/jlwallen/firefoxb3/firefox"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;适合使用两个 Firefox 版本的朋友，如一个稳定版，另一个为测试版。&lt;/p&gt;
 &lt;h3 id="04ee60"&gt;书签别名&lt;/h3&gt;
-&lt;p&gt;alias fftr="/home/jlwallen/firefox/firefox http://linuxtoy.org"，用于打开一个指定的网址。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias fftr="/home/jlwallen/firefox/firefox http://linuxtoy.org"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;用于打开一个指定的网址。&lt;/p&gt;
 &lt;h3 id="5842eb"&gt;文件别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    alias emenu="aterm nano -e ~/.e16/menus/user_apps"
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias emenu="aterm nano -e ~/.e16/menus/user_apps"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如常常需要编辑的配置文件。&lt;/p&gt;
 &lt;h3 id="f8e198"&gt;apt-get update 别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    alias update="sudo apt-get update"
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias update="sudo apt-get update"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;使用其他 Linux 发行版的同学可以换一下其中的 sudo apt-get update。&lt;/p&gt;
 &lt;h3 id="a2c9a8"&gt;rpm 批量安装别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    alias brpm="rpm -ivh ~/RPM/*rpm"
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias brpm="rpm -ivh ~/RPM/*rpm"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;便于同时安装多个 rpm 包。&lt;/p&gt;
 &lt;h3 id="13342f"&gt;长路径别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    alias astart="cd ~/GNUstep/Library/AfterStep/start"
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias astart="cd ~/GNUstep/Library/AfterStep/start"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;对于需要经常访问的路径特别长的目录也可为其定义别名。&lt;/p&gt;
 &lt;h2 id="a6f784"&gt;我的别名用法&lt;/h2&gt;
 &lt;h3 id="339219"&gt;进入虚拟环境&lt;/h3&gt;
 &lt;p&gt;我有一个 &lt;code&gt;virtualenv&lt;/code&gt; 的虚拟环境 &lt;code&gt;env2p&lt;/code&gt; ，为了快速进入虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    alias se2p="cd ~/env2p&amp;amp;source bin/activate"
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias se2p="cd ~/env2p&amp;amp;source bin/activate"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;我只要se2p就进入了虚拟环境。&lt;/p&gt;
 &lt;h3 id="b05767"&gt;推送 &lt;code&gt;git&lt;/code&gt; 到 &lt;code&gt;github.io&lt;/code&gt;&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    alias git2p="cd ~/env2p/blog/output&amp;amp;&amp;amp;git add -A&amp;amp;&amp;amp;git commit -m 'Git My Static Blog'&amp;amp;&amp;amp;git push origin master"
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias git2p="cd ~/env2p/blog/output&amp;amp;&amp;amp;git add -A&amp;amp;&amp;amp;git commit -m 'Git My Static Blog'&amp;amp;&amp;amp;git push origin master"
 &lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Tue, 06 Oct 2015 10:48:00 +0800</pubDate><guid>tag:,2015-10-06:note/about_alias.html</guid><category>bash</category><category>alias</category><category>别名</category></item><item><title>用Pelican创建静态博客网站</title><link>/research/build_pelican_on_python2.html</link><description>&lt;blockquote&gt;
 &lt;p&gt;基于 &lt;code&gt;Pelican&lt;/code&gt; 的 &lt;code&gt;niu-x2-sidebar&lt;/code&gt; 主题的静态博客网站在 &lt;code&gt;python3.4&lt;/code&gt; 下尝试多次，均不能成功，后试过 &lt;code&gt;python2.7&lt;/code&gt; ，第一次成功，后又有配置问题导致显示不正常，经过多方调试，终得以成功，记录下安装及配置的过程，用于留存。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2092,9 +2096,7 @@ EOF
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;但是会有一个&lt;code&gt;获取GPG密钥错误&lt;/code&gt;的提示，加一个参数就可以了：&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;# dnf install -y google-chrome-stable --nogpg
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Thu, 30 Jul 2015 23:41:00 +0800</pubDate><guid>tag:,2015-07-30:note/install_chrome_in_fedora.html</guid><category>Chrome</category></item><item><title>Markdown语法及其运用介绍</title><link>/note/about_markdown.html</link><description>&lt;h2 id="767fa4"&gt;目录&lt;/h2&gt;
-&lt;p&gt;[toc]&lt;/p&gt;
-&lt;h2 id="2bb836"&gt;一、什么是Markdown&lt;/h2&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Thu, 30 Jul 2015 23:41:00 +0800</pubDate><guid>tag:,2015-07-30:note/install_chrome_in_fedora.html</guid><category>Chrome</category></item><item><title>Markdown语法及其运用介绍</title><link>/note/about_markdown.html</link><description>&lt;h2 id="2bb836"&gt;一、什么是Markdown&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="Markdown" src="../images/20151005/markdown.png"/&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Markdown 是一种轻量级的「标记语言」，它的优点很多，目前也被越来越多的写作爱好者，撰稿者广泛使用。看到这里请不要被「标记」、「语言」所迷惑，Markdown 的语法十分简单。常用的标记符号也就十来个，这种相对于更为复杂的HTML 标记语言来说，Markdown 可谓是十分轻量的，学习成本也不需要太多，且一旦熟悉这种语法规则，会有一劳永逸的效果。&lt;/p&gt;
