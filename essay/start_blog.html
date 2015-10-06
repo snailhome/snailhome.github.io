@@ -3,14 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="python, virtualenv">
-        <meta name="description" content="本文介绍了Python虚拟环境工具virtualenv的简单使用方法">
-        <title>Python虚拟环境工具：virtualenv - StepUp</title>
+        <meta name="keywords" content="pelican, 静态博客">
+        <meta name="description" content="经过几天的安装，测试，基于Pelican的静态博客终于搭建成功了">
+        <title>StepUp:基于Pelican的静态博客终于搭建成功了 - StepUp</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="/theme/font-icons/style.min.css" type="text/css" />
         <link rel="stylesheet" href="http://snailhome.github.io/theme/css/niu2.min.css" type="text/css" />
-        <link rel="canonical" href="http://snailhome.github.io/note/virtualenv_4python.html" />
+        <link rel="canonical" href="http://snailhome.github.io/essay/start_blog.html" />
         <script type="text/javascript">window.onload=function(){};</script>
         <!--[if lt IE 9]>
             <script src="http://snailhome.github.io/theme/js/html5shiv.js"></script>
@@ -104,96 +104,53 @@
 
         <div id="body-content">
             <div class="col-md-8 col-md-offset-2">
-                <h1 id="content-heading">Python虚拟环境工具：virtualenv</h1>
+                <h1 id="content-heading">StepUp:基于Pelican的静态博客终于搭建成功了</h1>
             </div>
             <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
                 <div id="niu2-main-content">
-                    <p>virtualenv用于创建独立的Python环境，多个Python相互独立，互不影响，它能够：</p>
-<ol>
-<li>在没有权限的情况下安装新套件</li>
-<li>不同应用可以使用不同的套件版本</li>
-<li>套件升级不影响其他应用</li>
-</ol>
-<h3 id="e655a4">安装</h3>
-<div class="codehilite"><pre>    sudo apt-get install python-virtualenv
-</pre></div>
-<p>使用方法</p>
-<div class="codehilite"><pre>    virtualenv [虚拟环境名称]
-</pre></div>
-<p>如，创建<strong>ENV</strong>的虚拟环境</p>
-<div class="codehilite"><pre>    virtualenv ENV
-</pre></div>
-<p>如果系统中存在python2和python3两个版本，我们要让虚拟环境基于其中一个版本，可以这样操作</p>
-<div class="codehilite"><pre>    virtualenv -p python2 ENV  #基于python2
-</pre></div>
-<p>或者</p>
-<div class="codehilite"><pre>    virtualenv -p python3 ENV  #基于python3
-</pre></div>
-<p>默认情况下，虚拟环境会依赖系统环境中的site packages，就是说系统中已经安装好的第三方package也会安装在虚拟环境中，如果不想依赖这些package，那么可以加上参数 <code>--no-site-packages</code> 建立虚拟环境</p>
-<div class="codehilite"><pre>    virtualenv --no-site-packages [虚拟环境名称]
-</pre></div>
-<p>但在新版本virtualenv中这个选项已经是默认项了。</p>
-<p>启动虚拟环境</p>
-<div class="codehilite"><pre>    cd ENV
-    source ./bin/activate
-</pre></div>
-<p>注意此时命令行会多一个(ENV)，ENV为虚拟环境名称，接下来所有模块都只会安装到该目录中去。</p>
-<p>退出虚拟环境</p>
-<div class="codehilite"><pre>    deactivate
-</pre></div>
-<p>在虚拟环境安装Python套件
-Virtualenv 附带有pip安装工具，因此需要安装的套件可以直接运行：</p>
-<div class="codehilite"><pre>    pip install [套件名称]
-</pre></div>
-<p>如果没有启动虚拟环境，系统也安装了pip工具，那么套件将被安装在系统环境中，为了避免发生此事，可以在<code>~/.bashrc</code>文件中加上：</p>
-<div class="codehilite"><pre>    export PIP_REQUIRE_VIRTUALENV=true
-</pre></div>
-<p>或者让在执行pip的时候让系统自动开启虚拟环境：</p>
-<div class="codehilite"><pre>    export PIP_RESPECT_VIRTUALENV=true
-</pre></div>
-<h2 id="c58843">Virtualenvwrapper</h2>
-<p>Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境，它可以做：</p>
-<ol>
-<li>将所有虚拟环境整合在一个目录下</li>
-<li>管理（新增，删除，复制）虚拟环境</li>
-<li>切换虚拟环境</li>
-<li>...</li>
-</ol>
-<h3 id="e655a4_1">安装</h3>
-<div class="codehilite"><pre>    sudo easy_install virtualenvwrapper
-</pre></div>
-<p>此时还不能使用virtualenvwrapper，默认virtualenvwrapper安装在/usr/local/bin下面，实际上你需要运行virtualenvwrapper.sh文件才行，先别急，打开这个文件看看,里面有安装步骤，我们照着操作把环境设置好。</p>
-<p>创建目录用来存放虚拟环境</p>
-<div class="codehilite"><pre>    mkdir $HOME/.virtualenvs
-</pre></div>
-<p>在<code>~/.bashrc</code>中添加行：</p>
-<div class="codehilite"><pre>    export WORKON_HOME=$HOME/.virtualenvs
-    source /usr/local/bin/virtualenvwrapper.sh
-</pre></div>
-<p>保存退出后运行： <code>source ~/.bashrc</code></p>
-<p>此时virtualenvwrapper就可以使用了。</p>
-<p>列出虚拟环境列表</p>
-<div class="codehilite"><pre>    workon
-</pre></div>
-<p>也可以使用</p>
-<div class="codehilite"><pre>    lsvirtualenv
-</pre></div>
-<p>新建虚拟环境</p>
-<div class="codehilite"><pre>    mkvirtualenv [虚拟环境名称]
-</pre></div>
-<p>启动/切换虚拟环境</p>
-<div class="codehilite"><pre>    workon [虚拟环境名称]
-</pre></div>
-<p>删除虚拟环境</p>
-<div class="codehilite"><pre>    rmvirtualenv [虚拟环境名称]
-</pre></div>
-<p>离开虚拟环境</p>
-<div class="codehilite"><pre>    deactivate
-</pre></div>
+                    <p><strong>StepUp</strong>：寓意于每天提高一点点。</p>
+<p>以前的我，总是不喜笔记，很多的东西过后就忘，</p>
+<p>年过40，是不是就开始健忘，今天忘东，明天忘西，</p>
+<p>渐渐的也就脱离不了笔记了～</p>
+<p>可是～～</p>
+<p>手绘的笔记不好带</p>
+<p>本地的电子日记有局限，电脑没有天天带身边</p>
+<p>建个Blog要收费，要数据库，要空间，要……</p>
+<p>我只是想找个可以自由记录，免费保存</p>
+<ul>
+<li>一些想法</li>
+<li>一些网摘</li>
+<li>一些记录</li>
+</ul>
+<p>不需要太多的</p>
+<ul>
+<li>评论</li>
+<li>交互</li>
+<li>反馈</li>
+<li>时限</li>
+<li>实时</li>
+</ul>
+<p>所以 <code>github</code> ，所以 <code>Static Blog</code></p>
+<p>就够了～～</p>
+<p>我用 <code>Python</code> ，所以我使用 <code>Pelican</code>来搭建静态博客</p>
+<p>几经安装测试，搭建、安装主题、插件，才终于成功，</p>
+<p>前面几天一直是基于Python3的虚拟环境在搭建，诸多问题，一直不满意</p>
+<p>后来才想到使用基于Python2的虚拟环境来测试，居然一下就成功了，</p>
+<p>然后就是</p>
+<ul>
+<li>测试主题、插件</li>
+<li>测试 <code>pelicanconf.py</code> 的配置</li>
+<li>测试各种 <code>make</code> 命令</li>
+<li>测试 <code>github pages</code> 的 <code>repository</code> 的申请</li>
+<li>测试ssh密钥</li>
+<li>测试git推送生成的静态网站</li>
+</ul>
+<p>终于，基于Pelican的静态博客终于搭建成功了</p>
+<p>没错这就是你看到的网站 <a href="">http://snailhome.github.io</a></p>
                 </div>
                 <div id="content-comments">
                     <!-- 多说评论框 start -->
-                    <div class="ds-thread" data-thread-key="/note/virtualenv_4python.html" data-title="Python虚拟环境工具：virtualenv" data-url="http://snailhome.github.io/note/virtualenv_4python.html">
+                    <div class="ds-thread" data-thread-key="/essay/start_blog.html" data-title="StepUp:基于Pelican的静态博客终于搭建成功了" data-url="http://snailhome.github.io/essay/start_blog.html">
                     </div>
                     <!-- 多说评论框 end -->
                     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
@@ -215,12 +172,12 @@ Virtualenv 附带有pip安装工具，因此需要安装的套件可以直接运
             <div class="niu2-right-container col-md-2">
                 <div id="niu2-sidebar-meta" class="niu2-sidebar">
                     <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
-                    <div class="niu2-sidebar-value">2015-08-05 01:21</div>
-                    <div class="niu2-sidebar-label"><i class="icon-book"></i>分类:</div>
-                    <div class="niu2-sidebar-value"><a href="http://snailhome.github.io/note/index.html">笔记</a></div>
+                    <div class="niu2-sidebar-value">2015-10-06 13:11</div>
+                    <div class="niu2-sidebar-label"><i class="icon-leaf"></i>分类:</div>
+                    <div class="niu2-sidebar-value"><a href="http://snailhome.github.io/essay/index.html">随笔</a></div>
                     <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
-                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/python.html">python</a><sup>1</sup></div>
-                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/virtualenv.html">virtualenv</a><sup>1</sup></div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/pelican.html">pelican</a><sup>2</sup></div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/jing-tai-bo-ke.html">静态博客</a><sup>2</sup></div>
                 </div>
 
                 <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
@@ -228,8 +185,8 @@ Virtualenv 附带有pip安装工具，因此需要安装的套件可以直接运
                         <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
                     </div>
                     <ol id="niu2-sidebar-toc-list">
-                        <li><a href="#content-heading">Python虚拟环境工具：virtualenv</a></li>
-                        <li><a href='#e655a4'>安装</a></li><li><a href='#c58843'>Virtualenvwrapper</a><ol><li><a href='#e655a4_1'>安装</a></li></ol></li>
+                        <li><a href="#content-heading">StepUp:基于Pelican的静态博客终于搭建成功了</a></li>
+                        
                         <li><a href="#content-comments">评论</a></li>
                     </ol>
                 </div>

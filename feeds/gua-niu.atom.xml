@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>StepUp</title><link href="http://snailhome.github.io/" rel="alternate"></link><link href="/feeds/gua-niu.atom.xml" rel="self"></link><id>http://snailhome.github.io/</id><updated>2015-10-06T11:23:00+08:00</updated><entry><title>如何git时免输用户名密码</title><link href="http://snailhome.github.io/note/no_password_when_git.html" rel="alternate"></link><updated>2015-10-06T11:23:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-06:note/no_password_when_git.html</id><summary type="html">&lt;p&gt;我要push静态博客时都要输入用户名和密码，特麻烦，百度了一下有好几种免输密码的方式，不知所云，后来尝试了一种成功，看官看过来。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>StepUp</title><link href="http://snailhome.github.io/" rel="alternate"></link><link href="/feeds/gua-niu.atom.xml" rel="self"></link><id>http://snailhome.github.io/</id><updated>2015-10-06T13:11:00+08:00</updated><entry><title>StepUp:基于Pelican的静态博客终于搭建成功了</title><link href="http://snailhome.github.io/essay/start_blog.html" rel="alternate"></link><updated>2015-10-06T13:11:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-06:essay/start_blog.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;StepUp&lt;/strong&gt;：寓意于每天提高一点点。&lt;/p&gt;
+&lt;p&gt;以前的我，总是不喜笔记，很多的东西过后就忘，&lt;/p&gt;
+&lt;p&gt;年过40，是不是就开始健忘，今天忘东，明天忘西，&lt;/p&gt;
+&lt;p&gt;渐渐的也就脱离不了笔记了～&lt;/p&gt;
+&lt;p&gt;可是～～&lt;/p&gt;
+&lt;p&gt;手绘的笔记不好带&lt;/p&gt;
+&lt;p&gt;本地的电子日记有局限，电脑没有天天带身边&lt;/p&gt;
+&lt;p&gt;建个Blog要收费，要数据库，要空间，要……&lt;/p&gt;
+&lt;p&gt;我只是想找个可以自由记录，免费保存&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一些想法&lt;/li&gt;
+&lt;li&gt;一些网摘&lt;/li&gt;
+&lt;li&gt;一些记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不需要太多的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;评论&lt;/li&gt;
+&lt;li&gt;交互&lt;/li&gt;
+&lt;li&gt;反馈&lt;/li&gt;
+&lt;li&gt;时限&lt;/li&gt;
+&lt;li&gt;实时&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以 &lt;code&gt;github&lt;/code&gt; ，所以 &lt;code&gt;Static Blog&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;就够了～～&lt;/p&gt;
+&lt;p&gt;我用 &lt;code&gt;Python&lt;/code&gt; ，所以我使用 &lt;code&gt;Pelican&lt;/code&gt;来搭建静态博客&lt;/p&gt;
+&lt;p&gt;几经安装测试，搭建、安装主题、插件，才终于成功，&lt;/p&gt;
+&lt;p&gt;前面几天一直是基于Python3的虚拟环境在搭建，诸多问题，一直不满意&lt;/p&gt;
+&lt;p&gt;后来才想到使用基于Python2的虚拟环境来测试，居然一下就成功了，&lt;/p&gt;
+&lt;p&gt;然后就是&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;测试主题、插件&lt;/li&gt;
+&lt;li&gt;测试 &lt;code&gt;pelicanconf.py&lt;/code&gt; 的配置&lt;/li&gt;
+&lt;li&gt;测试各种 &lt;code&gt;make&lt;/code&gt; 命令&lt;/li&gt;
+&lt;li&gt;测试 &lt;code&gt;github pages&lt;/code&gt; 的 &lt;code&gt;repository&lt;/code&gt; 的申请&lt;/li&gt;
+&lt;li&gt;测试ssh密钥&lt;/li&gt;
+&lt;li&gt;测试git推送生成的静态网站&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;终于，基于Pelican的静态博客终于搭建成功了&lt;/p&gt;
+&lt;p&gt;没错这就是你看到的网站 &lt;a href=""&gt;http://snailhome.github.io&lt;/a&gt;&lt;/p&gt;</summary><category term="pelican"></category><category term="静态博客"></category></entry><entry><title>如何git时免输用户名密码</title><link href="http://snailhome.github.io/note/no_password_when_git.html" rel="alternate"></link><updated>2015-10-06T11:23:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-06:note/no_password_when_git.html</id><summary type="html">&lt;p&gt;我要push静态博客时都要输入用户名和密码，特麻烦，百度了一下有好几种免输密码的方式，不知所云，后来尝试了一种成功，看官看过来。&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output/.git
 &lt;span class="nv"&gt;$ &lt;/span&gt;vim config
 &lt;/pre&gt;&lt;/div&gt;
