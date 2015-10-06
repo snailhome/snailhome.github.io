@@ -209,7 +209,7 @@ summary插件: 提取第一句话作为摘要&lt;/p&gt;
 extract_headings     niux2_lazyload_helper  sitemap
 niux2_hermit_player  pelican-update-date    summary
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h4 id="b39e48"&gt;配置 &lt;code&gt;pelicanconf.py&lt;/code&gt;&lt;/h4&gt;
+&lt;h3 id="b39e48"&gt;配置 &lt;code&gt;pelicanconf.py&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;复制了原作者关于&lt;a href="http://blog.atime.me/note/pelican-setup-summary.html"&gt;Pelican静态博客搭建总结&lt;/a&gt;的配置，并作了适当修改&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/usr/bin/env python&lt;/span&gt;
 &lt;span class="c"&gt;# -*- coding: utf-8 -*- #&lt;/span&gt;
@@ -424,7 +424,7 @@ niux2_hermit_player  pelican-update-date    summary
     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'icon-rss'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'RSS'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'/feed.xml'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
 &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h4 id="d3a354"&gt;创建内容目录下的相关子目录&lt;/h4&gt;
+&lt;h3 id="d3a354"&gt;创建内容目录下的相关子目录&lt;/h3&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;content
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;mkdir pages
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;mkdir static
@@ -438,6 +438,7 @@ niux2_hermit_player  pelican-update-date    summary
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;ls
 code  collection  essay  extra  life  note  pages  research  static
 &lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="b49198"&gt;本地生成测试&lt;/h2&gt;
 &lt;h3 id="bac0a5"&gt;生成输出文件&lt;/h3&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;make html
 &lt;/pre&gt;&lt;/div&gt;
@@ -449,8 +450,9 @@ code  collection  essay  extra  life  note  pages  research  static
 &lt;h3 id="91d14b"&gt;运行测试服务器&lt;/h3&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;make devserver
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;修改&lt;code&gt;.md&lt;/code&gt;文件保存后，直接刷新 &lt;code&gt;http://127.0.0.1:8000&lt;/code&gt; 就可以看到更新后的效果了。&lt;/p&gt;
-&lt;h2 id="c5490b"&gt;git到github.com&lt;/h2&gt;
+&lt;p&gt;这个方法会自动监测文件的修改，并自动生成网站，&lt;/p&gt;
+&lt;p&gt;所以当我们修改&lt;code&gt;.md&lt;/code&gt;文件保存后，直接刷新 &lt;code&gt;http://127.0.0.1:8000&lt;/code&gt; 就可以看到更新后的效果了。&lt;/p&gt;
+&lt;h2 id="306b20"&gt;发布并git&lt;/h2&gt;
 &lt;h3 id="ec13c9"&gt;生成ssh密钥&lt;/h3&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/.ssh
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;ls
