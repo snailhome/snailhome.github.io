@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="Chrome">
-        <meta name="description" content="">
+        <meta name="description" content="本文介绍了Fedora22下安装Chrome的过程">
         <title>Fedora22 安装 Chrome - StepUp</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
@@ -109,22 +109,22 @@
             <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
                 <div id="niu2-main-content">
                     <p>Fedora22 无法直接安装 Chrome，需要先添加<code>Chrome</code>的软件仓库</p>
-<div class="codehilite"><pre>$ su -
+<div class="codehilite"><pre><span class="nv">$ </span>su -
 Password:
-# cat &lt;&lt; EOF &gt; /etc/yum.repos.d/google-chrome.repo
-[google-chrome]
-name=google-chrome - \$basearch
-baseurl=http://dl.google.com/linux/chrome/rpm/stable/\$basearch
-enabled=1
-gpgcheck=1
-gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+<span class="c"># cat &lt;&lt; EOF &gt; /etc/yum.repos.d/google-chrome.repo</span>
+<span class="o">[</span>google-chrome<span class="o">]</span>
+<span class="nv">name</span><span class="o">=</span>google-chrome - <span class="se">\$</span>basearch
+<span class="nv">baseurl</span><span class="o">=</span>http://dl.google.com/linux/chrome/rpm/stable/<span class="se">\$</span>basearch
+<span class="nv">enabled</span><span class="o">=</span>1
+<span class="nv">gpgcheck</span><span class="o">=</span>1
+<span class="nv">gpgkey</span><span class="o">=</span>https://dl-ssl.google.com/linux/linux_signing_key.pub
 EOF
 </pre></div>
 <p>现在可以安装了</p>
-<div class="codehilite"><pre># dnf install -y google-chrome-stable
+<div class="codehilite"><pre><span class="c"># dnf install -y google-chrome-stable</span>
 </pre></div>
 <p>但是会有一个<code>获取GPG密钥错误</code>的提示，加一个参数就可以了：</p>
-<div class="codehilite"><pre># dnf install -y google-chrome-stable --nogpg
+<div class="codehilite"><pre><span class="c"># dnf install -y google-chrome-stable --nogpg</span>
 </pre></div>
                 </div>
                 <div id="content-comments">

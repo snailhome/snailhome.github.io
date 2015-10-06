@@ -11,7 +11,8 @@
 &lt;div class="codehilite"&gt;&lt;pre&gt;[remote "origin"]
         url = https://yourname:password@github.com/yourname/yourname.github.io.git
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;当然，这个操作最好是在自己的机器上，毕竟用户名和密码明文放在上面，在其它机器上还是老老实实输入用户名和密码吧。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Tue, 06 Oct 2015 11:23:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-10-06:note/no_password_when_git.html</guid><category>git</category><category>免密码</category></item><item><title>10 个实用的 Bash alias</title><link>http://snailhome.github.io/note/about_alias.html</link><description>&lt;p&gt;alias 即“别名”，为便于理解，你可以将其看成是一个命令的快捷方式。使用 alias 的最大好处是，可以简化输入，从而为你节省时间，并提高效率。定义的 alias 可以保存到 ~/.bashrc 文件中，以后在命令行中就可以直接使用了。&lt;/p&gt;
+&lt;p&gt;当然，这个操作最好是在自己的机器上，毕竟用户名和密码明文放在上面，在其它机器上还是老老实实输入用户名和密码吧。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Tue, 06 Oct 2015 11:23:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-10-06:note/no_password_when_git.html</guid><category>git</category><category>免密码</category></item><item><title>10 个实用的 Bash alias</title><link>http://snailhome.github.io/note/about_alias.html</link><description>&lt;p&gt;Summary：介绍几个个实用的 Bash alias用法&lt;/p&gt;
+&lt;p&gt;alias 即“别名”，为便于理解，你可以将其看成是一个命令的快捷方式。使用 alias 的最大好处是，可以简化输入，从而为你节省时间，并提高效率。定义的 alias 可以保存到 ~/.bashrc 文件中，以后在命令行中就可以直接使用了。&lt;/p&gt;
 &lt;p&gt;要设置别名&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;$ vim ~/.bashrc
 &lt;/pre&gt;&lt;/div&gt;
@@ -2118,22 +2119,22 @@ Password:
 &lt;/ul&gt;
 &lt;h2 id="7fd882"&gt;输入法切换&lt;/h2&gt;
 &lt;p&gt;ibus输入法切换使用&lt;code&gt;WIN&lt;/code&gt;键加&lt;code&gt;空格&lt;/code&gt;键来切换。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Fri, 31 Jul 2015 23:48:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-07-31:note/install_wubi_in_fedora.html</guid><category>五笔</category></item><item><title>Fedora22 安装 Chrome</title><link>http://snailhome.github.io/note/install_chrome_in_fedora.html</link><description>&lt;p&gt;Fedora22 无法直接安装 Chrome，需要先添加&lt;code&gt;Chrome&lt;/code&gt;的软件仓库&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ su -
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;su -
 Password:
-# cat &amp;lt;&amp;lt; EOF &amp;gt; /etc/yum.repos.d/google-chrome.repo
-[google-chrome]
-name=google-chrome - \$basearch
-baseurl=http://dl.google.com/linux/chrome/rpm/stable/\$basearch
-enabled=1
-gpgcheck=1
-gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+&lt;span class="c"&gt;# cat &amp;lt;&amp;lt; EOF &amp;gt; /etc/yum.repos.d/google-chrome.repo&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;google-chrome&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;google-chrome - &lt;span class="se"&gt;\$&lt;/span&gt;basearch
+&lt;span class="nv"&gt;baseurl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;http://dl.google.com/linux/chrome/rpm/stable/&lt;span class="se"&gt;\$&lt;/span&gt;basearch
+&lt;span class="nv"&gt;enabled&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1
+&lt;span class="nv"&gt;gpgcheck&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1
+&lt;span class="nv"&gt;gpgkey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;https://dl-ssl.google.com/linux/linux_signing_key.pub
 EOF
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;现在可以安装了&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;# dnf install -y google-chrome-stable
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# dnf install -y google-chrome-stable&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;但是会有一个&lt;code&gt;获取GPG密钥错误&lt;/code&gt;的提示，加一个参数就可以了：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;# dnf install -y google-chrome-stable --nogpg
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# dnf install -y google-chrome-stable --nogpg&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Thu, 30 Jul 2015 23:41:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-07-30:note/install_chrome_in_fedora.html</guid><category>Chrome</category></item><item><title>Markdown语法及其运用介绍</title><link>http://snailhome.github.io/note/about_markdown.html</link><description>&lt;h2 id="2bb836"&gt;一、什么是Markdown&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="Markdown" src="../images/20151005/markdown.png"/&gt;&lt;/p&gt;
 &lt;blockquote&gt;
