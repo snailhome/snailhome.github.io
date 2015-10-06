@@ -68,7 +68,8 @@
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="bash"></category><category term="alias"></category><category term="别名"></category></entry><entry><title>用Pelican创建静态博客网站</title><link href="http://snailhome.github.io/research/build_pelican_on_python2.html" rel="alternate"></link><updated>2015-10-05T00:00:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-05:research/build_pelican_on_python2.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;基于 &lt;code&gt;Pelican&lt;/code&gt; 的 &lt;code&gt;niu-x2-sidebar&lt;/code&gt; 主题的静态博客网站在 &lt;code&gt;python3.4&lt;/code&gt; 下尝试多次，均不能成功，后试过 &lt;code&gt;python2.7&lt;/code&gt; ，第一次成功，后又有配置问题导致显示不正常，经过多方调试，终得以成功，记录下安装及配置的过程，用于留存。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id="b41e5d"&gt;创建虚拟环境&lt;/h2&gt;
+&lt;h2 id="cbfa54"&gt;创建运行环境&lt;/h2&gt;
+&lt;h3 id="b41e5d"&gt;创建虚拟环境&lt;/h3&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~
 &lt;span class="nv"&gt;$ &lt;/span&gt;virtualenv -p python2 env2p
 New python executable in env2p/bin/python
@@ -82,7 +83,7 @@ setuptools &lt;span class="o"&gt;(&lt;/span&gt;18.2&lt;span class="o"&gt;)&lt;/s
 urllib3 &lt;span class="o"&gt;(&lt;/span&gt;1.12&lt;span class="o"&gt;)&lt;/span&gt;
 wheel &lt;span class="o"&gt;(&lt;/span&gt;0.24.0&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h2 id="ad57b5"&gt;安装 &lt;code&gt;pelican&lt;/code&gt; 支持&lt;/h2&gt;
+&lt;h3 id="ad57b5"&gt;安装 &lt;code&gt;pelican&lt;/code&gt; 支持&lt;/h3&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;pip install pelican markdown
 ......
 Installing collected packages: pygments, pytz, six, feedgenerator, unidecode, python-dateutil, MarkupSafe, jinja2, docutils, blinker, pelican, markdown
@@ -105,7 +106,7 @@ Unidecode &lt;span class="o"&gt;(&lt;/span&gt;0.4.18&lt;span class="o"&gt;)&lt;/
 urllib3 &lt;span class="o"&gt;(&lt;/span&gt;1.12&lt;span class="o"&gt;)&lt;/span&gt;
 wheel &lt;span class="o"&gt;(&lt;/span&gt;0.24.0&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h2 id="a4730b"&gt;创建静态博客文件目录结构及初始配置&lt;/h2&gt;
+&lt;h3 id="a4730b"&gt;创建静态博客文件目录结构及初始配置&lt;/h3&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;(env2p) $ mkdir blog
 (env2p) $ cd blog
 (env2p) $ pelican-quickstart
@@ -137,8 +138,8 @@ needed by Pelican.
 &amp;gt; Is this your personal page (username.github.io)? (y/N) y
 Done. Your new project is available at /home/snail/env2p/blog
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h2 id="d365c1"&gt;安装 &lt;code&gt;niu-x2-sidebar&lt;/code&gt; 主题模板&lt;/h2&gt;
-&lt;h3 id="7f70ad"&gt;安装系统依赖&lt;/h3&gt;
+&lt;h3 id="d365c1"&gt;安装 &lt;code&gt;niu-x2-sidebar&lt;/code&gt; 主题模板&lt;/h3&gt;
+&lt;h4 id="7f70ad"&gt;安装系统依赖&lt;/h4&gt;
 &lt;p&gt;jpegoptim 用于make optimize，压缩jpg图片。&lt;/p&gt;
 &lt;p&gt;安装(debian/ubuntu):&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo apt-get install jpegoptim
@@ -146,7 +147,7 @@ Done. Your new project is available at /home/snail/env2p/blog
 &lt;p&gt;生成zh_CN.UTF-8 locale&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo locale-gen zh_CN.UTF-8
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id="9baebf"&gt;安装 &lt;code&gt;python&lt;/code&gt; 依赖&lt;/h3&gt;
+&lt;h4 id="9baebf"&gt;安装 &lt;code&gt;python&lt;/code&gt; 依赖&lt;/h4&gt;
 &lt;p&gt;上面的主题或插件的额外依赖&lt;/p&gt;
 &lt;p&gt;pelican-minify: 压缩html文件
 beautifulsoup4: 解析html文件
@@ -178,7 +179,7 @@ Unidecode &lt;span class="o"&gt;(&lt;/span&gt;0.4.18&lt;span class="o"&gt;)&lt;/
 urllib3 &lt;span class="o"&gt;(&lt;/span&gt;1.12&lt;span class="o"&gt;)&lt;/span&gt;
 wheel &lt;span class="o"&gt;(&lt;/span&gt;0.24.0&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id="f8a47d"&gt;安装 &lt;code&gt;niu-x2-sidebar&lt;/code&gt; 主题&lt;/h3&gt;
+&lt;h4 id="f8a47d"&gt;安装 &lt;code&gt;niu-x2-sidebar&lt;/code&gt; 主题&lt;/h4&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;mkdir themes
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;themes
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git clone https://github.com/mawenbao/niu-x2-sidebar.git
@@ -186,7 +187,7 @@ wheel &lt;span class="o"&gt;(&lt;/span&gt;0.24.0&lt;span class="o"&gt;)&lt;/span
 niu-x2-sidebar
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ..
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id="c2bb8d"&gt;安装 &lt;code&gt;niu-x2-sidebar&lt;/code&gt; 主题插件&lt;/h3&gt;
+&lt;h4 id="c2bb8d"&gt;安装 &lt;code&gt;niu-x2-sidebar&lt;/code&gt; 主题插件&lt;/h4&gt;
 &lt;p&gt;extract_headings插件: 从html文件里提取h1~h6标题并生成目录列表
 niux2_hermit_player插件: 音频播放器
 niux2_lazyload_helper插件: 延迟加载图片
@@ -208,7 +209,7 @@ summary插件: 提取第一句话作为摘要&lt;/p&gt;
 extract_headings     niux2_lazyload_helper  sitemap
 niux2_hermit_player  pelican-update-date    summary
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id="b39e48"&gt;配置 &lt;code&gt;pelicanconf.py&lt;/code&gt;&lt;/h3&gt;
+&lt;h4 id="b39e48"&gt;配置 &lt;code&gt;pelicanconf.py&lt;/code&gt;&lt;/h4&gt;
 &lt;p&gt;复制了原作者关于&lt;a href="http://blog.atime.me/note/pelican-setup-summary.html"&gt;Pelican静态博客搭建总结&lt;/a&gt;的配置，并作了适当修改&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/usr/bin/env python&lt;/span&gt;
 &lt;span class="c"&gt;# -*- coding: utf-8 -*- #&lt;/span&gt;
@@ -423,7 +424,7 @@ niux2_hermit_player  pelican-update-date    summary
     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'icon-rss'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'RSS'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'/feed.xml'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
 &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id="d3a354"&gt;创建内容目录下的相关子目录&lt;/h3&gt;
+&lt;h4 id="d3a354"&gt;创建内容目录下的相关子目录&lt;/h4&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;content
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;mkdir pages
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;mkdir static

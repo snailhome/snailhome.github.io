@@ -111,7 +111,8 @@
                     <blockquote>
 <p>基于 <code>Pelican</code> 的 <code>niu-x2-sidebar</code> 主题的静态博客网站在 <code>python3.4</code> 下尝试多次，均不能成功，后试过 <code>python2.7</code> ，第一次成功，后又有配置问题导致显示不正常，经过多方调试，终得以成功，记录下安装及配置的过程，用于留存。</p>
 </blockquote>
-<h2 id="b41e5d">创建虚拟环境</h2>
+<h2 id="cbfa54">创建运行环境</h2>
+<h3 id="b41e5d">创建虚拟环境</h3>
 <div class="codehilite"><pre><span class="nv">$ </span><span class="nb">cd</span> ~
 <span class="nv">$ </span>virtualenv -p python2 env2p
 New python executable in env2p/bin/python
@@ -125,7 +126,7 @@ setuptools <span class="o">(</span>18.2<span class="o">)</span>
 urllib3 <span class="o">(</span>1.12<span class="o">)</span>
 wheel <span class="o">(</span>0.24.0<span class="o">)</span>
 </pre></div>
-<h2 id="ad57b5">安装 <code>pelican</code> 支持</h2>
+<h3 id="ad57b5">安装 <code>pelican</code> 支持</h3>
 <div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>pip install pelican markdown
 ......
 Installing collected packages: pygments, pytz, six, feedgenerator, unidecode, python-dateutil, MarkupSafe, jinja2, docutils, blinker, pelican, markdown
@@ -148,7 +149,7 @@ Unidecode <span class="o">(</span>0.4.18<span class="o">)</span>
 urllib3 <span class="o">(</span>1.12<span class="o">)</span>
 wheel <span class="o">(</span>0.24.0<span class="o">)</span>
 </pre></div>
-<h2 id="a4730b">创建静态博客文件目录结构及初始配置</h2>
+<h3 id="a4730b">创建静态博客文件目录结构及初始配置</h3>
 <div class="codehilite"><pre>(env2p) $ mkdir blog
 (env2p) $ cd blog
 (env2p) $ pelican-quickstart
@@ -180,8 +181,8 @@ needed by Pelican.
 &gt; Is this your personal page (username.github.io)? (y/N) y
 Done. Your new project is available at /home/snail/env2p/blog
 </pre></div>
-<h2 id="d365c1">安装 <code>niu-x2-sidebar</code> 主题模板</h2>
-<h3 id="7f70ad">安装系统依赖</h3>
+<h3 id="d365c1">安装 <code>niu-x2-sidebar</code> 主题模板</h3>
+<h4 id="7f70ad">安装系统依赖</h4>
 <p>jpegoptim 用于make optimize，压缩jpg图片。</p>
 <p>安装(debian/ubuntu):</p>
 <div class="codehilite"><pre>$ sudo apt-get install jpegoptim
@@ -189,7 +190,7 @@ Done. Your new project is available at /home/snail/env2p/blog
 <p>生成zh_CN.UTF-8 locale</p>
 <div class="codehilite"><pre>$ sudo locale-gen zh_CN.UTF-8
 </pre></div>
-<h3 id="9baebf">安装 <code>python</code> 依赖</h3>
+<h4 id="9baebf">安装 <code>python</code> 依赖</h4>
 <p>上面的主题或插件的额外依赖</p>
 <p>pelican-minify: 压缩html文件
 beautifulsoup4: 解析html文件
@@ -221,7 +222,7 @@ Unidecode <span class="o">(</span>0.4.18<span class="o">)</span>
 urllib3 <span class="o">(</span>1.12<span class="o">)</span>
 wheel <span class="o">(</span>0.24.0<span class="o">)</span>
 </pre></div>
-<h3 id="f8a47d">安装 <code>niu-x2-sidebar</code> 主题</h3>
+<h4 id="f8a47d">安装 <code>niu-x2-sidebar</code> 主题</h4>
 <div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir themes
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>themes
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git clone https://github.com/mawenbao/niu-x2-sidebar.git
@@ -229,7 +230,7 @@ wheel <span class="o">(</span>0.24.0<span class="o">)</span>
 niu-x2-sidebar
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd</span> ..
 </pre></div>
-<h3 id="c2bb8d">安装 <code>niu-x2-sidebar</code> 主题插件</h3>
+<h4 id="c2bb8d">安装 <code>niu-x2-sidebar</code> 主题插件</h4>
 <p>extract_headings插件: 从html文件里提取h1~h6标题并生成目录列表
 niux2_hermit_player插件: 音频播放器
 niux2_lazyload_helper插件: 延迟加载图片
@@ -251,7 +252,7 @@ summary插件: 提取第一句话作为摘要</p>
 extract_headings     niux2_lazyload_helper  sitemap
 niux2_hermit_player  pelican-update-date    summary
 </pre></div>
-<h3 id="b39e48">配置 <code>pelicanconf.py</code></h3>
+<h4 id="b39e48">配置 <code>pelicanconf.py</code></h4>
 <p>复制了原作者关于<a href="http://blog.atime.me/note/pelican-setup-summary.html">Pelican静态博客搭建总结</a>的配置，并作了适当修改</p>
 <div class="codehilite"><pre><span class="c">#!/usr/bin/env python</span>
 <span class="c"># -*- coding: utf-8 -*- #</span>
@@ -466,7 +467,7 @@ niux2_hermit_player  pelican-update-date    summary
     <span class="p">(</span><span class="s">'icon-rss'</span><span class="p">,</span> <span class="s">'RSS'</span><span class="p">,</span> <span class="s">'/feed.xml'</span><span class="p">),</span>
 <span class="p">]</span>
 </pre></div>
-<h3 id="d3a354">创建内容目录下的相关子目录</h3>
+<h4 id="d3a354">创建内容目录下的相关子目录</h4>
 <div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>content
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir pages
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>mkdir static
@@ -610,7 +611,7 @@ $ git push origin master //更新到远程服务器上</p>
                     </div>
                     <ol id="niu2-sidebar-toc-list">
                         <li><a href="#content-heading">用Pelican创建静态博客网站</a></li>
-                        <li><a href='#b41e5d'>创建虚拟环境</a></li><li><a href='#ad57b5'>安装 pelican 支持</a></li><li><a href='#a4730b'>创建静态博客文件目录结构及初始配置</a></li><li><a href='#d365c1'>安装 niu-x2-sidebar 主题模板</a><ol><li><a href='#7f70ad'>安装系统依赖</a></li><li><a href='#9baebf'>安装 python 依赖</a></li><li><a href='#f8a47d'>安装 niu-x2-sidebar 主题</a></li><li><a href='#c2bb8d'>安装 niu-x2-sidebar 主题插件</a></li><li><a href='#b39e48'>配置 pelicanconf.py</a></li><li><a href='#d3a354'>创建内容目录下的相关子目录</a></li><li><a href='#bac0a5'>生成输出文件</a></li><li><a href='#7795ac'>查看网站生成的效果</a></li><li><a href='#91d14b'>运行测试服务器</a></li></ol></li><li><a href='#c5490b'>git到github.com</a><ol><li><a href='#ec13c9'>生成ssh密钥</a></li><li><a href='#ee2e4a'>添加SSH Key到GitHub：</a></li><li><a href='#124a56'>ssh连接测试</a></li><li><a href='#a3e59c'>git静态网站</a></li><li><a href='#b938c7'>设置别名</a></li><li><a href='#be3806'>设置git时免输用户名和密码</a></li></ol></li>
+                        <li><a href='#cbfa54'>创建运行环境</a><ol><li><a href='#b41e5d'>创建虚拟环境</a></li><li><a href='#ad57b5'>安装 pelican 支持</a></li><li><a href='#a4730b'>创建静态博客文件目录结构及初始配置</a></li><li><a href='#d365c1'>安装 niu-x2-sidebar 主题模板</a><ol><li><a href='#7f70ad'>安装系统依赖</a></li><li><a href='#9baebf'>安装 python 依赖</a></li><li><a href='#f8a47d'>安装 niu-x2-sidebar 主题</a></li><li><a href='#c2bb8d'>安装 niu-x2-sidebar 主题插件</a></li><li><a href='#b39e48'>配置 pelicanconf.py</a></li><li><a href='#d3a354'>创建内容目录下的相关子目录</a></li></ol></li><li><a href='#bac0a5'>生成输出文件</a></li><li><a href='#7795ac'>查看网站生成的效果</a></li><li><a href='#91d14b'>运行测试服务器</a></li></ol></li><li><a href='#c5490b'>git到github.com</a><ol><li><a href='#ec13c9'>生成ssh密钥</a></li><li><a href='#ee2e4a'>添加SSH Key到GitHub：</a></li><li><a href='#124a56'>ssh连接测试</a></li><li><a href='#a3e59c'>git静态网站</a></li><li><a href='#b938c7'>设置别名</a></li><li><a href='#be3806'>设置git时免输用户名和密码</a></li></ol></li>
                         <li><a href="#content-comments">评论</a></li>
                     </ol>
                 </div>
