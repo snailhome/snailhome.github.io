@@ -37,7 +37,8 @@
 &lt;li&gt;测试git推送生成的静态网站&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;终于，基于Pelican的静态博客终于搭建成功了&lt;/p&gt;
-&lt;p&gt;没错这就是你看到的网站 &lt;a href="http://snailhome.github.io/"&gt;http://snailhome.github.io&lt;/a&gt;&lt;/p&gt;</summary><category term="pelican"></category><category term="静态博客"></category></entry><entry><title>如何git时免输用户名密码</title><link href="http://snailhome.github.io/note/no_password_when_git.html" rel="alternate"></link><updated>2015-10-06T11:23:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-06:note/no_password_when_git.html</id><summary type="html">&lt;p&gt;我要push静态博客时都要输入用户名和密码，特麻烦，百度了一下有好几种免输密码的方式，不知所云，后来尝试了一种成功，看官看过来。&lt;/p&gt;
+&lt;p&gt;没错这就是你看到的网站 &lt;strong&gt;&lt;a href="http://snailhome.github.io/"&gt;StepUp&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;抢建过程可以参考 &lt;strong&gt;&lt;a href="../research/build_pelican_on_python2.html"&gt;用Pelican创建静态博客网站&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</summary><category term="pelican"></category><category term="静态博客"></category></entry><entry><title>如何git时免输用户名密码</title><link href="http://snailhome.github.io/note/no_password_when_git.html" rel="alternate"></link><updated>2015-10-06T11:23:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-06:note/no_password_when_git.html</id><summary type="html">&lt;p&gt;我要push静态博客时都要输入用户名和密码，特麻烦，百度了一下有好几种免输密码的方式，不知所云，后来尝试了一种成功，看官看过来。&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output/.git
 &lt;span class="nv"&gt;$ &lt;/span&gt;vim config
 &lt;/pre&gt;&lt;/div&gt;
