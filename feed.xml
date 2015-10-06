@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>StepUp</title><link>/</link><description></description><atom:link href="/feed.xml" rel="self"></atom:link><lastBuildDate>Tue, 06 Oct 2015 10:48:00 +0800</lastBuildDate><item><title>10 个实用的 Bash alias</title><link>/note/about_alias.html</link><description>&lt;p&gt;alias 即“别名”，为便于理解，你可以将其看成是一个命令的快捷方式。使用 alias 的最大好处是，可以简化输入，从而为你节省时间，并提高效率。定义的 alias 可以保存到 ~/.bashrc 文件中，以后在命令行中就可以直接使用了。&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>StepUp</title><link>/</link><description></description><atom:link href="/feed.xml" rel="self"></atom:link><lastBuildDate>Tue, 06 Oct 2015 11:23:00 +0800</lastBuildDate><item><title>如何git时免输用户名密码</title><link>/note/no_password_when_git.html</link><description>&lt;p&gt;我要push静态博客时都要输入用户名和密码，特麻烦，百度了一下有好几种免输密码的方式，不知所云，后来尝试了一种成功，看官看过来。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output/.git
+&lt;span class="nv"&gt;$ &lt;/span&gt;vim config
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;看到这一段&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[remote "origin"]
+        url = https://github.com/yourname/yourname.github.io.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;将其改为：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[remote "origin"]
+        url = https://yourname:password@github.com/yourname/yourname.github.io.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;当然，这个操作最好是在自己的机器上，毕竟用户名和密码明文放在上面，在其它机器上还是老老实实输入用户名和密码吧。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Tue, 06 Oct 2015 11:23:00 +0800</pubDate><guid>tag:,2015-10-06:note/no_password_when_git.html</guid><category>git</category><category>免密码</category></item><item><title>10 个实用的 Bash alias</title><link>/note/about_alias.html</link><description>&lt;p&gt;alias 即“别名”，为便于理解，你可以将其看成是一个命令的快捷方式。使用 alias 的最大好处是，可以简化输入，从而为你节省时间，并提高效率。定义的 alias 可以保存到 ~/.bashrc 文件中，以后在命令行中就可以直接使用了。&lt;/p&gt;
 &lt;p&gt;要设置别名&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;$ vim ~/.bashrc
 &lt;/pre&gt;&lt;/div&gt;

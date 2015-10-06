@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2015-10-06T11:21:36-00:00</lastmod>
+<lastmod>2015-10-06T11:30:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2015-10-06T11:21:36-00:00</lastmod>
+<lastmod>2015-10-06T11:30:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2015-10-06T11:21:36-00:00</lastmod>
+<lastmod>2015-10-06T11:30:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -28,6 +28,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <loc>/about.html</loc>
 <lastmod>2015-06-14T21:34:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/note/no_password_when_git.html</loc>
+<lastmod>2015-10-06T11:23:00+08:00</lastmod>
+<changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -173,7 +180,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/note/index.html</loc>
-<lastmod>2015-10-06T10:48:00+08:06</lastmod>
+<lastmod>2015-10-06T11:23:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -228,8 +235,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/fcitx.html</loc>
-<lastmod>2015-09-29T23:07:00+08:06</lastmod>
+<loc>/tag/mian-mi-ma.html</loc>
+<lastmod>2015-10-06T11:23:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -251,6 +258,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/tag/virtualenv.html</loc>
 <lastmod>2015-08-05T01:21:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/git.html</loc>
+<lastmod>2015-10-06T11:23:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -382,8 +396,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/typecho.html</loc>
-<lastmod>2015-06-14T23:24:00+08:06</lastmod>
+<loc>/tag/fcitx.html</loc>
+<lastmod>2015-09-29T23:07:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -391,6 +405,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/tag/yum.html</loc>
 <lastmod>2015-06-15T01:08:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/typecho.html</loc>
+<lastmod>2015-06-14T23:24:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
