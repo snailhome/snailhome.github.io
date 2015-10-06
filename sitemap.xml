@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://snailhome.github.io/</loc>
-<lastmod>2015-10-06T13:41:00-00:00</lastmod>
+<lastmod>2015-10-06T13:42:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://snailhome.github.io/archives.html</loc>
-<lastmod>2015-10-06T13:41:00-00:00</lastmod>
+<lastmod>2015-10-06T13:42:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://snailhome.github.io/categories.html</loc>
-<lastmod>2015-10-06T13:41:00-00:00</lastmod>
+<lastmod>2015-10-06T13:42:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
