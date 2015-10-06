@@ -1,0 +1,1441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>StepUp</title><link href="http://snailhome.github.io/" rel="alternate"></link><link href="/feeds/note.atom.xml" rel="self"></link><id>http://snailhome.github.io/</id><updated>2015-10-06T11:23:00+08:00</updated><entry><title>如何git时免输用户名密码</title><link href="http://snailhome.github.io/note/no_password_when_git.html" rel="alternate"></link><updated>2015-10-06T11:23:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-06:note/no_password_when_git.html</id><summary type="html">&lt;p&gt;我要push静态博客时都要输入用户名和密码，特麻烦，百度了一下有好几种免输密码的方式，不知所云，后来尝试了一种成功，看官看过来。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output/.git
+&lt;span class="nv"&gt;$ &lt;/span&gt;vim config
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;看到这一段&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[remote "origin"]
+        url = https://github.com/yourname/yourname.github.io.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;将其改为：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[remote "origin"]
+        url = https://yourname:password@github.com/yourname/yourname.github.io.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;当然，这个操作最好是在自己的机器上，毕竟用户名和密码明文放在上面，在其它机器上还是老老实实输入用户名和密码吧。&lt;/p&gt;</summary><category term="git"></category><category term="免密码"></category></entry><entry><title>10 个实用的 Bash alias</title><link href="http://snailhome.github.io/note/about_alias.html" rel="alternate"></link><updated>2015-10-06T10:48:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-06:note/about_alias.html</id><summary type="html">&lt;p&gt;alias 即“别名”，为便于理解，你可以将其看成是一个命令的快捷方式。使用 alias 的最大好处是，可以简化输入，从而为你节省时间，并提高效率。定义的 alias 可以保存到 ~/.bashrc 文件中，以后在命令行中就可以直接使用了。&lt;/p&gt;
+&lt;p&gt;要设置别名&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ vim ~/.bashrc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;下面介绍了 10 个 Bash alias，个人觉得都很实用：&lt;/p&gt;
+&lt;h2 id="255b55"&gt;几个有用的别名用法&lt;/h2&gt;
+&lt;h3 id="44c31b"&gt;ssh 别名&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias server_name="ssh -v -l USERNAME IP ADDRESS"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;更改 server_name、USERNAME 及 IP 地址以适应你的需要。对于经常要使用 ssh 登录远程 shell 的同学来说，这是一个值得收藏的别名。&lt;/p&gt;
+&lt;h3 id="769102"&gt;ls 别名&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias ll="ls -l"，另一个 alias la="ls -a"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;意思很明显，在此就不多作解释了。&lt;/p&gt;
+&lt;h3 id="5d5bd1"&gt;rm 别名&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias rm="rm -i"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这个别名让你更加安全地执行删除操作。&lt;/p&gt;
+&lt;h3 id="f07115"&gt;df 别名&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias df="df -h"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;让你以 MB 或 G 为单位查看磁盘的空间。&lt;/p&gt;
+&lt;h3 id="8f5252"&gt;Firefox 别名&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias ff1="/home/jlwallen/firefox/firefox" 及 alias ff2="/home/jlwallen/firefoxb3/firefox"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;适合使用两个 Firefox 版本的朋友，如一个稳定版，另一个为测试版。&lt;/p&gt;
+&lt;h3 id="04ee60"&gt;书签别名&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias fftr="/home/jlwallen/firefox/firefox http://linuxtoy.org"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;用于打开一个指定的网址。&lt;/p&gt;
+&lt;h3 id="5842eb"&gt;文件别名&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias emenu="aterm nano -e ~/.e16/menus/user_apps"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如常常需要编辑的配置文件。&lt;/p&gt;
+&lt;h3 id="f8e198"&gt;apt-get update 别名&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias update="sudo apt-get update"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用其他 Linux 发行版的同学可以换一下其中的 sudo apt-get update。&lt;/p&gt;
+&lt;h3 id="a2c9a8"&gt;rpm 批量安装别名&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias brpm="rpm -ivh ~/RPM/*rpm"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;便于同时安装多个 rpm 包。&lt;/p&gt;
+&lt;h3 id="13342f"&gt;长路径别名&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias astart="cd ~/GNUstep/Library/AfterStep/start"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;对于需要经常访问的路径特别长的目录也可为其定义别名。&lt;/p&gt;
+&lt;h2 id="a6f784"&gt;我的别名用法&lt;/h2&gt;
+&lt;h3 id="339219"&gt;进入虚拟环境&lt;/h3&gt;
+&lt;p&gt;我有一个 &lt;code&gt;virtualenv&lt;/code&gt; 的虚拟环境 &lt;code&gt;env2p&lt;/code&gt; ，为了快速进入虚拟环境&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias se2p="cd ~/env2p&amp;amp;source bin/activate"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;我只要se2p就进入了虚拟环境。&lt;/p&gt;
+&lt;h3 id="b05767"&gt;推送 &lt;code&gt;git&lt;/code&gt; 到 &lt;code&gt;github.io&lt;/code&gt;&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias git2p="cd ~/env2p/blog/output&amp;amp;&amp;amp;git add -A&amp;amp;&amp;amp;git commit -m 'Git My Static Blog'&amp;amp;&amp;amp;git push origin master"
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="bash"></category><category term="alias"></category><category term="别名"></category></entry><entry><title>CentOS7下安装Fcitx小企鹅输入法</title><link href="http://snailhome.github.io/note/fcitx_in_centos7.html" rel="alternate"></link><updated>2015-09-29T23:07:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-09-29:note/fcitx_in_centos7.html</id><summary type="html">&lt;p&gt;感觉CentOS7自带的ibus输入法用得不尽人意，考虑安装个Fcitx小企鹅输入法试试，心动不如行动，Let's go～&lt;/p&gt;
+&lt;h2 id="8c4cab"&gt;1. 加入EPEL源&lt;/h2&gt;
+&lt;p&gt;EPEL7几乎是CentOS必备的源:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo yum install epel-release
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="74e7ae"&gt;2. 添加mosquito-myrepo源&lt;/h2&gt;
+&lt;p&gt;mosquito-myrepo是一个私人制作的第三方源，其中包含了fcitx输入法。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;项目地址： https://github.com/1dot75cm/myrepo
+支持的发行版： Fedora 19/20/21/rawhide 以及RHEL/CentOS 7
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo yum-config-manager --add-repo&lt;span class="o"&gt;=&lt;/span&gt;https://copr.fedoraproject.org/coprs/mosquito/myrepo/repo/epel-7/mosquito-myrepo-epel-7.repo
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="7cfd47"&gt;3. 卸载原来的ibus输入法&lt;/h2&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo yum remove ibus
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo yum remove imsettings imsettings-libs im-chooser
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="59570b"&gt;4. 安装输入法&lt;/h2&gt;
+&lt;p&gt;可以选择下面的各种输入法中的某一个或多个:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo yum install fcitx-table-wbpy &lt;span class="c"&gt;# 五笔拼音输入法&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo yum install fcitx-googlepinyin fcitx-cloudpinyin &lt;span class="c"&gt;# 谷歌拼音输入法&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo yum install fcitx-qimpanel-configtool &lt;span class="c"&gt;# 输入法面板设置&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="32dbcb"&gt;5. 配置Fcitx&lt;/h2&gt;
+&lt;p&gt;在~/.bashrc中添加如下内容&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fcitx
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fcitx
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;XMODIFIERS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;”@im&lt;span class="o"&gt;=&lt;/span&gt;fcitx”
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="6d107a"&gt;6. 关闭gnome-shell 对键盘的监听，然后切换输入法为fcitx:&lt;/h2&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo pkill ibus-daemon
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo gsettings &lt;span class="nb"&gt;set &lt;/span&gt;org.gnome.settings-daemon.plugins.keyboard active &lt;span class="nb"&gt;false&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo imsettings-switch fcitx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="d49982"&gt;7. 清理工作&lt;/h2&gt;
+&lt;p&gt;mosquito-myrepo在不断地支持更多的软件，这也进一步造成该repo中的软件与base、EPEL中的软件存在版本冲突，在该repo的项目主页中建议安装yum的优先级插件 &lt;code&gt;yum-plugin-priorities&lt;/code&gt; ，这在一定程度上会缓解版本冲突问题，但无法从根本上避免。&lt;/p&gt;
+&lt;p&gt;鉴于多个repo的版本冲突会造成一些麻烦，最好的办法还是在安装完需要的软件之后就禁用该repo，需要的时候再启用。&lt;/p&gt;
+&lt;p&gt;编辑 &lt;code&gt;/etc/yum.repos.d/mosquito-myrepo-epel-7.repo&lt;/code&gt; ，将其中的 &lt;code&gt;enable=1&lt;/code&gt; 改成 &lt;code&gt;enable=0&lt;/code&gt; 即可。&lt;/p&gt;
+&lt;h2 id="cc6739"&gt;8. 启用fcitx输入法&lt;/h2&gt;
+&lt;p&gt;重启系统，fcitx自动启动，但图标藏在桌面右下角的通知栏中
+打开fcitx的配置工具，选择输入法标签点”+”可以搜索并添加输入法&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;Ctrl+空格&lt;/code&gt;开关输入法&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;Ctrl+Shift&lt;/code&gt;切换输入法&lt;/p&gt;</summary><category term="CentOs7"></category><category term="Fcitx"></category></entry><entry><title>Django后台在记录保存时先保存旧记录内容</title><link href="http://snailhome.github.io/note/backup_record_before_save_in_Django.html" rel="alternate"></link><updated>2015-09-21T22:14:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-09-21:note/backup_record_before_save_in_Django.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;场景：&lt;/strong&gt;&lt;br/&gt;
+在一些重要的数据表，如设备台账表里，我们希望在记录保存时能够先保存一下旧记录内容，以便出现错误修改时能反查，恢复，这就是我们的需求。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;首先我们考虑一下，各数据表数据结构各不相同，如果针对每一个数据表做一个备份表太过繁琐，所以我们考虑只用一个&lt;code&gt;TextField&lt;/code&gt;来保存旧记录内容，而把记录的各字段内容生成&lt;code&gt;Json&lt;/code&gt;的形式保存到&lt;code&gt;TextField&lt;/code&gt;中，就可以不用管各数据表的字段有多少，再附上方便检索和引用的表名、记录号、修改时间、操作人员等字段信息，那一个备份表就基本上够了。&lt;/p&gt;
+&lt;p&gt;我们在&lt;code&gt;recordbackup&lt;/code&gt;这个应用里&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# recordbackup.models.py&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.db&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;
+
+&lt;span class="c"&gt;# Create your models here.&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;RecordBack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'应用'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;blank&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'数据表'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;rid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;IntegerField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'记录号'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TextField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'原记录内容'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;modified_time&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateTimeField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'修改时间'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'操作人'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;verbose_name_plural&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;verbose_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'记录备份'&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;创建&lt;code&gt;admin.py&lt;/code&gt;用于后台查看备份数据，&lt;strong&gt;只读&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# recordbackup/admin.py&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+
+&lt;span class="c"&gt;# Register your models here.&lt;/span&gt;
+
+&lt;span class="nd"&gt;@admin.register&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;RecordBack&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;RecordBackAdmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ModelAdmin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;list_display&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'app'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'model'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'rid'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'modified_time'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'user'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'list_operate'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;readonly_fields&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'app'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'model'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'rid'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'content'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'modified_time'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'user'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;list_filter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'app'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'model'&lt;/span&gt;&lt;span class="p"&gt;,)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;list_operate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;'&amp;lt;a href="/admin/&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;/&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;/&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;/"&amp;gt;&amp;lt;i class="icon-th-list" title="查看原记录"&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;/a&amp;gt;'&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rid&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;list_operate&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;short_description&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'操作'&lt;/span&gt;
+    &lt;span class="n"&gt;list_operate&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;allow_tags&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;生成相关数据表&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;./manage.py makemigrations
+./manage.py migrate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;再创建一个&lt;code&gt;utils.py&lt;/code&gt;用于转换记录为&lt;code&gt;Json&lt;/code&gt;和保存旧记录功能的函数。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# recordbackup/utils.py&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;toJSON&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;"""&lt;/span&gt;
+&lt;span class="sd"&gt;    对对象进行json序列化，以json序列方式保存记录内容&lt;/span&gt;
+&lt;span class="sd"&gt;    :param obj: 记录对象&lt;/span&gt;
+&lt;span class="sd"&gt;    :return: 返回json串&lt;/span&gt;
+&lt;span class="sd"&gt;    """&lt;/span&gt;
+    &lt;span class="n"&gt;fields&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;field&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_meta&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;field&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'%Y-%m-&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt; %H:%M:%S'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'%Y-%m-&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dumps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;OldRecordSave&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;change&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;"""&lt;/span&gt;
+&lt;span class="sd"&gt;    保存旧记录的数据&lt;/span&gt;
+&lt;span class="sd"&gt;    :param self: 修改前的记录对象&lt;/span&gt;
+&lt;span class="sd"&gt;    :param request:&lt;/span&gt;
+&lt;span class="sd"&gt;    :param obj: 修改后的记录对象&lt;/span&gt;
+&lt;span class="sd"&gt;    :param form: 表单数据&lt;/span&gt;
+&lt;span class="sd"&gt;    :param change: 表单数据是否被修改&lt;/span&gt;
+&lt;span class="sd"&gt;    :return: None&lt;/span&gt;
+&lt;span class="sd"&gt;    """&lt;/span&gt;
+    &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;RecordBack&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;change&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c"&gt;# 更改的时候&lt;/span&gt;
+        &lt;span class="n"&gt;rb&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RecordBack&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;rb&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_meta&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;app_label&lt;/span&gt;
+        &lt;span class="n"&gt;rb&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__name__&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;rb&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pk&lt;/span&gt;
+        &lt;span class="n"&gt;rb&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;modified_time&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="n"&gt;obj_original&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pk&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pk&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;obj_original&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;rb&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;toJSON&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj_original&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;rb&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt;
+            &lt;span class="n"&gt;rb&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c"&gt;# 新增的时候&lt;/span&gt;
+        &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;现在记录备份的功能可以用了，我们在台账数据表&lt;code&gt;PcAdmin&lt;/code&gt;的&lt;code&gt;save_model()&lt;/code&gt;里加了保存旧记录的操作&lt;code&gt;OldRecordSave()&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# pc/admin.py&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;recordbackup.utils&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OldRecordSave&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PcAdmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ModelAdmin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="o"&gt;......&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;save_model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;change&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;OldRecordSave&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;change&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c"&gt;# 保存旧记录的数据到备份表&lt;/span&gt;
+        &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;现在我们可以做一个测试，进入PC的编辑页面，修改一个字段信息，然后保存，我们看看&lt;code&gt;记录备份&lt;/code&gt;表是不是多出一条记录，内容正是PC保存前的内容。
+类似的，我们只要在需要保存旧数据的admin中引入&lt;code&gt;from recordbackup.utils import OldRecordSave&lt;/code&gt;，再在&lt;code&gt;save_model()&lt;/code&gt;的&lt;code&gt;obj.save()&lt;/code&gt;前加入&lt;code&gt;OldRecordSave(self, request, obj, form, change)&lt;/code&gt;就可以实现旧记录数据的保存了。&lt;/p&gt;</summary><category term="Django"></category><category term="保存"></category><category term="备份"></category></entry><entry><title>Django后台列表添加扩展列表列，字段内容以链接方式实现的方法</title><link href="http://snailhome.github.io/note/extend_admin_in_django.html" rel="alternate"></link><updated>2015-09-17T13:27:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-09-17:note/extend_admin_in_django.html</id><summary type="html">&lt;p&gt;我们先来看一个例子，这是在后台数据表列表页面里添加扩展列，实现扩展操作的一个方法。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# admin.py&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.urlresolvers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;reverse&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;BlogAdmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ModelAdmin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="n"&gt;list_display&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'title'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'published'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'writer'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'published_date'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'list_operate'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;list_operate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;'&amp;lt;a href="&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;"&amp;gt;&amp;lt;i class="icon-eye-open" title="查看"&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;/a&amp;gt;'&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'blog:blog_content'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;'blogid'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+    &lt;span class="n"&gt;list_operate&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;short_description&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'操作'&lt;/span&gt;
+    &lt;span class="n"&gt;list_operate&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;allow_tags&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在这里定义一个回调函数&lt;code&gt;def list_operate(self, obj)：&lt;/code&gt;，用于返回一个扩展的链接的&lt;code&gt;html&lt;/code&gt;代码。&lt;/p&gt;
+&lt;p&gt;这里同时用到&lt;code&gt;reverse&lt;/code&gt;函数，用来转换链接。&lt;/p&gt;
+&lt;p&gt;另外一种是实现在编辑页面添加扩展字段的实现方式，是在models.py里实现的，可以参考 &lt;a href="extend_column_in_django.html"&gt;Djnago的Models里添加扩展字段，在编辑界面里的字段内容以链接方式实现的方法&lt;/a&gt;&lt;/p&gt;</summary></entry><entry><title>Djnago的Models里添加扩展字段，在编辑界面里的字段内容以链接方式实现的方法</title><link href="http://snailhome.github.io/note/extend_column_in_django.html" rel="alternate"></link><updated>2015-09-17T13:00:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-09-17:note/extend_column_in_django.html</id><summary type="html">&lt;p&gt;先来看一个例子，该例子是让其在编辑界面里添加了个字段，其字段内容为搜索同姓氏人员的一个链接，该实现是在&lt;code&gt;models.py&lt;/code&gt;里实现的&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# models.py&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.utils.html&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;format_html&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Staff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;seek_same&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="sd"&gt;"""&lt;/span&gt;
+&lt;span class="sd"&gt;        编辑界面里的扩展字段的内容以链接方式实现的方法&lt;/span&gt;
+&lt;span class="sd"&gt;        """&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;format_html&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'&amp;lt;a href="../../staff/?first_name__exact={}" target="_blank"&amp;gt;{}&amp;lt;/a&amp;gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                           &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;first_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                           &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;first_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;seek_same&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;short_description&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'同姓氏人员'&lt;/span&gt;  &lt;span class="c"&gt;# 短描述：即字段名&lt;/span&gt;
+    &lt;span class="c"&gt;# 显示HTML tag&lt;/span&gt;
+    &lt;span class="c"&gt;# 对于用户提交的数据, 永远不要这么设置!&lt;/span&gt;
+    &lt;span class="n"&gt;seek_same&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;allow_tags&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里定义了一个&lt;code&gt;def seek_same(self):&lt;/code&gt;的回调函数，用于返回一个扩展字段的内容，由于字段内容的回显会做转码处理，所以在这里我们需要用到一个&lt;code&gt;format_html()&lt;/code&gt;函数，用来直接转成&lt;code&gt;html&lt;/code&gt;格式。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;format_html()&lt;/code&gt; 函数第一个参数为模板字串，模板字串里的变量以"{}"标识，按位置依次与第二个参数及其后的参数对应。&lt;/p&gt;
+&lt;p&gt;另外一种是实现在列表里添加扩展列的实现方式，是在&lt;code&gt;admin.py&lt;/code&gt;里实现的，可以参考&lt;a href="extend_admin_in_django.html"&gt;'Django后台列表添加扩展列，字段内容以链接方式实现的方法'&lt;/a&gt;&lt;/p&gt;</summary><category term="Django"></category><category term="扩展字段"></category></entry><entry><title>Fedora下安装Sublime Text 3</title><link href="http://snailhome.github.io/note/install_sublime_text3_in_fedora.html" rel="alternate"></link><updated>2015-08-11T23:42:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-08-11:note/install_sublime_text3_in_fedora.html</id><summary type="html">&lt;p&gt;&lt;code&gt;Sublime Text 3&lt;/code&gt; 官网上有 Windown版本的，Ubuntu版本的，MAC版本的，唯独没有 Fedora/RedHat版本的。&lt;/p&gt;
+&lt;p&gt;网上找到了安装方法&lt;/p&gt;
+&lt;h2 id="4a98b8"&gt;1. 下载安装脚本文件&lt;/h2&gt;
+&lt;p&gt;下载32位版本：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;wget https://gist.githubusercontent.com/dkd903/531a2409c40c926c66d6/raw/2c83194719f1216a7321e4b48f6b604dc8779faf/Install_Sublime_Text_3.sh -O install-sublime-text.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;下载64位版本：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;wget https://gist.githubusercontent.com/dkd903/8ba3f51313c1781cc571/raw/f37b1c18547d086cd45e8b484efc518260106ea9/Install_Sublime_Text_3_64.sh -O install-sublime-text.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="95a39f"&gt;2. 修改文件属性为可执行&lt;/h2&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;chmod +x install-sublime-text.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="5beeca"&gt;3. 执行安装脚本&lt;/h2&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;su -c &lt;span class="s2"&gt;"sh install-sublime-text.sh"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;现在你就可以在从菜单里找到 &lt;code&gt;Sublime Text 3&lt;/code&gt; 了，或者在命令行里执行 &lt;code&gt;subl&lt;/code&gt; 来运行它。&lt;/p&gt;
+&lt;p&gt;如果先前你有安装过 &lt;code&gt;Sublime Text 2&lt;/code&gt;，那么安装完成后就会被 &lt;code&gt;Sublime Text 3&lt;/code&gt; 所替代。&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;这里列出脚本内容以供参考：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
+&lt;span class="nv"&gt;SHORTCUT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"[Desktop Entry]&lt;/span&gt;
+&lt;span class="s2"&gt;Name=Sublime Text 3&lt;/span&gt;
+&lt;span class="s2"&gt;Comment=Edit text files&lt;/span&gt;
+&lt;span class="s2"&gt;Exec=/usr/local/sublime-text-3/sublime_text&lt;/span&gt;
+&lt;span class="s2"&gt;Icon=/usr/local/sublime-text-3/Icon/128x128/sublime_text.png&lt;/span&gt;
+&lt;span class="s2"&gt;Terminal=false&lt;/span&gt;
+&lt;span class="s2"&gt;Type=Application&lt;/span&gt;
+&lt;span class="s2"&gt;Encoding=UTF-8&lt;/span&gt;
+&lt;span class="s2"&gt;Categories=Utility;TextEditor;"&lt;/span&gt;
+&lt;span class="nv"&gt;SCRIPT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"#!/bin/sh&lt;/span&gt;
+&lt;span class="s2"&gt;if [ \${1} == \"--help\" ]; then&lt;/span&gt;
+&lt;span class="s2"&gt;    /usr/local/sublime-text-3/sublime_text --help&lt;/span&gt;
+&lt;span class="s2"&gt;else&lt;/span&gt;
+&lt;span class="s2"&gt;    /usr/local/sublime-text-3/sublime_text \$@ &amp;gt; /dev/null 2&amp;gt;&amp;amp;1 &amp;amp;&lt;/span&gt;
+&lt;span class="s2"&gt;fi"&lt;/span&gt;
+
+curl -L &lt;span class="s2"&gt;"http://c758482.r82.cf2.rackcdn.com/sublime_text_3_build_3059_x64.tar.bz2"&lt;/span&gt; -o &lt;span class="s2"&gt;"/usr/src/Sublime Text 3.tar.bz2"&lt;/span&gt;
+&lt;span class="nb"&gt;cd&lt;/span&gt; /usr/src
+tar -xvjf &lt;span class="s2"&gt;"Sublime Text 3.tar.bz2"&lt;/span&gt;
+&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="s2"&gt;"Sublime Text 3"&lt;/span&gt;
+mkdir -pv &lt;span class="s2"&gt;"/usr/local/sublime-text-3"&lt;/span&gt;
+mv -fv * &lt;span class="s2"&gt;"/usr/local/sublime-text-3/"&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;SCRIPT&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &amp;gt; &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
+chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;SHORTCUT&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &amp;gt; &lt;span class="s2"&gt;"/usr/share/applications/sublime-text-3.desktop"&lt;/span&gt;
+
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"Finish!"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Fedora"></category><category term="Sublime Text 3"></category></entry><entry><title>Python虚拟环境工具：virtualenv</title><link href="http://snailhome.github.io/note/virtualenv_4python.html" rel="alternate"></link><updated>2015-08-05T01:21:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-08-05:note/virtualenv_4python.html</id><summary type="html">&lt;p&gt;virtualenv用于创建独立的Python环境，多个Python相互独立，互不影响，它能够：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在没有权限的情况下安装新套件&lt;/li&gt;
+&lt;li&gt;不同应用可以使用不同的套件版本&lt;/li&gt;
+&lt;li&gt;套件升级不影响其他应用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="e655a4"&gt;安装&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    sudo apt-get install python-virtualenv
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用方法&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    virtualenv [虚拟环境名称]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如，创建&lt;strong&gt;ENV&lt;/strong&gt;的虚拟环境&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    virtualenv ENV
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果系统中存在python2和python3两个版本，我们要让虚拟环境基于其中一个版本，可以这样操作&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    virtualenv -p python2 ENV  #基于python2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;或者&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    virtualenv -p python3 ENV  #基于python3
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;默认情况下，虚拟环境会依赖系统环境中的site packages，就是说系统中已经安装好的第三方package也会安装在虚拟环境中，如果不想依赖这些package，那么可以加上参数 &lt;code&gt;--no-site-packages&lt;/code&gt; 建立虚拟环境&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    virtualenv --no-site-packages [虚拟环境名称]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;但在新版本virtualenv中这个选项已经是默认项了。&lt;/p&gt;
+&lt;p&gt;启动虚拟环境&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    cd ENV
+    source ./bin/activate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;注意此时命令行会多一个(ENV)，ENV为虚拟环境名称，接下来所有模块都只会安装到该目录中去。&lt;/p&gt;
+&lt;p&gt;退出虚拟环境&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    deactivate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在虚拟环境安装Python套件
+Virtualenv 附带有pip安装工具，因此需要安装的套件可以直接运行：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    pip install [套件名称]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果没有启动虚拟环境，系统也安装了pip工具，那么套件将被安装在系统环境中，为了避免发生此事，可以在&lt;code&gt;~/.bashrc&lt;/code&gt;文件中加上：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    export PIP_REQUIRE_VIRTUALENV=true
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;或者让在执行pip的时候让系统自动开启虚拟环境：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    export PIP_RESPECT_VIRTUALENV=true
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="c58843"&gt;Virtualenvwrapper&lt;/h2&gt;
+&lt;p&gt;Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境，它可以做：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将所有虚拟环境整合在一个目录下&lt;/li&gt;
+&lt;li&gt;管理（新增，删除，复制）虚拟环境&lt;/li&gt;
+&lt;li&gt;切换虚拟环境&lt;/li&gt;
+&lt;li&gt;...&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="e655a4_1"&gt;安装&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    sudo easy_install virtualenvwrapper
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;此时还不能使用virtualenvwrapper，默认virtualenvwrapper安装在/usr/local/bin下面，实际上你需要运行virtualenvwrapper.sh文件才行，先别急，打开这个文件看看,里面有安装步骤，我们照着操作把环境设置好。&lt;/p&gt;
+&lt;p&gt;创建目录用来存放虚拟环境&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    mkdir $HOME/.virtualenvs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在&lt;code&gt;~/.bashrc&lt;/code&gt;中添加行：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/local/bin/virtualenvwrapper.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;保存退出后运行： &lt;code&gt;source ~/.bashrc&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;此时virtualenvwrapper就可以使用了。&lt;/p&gt;
+&lt;p&gt;列出虚拟环境列表&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    workon
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;也可以使用&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    lsvirtualenv
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;新建虚拟环境&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    mkvirtualenv [虚拟环境名称]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;启动/切换虚拟环境&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    workon [虚拟环境名称]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;删除虚拟环境&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    rmvirtualenv [虚拟环境名称]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;离开虚拟环境&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    deactivate
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="python"></category><category term="virtualenv"></category></entry><entry><title>Fedora22下安装五笔</title><link href="http://snailhome.github.io/note/install_wubi_in_fedora.html" rel="alternate"></link><updated>2015-07-31T23:48:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-07-31:note/install_wubi_in_fedora.html</id><summary type="html">&lt;p&gt;Fedora22输入法以ibus为框架，因此要安装五笔输入法，也应该安装安装ibus框架下的极点或海峰五笔。&lt;/p&gt;
+&lt;h2 id="aea971"&gt;输入法安装&lt;/h2&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ su
+Password:
+# dnf install -y ibus*wubi*
+# reboot
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;后面一个操作就是重启系统
+重启登录系统后：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;点击屏幕右上角，点击&lt;code&gt;工具图标&lt;/code&gt;，&lt;/li&gt;
+&lt;li&gt;在打开的窗口里点击&lt;code&gt;个人&lt;/code&gt;，点击&lt;code&gt;区域和语言&lt;/code&gt;，&lt;/li&gt;
+&lt;li&gt;点击&lt;code&gt;区域和语言&lt;/code&gt;对话框的&lt;code&gt;输入源&lt;/code&gt;下的&lt;code&gt;+&lt;/code&gt;，&lt;/li&gt;
+&lt;li&gt;选择&lt;code&gt;添加输入源&lt;/code&gt;里的&lt;code&gt;汉语（中国）&lt;/code&gt;，&lt;/li&gt;
+&lt;li&gt;选择&lt;code&gt;汉语（极点五笔86（极爽词库 6.0））&lt;/code&gt;或&lt;code&gt;汉语（海峰五笔86）&lt;/code&gt;，点击&lt;code&gt;添加&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="7fd882"&gt;输入法切换&lt;/h2&gt;
+&lt;p&gt;ibus输入法切换使用&lt;code&gt;WIN&lt;/code&gt;键加&lt;code&gt;空格&lt;/code&gt;键来切换。&lt;/p&gt;</summary><category term="五笔"></category></entry><entry><title>Fedora22 安装 Chrome</title><link href="http://snailhome.github.io/note/install_chrome_in_fedora.html" rel="alternate"></link><updated>2015-07-30T23:41:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-07-30:note/install_chrome_in_fedora.html</id><summary type="html">&lt;p&gt;Fedora22 无法直接安装 Chrome，需要先添加&lt;code&gt;Chrome&lt;/code&gt;的软件仓库&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ su -
+Password:
+# cat &amp;lt;&amp;lt; EOF &amp;gt; /etc/yum.repos.d/google-chrome.repo
+[google-chrome]
+name=google-chrome - \$basearch
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/\$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+EOF
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;现在可以安装了&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;# dnf install -y google-chrome-stable
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;但是会有一个&lt;code&gt;获取GPG密钥错误&lt;/code&gt;的提示，加一个参数就可以了：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;# dnf install -y google-chrome-stable --nogpg
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Chrome"></category></entry><entry><title>Markdown语法及其运用介绍</title><link href="http://snailhome.github.io/note/about_markdown.html" rel="alternate"></link><updated>2015-07-07T21:56:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-07-07:note/about_markdown.html</id><summary type="html">&lt;h2 id="2bb836"&gt;一、什么是Markdown&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Markdown" src="../images/20151005/markdown.png"/&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Markdown 是一种轻量级的「标记语言」，它的优点很多，目前也被越来越多的写作爱好者，撰稿者广泛使用。看到这里请不要被「标记」、「语言」所迷惑，Markdown 的语法十分简单。常用的标记符号也就十来个，这种相对于更为复杂的HTML 标记语言来说，Markdown 可谓是十分轻量的，学习成本也不需要太多，且一旦熟悉这种语法规则，会有一劳永逸的效果。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="6e2bf5"&gt;二、为什么重复造轮子&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;自行车的轮子&lt;ul&gt;
+&lt;li&gt;木头轮子&lt;/li&gt;
+&lt;li&gt;钢圏轮子&lt;/li&gt;
+&lt;li&gt;橡胶垫轮子&lt;/li&gt;
+&lt;li&gt;橡胶胎轮子&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;每一种轮子的改进都会推动自行车向或更快、或更轻、或更舒适的方向改进。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;书写格式的“轮子”&lt;ul&gt;
+&lt;li&gt;Word格式&lt;ul&gt;
+&lt;li&gt;公文格式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;HTML格式&lt;/li&gt;
+&lt;li&gt;Markdown格式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不同格式的规范让文档或更规范、或方便交流、或方便查看、或易于转换。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="e99a8c"&gt;三、为什么使用Markdown&lt;/h2&gt;
+&lt;p&gt;Markdown的目标：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;实现让文档「易读易写」&lt;/li&gt;
+&lt;li&gt;成为一种适用于网络的书写语言&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Markdown语法的特点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;语法简单，方便记忆&lt;/li&gt;
+&lt;li&gt;专注你的文字内容而不是排版样式，让书写者可以专注于写作。&lt;/li&gt;
+&lt;li&gt;纯文本内容，兼容所有的文本编辑器与字处理软件。&lt;/li&gt;
+&lt;li&gt;方便读写，直观。适合所有人的写作语言。&lt;/li&gt;
+&lt;li&gt;输出格式规范、简洁，可以轻松的导出本身的 .md 文件、 HTML、 PDF 、 DOC 、 EPUB 等格式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;HTML 是一种&lt;code&gt;发布&lt;/code&gt;的格式
+Markdown 是一种&lt;code&gt;书写&lt;/code&gt;的格式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="e3403f"&gt;四、Markdown语法简介&lt;/h2&gt;
+&lt;h3 id="f7c697"&gt;1. 基础语法&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;标题格式&lt;ul&gt;
+&lt;li&gt;一~六级标题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;加粗&lt;/li&gt;
+&lt;li&gt;斜体&lt;/li&gt;
+&lt;li&gt;行内代码&lt;/li&gt;
+&lt;li&gt;图片&lt;/li&gt;
+&lt;li&gt;超链接&lt;/li&gt;
+&lt;li&gt;引用&lt;/li&gt;
+&lt;li&gt;有序列表&lt;/li&gt;
+&lt;li&gt;无序列表&lt;/li&gt;
+&lt;li&gt;分页符&lt;/li&gt;
+&lt;li&gt;分节符&lt;/li&gt;
+&lt;li&gt;分段符&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="6396e2"&gt;2. 扩展语法&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;代码块&lt;/li&gt;
+&lt;li&gt;删除线&lt;/li&gt;
+&lt;li&gt;列表&lt;/li&gt;
+&lt;li&gt;下划线&lt;/li&gt;
+&lt;li&gt;上标&lt;/li&gt;
+&lt;li&gt;下标&lt;/li&gt;
+&lt;li&gt;脚注&lt;/li&gt;
+&lt;li&gt;脚注引用&lt;/li&gt;
+&lt;li&gt;表格&lt;/li&gt;
+&lt;li&gt;高亮&lt;/li&gt;
+&lt;li&gt;目录&lt;/li&gt;
+&lt;li&gt;嵌入对象&lt;/li&gt;
+&lt;li&gt;数学代码（行间）&lt;/li&gt;
+&lt;li&gt;数学代码（行内）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="6c4e1c"&gt;五、Markdown书写工具&lt;/h2&gt;
+&lt;h3 id="b926fc"&gt;1. Windown平台&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Haroopad&lt;/li&gt;
+&lt;li&gt;Spark&lt;/li&gt;
+&lt;li&gt;CuteMarkEd&lt;/li&gt;
+&lt;li&gt;Markdown Edit&lt;/li&gt;
+&lt;li&gt;Miu&lt;/li&gt;
+&lt;li&gt;WriteMonkey&lt;/li&gt;
+&lt;li&gt;MarkdownPad2(共享)&lt;/li&gt;
+&lt;li&gt;Texts(共享)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="92a0a4"&gt;2. Linux平台&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;ReText&lt;/li&gt;
+&lt;li&gt;Haroopad&lt;/li&gt;
+&lt;li&gt;UberWriter&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="123f50"&gt;3. Mac平台&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Mou&lt;/li&gt;
+&lt;li&gt;Byword&lt;/li&gt;
+&lt;li&gt;Ulysses&lt;/li&gt;
+&lt;li&gt;Day One&lt;/li&gt;
+&lt;li&gt;iA Writer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="8f089e"&gt;4. 在线工具&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.jianshu.com/"&gt;简书：http://www.jianshu.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.zybuluo.com/mdeditor"&gt;CMD作业部落：https://www.zybuluo.com/mdeditor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mahua.jser.me/"&gt;MaHua：http://mahua.jser.me/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stackedit.io/editor"&gt;StackEdit：https://stackedit.io/editor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://leanote.org/"&gt;leanote：http://leanote.org/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="e1d1e3"&gt;5. 网站系统&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Typecho&lt;/li&gt;
+&lt;li&gt;WordPress&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="cf4373"&gt;6. 现有编辑器扩展支持&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Vim&lt;/li&gt;
+&lt;li&gt;Sublime Text 2&lt;/li&gt;
+&lt;li&gt;马克飞象 - 印象笔记&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="10b122"&gt;7. Markdown转换工具&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=""&gt;pandoc：&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="6aef87"&gt;六、用Markdown做什么&lt;/h2&gt;
+&lt;h3 id="144925"&gt;写作、创作&lt;/h3&gt;
+&lt;p&gt;写作一般而言，会碰到这么一些难题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;难以专心：写Word文档的时候，我们经常浪费大量时间在Word本身上，特别是那80%我们用不到的功能。比如，找借口，Word又出问题了；或者，又要升级了。其实，在内心偷笑，哈哈，可以偷懒了&lt;/li&gt;
+&lt;li&gt;浪费力气在排版上：使用Word时，我们会花费大量力气去排版，试图让文档变得漂亮一些。是粗体还是斜体，是宋体还是黑体，对创作来说，有那么重要吗？&lt;/li&gt;
+&lt;li&gt;难以自动的版本跟踪：每一位自杀的写作者的电脑文档里面，都必然有一个Word文档，从V1.0到V20.0的无数版本...&lt;/li&gt;
+&lt;li&gt;难以共同协作：想想你让一位合作的编辑帮你改书有多么痛苦，一个Word文档来，一个Word去，极其难用的修订与审阅功能，你就理解了；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Markdown如何解决这些难题的？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;借助于github解决文档共享与版本自动跟踪问题&lt;/li&gt;
+&lt;li&gt;Markdown让我们专注写作，而不是关注排版&lt;/li&gt;
+&lt;li&gt;强大的数学公式支持&lt;/li&gt;
+&lt;li&gt;方便的输出格式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="eb996d"&gt;制作教程、电子书&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;编写教程&lt;/li&gt;
+&lt;li&gt;编写电子书&lt;/li&gt;
+&lt;li&gt;方便的文件格式输出，可以输出HTML、DOC、ODT、PDF、LaTeX、EPUB、RST等格式&lt;/li&gt;
+&lt;li&gt;方便、快速的形成电子书或纸书的排版&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;现在你也可以当作家&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="d5d2de"&gt;发布博客、笔记&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;发布博客&lt;/li&gt;
+&lt;li&gt;记录云笔记&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;记录你的思想，保存你的知识&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="afc3d6"&gt;七、如何把Markdown运用到实际工作中&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;书写典型经验、知识库&lt;/li&gt;
+&lt;li&gt;书写技术总结、论文&lt;/li&gt;
+&lt;li&gt;书写工作日志、计划总结&lt;/li&gt;
+&lt;li&gt;翻译说明书&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="cbbb8e"&gt;八、一些使用Markdown的不错的社区网站&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.ituring.com.cn/"&gt;图灵社区：http://www.ituring.com.cn/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.ziqiangxuetang.com/"&gt;自强学堂：http://www.ziqiangxuetang.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.oschina.net/"&gt;开源中国：http://www.oschina.net/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="markdown"></category></entry><entry><title>Markdown 语法说明</title><link href="http://snailhome.github.io/note/markdown.html" rel="alternate"></link><updated>2015-06-18T23:55:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-06-18:note/markdown.html</id><summary type="html">&lt;p&gt;&lt;img alt="Markdown" src="../images/20151005/markdown.png"/&gt;&lt;/p&gt;
+&lt;h2 id="a4d3b0"&gt;概述&lt;/h2&gt;
+&lt;h3 id="6922b4"&gt;宗旨&lt;/h3&gt;
+&lt;p&gt;Markdown 的目标是实现「易读易写」。&lt;/p&gt;
+&lt;p&gt;可读性，无论如何，都是最重要的。一份使用 Markdown 格式撰写的文件应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响，包括 Setext、atx、Textile、reStructuredText、Grutatext 和 EtText，而最大灵感来源其实是纯文本电子邮件的格式。&lt;/p&gt;
+&lt;p&gt;总之， Markdown
+的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。比如：在文字两旁加上星号，看起来就像*强调*。Markdown 的列表看起来，嗯，就是列表。Markdown 的区块引用看起来就真的像是引用一段文字，就像你曾在电子邮件中见过的那样。&lt;/p&gt;
+&lt;h3 id="897b36"&gt;兼容 HTML&lt;/h3&gt;
+&lt;p&gt;Markdown 语法的目标是：成为一种适用于网络的书写语言。&lt;/p&gt;
+&lt;p&gt;Markdown 并不是想取代 HTML的地位，甚至接近它。它的语法种类很少，只对应 HTML 标记的一小部分。Markdown 的构想不是要使得 HTML 文档更容易书写。在我看来， HTML 已经很容易写了。Markdown 的理念是，能让文档更容易读、写和随意改。HTML 是一种发布的格式，Markdown 是一种书写的格式。就这样，Markdown 的格式语法只涵盖纯文本可以涵盖的范围。&lt;/p&gt;
+&lt;p&gt;不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。&lt;/p&gt;
+&lt;p&gt;要制约的只有一些 HTML 区块元素――比如 &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;table&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt; pre&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; 标签。&lt;/p&gt;
+&lt;p&gt;例子如下，在 Markdown 文件里加上一段 HTML 表格：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;这是一个普通段落。
+
+&amp;lt;table&amp;gt;
+    &amp;lt;tr&amp;gt;
+        &amp;lt;td&amp;gt;Foo&amp;lt;/td&amp;gt;
+    &amp;lt;/tr&amp;gt;
+&amp;lt;/table&amp;gt;
+
+这是另一个普通段落。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的&lt;code&gt;*强调*&lt;/code&gt;会没有效果。&lt;/p&gt;
+&lt;p&gt;HTML 的区段（行内）标签如 &lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;cite&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;del&amp;gt;&lt;/code&gt; 可以在 Markdown 的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用 Markdown 格式，而直接采用 HTML 标签来格式化。举例说明：如果比较喜欢 HTML 的 &lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt; 或 &lt;code&gt;&amp;lt;img&amp;gt;&lt;/code&gt; 标签，可以直接使用这些标签，而不用 Markdown 提供的链接或是图像标签语法。&lt;/p&gt;
+&lt;p&gt;和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。&lt;/p&gt;
+&lt;h3 id="cb968b"&gt;特殊字符自动转换&lt;/h3&gt;
+&lt;p&gt;在 HTML 文件中，有两个字符需要特殊处理： &lt;code&gt;&amp;lt;&lt;/code&gt; 和 &lt;code&gt;&amp;amp;&lt;/code&gt; 。 &lt;code&gt;&amp;lt;&lt;/code&gt; 符号用于起始标签，&lt;code&gt;&amp;amp;&lt;/code&gt;
+符号则用于标记 HTML 实体，如果你只是想要显示这些字符的原型，你必须要使用实体的形式，像是 &lt;code&gt;&amp;amp;lt;&lt;/code&gt; 和 &lt;code&gt;&amp;amp;amp;&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&amp;amp; 字符尤其让网络文档编写者受折磨，如果你要打「&lt;code&gt;AT&amp;amp;T&lt;/code&gt;」 ，你必须要写成 「&lt;code&gt;AT&amp;amp;amp;T&lt;/code&gt;」。而网址中的 &lt;code&gt;&amp;amp;&lt;/code&gt; 字符也要转换。比如你要链接到：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;http://images.google.com/images?num=30&amp;amp;q=larry+bird
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;你必须要把网址转换写为：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;http://images.google.com/images?num=30&amp;amp;amp;q=larry+bird
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;才能放到链接标签的 &lt;code&gt;href&lt;/code&gt; 属性里。不用说也知道这很容易忽略，这也可能是 HTML 标准检验所检查到的错误中，数量最多的。&lt;/p&gt;
+&lt;p&gt;Markdown 让你可以自然地书写字符，需要转换的由它来处理好了。如果你使用的 &lt;code&gt;&amp;amp;&lt;/code&gt; 字符是 HTML 字符实体的一部分，它会保留原状，否则它会被转换成 &lt;code&gt;&amp;amp;amp;&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;所以你如果要在文档中插入一个版权符号 &lt;code&gt;©&lt;/code&gt;，你可以这样写：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;amp;copy;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Markdown 会保留它不动。而若你写：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;AT&amp;amp;T
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Markdown 就会将它转为：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;AT&amp;amp;amp;T
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;类似的状况也会发生在 &lt;code&gt;&amp;lt;&lt;/code&gt; 符号上，因为 Markdown 允许 &lt;u&gt;兼容 HTML&lt;/u&gt; ，如果你是把 &lt;code&gt;&amp;lt;&lt;/code&gt; 符号作为 HTML 标签的定界符使用，那 Markdown 也不会对它做任何转换，但是如果你写：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;4 &amp;lt; 5
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Markdown 将会把它转换为：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;4 &amp;amp;lt; 5
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;不过需要注意的是，code 范围内，不论是行内还是区块， &lt;code&gt;&amp;lt;&lt;/code&gt; 和 &lt;code&gt;&amp;amp;&lt;/code&gt; 两个符号都一定会被转换成 HTML 实体，这项特性让你可以很容易地用 Markdown 写 HTML code （和 HTML 相对而言， HTML 语法中，你要把所有的 &lt;code&gt;&amp;lt;&lt;/code&gt; 和 &lt;code&gt;&amp;amp;&lt;/code&gt; 都转换为 HTML 实体，才能在 HTML 文件里面写出 HTML code。）&lt;/p&gt;
+&lt;h2 id="1a65a1"&gt;区块元素&lt;/h2&gt;
+&lt;h3 id="ae63ea"&gt;段落和换行&lt;/h3&gt;
+&lt;p&gt;一个 Markdown
+段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行（空行的定义是显示上看起来像是空的，便会被视为空行。比方说，若某一行只包含空格和制表符，则该行也会被视为空行）。普通段落不该用空格或制表符来缩进。&lt;/p&gt;
+&lt;p&gt;「由一个或多个连续的文本行组成」这句话其实暗示了 Markdown 允许段落内的强迫换行（插入换行符），这个特性和其他大部分的 text-to-HTML 格式不一样（包括 Movable Type 的「Convert Line Breaks」选项），其它的格式会把每个换行符都转成 &lt;code&gt;&amp;lt;br /&amp;gt;&lt;/code&gt; 标签。&lt;/p&gt;
+&lt;p&gt;如果你确实想要依赖 Markdown 来插入 &lt;code&gt;&amp;lt;br /&amp;gt;&lt;/code&gt; 标签的话，在插入处先按入两个以上的空格然后回车。&lt;/p&gt;
+&lt;p&gt;的确，需要多费点事（多加空格）来产生 &lt;code&gt;&amp;lt;br /&amp;gt;&lt;/code&gt; ，但是简单地「每个换行都转换为 &lt;code&gt;&amp;lt;br /&amp;gt;&lt;/code&gt;」的方法在 Markdown 中并不适合， Markdown 中 email 式的 &lt;u&gt;区块引用&lt;/u&gt; 和多段落的 列表 在使用换行来排版的时候，不但更好用，还更方便阅读。&lt;/p&gt;
+&lt;h3 id="32c65d"&gt;标题&lt;/h3&gt;
+&lt;p&gt;Markdown 支持两种标题的语法，类 Setext 和类 atx 形式。&lt;/p&gt;
+&lt;p&gt;类 Setext 形式是用底线的形式，利用 &lt;code&gt;=&lt;/code&gt; （最高阶标题）和 &lt;code&gt;-&lt;/code&gt; （第二阶标题），例如：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;This is an H1
+=============
+
+This is an H2
+-------------
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;任何数量的 &lt;code&gt;=&lt;/code&gt; 和 &lt;code&gt;-&lt;/code&gt; 都可以有效果。&lt;/p&gt;
+&lt;p&gt;类 Atx 形式则是在行首插入 1 到 6 个 &lt;code&gt;#&lt;/code&gt; ，对应到标题 1 到 6 阶，例如：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;这是 H1
+=======
+
+这是 H2
+-------
+
+###### 这是 H6
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;你可以选择性地「闭合」类 atx
+样式的标题，这纯粹只是美观用的，若是觉得这样看起来比较舒适，你就可以在行尾加上 &lt;code&gt;#&lt;/code&gt;，而行尾的 &lt;code&gt;#&lt;/code&gt; 数量也不用和开头一样（行首的井字符数量决定标题的阶数）：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;# 这是 H1 #
+
+## 这是 H2 ##
+
+### 这是 H3 ###
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="1c4d45"&gt;区块引用&lt;/h3&gt;
+&lt;p&gt;Blockquotes&lt;/p&gt;
+&lt;p&gt;Markdown 标记区块引用是使用类似 email 中用 &amp;gt; 的引用方式。如果你还熟悉在 email 信件中的引言部分，你就知道怎么在 Markdown 文件中建立一个区块引用，那会看起来像是你自己先断好行，然后在每行的最前面加上
+&lt;code&gt;&amp;gt;&lt;/code&gt; ：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+&amp;gt; consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus. Vestibulum
+&amp;gt; enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+&amp;gt;
+&amp;gt; Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse id sem
+&amp;gt; consectetuer libero luctus adipiscing.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Markdown 也允许你偷懒只在整个段落的第一行最前面加上 &lt;code&gt;&amp;gt;&lt;/code&gt; ：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+&amp;gt; consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus. Vestibulum
+&amp;gt; enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+
+&amp;gt; Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse id sem
+&amp;gt; consectetuer libero luctus adipiscing.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;区块引用可以嵌套（例如：引用内的引用），只要根据层次加上不同数量的 &lt;code&gt;&amp;gt;&lt;/code&gt; ：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;gt; This is the first level of quoting.
+&amp;gt;
+&amp;gt; &amp;gt; This is nested blockquote.
+&amp;gt;
+&amp;gt; Back to the first level.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;引用的区块内也可以使用其他的 Markdown 语法，包括标题、列表、代码区块等：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;gt; ## 这是一个标题。
+
+&amp;gt;
+&amp;gt; 1.  这是第一行列表项。
+&amp;gt; 2.  这是第二行列表项。
+&amp;gt;
+&amp;gt; 给出一些例子代码：
+&amp;gt;
+&amp;gt;     return shell_exec("echo $input | $markdown_script");
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;任何像样的文本编辑器都能轻松地建立 email 型的引用。例如在 BBEdit 中，你可以选取文字后然后从选单中选择增加引用阶层。&lt;/p&gt;
+&lt;h3 id="371297"&gt;列表&lt;/h3&gt;
+&lt;p&gt;Markdown 支持有序列表和无序列表。&lt;/p&gt;
+&lt;p&gt;无序列表使用星号、加号或是减号作为列表标记：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;*   Red
+*   Green
+*   Blue
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;等同于：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;+   Red
++   Green
++   Blue
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;也等同于：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;-   Red
+-   Green
+-   Blue
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;有序列表则使用数字接着一个英文句点：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;1.  Bird
+2.  McHale
+3.  Parish
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;很重要的一点是，你在列表标记上使用的数字并不会影响输出的 HTML 结果，上面的列表所产生的 HTML 标记为：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;ol&amp;gt;
+&amp;lt;li&amp;gt;Bird&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;McHale&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Parish&amp;lt;/li&amp;gt;
+&amp;lt;/ol&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果你的列表标记写成：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;1.  Bird
+1.  McHale
+1.  Parish
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;或甚至是：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;3.  Bird
+1.  McHale
+8.  Parish
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;你都会得到完全相同的 HTML 输出。重点在于，你可以让 Markdown 文件的列表数字和输出的结果相同，或是你懒一点，你可以完全不用在意数字的正确性。&lt;/p&gt;
+&lt;p&gt;如果你使用懒惰的写法，建议第一个项目最好还是从 1. 开始，因为 Markdown 未来可能会支持有序列表的 start 属性。&lt;/p&gt;
+&lt;p&gt;列表项目标记通常是放在最左边，但是其实也可以缩进，最多 3 个空格，项目标记后面则一定要接着至少一个空格或制表符。&lt;/p&gt;
+&lt;p&gt;要让列表看起来更漂亮，你可以把内容用固定的缩进整理好：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit
+    mi posuere lectus. Vestibulum enim wisi, viverra nec, fringilla in, laoreet
+    vitae, risus.
+*   Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse id sem
+    consectetuer libero luctus adipiscing.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;但是如果你懒，那也行：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit
+mi posuere lectus. Vestibulum enim wisi, viverra nec, fringilla in, laoreet
+vitae, risus.
+*   Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse id sem
+consectetuer libero luctus adipiscing.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果列表项目间用空行分开，在输出 HTML 时 Markdown 就会将项目内容用 &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt;
+标签包起来，举例来说：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;*   Bird
+*   Magic
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;会被转换为：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;Bird&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;Magic&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;但是这个：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;*   Bird
+
+*   Magic
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;会被转换为：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;&amp;lt;p&amp;gt;Bird&amp;lt;/p&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;&amp;lt;p&amp;gt;Magic&amp;lt;/p&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;列表项目可以包含多个段落，每个项目下的段落都必须缩进 4 个空格或是 1 个制表符：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;1.  This is a list item with two paragraphs. Lorem ipsum dolor sit amet,
+    consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
+
+    Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus. Donec
+    sit amet nisl. Aliquam semper ipsum sit amet velit.
+
+2.  Suspendisse id sem consectetuer libero luctus adipiscing.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果你每行都有缩进，看起来会看好很多，当然，再次地，如果你很懒惰，Markdown 也允许：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;*   This is a list item with two paragraphs.
+
+    This is the second paragraph in the list item. You're only required to
+    indent the first line. Lorem ipsum dolor sit amet, consectetuer
+    adipiscing elit.
+
+*   Another item in the same list.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果要在列表项目内放进引用，那 &lt;code&gt;&amp;gt;&lt;/code&gt; 就需要缩进：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;*   A list item with a blockquote:
+
+    &amp;gt; This is a blockquote
+    &amp;gt;inside a list item.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果要放代码区块的话，该区块就需要缩进两次，也就是 8 个空格或是 2 个制表符：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;*   一列表项包含一个列表区块：
+
+        &amp;lt;代码写在这&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;当然，项目列表很可能会不小心产生，像是下面这样的写法：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;1986.  What a great season.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;换句话说，也就是在行首出现数字-句点-空白，要避免这样的状况，你可以在句点前面加上反斜杠。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;1986\. What a great season.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="f2f159"&gt;代码区块&lt;/h3&gt;
+&lt;p&gt;和程序相关的写作或是标签语言原始码通常会有已经排版好的代码区块，通常这些区块我们并不希望它以一般段落文件的方式去排版，而是照原来的样子显示，Markdown 会用 &lt;code&gt;&amp;lt;pre&amp;gt;&lt;/code&gt; 和 &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; 标签来把代码区块包起来。&lt;/p&gt;
+&lt;p&gt;要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以，例如，下面的输入：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;这是一个普通段落：
+
+    这是一个代码区块。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Markdown 会转换成：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;这是一个普通段落：&amp;lt;/p&amp;gt;
+&amp;amp;lt; pre&amp;amp;gt;&amp;lt;code&amp;gt;这是一个代码区块。 &amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这个每行一阶的缩进（4 个空格或是 1 个制表符），都会被移除，例如：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;Here is an example of AppleScript:
+
+    tell application "Foo"
+        beep
+    end tell
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;会被转换为：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;Here is an example of AppleScript:&amp;lt;/p&amp;gt;
+
+&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;tell application "Foo"
+    beep
+end tell
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;一个代码区块会一直持续到没有缩进的那一行（或是文件结尾）。&lt;/p&gt;
+&lt;p&gt;在代码区块里面， &lt;code&gt;&amp;amp;&lt;/code&gt; 、 &lt;code&gt;&amp;lt;&lt;/code&gt; 和 &lt;code&gt;&amp;gt;&lt;/code&gt; 会自动转成 HTML 实体，这样的方式让你非常容易使用 Markdown 插入范例用的 HTML 原始码，只需要复制贴上，再加上缩进就可以了，剩下的 Markdown 都会帮你处理，例如：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;div class="footer"&amp;gt;
+    &amp;amp;copy; 2004 Foo Corporation
+&amp;lt;/div&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;会被转换为：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt; pre&amp;gt;&amp;lt;code&amp;gt;&amp;amp;lt;div class="footer"&amp;amp;gt;
+    &amp;amp;amp;copy; 2004 Foo Corporation
+&amp;amp;lt;/div&amp;amp;gt;
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;代码区块中，一般的 Markdown 语法不会被转换，像是星号便只是星号，这表示你可以很容易地以 Markdown 语法撰写 Markdown 语法相关的文件。&lt;/p&gt;
+&lt;h3 id="7e1eb2"&gt;分隔线&lt;/h3&gt;
+&lt;p&gt;你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;* * *
+
+***
+
+****
+
+- - -
+
+--------------------
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="9922de"&gt;区段元素&lt;/h2&gt;
+&lt;h3 id="bfe68d"&gt;链接&lt;/h3&gt;
+&lt;p&gt;Markdown 支持两种形式的链接语法： 行内式和参考式两种形式。&lt;/p&gt;
+&lt;p&gt;不管是哪一种，链接文字都是用 [方括号] 来标记。&lt;/p&gt;
+&lt;p&gt;要建立一个行内式的链接，只要在方块括号后面紧接着圆括号并插入网址链接即可，如果你还想要加上链接的 title 文字，只要在网址后面，用双引号把 title 文字包起来即可，例如：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;This is [an example](http://example.com/ "Title") inline link.
+
+[This link](http://example.net/) has no title attribute.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;会产生：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;This is &amp;lt;a href="http://example.com/" title="Title"&amp;gt;an example&amp;lt;/a&amp;gt; inline link.&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;&amp;lt;a href="http://example.net/"&amp;gt;This link&amp;lt;/a&amp;gt; has no title attribute.&amp;lt;/p&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果你是要链接到同样主机的资源，你可以使用相对路径：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;See my [About](/about/) page for details.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;参考式的链接是在链接文字的括号后面再接上另一个方括号，而在第二个方括号里面要填入用以辨识链接的标记：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;This is [an example](url/to/image "Optional title attribute") reference-style link.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;你也可以选择性地在两个方括号中间加上一个空格：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;This is [an example](url/to/image "Optional title attribute") reference-style link.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;接着，在文件的任意处，你可以把这个标记的链接内容定义出来：&lt;/p&gt;
+&lt;p&gt;链接内容定义的形式为：&lt;/p&gt;
+&lt;p&gt;方括号（前面可以选择性地加上至多三个空格来缩进），里面输入链接文字 接着一个冒号
+接着一个以上的空格或制表符 接着链接的网址 选择性地接着 title 内容，可以用单引号、双引号或是括弧包着 下面这三种链接的定义都是相同：&lt;/p&gt;
+&lt;p&gt;请注意：有一个已知的问题是 Markdown.pl 1.0.1 会忽略单引号包起来的链接 title。&lt;/p&gt;
+&lt;p&gt;链接网址也可以用尖括号包起来：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[id]: &amp;lt;http://example.com/&amp;gt;  "Optional Title Here"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;你也可以把 title
+属性放到下一行，也可以加一些缩进，若网址太长的话，这样会比较好看：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[id]: http://example.com/longish/path/to/resource/here
+"Optional Title Here"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;网址定义只有在产生链接的时候用到，并不会直接出现在文件之中。&lt;/p&gt;
+&lt;p&gt;链接辨别标签可以有字母、数字、空白和标点符号，但是并不区分大小写，因此下面两个链接是一样的：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[link text][a]
+[link text][A]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;隐式链接标记功能让你可以省略指定链接标记，这种情形下，链接标记会视为等同于链接文字，要用隐式链接标记只要在链接文字后面加上一个空的方括号，如果你要让 "Google" 链接到 google.com，你可以简化成：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[Google][]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后定义链接内容：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[Google]: http://google.com/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;由于链接文字可能包含空白，所以这种简化型的标记内也许包含多个单词：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;Visit [Daring Fireball][] for more information.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后接着定义链接：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[Daring Fireball]: http://daringfireball.net/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;链接的定义可以放在文件中的任何一个地方，我比较偏好直接放在链接出现段落的后面，你也可以把它放在文件最后面，就像是注解一样。&lt;/p&gt;
+&lt;p&gt;下面是一个参考式链接的范例：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;I get 10 times more traffic from [Google] [1] than from
+[Yahoo] [2] or [MSN] [3].
+
+  [1]: http://google.com/        "Google"
+  [2]: http://search.yahoo.com/  "Yahoo Search"
+  [3]: http://search.msn.com/    "MSN Search"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果改成用链接名称的方式写：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;I get 10 times more traffic from [Google][] than from
+[Yahoo][] or [MSN][].
+
+  [google]: http://google.com/        "Google"
+  [yahoo]:  http://search.yahoo.com/  "Yahoo Search"
+  [msn]:    http://search.msn.com/    "MSN Search"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面两种写法都会产生下面的 HTML。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;I get 10 times more traffic from &amp;lt;a href="http://google.com/"
+title="Google"&amp;gt;Google&amp;lt;/a&amp;gt; than from
+&amp;lt;a href="http://search.yahoo.com/" title="Yahoo Search"&amp;gt;Yahoo&amp;lt;/a&amp;gt;
+or &amp;lt;a href="http://search.msn.com/" title="MSN Search"&amp;gt;MSN&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;下面是用行内式写的同样一段内容的 Markdown 文件，提供作为比较之用：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;I get 10 times more traffic from [Google](http://google.com/ "Google")
+than from [Yahoo](http://search.yahoo.com/ "Yahoo Search") or
+[MSN](http://search.msn.com/ "MSN Search").
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;参考式的链接其实重点不在于它比较好写，而是它比较好读，比较一下上面的范例，使用参考式的文章本身只有 81 个字符，但是用行内形式的却会增加到 176 个字元，如果是用纯 HTML 格式来写，会有 234 个字元，在 HTML 格式中，标签比文本还要多。&lt;/p&gt;
+&lt;p&gt;使用 Markdown 的参考式链接，可以让文件更像是浏览器最后产生的结果，让你可以把一些标记相关的元数据移到段落文字之外，你就可以增加链接而不让文章的阅读感觉被打断。&lt;/p&gt;
+&lt;h3 id="a42703"&gt;强调&lt;/h3&gt;
+&lt;p&gt;Markdown 使用星号（&lt;code&gt;*&lt;/code&gt;）和底线（&lt;code&gt;_&lt;/code&gt;）作为标记强调字词的符号，被 &lt;code&gt;*&lt;/code&gt; 或 &lt;code&gt;_&lt;/code&gt; 包围的字词会被转成用 &lt;code&gt;&amp;lt;em&amp;gt;&lt;/code&gt; 标签包围，用两个 &lt;code&gt;*&lt;/code&gt; 或 &lt;code&gt;_&lt;/code&gt; 包起来的话，则会被转成
+&lt;code&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;，例如：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;*single asterisks*
+
+_single underscores_
+
+**double asterisks**
+
+__double underscores__
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;会转成：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;em&amp;gt;single asterisks&amp;lt;/em&amp;gt;
+
+&amp;lt;em&amp;gt;single underscores&amp;lt;/em&amp;gt;
+
+&amp;lt;strong&amp;gt;double asterisks&amp;lt;/strong&amp;gt;
+
+&amp;lt;strong&amp;gt;double underscores&amp;lt;/strong&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;你可以随便用你喜欢的样式，唯一的限制是，你用什么符号开启标签，就要用什么符号结束。&lt;/p&gt;
+&lt;p&gt;强调也可以直接插在文字中间：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;un*frigging*believable
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;但是&lt;strong&gt;如果你的 &lt;code&gt;*&lt;/code&gt; 和 &lt;code&gt;_&lt;/code&gt; 两边都有空白的话，它们就只会被当成普通的符号&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;如果要在文字前后直接插入普通的星号或底线，你可以用反斜线：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;\*this text is surrounded by literal asterisks\*
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="06e004"&gt;代码&lt;/h3&gt;
+&lt;p&gt;如果要标记一小段行内代码，你可以用反引号把它包起来（```），例如：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;Use the `printf()` function.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;会产生：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;Use the &amp;lt; code&amp;gt;printf()&amp;lt;/code&amp;gt; function.&amp;lt;/p&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果要在代码区段内插入反引号，你可以用多个反引号来开启和结束代码区段：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;``There is a literal backtick (`) here.``
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这段语法会产生：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;&amp;lt;code&amp;gt;There is a literal backtick (`) here.&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;代码区段的起始和结束端都可以放入一个空白，起始端后面一个，结束端前面一个，这样你就可以在区段的一开始就插入反引号：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;A single backtick in a code span: `` ` ``
+
+A backtick-delimited string in a code span: `` `foo` ``
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;会产生：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;A single backtick in a code span: &amp;lt; code&amp;gt;`&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;A backtick-delimited string in a code span: &amp;lt;code&amp;gt;`foo`&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在代码区段内，&lt;code&gt;&amp;amp;&lt;/code&gt; 和尖括号&lt;strong&gt;都&lt;/strong&gt;会被自动地转成 HTML 实体，这使得插入 HTML 原始码变得很容易，Markdown 会把下面这段：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;Please don't use any `&amp;lt;blink&amp;gt;` tags.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;转为：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;Please don't use any &amp;lt;code&amp;gt;&amp;amp;lt;blink&amp;amp;gt;&amp;lt;/code&amp;gt; tags.&amp;lt;/p&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;你也可以这样写：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;`&amp;amp;#8212;` is the decimal-encoded equivalent of `&amp;amp;mdash;`.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;以产生：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;&amp;lt;code&amp;gt;&amp;amp;amp;#8212;&amp;lt;/code&amp;gt; is the decimal-encoded
+equivalent of &amp;lt;code&amp;gt;&amp;amp;amp;mdash;&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="20def7"&gt;图片&lt;/h3&gt;
+&lt;p&gt;很明显地，要在纯文字应用中设计一个「自然」的语法来插入图片是有一定难度的。&lt;/p&gt;
+&lt;p&gt;Markdown 使用一种和链接很相似的语法来标记图片，同样也允许两种样式：&lt;em&gt;行内式&lt;/em&gt;和&lt;em&gt;参考式&lt;/em&gt;。&lt;/p&gt;
+&lt;p&gt;行内式的图片语法看起来像是：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;![Alt text](/path/to/img.jpg)
+
+![Alt text](/path/to/img.jpg "Optional title")
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;详细叙述如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个惊叹号 &lt;code&gt;!&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;接着一个方括号，里面放上图片的替代文字&lt;/li&gt;
+&lt;li&gt;接着一个普通括号，里面放上图片的网址，最后还可以用引号包住并加上 选择性的
+    'title' 文字。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考式的图片语法则长得像这样：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;![Alt text][id]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;「id」是图片参考的名称，图片参考的定义方式则和连结参考一样：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[id]: url/to/image  "Optional title attribute"
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;到目前为止， Markdown 还没有办法指定图片的宽高，如果你需要的话，你可以使用普通的 &lt;img&gt; 标签。&lt;/img&gt;&lt;/p&gt;
+&lt;h2 id="5a0afc"&gt;其它&lt;/h2&gt;
+&lt;h3 id="5065cb"&gt;自动链接&lt;/h3&gt;
+&lt;p&gt;Markdown
+支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用尖括号包起来，
+Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样，例如：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;http://example.com/&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Markdown 会转为：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;a href="http://example.com/"&amp;gt;http://example.com/&amp;lt;/a&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;邮址的自动链接也很类似，只是 Markdown 会先做一个编码转换的过程，把文字字符转成
+16 进位码的 HTML 实体，这样的格式可以糊弄一些不好的邮址收集机器人，例如：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;address@example.com&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Markdown 会转成：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;a href="&amp;amp;#x6D;&amp;amp;#x61;i&amp;amp;#x6C;&amp;amp;#x74;&amp;amp;#x6F;:&amp;amp;#x61;&amp;amp;#x64;&amp;amp;#x64;&amp;amp;#x72;&amp;amp;#x65;
+&amp;amp;#115;&amp;amp;#115;&amp;amp;#64;&amp;amp;#101;&amp;amp;#120;&amp;amp;#x61;&amp;amp;#109;&amp;amp;#x70;&amp;amp;#x6C;e&amp;amp;#x2E;&amp;amp;#99;&amp;amp;#111;
+&amp;amp;#109;"&amp;gt;&amp;amp;#x61;&amp;amp;#x64;&amp;amp;#x64;&amp;amp;#x72;&amp;amp;#x65;&amp;amp;#115;&amp;amp;#115;&amp;amp;#64;&amp;amp;#101;&amp;amp;#120;&amp;amp;#x61;
+&amp;amp;#109;&amp;amp;#x70;&amp;amp;#x6C;e&amp;amp;#x2E;&amp;amp;#99;&amp;amp;#111;&amp;amp;#109;&amp;lt;/a&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在浏览器里面，这段字串（其实是
+&lt;code&gt;&amp;lt;a href="mailto:address@example.com"&amp;gt;address@example.com&amp;lt;/a&amp;gt;&lt;/code&gt;）会变成一个可以点击的「address@example.com」链接。&lt;/p&gt;
+&lt;p&gt;（这种作法虽然可以糊弄不少的机器人，但并不能全部挡下来，不过总比什么都不做好些。不管怎样，公开你的信箱终究会引来广告信件的。）&lt;/p&gt;
+&lt;h3 id="7245af"&gt;反斜杠&lt;/h3&gt;
+&lt;p&gt;Markdown
+可以利用反斜杠来插入一些在语法中有其它意义的符号，例如：如果你想要用星号加在文字旁边的方式来做出强调效果（但不用
+&lt;em&gt; 标签），你可以在星号的前面加上反斜杠：&lt;/em&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;\*literal asterisks\*
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;\   反斜线
+`   反引号
+*   星号
+_   底线
+{}  花括号
+[]  方括号
+()  括弧
+#   井字号
++   加号
+-   减号
+.   英文句点
+!   惊叹号
+&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;简单的Markdown指南&lt;br/&gt;
+Markdown 语法说明&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="markdown"></category></entry><entry><title>CentOS7本地yum安装LNMP建站组合</title><link href="http://snailhome.github.io/note/yum_lnmp_in_centos7.html" rel="alternate"></link><updated>2015-06-15T01:08:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-06-15:note/yum_lnmp_in_centos7.html</id><summary type="html">&lt;h2 id="d8a65a"&gt;简介：&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;LNMP代表的就是：Linux系统下Nginx+MySQL(Mariadb)+PHP这种网站服务器架构。
+Linux是一类Unix计算机操作系统的统称，是目前最流行的免费操作系统。代表版本有：Debian、CentOS、Ubuntu、Fedora、Gentoo等。
+Nginx是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP代理服务器。
+Mysql是一个小型关系型数据库管理系统，目前使用Mariadb替代之。
+PHP是一种在服务器端执行的嵌入HTML文档的脚本语言。Jun 14, 2015
+这四种软件均为免费开源软件，组合到一起，成为一个免费、高效、扩展性强的网站服务系统。
+下面我们针对这个组合逐步说明各个组件在内网环境的安装步骤及协调配置。
+&lt;!--more--&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="925c68"&gt;一、CentOS7的安装及本地yum库的创建&lt;/h2&gt;
+&lt;p&gt;CentOS7的安装及本地yum库的创建不再复述，我们这里假定CentOS7已安装好并配置内网可以联通，并且已按照前述方法创建好了本地yum库，并且防火墙已先关闭。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;为了方便测试，先&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;# systemctl stop firewalld &amp;amp;&amp;amp; systemctl disable firewalld
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;以方便调试。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="55e696"&gt;二、Nginx安装&lt;/h2&gt;
+&lt;p&gt;由于Nginx不在内置的Packages里，我们需要先创建Nginx的本地yum库。&lt;/p&gt;
+&lt;h3 id="13eddb"&gt;1. 仓库Yum仓库目录&lt;/h3&gt;
+&lt;p&gt;（这里假定Nginx的yum库目录是&lt;code&gt;/home/yum-other/nginx/&lt;/code&gt;）&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # mkdir -p /home/yum-other/nginx/RPMS
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="0c4c6a"&gt;2. 下载所有Nginx的rpm软件包&lt;/h3&gt;
+&lt;p&gt;从&lt;code&gt;http://nginx.org/packages/centos/7/x86_64/RPMS/&lt;/code&gt;下载所有Nginx的rpm软件包，并上传到&lt;code&gt;/home/yum-other/nginx/RPMS&lt;/code&gt;下&lt;/p&gt;
+&lt;h3 id="bd3e08"&gt;3. 创建yum索引&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # createrepo /home/yum-other/nginx/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="c3bb82"&gt;4. 创建nginx.repo更新源配置文件&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # vim /etc/yum.repos.d/nginx.repo
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;nginx.repo文件内容如下：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;```
+[nginx]
+name=nginx repo
+baseurl=file:///home/yum-other/nginx/
+gpgcheck=0
+enabled=1
+```
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="c3c5f5"&gt;5. yum安装Nginx了&lt;/h3&gt;
+&lt;p&gt;OK！现在可以直接yum安装Nginx了&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # yum install -y nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="d3e9e0"&gt;6. 启动Nginx服务并设为开机启动&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # systemctl start nginx
+    # systemctl enable nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="763bcd"&gt;7. 查看服务是否运行&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # ps -A|grep nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;应该有两个nginx进程
+注：可以测试采用&lt;code&gt;yumdownloader&lt;/code&gt;的方式下载nginx软件包到本地安装&lt;/p&gt;
+&lt;h3 id="69b9f3"&gt;8. 测试网站是否建立成功&lt;/h3&gt;
+&lt;p&gt;在其它电脑浏览器里打开&lt;a href="http://CentOS7ServerIP/"&gt;http://CentOS7ServerIP/&lt;/a&gt;
+看看是不是出现了&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    Welcome to Nginx!
+    ...
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;的页面了！如有则安装成功。
+这时默认的网站目录是&lt;code&gt;/usr/share/nginx/html&lt;/code&gt;，这个路径可以改为你的实际路径，但相应的Nginx配置里也要同时修改。
+下面所涉及的网站目录我们还是先以这个来说明。
+下面我们将其它组件的安装再来涉及Nginx的配置。&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="72954f"&gt;另附在线安装Nginx的步骤&lt;/h2&gt;
+&lt;h3 id="c0b1e0"&gt;1. 在线安装Nginx更新源&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="82b44b"&gt;2. 安装Nginx&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # yum install -y nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="e2a837"&gt;三、安装Mariadb&lt;/h2&gt;
+&lt;h3 id="b413e0"&gt;1. 安装Mariadb软件，&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在CentOS7中已经使用Mariadb替代了MySQL&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # yum install -y mariadb-server mariadb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="ccbbf3"&gt;2. 启动Mariadb服务并加入开机启动&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # systemctl start mariadb
+    # systemctl enable mariadb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="77ad57"&gt;3. Mariadb的初始化配置&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # mysql_secure_installation
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;因为是初始安装，还没配置过数据库的密码，所以出现如下提示，按提示操作&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    Enter current password for root (enter for none): 回车
+    Set root password? [Y/n] 回车
+    New password: 输入Mariadb的root密码
+    Re-enter new password: 再次输入以检验确认
+    Remove anonymous users? [Y/n] 回车
+    Disallow root login remotely? [Y/n] 回车
+    Remove test database and access to it? [Y/n] 回车
+    Reload privilege tables now? [Y/n] 回车
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="9e438d"&gt;4. 查看服务是否运行&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # ps -A|grep mysqld
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;有两个进程&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;gt; mysqld_safe
+&amp;gt;
+&amp;gt; mysqld
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="d03b94"&gt;四、安装PHP&lt;/h2&gt;
+&lt;h3 id="4a8de0"&gt;1. 安装PHP及MySQL和CGI支持组件&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # yum install php php-mysql php-fpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="0ba85e"&gt;2. 配置PHP&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # vim /etc/php.ini
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;找到&lt;code&gt;;cgi.fix_pathinfo=1&lt;/code&gt;这行并改为&lt;code&gt;cgi.fix_pathinfo=0&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="b50542"&gt;3. 配置CGI&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # vim /etc/php-fpm.d/www.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;找到Listen这行，改为&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    listen = /var/run/php-fpm/php-fpm.sock
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="1b9e0c"&gt;4. 启动CGI并设为开机启动&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # systemctl start php-fpm
+    # systemctl enable php-fpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="df594a"&gt;5. 测试服务是否运行&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    ＃ ps -A|grep php-fpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;应该有6个php-fpm进程&lt;/p&gt;
+&lt;h2 id="f2bfbe"&gt;五、配置Nginx使之可以支持PHP&lt;/h2&gt;
+&lt;h3 id="9ed06f"&gt;1. 修改nginx的服务段配置&lt;/h3&gt;
+&lt;p&gt;备份下Nginx配置先&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # cp  /etc/nginx/nginx.conf   /etc/nginx/nginx.conf.bak
+    # vim   /etc/nginx/nginx.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;看看配置后面有没有server 80的配置，如果有，把整段#注释掉，我们使用default.conf的服务配置。&lt;/p&gt;
+&lt;h3 id="0da656"&gt;2. 修改default.conf的配置&lt;/h3&gt;
+&lt;p&gt;同样先备份&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # cp /etc/nginx/conf.d/default.conf  /etc/nginx/conf.d/default.conf.conf
+    # vim /etc/nginx/conf.d/default.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;找到&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;```
+server {
+    listen       80;
+    server_name  localhost;
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+```
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这部分，并修改为&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;```
+server {
+    listen       80;
+    server_name localhost;
+    root   /usr/share/nginx/html;  #这里改为实际网站路径
+    index index.php index.html index.htm;
+    location / {
+        try_files $uri $uri/ =404;
+    }
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;  #这里改为实际50x.html所在的路径
+     }
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
+```
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="31e45d"&gt;3. 测试一下Nginx配置是否正确&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # nginx -t
+    nginx: the configuration file /etc/nginx/nginx.conf syntax is ok 
+    nginx: configuration file /etc/nginx/nginx.conf test is successful
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="1f6aad"&gt;4. 重启Nginx服务&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # systemctl restart nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="82de9e"&gt;5. 创建测试脚本&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # vim /usr/share/nginx/html/info.php
+```php
+&amp;lt;?
+php phpinfo();
+?&amp;gt;
+```
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="d6472f"&gt;6. 在其它电脑里打开浏览器测试&lt;/h3&gt;
+&lt;p&gt;http://http://CentOS7服务器IP/info.php
+如果没有问题的话应该显示php的信息页面&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    PHP Version 5.4.16
+    ...
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="a9a453"&gt;7. 删除测试文件&lt;/h3&gt;
+&lt;p&gt;测试成功后记得删除测试文件&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # rm /usr/share/nginx/html/info.php
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="60bdd5"&gt;六、安装phpmyadmin&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注：在可在线的CentOS7系统先下载phpMyAdmin&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="89c7ae"&gt;1. 安装epel更新源&lt;/h3&gt;
+&lt;p&gt;因为php-mcrypt是phpmyadmin需要用到的，而官方的更新源没有这个包，所以才需要安装epel更新源&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # rpm -ivh http://mirrors.ustc.edu.cn/fedora/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="0dc6bf"&gt;2. 下载 php-mcrypt 及依赖文件 libmcrypt&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # yumdownloader  php-mcrypt
+    # yumdownloader  libmcrypt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;下载 phpmyadmin&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # yumdownloader  phpmyadmin
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;将上述文件复制到内网本地yum仓库并按照上面本地yum所述方式刷新。&lt;/p&gt;
+&lt;h3 id="a5dfb0"&gt;3. yum安装上述软件包&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # yum install -y php-mcrypt
+    # yum install -y phpmyadmin
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;安装时自动安装依赖文件&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;libtidy
+php-bcmath
+php-gd
+php-mbstring
+php-php-gettext
+php-tcpdf
+php-tcpdf-dejavu-sans-fonts
+php-tidy
+php-xml
+t1lib
+如果遇到依赖文件本地yum仓库没有重复2、3步骤下载安装之&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="115a5d"&gt;4. 配置phpmyadmin&lt;/h3&gt;
+&lt;p&gt;phpmyadmin的配置文件为：&lt;code&gt;/etc/phpMyAdmin/config.inc.php&lt;/code&gt;
+同目录下还有一个&lt;code&gt;config.inc.php.rpmsave&lt;/code&gt;，不知何用。&lt;/p&gt;
+&lt;h3 id="16d8eb"&gt;5. 链接到网站下&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # ln -s /usr/share/phpMyAdmin /home/html/phpMyAdmin
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;现在可以通过&lt;code&gt;http://域名/phpMyAdmin&lt;/code&gt;来访问数据库了。
+至此LNMP建站组合已安装完毕，你可以试着上传一些php网站上去试用了，这个组合应该可以满足大多数php应用的使用要求。&lt;/p&gt;
+&lt;h2 id="33d750"&gt;七、指定新的网站目录&lt;/h2&gt;
+&lt;p&gt;通常情况下我们的网站目录不是在&lt;code&gt;/usr/share/nginx/html/&lt;/code&gt;下
+那么我们需要重新指定新的网站目录
+假定我们新的网站目录是放在&lt;code&gt;/home/html/&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="cc9ad8"&gt;1. 现在来修改nginx的配置&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # vim /etc/nginx/conf.d/default.conf
+找到两处
+
+```nginx
+root  /usr/share/nginx/html;
+```
+的位置， 修改为
+
+```nginx
+root  /home/html;
+```
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="e61008"&gt;2. 重启下nginx服务&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # systemctrl restart nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="894814"&gt;3. 现在再建个测试脚本&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # vim /home/html/info.php
+```php
+ &amp;lt;?
+ php phpinfo();
+ ?&amp;gt;
+```
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="69fa5c"&gt;4. 在其它电脑上测试一下链接&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;http://http://CentOS7ServerIP/info.php&amp;gt;
+
+耶，403/404错误，无法访问是怎么回事呢，没改变网站目录前还可以访问的呀～～
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="3ce91d"&gt;5. 复制原网站目录的SELinux安全性本文&lt;/h3&gt;
+&lt;p&gt;原来是SELinux的安全机制限制了你的访问权限，好在我们有原来的网站目录可以参照
+查看一下原网站目录文件的SELinux安全性本文&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    ＃ ls -Z /usr/share/nginx/html
+    -rw-r--r--. root root system_u:object_r:usr_t:s0       50x.html
+    -rw-r--r--. root root system_u:object_r:usr_t:s0       index.html
+    -rw-r--r--. root root unconfined_u:object_r:usr_t:s0   info.php
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里的&lt;code&gt;system_u:object_r:usr_t&lt;/code&gt;分别代表了 用户:角色:类型的三个设置
+先不用知道这是什么意思，我们先参照该安全性本文对现在的 /home/html 进行设置&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # chcon -R -u system_u -r object_r -t usr_t /home/html
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;现在再刷新一下浏览器，可以正常显示页面了。
+(上述这种不是最好的解决方式，在没有正确的解决方法前建议是把SELINUX关闭)
+总结一下，在没有设开机启动的情况下，开启这个建站组合我们需要开启下面几个服务&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # systemctl start nginx
+    # systemctl start mariadb
+    # systemctl start php-fpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;才能正常打开网页，如果要加入开机启动，只要&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;    # systemctl enable nginx
+    # systemctl enable mariadb
+    # systemctl enable php-fpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;执行一次就可以了。&lt;/p&gt;
+&lt;h2 id="d240a1"&gt;八、存在问题：&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;重启后 发现&lt;code&gt;/etc/nginx/conf.d/default.conf&lt;/code&gt;被改名为&lt;code&gt;default.conf.rpmsave&lt;/code&gt; 了，于是&lt;div class="codehilite"&gt;&lt;pre&gt;# cp  /etc/nginx/conf.d/default.conf.rpmsave  /etc/nginx/conf.d/default.conf
+# systemctl restart nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;首页重新回来了
+再观察一下还会不会出现这种情况&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="CentOS7"></category><category term="Yum"></category><category term="LNMP"></category></entry><entry><title>Linux Mint 安装后要做的几件事</title><link href="http://snailhome.github.io/note/do_something_after_installed_Linux_mint17.html" rel="alternate"></link><updated>2010-01-01T08:03:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2010-01-01:note/do_something_after_installed_Linux_mint17.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Linux Mint 1.72 是一个粉美观的桌面 Linux 系统，网评还不错的桌面，试用看看感觉还蛮好的。
+但是要记得安装好系统后要记得先做好几件事，才能用得舒心。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="955a30"&gt;修改更新源&lt;/h2&gt;
+&lt;p&gt;系统一装完，先修改更新源在做更新，不然会等吐血
+打开&lt;code&gt;菜单&lt;/code&gt; -&amp;gt; &lt;code&gt;系统管理&lt;/code&gt; -&amp;gt; &lt;code&gt;软件源&lt;/code&gt; -&amp;gt; &lt;code&gt;官方仓库&lt;/code&gt;项
+分别选择&lt;code&gt;镜像&lt;/code&gt;里的&lt;code&gt;主要&lt;/code&gt;和&lt;code&gt;基础&lt;/code&gt;两个选项，找最快的源，我选择的是：&lt;/p&gt;
+&lt;p&gt;＊ 主要：http://mirrors.hustunique.com/linuxmint
+＊ 基础：http://mirrors.yun-idc.com/ubuntu&lt;/p&gt;
+&lt;p&gt;然后点击&lt;code&gt;更新缓存&lt;/code&gt;，然后打开终端开始更新吧&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo apt-get clean &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get upgrade -y
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="4dcca1"&gt;修改语言支持&lt;/h2&gt;
+&lt;p&gt;打开&lt;code&gt;菜单&lt;/code&gt; -&amp;gt; &lt;code&gt;首选项&lt;/code&gt; -&amp;gt; &lt;code&gt;语言设置&lt;/code&gt;窗口 －&amp;gt; &lt;code&gt;输入法&lt;/code&gt;页 -&amp;gt; 点击&lt;code&gt;添加/删除语言&lt;/code&gt;，我只保留了中英美三国语言，语言、地区都选中国，点击&lt;code&gt;应用到整个系统&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="564e7c"&gt;添加输入法&lt;/h2&gt;
+&lt;p&gt;linux mint支持多种输入法框架，这方面做得还是比较好的。打开&lt;code&gt;菜单&lt;/code&gt; -&amp;gt; &lt;code&gt;首选项&lt;/code&gt; -&amp;gt; &lt;code&gt;语言设置&lt;/code&gt;窗口 －&amp;gt; &lt;code&gt;输入法&lt;/code&gt;页 -&amp;gt; 点击&lt;code&gt;添加对xxx的支持&lt;/code&gt;按钮，就可以添加相应输入法的框架了&lt;/p&gt;
+&lt;p&gt;我使用小企鹅&lt;code&gt;fcitx&lt;/code&gt;输入法，在输入法&lt;code&gt;页点击&lt;/code&gt;添加对fcitx的支持&lt;code&gt;按钮，就会开始安装进程，完成后不要点击&lt;/code&gt;安装可选部件件&lt;code&gt;，不然会一股脑给你安装了61个可选部件，我勒个去～～，那怎么做？
+关闭&lt;/code&gt;语言设置&lt;code&gt;窗口，打开&lt;/code&gt;菜单&lt;code&gt;-&amp;gt;&lt;/code&gt;系统管理&lt;code&gt;-&amp;gt;&lt;/code&gt;新立得软件包管理器&lt;code&gt;，过滤&lt;/code&gt;fcitx&lt;code&gt;，然后在列表中分别找到&lt;/code&gt;fcitx-googlepinyin&lt;code&gt;，&lt;/code&gt;fcitx-table-wubi&lt;code&gt;，&lt;/code&gt;fcitx-table&lt;code&gt;，在列表项上右键选择&lt;/code&gt;标志以便安装&lt;code&gt;，然后点击&lt;/code&gt;应用`就开始安装了。
+这里安装的是谷哥拼音和五笔。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;fcitx&lt;/code&gt;输入法界面比较美观，汉化也比较全面
+&lt;code&gt;ibus&lt;/code&gt;也安装起来用过，但界面没那么好，汉化也不全，另外还有一个不足，在&lt;code&gt;General&lt;/code&gt;页的&lt;code&gt;Show property panel:&lt;/code&gt;项应选择&lt;code&gt;Do not show&lt;/code&gt;，不然任务栏经常会被卡住&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;现在应用注销一下以使输入法生效，重新登录后就可以在任务栏上看到键盘图标了
+现在就可以用：
+&lt;em&gt; &lt;code&gt;Ctrl+空格&lt;/code&gt;：开关输入法
+&lt;/em&gt; &lt;code&gt;Ctrl+Shift&lt;/code&gt;：切换输入法&lt;/p&gt;
+&lt;h2 id="dbacf9"&gt;添加Firefox的语言包&lt;/h2&gt;
+&lt;p&gt;打开Firefox，&lt;code&gt;Open menu&lt;/code&gt; -&amp;gt; &lt;code&gt;Add-ones&lt;/code&gt;
+搜索&lt;code&gt;chinese&lt;/code&gt;，安装 &lt;code&gt;Chinese Simplified(zh-CN) Language Pack&lt;/code&gt;
+另外还可以选择安装&lt;code&gt;Firebug&lt;/code&gt;、&lt;code&gt;BaiduSearch&lt;/code&gt;
+关闭Firefox，再重新打开，界面就是中文的了&lt;/p&gt;</summary><category term="Linux Mint"></category><category term="更新源"></category><category term="输入法"></category><category term="语言包"></category></entry></feed>
