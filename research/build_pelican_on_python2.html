@@ -519,6 +519,7 @@ Hi &lt;em&gt;username&lt;/em&gt;! You<span class="err">'</span>ve successfully a
 <p>如果有这个显示，就表示SSh连接是成功的。</p>
 <p>下面我们就可以git网站了。</p>
 <h3 id="a3e59c">git静态网站</h3>
+<p>初次git时</p>
 <div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>output
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git init
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git add .
@@ -526,7 +527,7 @@ Hi &lt;em&gt;username&lt;/em&gt;! You<span class="err">'</span>ve successfully a
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git commit -m <span class="s2">"First Updated"</span>
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git push -u origin master
 </pre></div>
-<p>提示出错，于是</p>
+<p>提示出错，貌似要先 <code>pull</code> 一下，于是</p>
 <div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git pull origin master
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git commit -a
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git push -u origin master
@@ -541,12 +542,34 @@ $ git commit * -m "what I want told to someone"  //备注信息
 $ git push origin master //更新到远程服务器上</p>
 </blockquote>
 <p>以后每次要推送时</p>
-<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>output
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>make publish
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>output
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git add -A
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git commit -m <span class="s2">"Commit Info"</span>
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git push -u origin master
 </pre></div>
 <p>就可以了～～</p>
+<p>为了方便操作我做了别名</p>
+<h3 id="b938c7">设置别名</h3>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>vim ~/.bashrc
+<span class="nb">alias </span><span class="nv">se2p</span><span class="o">=</span><span class="s2">"cd ~/env&amp;&amp;source bin/activate"</span>
+<span class="nb">alias </span><span class="nv">git2p</span><span class="o">=</span><span class="s2">"cd ~/env/blog&amp;&amp; make publish&amp;&amp;cd output&amp;&amp;git add -A&amp;&amp;git commit -m 'Git My Static Blog'&amp;&amp;git push origin master"</span>
+</pre></div>
+<p>这样，我打开终端输入 <code>se2p</code> 就直接进入虚拟环境，输入 <code>git2p</code> 就直接生成发布文档并git到我的page里。</p>
+<p>但是还不够好，每次都需要输入用户名和密码，可以免输用户名和密码吗?</p>
+<h3 id="be3806">设置git时免输用户名和密码</h3>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>output/.git
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>vim config
+</pre></div>
+<p>看到这一段</p>
+<div class="codehilite"><pre>[remote "origin"]
+        url = https://github.com/yourname/yourname.github.io.git
+</pre></div>
+<p>将其改为：</p>
+<div class="codehilite"><pre>[remote "origin"]
+        url = https://yourname:password@github.com/yourname/yourname.github.io.git
+</pre></div>
+<p>当然，这个操作最好是在自己的机器上，毕竟用户名和密码明文放在上面，在其它机器上还是老老实实输入用户名和密码吧。</p>
                 </div>
                 <div id="content-comments">
                     <!-- 多说评论框 start -->
@@ -587,7 +610,7 @@ $ git push origin master //更新到远程服务器上</p>
                     </div>
                     <ol id="niu2-sidebar-toc-list">
                         <li><a href="#content-heading">用Pelican创建静态博客网站</a></li>
-                        <li><a href='#b41e5d'>创建虚拟环境</a></li><li><a href='#ad57b5'>安装 pelican 支持</a></li><li><a href='#a4730b'>创建静态博客文件目录结构及初始配置</a></li><li><a href='#d365c1'>安装 niu-x2-sidebar 主题模板</a><ol><li><a href='#7f70ad'>安装系统依赖</a></li><li><a href='#9baebf'>安装 python 依赖</a></li><li><a href='#f8a47d'>安装 niu-x2-sidebar 主题</a></li><li><a href='#c2bb8d'>安装 niu-x2-sidebar 主题插件</a></li><li><a href='#b39e48'>配置 pelicanconf.py</a></li><li><a href='#d3a354'>创建内容目录下的相关子目录</a></li><li><a href='#bac0a5'>生成输出文件</a></li><li><a href='#7795ac'>查看网站生成的效果</a></li><li><a href='#91d14b'>运行测试服务器</a></li></ol></li><li><a href='#c5490b'>git到github.com</a><ol><li><a href='#ec13c9'>生成ssh密钥</a></li><li><a href='#ee2e4a'>添加SSH Key到GitHub：</a></li><li><a href='#124a56'>ssh连接测试</a></li><li><a href='#a3e59c'>git静态网站</a></li></ol></li>
+                        <li><a href='#b41e5d'>创建虚拟环境</a></li><li><a href='#ad57b5'>安装 pelican 支持</a></li><li><a href='#a4730b'>创建静态博客文件目录结构及初始配置</a></li><li><a href='#d365c1'>安装 niu-x2-sidebar 主题模板</a><ol><li><a href='#7f70ad'>安装系统依赖</a></li><li><a href='#9baebf'>安装 python 依赖</a></li><li><a href='#f8a47d'>安装 niu-x2-sidebar 主题</a></li><li><a href='#c2bb8d'>安装 niu-x2-sidebar 主题插件</a></li><li><a href='#b39e48'>配置 pelicanconf.py</a></li><li><a href='#d3a354'>创建内容目录下的相关子目录</a></li><li><a href='#bac0a5'>生成输出文件</a></li><li><a href='#7795ac'>查看网站生成的效果</a></li><li><a href='#91d14b'>运行测试服务器</a></li></ol></li><li><a href='#c5490b'>git到github.com</a><ol><li><a href='#ec13c9'>生成ssh密钥</a></li><li><a href='#ee2e4a'>添加SSH Key到GitHub：</a></li><li><a href='#124a56'>ssh连接测试</a></li><li><a href='#a3e59c'>git静态网站</a></li><li><a href='#b938c7'>设置别名</a></li><li><a href='#be3806'>设置git时免输用户名和密码</a></li></ol></li>
                         <li><a href="#content-comments">评论</a></li>
                     </ol>
                 </div>

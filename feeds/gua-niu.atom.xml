@@ -476,6 +476,7 @@ Hi &amp;lt;em&amp;gt;username&amp;lt;/em&amp;gt;! You&lt;span class="err"&gt;'&l
 &lt;p&gt;如果有这个显示，就表示SSh连接是成功的。&lt;/p&gt;
 &lt;p&gt;下面我们就可以git网站了。&lt;/p&gt;
 &lt;h3 id="a3e59c"&gt;git静态网站&lt;/h3&gt;
+&lt;p&gt;初次git时&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git init
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git add .
@@ -483,7 +484,7 @@ Hi &amp;lt;em&amp;gt;username&amp;lt;/em&amp;gt;! You&lt;span class="err"&gt;'&l
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git commit -m &lt;span class="s2"&gt;"First Updated"&lt;/span&gt;
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git push -u origin master
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;提示出错，于是&lt;/p&gt;
+&lt;p&gt;提示出错，貌似要先 &lt;code&gt;pull&lt;/code&gt; 一下，于是&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git pull origin master
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git commit -a
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git push -u origin master
@@ -498,12 +499,34 @@ $ git commit * -m "what I want told to someone"  //备注信息
 $ git push origin master //更新到远程服务器上&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;以后每次要推送时&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;make publish
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git add -A
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git commit -m &lt;span class="s2"&gt;"Commit Info"&lt;/span&gt;
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git push -u origin master
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;就可以了～～&lt;/p&gt;</summary><category term="Python2"></category><category term="Pelican"></category><category term="静态博客"></category></entry><entry><title>CentOS7下安装Fcitx小企鹅输入法</title><link href="http://snailhome.github.io/note/fcitx_in_centos7.html" rel="alternate"></link><updated>2015-09-29T23:07:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-09-29:note/fcitx_in_centos7.html</id><summary type="html">&lt;p&gt;感觉CentOS7自带的ibus输入法用得不尽人意，考虑安装个Fcitx小企鹅输入法试试，心动不如行动，Let's go～&lt;/p&gt;
+&lt;p&gt;就可以了～～&lt;/p&gt;
+&lt;p&gt;为了方便操作我做了别名&lt;/p&gt;
+&lt;h3 id="b938c7"&gt;设置别名&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;vim ~/.bashrc
+&lt;span class="nb"&gt;alias &lt;/span&gt;&lt;span class="nv"&gt;se2p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"cd ~/env&amp;amp;&amp;amp;source bin/activate"&lt;/span&gt;
+&lt;span class="nb"&gt;alias &lt;/span&gt;&lt;span class="nv"&gt;git2p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"cd ~/env/blog&amp;amp;&amp;amp; make publish&amp;amp;&amp;amp;cd output&amp;amp;&amp;amp;git add -A&amp;amp;&amp;amp;git commit -m 'Git My Static Blog'&amp;amp;&amp;amp;git push origin master"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这样，我打开终端输入 &lt;code&gt;se2p&lt;/code&gt; 就直接进入虚拟环境，输入 &lt;code&gt;git2p&lt;/code&gt; 就直接生成发布文档并git到我的page里。&lt;/p&gt;
+&lt;p&gt;但是还不够好，每次都需要输入用户名和密码，可以免输用户名和密码吗?&lt;/p&gt;
+&lt;h3 id="be3806"&gt;设置git时免输用户名和密码&lt;/h3&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output/.git
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;vim config
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;看到这一段&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[remote "origin"]
+        url = https://github.com/yourname/yourname.github.io.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;将其改为：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[remote "origin"]
+        url = https://yourname:password@github.com/yourname/yourname.github.io.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;当然，这个操作最好是在自己的机器上，毕竟用户名和密码明文放在上面，在其它机器上还是老老实实输入用户名和密码吧。&lt;/p&gt;</summary><category term="Python2"></category><category term="Pelican"></category><category term="静态博客"></category></entry><entry><title>CentOS7下安装Fcitx小企鹅输入法</title><link href="http://snailhome.github.io/note/fcitx_in_centos7.html" rel="alternate"></link><updated>2015-09-29T23:07:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-09-29:note/fcitx_in_centos7.html</id><summary type="html">&lt;p&gt;感觉CentOS7自带的ibus输入法用得不尽人意，考虑安装个Fcitx小企鹅输入法试试，心动不如行动，Let's go～&lt;/p&gt;
 &lt;h2 id="8c4cab"&gt;1. 加入EPEL源&lt;/h2&gt;
 &lt;p&gt;EPEL7几乎是CentOS必备的源:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo yum install epel-release
