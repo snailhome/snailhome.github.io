@@ -64,7 +64,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;我只要se2p就进入了虚拟环境。&lt;/p&gt;
 &lt;h3 id="b05767"&gt;推送 &lt;code&gt;git&lt;/code&gt; 到 &lt;code&gt;github.io&lt;/code&gt;&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;alias git2p="cd ~/env2p/blog/output&amp;amp;&amp;amp;git add -A&amp;amp;&amp;amp;git commit -m 'Git My Static Blog'&amp;amp;&amp;amp;git push origin master"
+&lt;div class="codehilite"&gt;&lt;pre&gt;alias git2p="cd ~/env2p/blog&amp;amp;&amp;amp;make publish&amp;amp;&amp;amp;cd output&amp;amp;&amp;amp;git add -A&amp;amp;&amp;amp;git commit -m 'Git My Static Blog'&amp;amp;&amp;amp;git push origin master"
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="bash"></category><category term="alias"></category><category term="别名"></category></entry><entry><title>CentOS7下安装Fcitx小企鹅输入法</title><link href="http://snailhome.github.io/note/fcitx_in_centos7.html" rel="alternate"></link><updated>2015-09-29T23:07:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-09-29:note/fcitx_in_centos7.html</id><summary type="html">&lt;p&gt;感觉CentOS7自带的ibus输入法用得不尽人意，考虑安装个Fcitx小企鹅输入法试试，心动不如行动，Let's go～&lt;/p&gt;
 &lt;h2 id="8c4cab"&gt;1. 加入EPEL源&lt;/h2&gt;
 &lt;p&gt;EPEL7几乎是CentOS必备的源:&lt;/p&gt;
