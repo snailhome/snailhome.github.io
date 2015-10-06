@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2015-10-06T10:40:07-00:00</lastmod>
+<lastmod>2015-10-06T10:58:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2015-10-06T10:40:07-00:00</lastmod>
+<lastmod>2015-10-06T10:58:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2015-10-06T10:40:07-00:00</lastmod>
+<lastmod>2015-10-06T10:58:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -28,6 +28,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <loc>/about.html</loc>
 <lastmod>2015-06-14T21:34:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/note/about_alias.html</loc>
+<lastmod>2015-10-06T10:48:00+08:00</lastmod>
+<changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -166,7 +173,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/note/index.html</loc>
-<lastmod>2015-09-29T23:07:00+08:06</lastmod>
+<lastmod>2015-10-06T10:48:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -200,6 +207,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/tag/markdown.html</loc>
+<lastmod>2015-07-07T21:56:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/tag/lnmp.html</loc>
 <lastmod>2015-06-15T01:08:00+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -214,8 +228,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/markdown.html</loc>
-<lastmod>2015-07-07T21:56:00+08:06</lastmod>
+<loc>/tag/fcitx.html</loc>
+<lastmod>2015-09-29T23:07:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/bie-ming.html</loc>
+<lastmod>2015-10-06T10:48:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -270,14 +291,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/typecho.html</loc>
-<lastmod>2015-06-14T23:24:00+08:06</lastmod>
+<loc>/tag/wu-bi.html</loc>
+<lastmod>2015-07-31T23:48:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tag/shu-ru-fa.html</loc>
+<lastmod>2010-01-01T08:03:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/yu-yan-bao.html</loc>
 <lastmod>2010-01-01T08:03:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -326,8 +354,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/yu-yan-bao.html</loc>
-<lastmod>2010-01-01T08:03:00+08:06</lastmod>
+<loc>/tag/bash.html</loc>
+<lastmod>2015-10-06T10:48:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -347,8 +375,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/tag/fcitx.html</loc>
-<lastmod>2015-09-29T23:07:00+08:06</lastmod>
+<loc>/tag/alias.html</loc>
+<lastmod>2015-10-06T10:48:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/typecho.html</loc>
+<lastmod>2015-06-14T23:24:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -356,13 +391,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/tag/yum.html</loc>
 <lastmod>2015-06-15T01:08:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/tag/wu-bi.html</loc>
-<lastmod>2015-07-31T23:48:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
