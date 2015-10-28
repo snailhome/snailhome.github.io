@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>StepUp</title><link href="http://snailhome.github.io/" rel="alternate"></link><link href="/feeds/gua-niu.atom.xml" rel="self"></link><id>http://snailhome.github.io/</id><updated>2015-10-06T13:11:00+08:00</updated><entry><title>StepUp:基于Pelican的静态博客终于搭建成功了</title><link href="http://snailhome.github.io/essay/start_blog.html" rel="alternate"></link><updated>2015-10-06T13:11:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-06:essay/start_blog.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;StepUp&lt;/strong&gt;：寓意着每天提高一点点。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>StepUp</title><link href="http://snailhome.github.io/" rel="alternate"></link><link href="/feeds/gua-niu.atom.xml" rel="self"></link><id>http://snailhome.github.io/</id><updated>2015-10-28T23:02:00+08:00</updated><entry><title>Linux下安装Haroopad</title><link href="http://snailhome.github.io/note/install_haroopad_on_linux.html" rel="alternate"></link><updated>2015-10-28T23:02:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-28:note/install_haroopad_on_linux.html</id><summary type="html">&lt;p&gt;在&lt;code&gt;Linux&lt;/code&gt;下安装&lt;code&gt;haroopad&lt;/code&gt;还是比较简单的。&lt;/p&gt;
+&lt;p&gt;由于我用的是 &lt;code&gt;Linux Mint 17.2&lt;/code&gt;， 是基于 &lt;code&gt;Ubuntu 14.04&lt;/code&gt; 的发行版本，所以只要下载 &lt;code&gt;.deb&lt;/code&gt; 的安装包就可以安装了。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget -c https://bitbucket.org/rhiokim/haroopad-download/downloads/haroopad-v0.13.1-x64.deb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;虽然安装包只有40M，可以下载速度实在太慢，好久才下全。&lt;/p&gt;
+&lt;p&gt;下载完成后直接双击安装包就可以安装了，简单～&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;另外说下&lt;code&gt;Haroopad&lt;/code&gt;：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Haroopad&lt;/code&gt;是我用过&lt;code&gt;Markdown&lt;/code&gt;编辑器是比较满意的工具了，而且支持Win/Linux，这点我比较喜欢，而且就试用的情况，感觉Linux版本比Win版本用着更稳定，因为Win版本在一些机子上还有显示的问题，所以感觉就不太爽。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Haroopad&lt;/code&gt;对&lt;code&gt;Markdown&lt;/code&gt;语法的支持没得说的，都不知道要比&lt;code&gt;Retext&lt;/code&gt;好多少，所以严重支持一下～&lt;/p&gt;</summary><category term="haroopad"></category></entry><entry><title>StepUp:基于Pelican的静态博客终于搭建成功了</title><link href="http://snailhome.github.io/essay/start_blog.html" rel="alternate"></link><updated>2015-10-06T13:11:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-06:essay/start_blog.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;StepUp&lt;/strong&gt;：寓意着每天提高一点点。&lt;/p&gt;
 &lt;p&gt;以前的我，总是不喜笔记，很多的东西过后就忘，&lt;/p&gt;
 &lt;p&gt;年过40，就开始更健忘了，今天忘东，明天忘西，&lt;/p&gt;
 &lt;p&gt;渐渐的也就脱离不了笔记了～&lt;/p&gt;
@@ -3254,36 +3262,4 @@ root  /home/html;
 &lt;p&gt;学之经莫速乎好其人，隆礼次之。上不能好其人，下不能隆礼，安特将学杂识志，顺诗书而已耳。则末世穷年，不免为陋儒而已。将原先王，本仁义，则礼正其经纬蹊径也。若挈裘领，诎五指而顿之，顺者不可胜数也。不道礼宪，以诗书为之，譬之犹以指测河也，以戈舂黍也，以锥餐壶也，不可以得之矣。故隆礼，虽未明，法士也；不隆礼，虽察辩，散儒也。&lt;/p&gt;
 &lt;p&gt;问楛者，勿告也；告楛者，勿问也；说楛者，勿听也。有争气者，勿与辩也。故必由其道至，然后接之；非其道则避之。故礼恭，而后可与言道之方；辞顺，而后可与言道之理；色从而后可与言道之致。故未可与言而言，谓之傲；可与言而不言，谓之隐；不观气色而言，谓瞽。故君子不傲、不隐、不瞽，谨顺其身。诗曰："匪交匪舒，天子所予。"此之谓也。&lt;/p&gt;
 &lt;p&gt;百发失一，不足谓善射；千里蹞步不至，不足谓善御；伦类不通，仁义不一，不足谓善学。学也者，固学一之也。一出焉，一入焉，涂巷之人也；其善者少，不善者多，桀纣盗跖也；全之尽之，然后学者也。&lt;/p&gt;
-&lt;p&gt;君子知夫不全不粹之不足以为美也，故诵数以贯之，思索以通之，为其人以处之，除其害者以持养之。使目非是无欲见也，使口非是无欲言也，使心非是无欲虑也。及至其致好之也，目好之五色，耳好之五声，口好之五味，心利之有天下。是故权利不能倾也，群众不能移也，天下不能荡也。生乎由是，死乎由是，夫是之谓德操。德操然后能定，能定然后能应。能定能应，夫是之谓成人。天见其明，地见其光，君子贵其全也。&lt;/p&gt;</summary><category term="劝学"></category></entry><entry><title>Linux Mint 安装后要做的几件事</title><link href="http://snailhome.github.io/note/do_something_after_installed_Linux_mint17.html" rel="alternate"></link><updated>2010-01-01T08:03:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2010-01-01:note/do_something_after_installed_Linux_mint17.html</id><summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Linux Mint 1.72 是一个粉美观的桌面 Linux 系统，网评还不错的桌面，试用看看感觉还蛮好的。
-但是要记得安装好系统后要记得先做好几件事，才能用得舒心。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="955a30"&gt;修改更新源&lt;/h2&gt;
-&lt;p&gt;系统一装完，先修改更新源在做更新，不然会等吐血
-打开&lt;code&gt;菜单&lt;/code&gt; -&amp;gt; &lt;code&gt;系统管理&lt;/code&gt; -&amp;gt; &lt;code&gt;软件源&lt;/code&gt; -&amp;gt; &lt;code&gt;官方仓库&lt;/code&gt;项
-分别选择&lt;code&gt;镜像&lt;/code&gt;里的&lt;code&gt;主要&lt;/code&gt;和&lt;code&gt;基础&lt;/code&gt;两个选项，找最快的源，我选择的是：&lt;/p&gt;
-&lt;p&gt;＊ 主要：http://mirrors.hustunique.com/linuxmint
-＊ 基础：http://mirrors.yun-idc.com/ubuntu&lt;/p&gt;
-&lt;p&gt;然后点击&lt;code&gt;更新缓存&lt;/code&gt;，然后打开终端开始更新吧&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo apt-get clean &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get upgrade -y
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h2 id="4dcca1"&gt;修改语言支持&lt;/h2&gt;
-&lt;p&gt;打开&lt;code&gt;菜单&lt;/code&gt; -&amp;gt; &lt;code&gt;首选项&lt;/code&gt; -&amp;gt; &lt;code&gt;语言设置&lt;/code&gt;窗口 －&amp;gt; &lt;code&gt;输入法&lt;/code&gt;页 -&amp;gt; 点击&lt;code&gt;添加/删除语言&lt;/code&gt;，我只保留了中英美三国语言，语言、地区都选中国，点击&lt;code&gt;应用到整个系统&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id="564e7c"&gt;添加输入法&lt;/h2&gt;
-&lt;p&gt;linux mint支持多种输入法框架，这方面做得还是比较好的。打开&lt;code&gt;菜单&lt;/code&gt; -&amp;gt; &lt;code&gt;首选项&lt;/code&gt; -&amp;gt; &lt;code&gt;语言设置&lt;/code&gt;窗口 －&amp;gt; &lt;code&gt;输入法&lt;/code&gt;页 -&amp;gt; 点击&lt;code&gt;添加对xxx的支持&lt;/code&gt;按钮，就可以添加相应输入法的框架了&lt;/p&gt;
-&lt;p&gt;我使用小企鹅&lt;code&gt;fcitx&lt;/code&gt;输入法，在输入法&lt;code&gt;页点击&lt;/code&gt;添加对fcitx的支持&lt;code&gt;按钮，就会开始安装进程，完成后不要点击&lt;/code&gt;安装可选部件件&lt;code&gt;，不然会一股脑给你安装了61个可选部件，我勒个去～～，那怎么做？
-关闭&lt;/code&gt;语言设置&lt;code&gt;窗口，打开&lt;/code&gt;菜单&lt;code&gt;-&amp;gt;&lt;/code&gt;系统管理&lt;code&gt;-&amp;gt;&lt;/code&gt;新立得软件包管理器&lt;code&gt;，过滤&lt;/code&gt;fcitx&lt;code&gt;，然后在列表中分别找到&lt;/code&gt;fcitx-googlepinyin&lt;code&gt;，&lt;/code&gt;fcitx-table-wubi&lt;code&gt;，&lt;/code&gt;fcitx-table&lt;code&gt;，在列表项上右键选择&lt;/code&gt;标志以便安装&lt;code&gt;，然后点击&lt;/code&gt;应用`就开始安装了。
-这里安装的是谷哥拼音和五笔。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;fcitx&lt;/code&gt;输入法界面比较美观，汉化也比较全面
-&lt;code&gt;ibus&lt;/code&gt;也安装起来用过，但界面没那么好，汉化也不全，另外还有一个不足，在&lt;code&gt;General&lt;/code&gt;页的&lt;code&gt;Show property panel:&lt;/code&gt;项应选择&lt;code&gt;Do not show&lt;/code&gt;，不然任务栏经常会被卡住&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;现在应用注销一下以使输入法生效，重新登录后就可以在任务栏上看到键盘图标了
-现在就可以用：
-&lt;em&gt; &lt;code&gt;Ctrl+空格&lt;/code&gt;：开关输入法
-&lt;/em&gt; &lt;code&gt;Ctrl+Shift&lt;/code&gt;：切换输入法&lt;/p&gt;
-&lt;h2 id="dbacf9"&gt;添加Firefox的语言包&lt;/h2&gt;
-&lt;p&gt;打开Firefox，&lt;code&gt;Open menu&lt;/code&gt; -&amp;gt; &lt;code&gt;Add-ones&lt;/code&gt;
-搜索&lt;code&gt;chinese&lt;/code&gt;，安装 &lt;code&gt;Chinese Simplified(zh-CN) Language Pack&lt;/code&gt;
-另外还可以选择安装&lt;code&gt;Firebug&lt;/code&gt;、&lt;code&gt;BaiduSearch&lt;/code&gt;
-关闭Firefox，再重新打开，界面就是中文的了&lt;/p&gt;</summary><category term="Linux Mint"></category><category term="更新源"></category><category term="输入法"></category><category term="语言包"></category></entry></feed>
+&lt;p&gt;君子知夫不全不粹之不足以为美也，故诵数以贯之，思索以通之，为其人以处之，除其害者以持养之。使目非是无欲见也，使口非是无欲言也，使心非是无欲虑也。及至其致好之也，目好之五色，耳好之五声，口好之五味，心利之有天下。是故权利不能倾也，群众不能移也，天下不能荡也。生乎由是，死乎由是，夫是之谓德操。德操然后能定，能定然后能应。能定能应，夫是之谓成人。天见其明，地见其光，君子贵其全也。&lt;/p&gt;</summary><category term="劝学"></category></entry></feed>

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>StepUp</title><link href="http://snailhome.github.io/" rel="alternate"></link><link href="/feeds/note.atom.xml" rel="self"></link><id>http://snailhome.github.io/</id><updated>2015-10-06T11:23:00+08:00</updated><entry><title>如何git时免输用户名密码</title><link href="http://snailhome.github.io/note/no_password_when_git.html" rel="alternate"></link><updated>2015-10-06T11:23:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-06:note/no_password_when_git.html</id><summary type="html">&lt;p&gt;我要push静态博客时都要输入用户名和密码，特麻烦，百度了一下有好几种免输密码的方式，不知所云，后来尝试了一种成功，看官看过来。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>StepUp</title><link href="http://snailhome.github.io/" rel="alternate"></link><link href="/feeds/note.atom.xml" rel="self"></link><id>http://snailhome.github.io/</id><updated>2015-10-28T23:02:00+08:00</updated><entry><title>Linux下安装Haroopad</title><link href="http://snailhome.github.io/note/install_haroopad_on_linux.html" rel="alternate"></link><updated>2015-10-28T23:02:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-28:note/install_haroopad_on_linux.html</id><summary type="html">&lt;p&gt;在&lt;code&gt;Linux&lt;/code&gt;下安装&lt;code&gt;haroopad&lt;/code&gt;还是比较简单的。&lt;/p&gt;
+&lt;p&gt;由于我用的是 &lt;code&gt;Linux Mint 17.2&lt;/code&gt;， 是基于 &lt;code&gt;Ubuntu 14.04&lt;/code&gt; 的发行版本，所以只要下载 &lt;code&gt;.deb&lt;/code&gt; 的安装包就可以安装了。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget -c https://bitbucket.org/rhiokim/haroopad-download/downloads/haroopad-v0.13.1-x64.deb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;虽然安装包只有40M，可以下载速度实在太慢，好久才下全。&lt;/p&gt;
+&lt;p&gt;下载完成后直接双击安装包就可以安装了，简单～&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;另外说下&lt;code&gt;Haroopad&lt;/code&gt;：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Haroopad&lt;/code&gt;是我用过&lt;code&gt;Markdown&lt;/code&gt;编辑器是比较满意的工具了，而且支持Win/Linux，这点我比较喜欢，而且就试用的情况，感觉Linux版本比Win版本用着更稳定，因为Win版本在一些机子上还有显示的问题，所以感觉就不太爽。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Haroopad&lt;/code&gt;对&lt;code&gt;Markdown&lt;/code&gt;语法的支持没得说的，都不知道要比&lt;code&gt;Retext&lt;/code&gt;好多少，所以严重支持一下～&lt;/p&gt;</summary><category term="haroopad"></category></entry><entry><title>如何git时免输用户名密码</title><link href="http://snailhome.github.io/note/no_password_when_git.html" rel="alternate"></link><updated>2015-10-06T11:23:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-06:note/no_password_when_git.html</id><summary type="html">&lt;p&gt;我要push静态博客时都要输入用户名和密码，特麻烦，百度了一下有好几种免输密码的方式，不知所云，后来尝试了一种成功，看官看过来。&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output/.git
 &lt;span class="nv"&gt;$ &lt;/span&gt;vim config
 &lt;/pre&gt;&lt;/div&gt;
