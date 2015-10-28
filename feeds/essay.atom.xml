@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>StepUp</title><link href="http://snailhome.github.io/" rel="alternate"></link><link href="/feeds/essay.atom.xml" rel="self"></link><id>http://snailhome.github.io/</id><updated>2015-10-06T13:11:00+08:00</updated><entry><title>StepUp:基于Pelican的静态博客终于搭建成功了</title><link href="http://snailhome.github.io/essay/start_blog.html" rel="alternate"></link><updated>2015-10-06T13:11:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-06:essay/start_blog.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;StepUp&lt;/strong&gt;：寓意于每天提高一点点。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>StepUp</title><link href="http://snailhome.github.io/" rel="alternate"></link><link href="/feeds/essay.atom.xml" rel="self"></link><id>http://snailhome.github.io/</id><updated>2015-10-06T13:11:00+08:00</updated><entry><title>StepUp:基于Pelican的静态博客终于搭建成功了</title><link href="http://snailhome.github.io/essay/start_blog.html" rel="alternate"></link><updated>2015-10-06T13:11:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-06:essay/start_blog.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;StepUp&lt;/strong&gt;：寓意着每天提高一点点。&lt;/p&gt;
 &lt;p&gt;以前的我，总是不喜笔记，很多的东西过后就忘，&lt;/p&gt;
-&lt;p&gt;年过40，是不是就开始健忘，今天忘东，明天忘西，&lt;/p&gt;
+&lt;p&gt;年过40，就开始更健忘了，今天忘东，明天忘西，&lt;/p&gt;
 &lt;p&gt;渐渐的也就脱离不了笔记了～&lt;/p&gt;
 &lt;p&gt;可是～～&lt;/p&gt;
-&lt;p&gt;手绘的笔记不好带&lt;/p&gt;
+&lt;p&gt;手绘的笔记不好带呀&lt;/p&gt;
 &lt;p&gt;本地的电子日记有局限，电脑没有天天带身边&lt;/p&gt;
 &lt;p&gt;建个Blog要收费，要数据库，要空间，要……&lt;/p&gt;
 &lt;p&gt;我只是想找个可以自由记录，免费保存&lt;/p&gt;

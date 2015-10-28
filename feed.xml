@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>StepUp</title><link>http://snailhome.github.io/</link><description></description><atom:link href="/feed.xml" rel="self"></atom:link><lastBuildDate>Tue, 06 Oct 2015 13:11:00 +0800</lastBuildDate><item><title>StepUp:基于Pelican的静态博客终于搭建成功了</title><link>http://snailhome.github.io/essay/start_blog.html</link><description>&lt;p&gt;&lt;strong&gt;StepUp&lt;/strong&gt;：寓意于每天提高一点点。&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>StepUp</title><link>http://snailhome.github.io/</link><description></description><atom:link href="/feed.xml" rel="self"></atom:link><lastBuildDate>Tue, 06 Oct 2015 13:11:00 +0800</lastBuildDate><item><title>StepUp:基于Pelican的静态博客终于搭建成功了</title><link>http://snailhome.github.io/essay/start_blog.html</link><description>&lt;p&gt;&lt;strong&gt;StepUp&lt;/strong&gt;：寓意着每天提高一点点。&lt;/p&gt;
 &lt;p&gt;以前的我，总是不喜笔记，很多的东西过后就忘，&lt;/p&gt;
-&lt;p&gt;年过40，是不是就开始健忘，今天忘东，明天忘西，&lt;/p&gt;
+&lt;p&gt;年过40，就开始更健忘了，今天忘东，明天忘西，&lt;/p&gt;
 &lt;p&gt;渐渐的也就脱离不了笔记了～&lt;/p&gt;
 &lt;p&gt;可是～～&lt;/p&gt;
-&lt;p&gt;手绘的笔记不好带&lt;/p&gt;
+&lt;p&gt;手绘的笔记不好带呀&lt;/p&gt;
 &lt;p&gt;本地的电子日记有局限，电脑没有天天带身边&lt;/p&gt;
 &lt;p&gt;建个Blog要收费，要数据库，要空间，要……&lt;/p&gt;
 &lt;p&gt;我只是想找个可以自由记录，免费保存&lt;/p&gt;
