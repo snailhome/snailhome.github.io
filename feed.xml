@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>StepUp</title><link>http://snailhome.github.io/</link><description></description><atom:link href="/feed.xml" rel="self"></atom:link><lastBuildDate>Wed, 28 Oct 2015 23:02:00 +0800</lastBuildDate><item><title>Linux下安装Haroopad</title><link>http://snailhome.github.io/note/install_haroopad_on_linux.html</link><description>&lt;p&gt;在&lt;code&gt;Linux&lt;/code&gt;下安装&lt;code&gt;haroopad&lt;/code&gt;还是比较简单的。&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>StepUp</title><link>http://snailhome.github.io/</link><description></description><atom:link href="/feed.xml" rel="self"></atom:link><lastBuildDate>Fri, 30 Oct 2015 00:48:34 +0800</lastBuildDate><item><title>WPS for Linux 安装手记</title><link>http://snailhome.github.io/note/wps_4_linux.html</link><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;问题:&lt;/strong&gt; 我听说一个好东西Kingsoft Office（译注：就是WPS），所以我想在我的Linux上试试。我怎样才能安装Kingsoft Office呢？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Kingsoft Office 是一套办公套件，支持多个平台，包括Windows, Linux, iOS 和 Android。它包含三个组件：Writer（WPS文字）用来文字处理，Presentation（WPS演示）支持幻灯片，Spereadsheets（WPS表格）是电子表格。其使用免费增值模式，其中基础版本是免费使用。比较其他的linux办公套件，如LibreOffice、 OpenOffice，其最大优势在于，Kingsoft Office能最好的兼容微软的Office（译注：版权问题？了解下wps和Office的历史问题，可以得到一些结论）。因此如果你需要在windows和linux平台间交互，Kingsoft office是一个很好的选择。&lt;/p&gt;
+&lt;p&gt;WPS for Linux 官方下载地址： &lt;a href="http://community.wps.cn/download/"&gt;http://community.wps.cn/download/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="38983c"&gt;CentOS, Fedora 或 RHEL中安装Kingsoft Office&lt;/h2&gt;
+&lt;p&gt;在官方页面下载RPM文件。&lt;/p&gt;
+&lt;p&gt;需要使用yum命令并用"localinstall"选项来本地安装这个RPM包&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo yum localinstall kingsoft-office-9.1.0.4244-0.1.a12p3.i686.rpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;注意不要使用rpm命令安装。否者，你会得到依赖错误，而且很难解决：&lt;/p&gt;
+&lt;p&gt;错误: 依赖失败:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;libICE.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
+libSM.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
+libX11.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
+libXext.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
+libXrender.so.1 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
+libc.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;基于Red Hat的发行版有多重库支持。如果你要想安装的RPM包是32位的并有32位库依赖（你的系统是64位的），一个很好的解决方法就是使用yum来安装。只要RPM在构建时候已经添加所有依赖关系，yum就可以自动使用yum库解决依赖关系。&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="5bd1a0"&gt;Debian, Ubuntu 和 Linux Mint 中安装Kingsoft Office&lt;/h2&gt;
+&lt;p&gt;在官方页面下载DEB包。官方RPM包同样只支持32位版本linux，但是你可以在64位中安装。&lt;/p&gt;
+&lt;p&gt;DEB包同样遇到一堆依赖。因此使用gdebi命令来代替dpkg来自动解决依赖。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install gdebi-core
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo gdebi kingsoft-office_9.1.0.4244~a12p3_i386.deb 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;启动 Kingsoft Office&lt;/p&gt;
+&lt;p&gt;安装完成后，你就可以在桌面管理器轻松启动Witer（WPS文字）, Presentation（WPS演示）, and Spreadsheets（WPS表格）。&lt;/p&gt;
+&lt;p&gt;不但如此，你也可以在命令行中启动Kingsoft Office。&lt;/p&gt;
+&lt;p&gt;启动Wirter（WPS文字），使用这个命令：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wps &lt;span class="o"&gt;(&lt;/span&gt;译注：原文丢失此命令&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;启动Presentation（WPS演示），使用这个命令：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wpp
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;启动Spreadsheets（WPS表格），使用这个命令：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;et
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="9b6d1a"&gt;安装缺失的字体&lt;/h2&gt;
+&lt;p&gt;首次运行wps时会提示缺失字体：wingding、wingding2、wingding3、webdings、MT Extra&lt;/p&gt;
+&lt;p&gt;字体文件可以从Windows系统的&lt;code&gt;C:\Windows\fonts&lt;/code&gt;复制，复制到&lt;code&gt;～/.fonts&lt;/code&gt;，没有目录就创建一个啦。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PS. 没有找到&lt;code&gt;MT Extra&lt;/code&gt;字体&lt;/p&gt;
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Fri, 30 Oct 2015 00:48:34 +0800</pubDate><guid>tag:snailhome.github.io,2015-10-30:note/wps_4_linux.html</guid><category>WPS</category></item><item><title>Linux下安装Haroopad</title><link>http://snailhome.github.io/note/install_haroopad_on_linux.html</link><description>&lt;p&gt;在&lt;code&gt;Linux&lt;/code&gt;下安装&lt;code&gt;haroopad&lt;/code&gt;还是比较简单的。&lt;/p&gt;
 &lt;p&gt;由于我用的是 &lt;code&gt;Linux Mint 17.2&lt;/code&gt;， 是基于 &lt;code&gt;Ubuntu 14.04&lt;/code&gt; 的发行版本，所以只要下载 &lt;code&gt;.deb&lt;/code&gt; 的安装包就可以安装了。&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget -c https://bitbucket.org/rhiokim/haroopad-download/downloads/haroopad-v0.13.1-x64.deb
 &lt;/pre&gt;&lt;/div&gt;
@@ -3246,20 +3290,4 @@ root  /home/html;
 网站的&lt;code&gt;usr&lt;/code&gt;要开启读写权限&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;# sudo chmod 666 -R usr
 # sudo chmod 777 -R `find usr -type d`
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Sun, 14 Jun 2015 23:24:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-06-14:research/nginx_setting_4typecho.html</guid><category>typecho</category><category>nginx</category></item><item><title>劝学篇 - 荀子</title><link>http://snailhome.github.io/essay/study.html</link><description>&lt;h1 id="9e1d4e"&gt;劝学篇&lt;/h1&gt;
-&lt;h2 id="d2585b"&gt;荀子&lt;/h2&gt;
-&lt;p&gt;君子曰：学不可以已。&lt;/p&gt;
-&lt;p&gt;青，取之于蓝，而青于蓝；冰，水为之，而寒于水。木直中绳，輮（煣）以为轮，其曲中规。虽有（又）槁暴（曝），不复挺者，輮（煣）使之然也。故木受绳则直，金就砺则利，君子博学而日参省乎己，则知明而行无过矣。&lt;/p&gt;
-&lt;p&gt;故不登高山，不知天之高也；不临深溪，不知地之厚也；不闻先王之遗言，不知学问之大也。干,越,夷,貉之子，生而同声，长而异俗，教使之然也。诗曰：「嗟尔君子，无恒安息。靖共尔位，好是正直。神之听之，介尔景福。」神莫大于化道，福莫长于无祸。
-吾尝终日而思矣，不如须臾之所学也。吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生(xìng)非异也，善假于物也。&lt;/p&gt;
-&lt;p&gt;南方有鸟焉，名曰蒙鸠，以羽为巢，而编之以发，系之苇苕，风至苕折，卵破子死。巢非不完也，所系者然也。西方有木焉，名曰射干，茎长四寸，生于高山之上，而临百仞之渊，木茎非能长也，所立者然也。蓬生麻中，不扶而直；白沙在涅，与之俱黑。兰槐之根是为芷，其渐之滫，君子不近，庶人不服。其质非不美也，所渐者然也。故君子居必择乡，游必就士，所以防邪辟而近中正也。&lt;/p&gt;
-&lt;p&gt;物类之起，必有所始。荣辱之来，必象其德。肉腐出虫，鱼枯生蠹。怠慢忘身，祸灾乃作。强自取柱，柔自取束。邪秽在身，怨之所构。施薪若一，火就燥也，平地若一，水就湿也。草木畴生，禽兽群焉，物各从其类也。是故质的张，而弓矢至焉；林木茂，而斧斤至焉；树成荫，而众鸟息焉。醯酸，而蜹聚焉。故言有召祸也，行有召辱也，君子慎其所立乎！&lt;/p&gt;
-&lt;p&gt;积土成山，风雨兴焉；积水成渊，蛟龙生焉；积善成德，而神明自得，圣心备焉。故不积跬步，无以至千里；不积小流，无以成江海。骐骥一跃，不能十步；驽马十驾，功在不舍。锲而舍之，朽木不折；锲而不舍，金石可镂。蚓无爪牙之利，筋骨之强，上食埃土，下饮黄泉，用心一也。蟹六跪而二螯，非蛇鳝之穴无可寄托者，用心躁也。&lt;/p&gt;
-&lt;p&gt;是故无冥冥之志者，无昭昭之明；无惛惛之事者，无赫赫之功。行衢道者不至，事两君者不容。目不能两视而明，耳不能两听而聪。螣蛇无足而飞，鼫鼠五技而穷。《诗》曰：“鸤鸠在桑，其子七兮。淑人君子，其仪一兮。其仪一兮，心如结兮！”故君子结于一也。
-昔者瓠巴鼓瑟，而沈鱼出听；伯牙鼓琴，而六马仰秣。故声无小而不闻，行无隐而不形 。玉在山而草木润，渊生珠而崖不枯。为善不积邪？安有不闻者乎？&lt;/p&gt;
-&lt;p&gt;学恶乎始？恶乎终？曰：其数则始乎诵经，终乎读礼；其义则始乎为士，终乎为圣人， 真积力久则入，学至乎没而后止也。故学数有终，若其义则不可须臾舍也。为之，人也；舍 之，禽兽也。故书者，政事之纪也；诗者，中声之所止也；礼者，法之大分，类之纲纪也。 故学至乎礼而止矣。夫是之谓道德之极。礼之敬文也，乐之中和也，诗书之博也，春秋之微 也，在天地之间者毕矣。 君子之学也，入乎耳，着乎心，布乎四体，形乎动静。端而言，蝡而动，一可以为法则。小人之学也，入乎耳，出乎口；口耳之间，则四寸耳，曷足以美七尺之躯哉！古之学者为己，今之学者为人。君子之学也，以美其身；小人之学也，以为禽犊。故不问而告谓之傲，问一而告二谓之囋。傲、非也，囋、非也；君子如响矣。&lt;/p&gt;
-&lt;p&gt;学莫便乎近其人。礼乐法而不说，诗书故而不切，春秋约而不速。方其人之习君子之说，则尊以遍矣，周于世矣。故曰：学莫便乎近其人。&lt;/p&gt;
-&lt;p&gt;学之经莫速乎好其人，隆礼次之。上不能好其人，下不能隆礼，安特将学杂识志，顺诗书而已耳。则末世穷年，不免为陋儒而已。将原先王，本仁义，则礼正其经纬蹊径也。若挈裘领，诎五指而顿之，顺者不可胜数也。不道礼宪，以诗书为之，譬之犹以指测河也，以戈舂黍也，以锥餐壶也，不可以得之矣。故隆礼，虽未明，法士也；不隆礼，虽察辩，散儒也。&lt;/p&gt;
-&lt;p&gt;问楛者，勿告也；告楛者，勿问也；说楛者，勿听也。有争气者，勿与辩也。故必由其道至，然后接之；非其道则避之。故礼恭，而后可与言道之方；辞顺，而后可与言道之理；色从而后可与言道之致。故未可与言而言，谓之傲；可与言而不言，谓之隐；不观气色而言，谓瞽。故君子不傲、不隐、不瞽，谨顺其身。诗曰："匪交匪舒，天子所予。"此之谓也。&lt;/p&gt;
-&lt;p&gt;百发失一，不足谓善射；千里蹞步不至，不足谓善御；伦类不通，仁义不一，不足谓善学。学也者，固学一之也。一出焉，一入焉，涂巷之人也；其善者少，不善者多，桀纣盗跖也；全之尽之，然后学者也。&lt;/p&gt;
-&lt;p&gt;君子知夫不全不粹之不足以为美也，故诵数以贯之，思索以通之，为其人以处之，除其害者以持养之。使目非是无欲见也，使口非是无欲言也，使心非是无欲虑也。及至其致好之也，目好之五色，耳好之五声，口好之五味，心利之有天下。是故权利不能倾也，群众不能移也，天下不能荡也。生乎由是，死乎由是，夫是之谓德操。德操然后能定，能定然后能应。能定能应，夫是之谓成人。天见其明，地见其光，君子贵其全也。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Sun, 14 Jun 2015 08:45:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-06-14:essay/study.html</guid><category>劝学</category></item></channel></rss>
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Sun, 14 Jun 2015 23:24:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-06-14:research/nginx_setting_4typecho.html</guid><category>typecho</category><category>nginx</category></item></channel></rss>
