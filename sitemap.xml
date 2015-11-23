@@ -5,33 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://snailhome.github.io/</loc>
-<<<<<<< HEAD
-<lastmod>2015-11-23T19:49:42-00:00</lastmod>
-=======
-<lastmod>2015-11-01T05:46:35-00:00</lastmod>
->>>>>>> e14a5a6cf236e0c70b7e542ac4895a1b1b3b0cd5
+<lastmod>2015-11-23T19:56:07-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://snailhome.github.io/archives.html</loc>
-<<<<<<< HEAD
-<lastmod>2015-11-23T19:49:42-00:00</lastmod>
-=======
-<lastmod>2015-11-01T05:46:35-00:00</lastmod>
->>>>>>> e14a5a6cf236e0c70b7e542ac4895a1b1b3b0cd5
+<lastmod>2015-11-23T19:56:07-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://snailhome.github.io/categories.html</loc>
-<<<<<<< HEAD
-<lastmod>2015-11-23T19:49:42-00:00</lastmod>
-=======
-<lastmod>2015-11-01T05:46:35-00:00</lastmod>
->>>>>>> e14a5a6cf236e0c70b7e542ac4895a1b1b3b0cd5
+<lastmod>2015-11-23T19:56:07-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -45,11 +33,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://snailhome.github.io/note/wps_4_linux.html</loc>
-<<<<<<< HEAD
 <lastmod>2015-11-23T18:35:43+08:00</lastmod>
-=======
-<lastmod>2015-11-01T05:39:42+08:00</lastmod>
->>>>>>> e14a5a6cf236e0c70b7e542ac4895a1b1b3b0cd5
 <changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -224,11 +208,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://snailhome.github.io/note/index.html</loc>
-<<<<<<< HEAD
 <lastmod>2015-11-23T18:35:43+08:06</lastmod>
-=======
-<lastmod>2015-11-01T05:39:42+08:06</lastmod>
->>>>>>> e14a5a6cf236e0c70b7e542ac4895a1b1b3b0cd5
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -396,11 +376,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://snailhome.github.io/tag/wps.html</loc>
-<<<<<<< HEAD
 <lastmod>2015-11-23T18:35:43+08:06</lastmod>
-=======
-<lastmod>2015-11-01T05:39:42+08:06</lastmod>
->>>>>>> e14a5a6cf236e0c70b7e542ac4895a1b1b3b0cd5
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
