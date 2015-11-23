@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>StepUp</title><link>http://snailhome.github.io/</link><description></description><atom:link href="/feed.xml" rel="self"></atom:link><lastBuildDate>Fri, 30 Oct 2015 00:48:34 +0800</lastBuildDate><item><title>WPS for Linux 安装手记</title><link>http://snailhome.github.io/note/wps_4_linux.html</link><description>&lt;blockquote&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>StepUp</title><link>http://snailhome.github.io/</link><description></description><atom:link href="/feed.xml" rel="self"></atom:link><lastBuildDate>Mon, 23 Nov 2015 18:35:43 +0800</lastBuildDate><item><title>WPS for Linux 安装手记</title><link>http://snailhome.github.io/note/wps_4_linux.html</link><description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;问题:&lt;/strong&gt; 我听说一个好东西Kingsoft Office（译注：就是WPS），所以我想在我的Linux上试试。我怎样才能安装Kingsoft Office呢？&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Kingsoft Office 是一套办公套件，支持多个平台，包括Windows, Linux, iOS 和 Android。它包含三个组件：Writer（WPS文字）用来文字处理，Presentation（WPS演示）支持幻灯片，Spereadsheets（WPS表格）是电子表格。其使用免费增值模式，其中基础版本是免费使用。比较其他的linux办公套件，如LibreOffice、 OpenOffice，其最大优势在于，Kingsoft Office能最好的兼容微软的Office（译注：版权问题？了解下wps和Office的历史问题，可以得到一些结论）。因此如果你需要在windows和linux平台间交互，Kingsoft office是一个很好的选择。&lt;/p&gt;
@@ -43,7 +43,52 @@ libc.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
 &lt;p&gt;字体文件可以从Windows系统的&lt;code&gt;C:\Windows\fonts&lt;/code&gt;复制，复制到&lt;code&gt;～/.fonts&lt;/code&gt;，没有目录就创建一个啦。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;PS. 没有找到&lt;code&gt;MT Extra&lt;/code&gt;字体&lt;/p&gt;
-&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Fri, 30 Oct 2015 00:48:34 +0800</pubDate><guid>tag:snailhome.github.io,2015-10-30:note/wps_4_linux.html</guid><category>WPS</category></item><item><title>Linux下安装Haroopad</title><link>http://snailhome.github.io/note/install_haroopad_on_linux.html</link><description>&lt;p&gt;在&lt;code&gt;Linux&lt;/code&gt;下安装&lt;code&gt;haroopad&lt;/code&gt;还是比较简单的。&lt;/p&gt;
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Mon, 23 Nov 2015 18:35:43 +0800</pubDate><guid>tag:snailhome.github.io,2015-11-23:note/wps_4_linux.html</guid><category>WPS</category></item><item><title>从Windows平台到Linux平台的迁移</title><link>http://snailhome.github.io/note/windows_to_linux.html</link><description>&lt;blockquote&gt;
+&lt;p&gt;从wWindows平台到Linux平台的迁移，不是嘴皮子说说就可以了，对于完全脑盲的人，也许简单；可以对于已经在Windows平台已经有一定使用基础的人来说，必须有替代的产品才会有迁移的动力……&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;对比了从Windows到Linux迁移过程中应用替代方面的艰辛，在下面罗列一些各个专业方面的应用、工具，给自己一个留存，也给后人一些经验～&lt;/p&gt;
+&lt;h2 id="06588a"&gt;系统篇&lt;/h2&gt;
+&lt;p&gt;既然是迁移到Linux，那么系统当然是Liunx了，可以Linux的发行版本太多，选择的余地也很大，而且针对不同的应用场景，还有不同的选择。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务器用途： CentOS7.1&lt;/li&gt;
+&lt;li&gt;个人桌面： Linux Mint 17.2、Ubuntu 15.10&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="6b21cf"&gt;办公应用篇&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;WPS for Linux 9.1&lt;/li&gt;
+&lt;li&gt;LibreOffice 4.4.3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="ee3d60"&gt;开发工具编辑器&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;PyCharm(收费)4.5.4&lt;/li&gt;
+&lt;li&gt;SublimeText3.2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="bcebb2"&gt;Markdown编辑器&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Haroopad 0.13.1&lt;/li&gt;
+&lt;li&gt;Retext&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="01bc63"&gt;局域网通讯&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;IPTux&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="4e54b3"&gt;下载工具&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;uGet&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="6b72a4"&gt;Windows模拟器&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Wine&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="7fea6e"&gt;虚拟机&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;VirtualBox&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="912302"&gt;浏览器&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;FireFox 41&lt;/li&gt;
+&lt;li&gt;Chromium 45&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Thu, 29 Oct 2015 18:40:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-10-29:note/windows_to_linux.html</guid><category>平台迁移</category></item><item><title>Linux下安装Haroopad</title><link>http://snailhome.github.io/note/install_haroopad_on_linux.html</link><description>&lt;p&gt;在&lt;code&gt;Linux&lt;/code&gt;下安装&lt;code&gt;haroopad&lt;/code&gt;还是比较简单的。&lt;/p&gt;
 &lt;p&gt;由于我用的是 &lt;code&gt;Linux Mint 17.2&lt;/code&gt;， 是基于 &lt;code&gt;Ubuntu 14.04&lt;/code&gt; 的发行版本，所以只要下载 &lt;code&gt;.deb&lt;/code&gt; 的安装包就可以安装了。&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wget -c https://bitbucket.org/rhiokim/haroopad-download/downloads/haroopad-v0.13.1-x64.deb
 &lt;/pre&gt;&lt;/div&gt;
@@ -232,10 +277,9 @@ Done. Your new project is available at /home/snail/env2p/blog
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="d365c1"&gt;安装 &lt;code&gt;niu-x2-sidebar&lt;/code&gt; 主题模板&lt;/h3&gt;
 &lt;h4 id="7f70ad"&gt;安装系统依赖&lt;/h4&gt;
-&lt;p&gt;jpegoptim 用于make optimize，压缩jpg图片。&lt;/p&gt;
-&lt;p&gt;安装(debian/ubuntu):&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo apt-get install jpegoptim
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo apt-get install python-dev libjpeg-dev zlib1g-dev
 &lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这些都是&lt;code&gt;Pillow&lt;/code&gt;需要用到的。&lt;/p&gt;
 &lt;p&gt;生成zh_CN.UTF-8 locale&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo locale-gen zh_CN.UTF-8
 &lt;/pre&gt;&lt;/div&gt;
@@ -571,6 +615,10 @@ Hi &amp;lt;em&amp;gt;username&amp;lt;/em&amp;gt;! You&lt;span class="err"&gt;'&l
 &lt;p&gt;如果有这个显示，就表示SSh连接是成功的。&lt;/p&gt;
 &lt;p&gt;下面我们就可以git网站了。&lt;/p&gt;
 &lt;h3 id="a3e59c"&gt;git静态网站&lt;/h3&gt;
+&lt;p&gt;git前&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git config --global user.email &lt;span class="s2"&gt;"you@example.com"&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git config --global user.name &lt;span class="s2"&gt;"Your Name"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;初次git时&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git init
@@ -3264,30 +3312,4 @@ root  /home/html;
 &lt;p&gt;首页重新回来了
 再观察一下还会不会出现这种情况&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Mon, 15 Jun 2015 01:08:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-06-15:note/yum_lnmp_in_centos7.html</guid><category>CentOS7</category><category>Yum</category><category>LNMP</category></item><item><title>Typecho的Nginx设置</title><link>http://snailhome.github.io/research/nginx_setting_4typecho.html</link><description>&lt;blockquote&gt;
-&lt;p&gt;几经折腾，终于把Typecho架上来了，
-主要还是在于Nginx的配置上，
-赶紧贴出来，用于留存。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo vim /etc/nginx/sites-available/default
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;location ~ .*\.php(\/.*)*$ {
-        include fastcgi_params;
-        fastcgi_index index.php;
-        set $path_info "";
-        set $real_script_name $fastcgi_script_name;
-        if ($fastcgi_script_name ~ "^(.+?\.php)(/.+)$") {
-                set $real_script_name $1;
-                set $path_info $2;
-        }
-        fastcgi_param SCRIPT_FILENAME $document_root$real_script_name;
-        fastcgi_param SCRIPT_NAME $real_script_name;
-        fastcgi_param PATH_INFO $path_info;
-        fastcgi_pass unix:/var/run/php5-fpm.sock;
-}
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;另外
-网站的&lt;code&gt;usr&lt;/code&gt;要开启读写权限&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;# sudo chmod 666 -R usr
-# sudo chmod 777 -R `find usr -type d`
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Sun, 14 Jun 2015 23:24:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-06-14:research/nginx_setting_4typecho.html</guid><category>typecho</category><category>nginx</category></item></channel></rss>
+&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Mon, 15 Jun 2015 01:08:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-06-15:note/yum_lnmp_in_centos7.html</guid><category>CentOS7</category><category>Yum</category><category>LNMP</category></item></channel></rss>

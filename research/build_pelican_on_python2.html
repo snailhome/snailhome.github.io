@@ -53,7 +53,7 @@
                                       (2)</a></li>
                                <li><a href="http://snailhome.github.io/note/index.html">
                                       <i class="icon-book"></i>笔记
-                                      (16)</a></li>
+                                      (17)</a></li>
                                <li><a href="http://snailhome.github.io/research/index.html">
                                       <i class="icon-flask"></i>研究
                                       (3)</a></li>
@@ -183,10 +183,9 @@ Done. Your new project is available at /home/snail/env2p/blog
 </pre></div>
 <h3 id="d365c1">安装 <code>niu-x2-sidebar</code> 主题模板</h3>
 <h4 id="7f70ad">安装系统依赖</h4>
-<p>jpegoptim 用于make optimize，压缩jpg图片。</p>
-<p>安装(debian/ubuntu):</p>
-<div class="codehilite"><pre>$ sudo apt-get install jpegoptim
+<div class="codehilite"><pre>$ sudo apt-get install python-dev libjpeg-dev zlib1g-dev
 </pre></div>
+<p>这些都是<code>Pillow</code>需要用到的。</p>
 <p>生成zh_CN.UTF-8 locale</p>
 <div class="codehilite"><pre>$ sudo locale-gen zh_CN.UTF-8
 </pre></div>
@@ -522,6 +521,10 @@ Hi &lt;em&gt;username&lt;/em&gt;! You<span class="err">'</span>ve successfully a
 <p>如果有这个显示，就表示SSh连接是成功的。</p>
 <p>下面我们就可以git网站了。</p>
 <h3 id="a3e59c">git静态网站</h3>
+<p>git前</p>
+<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git config --global user.email <span class="s2">"you@example.com"</span>
+<span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git config --global user.name <span class="s2">"Your Name"</span>
+</pre></div>
 <p>初次git时</p>
 <div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span><span class="nb">cd </span>output
 <span class="o">(</span>env2p<span class="o">)</span> <span class="nv">$ </span>git init

@@ -74,10 +74,9 @@ Done. Your new project is available at /home/snail/env2p/blog
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="d365c1"&gt;安装 &lt;code&gt;niu-x2-sidebar&lt;/code&gt; 主题模板&lt;/h3&gt;
 &lt;h4 id="7f70ad"&gt;安装系统依赖&lt;/h4&gt;
-&lt;p&gt;jpegoptim 用于make optimize，压缩jpg图片。&lt;/p&gt;
-&lt;p&gt;安装(debian/ubuntu):&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo apt-get install jpegoptim
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo apt-get install python-dev libjpeg-dev zlib1g-dev
 &lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这些都是&lt;code&gt;Pillow&lt;/code&gt;需要用到的。&lt;/p&gt;
 &lt;p&gt;生成zh_CN.UTF-8 locale&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo locale-gen zh_CN.UTF-8
 &lt;/pre&gt;&lt;/div&gt;
@@ -413,6 +412,10 @@ Hi &amp;lt;em&amp;gt;username&amp;lt;/em&amp;gt;! You&lt;span class="err"&gt;'&l
 &lt;p&gt;如果有这个显示，就表示SSh连接是成功的。&lt;/p&gt;
 &lt;p&gt;下面我们就可以git网站了。&lt;/p&gt;
 &lt;h3 id="a3e59c"&gt;git静态网站&lt;/h3&gt;
+&lt;p&gt;git前&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git config --global user.email &lt;span class="s2"&gt;"you@example.com"&lt;/span&gt;
+&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git config --global user.name &lt;span class="s2"&gt;"Your Name"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;初次git时&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;output
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$ &lt;/span&gt;git init
