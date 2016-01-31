@@ -114,38 +114,38 @@
 </blockquote>
 <p>首先我们考虑一下，各数据表数据结构各不相同，如果针对每一个数据表做一个备份表太过繁琐，所以我们考虑只用一个<code>TextField</code>来保存旧记录内容，而把记录的各字段内容生成<code>Json</code>的形式保存到<code>TextField</code>中，就可以不用管各数据表的字段有多少，再附上方便检索和引用的表名、记录号、修改时间、操作人员等字段信息，那一个备份表就基本上够了。</p>
 <p>我们在<code>recordbackup</code>这个应用里</p>
-<div class="codehilite"><pre><span class="c"># recordbackup.models.py</span>
+<div class="codehilite"><pre><span class="c1"># recordbackup.models.py</span>
 <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
-<span class="c"># Create your models here.</span>
+<span class="c1"># Create your models here.</span>
 
 <span class="k">class</span> <span class="nc">RecordBack</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">app</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="s">'应用'</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="s">'数据表'</span><span class="p">)</span>
-    <span class="n">rid</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s">'记录号'</span><span class="p">)</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s">'原记录内容'</span><span class="p">)</span>
-    <span class="n">modified_time</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s">'修改时间'</span><span class="p">)</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="s">'操作人'</span><span class="p">)</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="s1">'应用'</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="s1">'数据表'</span><span class="p">)</span>
+    <span class="n">rid</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">'记录号'</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">'原记录内容'</span><span class="p">)</span>
+    <span class="n">modified_time</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="s1">'修改时间'</span><span class="p">)</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="s1">'操作人'</span><span class="p">)</span>
 
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
-        <span class="n">verbose_name_plural</span> <span class="o">=</span> <span class="n">verbose_name</span> <span class="o">=</span> <span class="s">'记录备份'</span>
+        <span class="n">verbose_name_plural</span> <span class="o">=</span> <span class="n">verbose_name</span> <span class="o">=</span> <span class="s1">'记录备份'</span>
 </pre></div>
 <p>创建<code>admin.py</code>用于后台查看备份数据，<strong>只读</strong></p>
-<div class="codehilite"><pre><span class="c"># recordbackup/admin.py</span>
+<div class="codehilite"><pre><span class="c1"># recordbackup/admin.py</span>
 <span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="c"># Register your models here.</span>
+<span class="c1"># Register your models here.</span>
 
 <span class="nd">@admin.register</span><span class="p">(</span><span class="n">RecordBack</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">RecordBackAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
-    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">'app'</span><span class="p">,</span> <span class="s">'model'</span><span class="p">,</span> <span class="s">'rid'</span><span class="p">,</span> <span class="s">'modified_time'</span><span class="p">,</span> <span class="s">'user'</span><span class="p">,</span> <span class="s">'list_operate'</span><span class="p">)</span>
-    <span class="n">readonly_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">'app'</span><span class="p">,</span> <span class="s">'model'</span><span class="p">,</span> <span class="s">'rid'</span><span class="p">,</span> <span class="s">'content'</span><span class="p">,</span> <span class="s">'modified_time'</span><span class="p">,</span> <span class="s">'user'</span><span class="p">)</span>
-    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s">'app'</span><span class="p">,</span> <span class="s">'model'</span><span class="p">,)</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'app'</span><span class="p">,</span> <span class="s1">'model'</span><span class="p">,</span> <span class="s1">'rid'</span><span class="p">,</span> <span class="s1">'modified_time'</span><span class="p">,</span> <span class="s1">'user'</span><span class="p">,</span> <span class="s1">'list_operate'</span><span class="p">)</span>
+    <span class="n">readonly_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'app'</span><span class="p">,</span> <span class="s1">'model'</span><span class="p">,</span> <span class="s1">'rid'</span><span class="p">,</span> <span class="s1">'content'</span><span class="p">,</span> <span class="s1">'modified_time'</span><span class="p">,</span> <span class="s1">'user'</span><span class="p">)</span>
+    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'app'</span><span class="p">,</span> <span class="s1">'model'</span><span class="p">,)</span>
 
     <span class="k">def</span> <span class="nf">list_operate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s">'&lt;a href="/admin/</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">/"&gt;&lt;i class="icon-th-list" title="查看原记录"&gt;&lt;/i&gt;&lt;/a&gt;'</span> <span class="o">%</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">rid</span><span class="p">)</span>
-    <span class="n">list_operate</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s">'操作'</span>
+        <span class="k">return</span> <span class="s1">'&lt;a href="/admin/</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">/"&gt;&lt;i class="icon-th-list" title="查看原记录"&gt;&lt;/i&gt;&lt;/a&gt;'</span> <span class="o">%</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">rid</span><span class="p">)</span>
+    <span class="n">list_operate</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s1">'操作'</span>
     <span class="n">list_operate</span><span class="o">.</span><span class="n">allow_tags</span> <span class="o">=</span> <span class="bp">True</span>
 </pre></div>
 <p>生成相关数据表</p>
@@ -153,7 +153,7 @@
 ./manage.py migrate
 </pre></div>
 <p>再创建一个<code>utils.py</code>用于转换记录为<code>Json</code>和保存旧记录功能的函数。</p>
-<div class="codehilite"><pre><span class="c"># recordbackup/utils.py</span>
+<div class="codehilite"><pre><span class="c1"># recordbackup/utils.py</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 
@@ -170,9 +170,9 @@
     <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">attr</span><span class="p">),</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">):</span>
-            <span class="n">d</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'%Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S'</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S'</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">attr</span><span class="p">),</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">):</span>
-            <span class="n">d</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'%Y-%m-</span><span class="si">%d</span><span class="s">'</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">d</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
@@ -188,7 +188,7 @@
 <span class="sd">    :return: None</span>
 <span class="sd">    """</span>
     <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">RecordBack</span>
-    <span class="k">if</span> <span class="n">change</span><span class="p">:</span><span class="c"># 更改的时候</span>
+    <span class="k">if</span> <span class="n">change</span><span class="p">:</span><span class="c1"># 更改的时候</span>
         <span class="n">rb</span> <span class="o">=</span> <span class="n">RecordBack</span><span class="p">()</span>
         <span class="n">rb</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">app_label</span>
         <span class="n">rb</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">__name__</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
@@ -199,17 +199,17 @@
             <span class="n">rb</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">toJSON</span><span class="p">(</span><span class="n">obj_original</span><span class="p">)</span>
             <span class="n">rb</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
             <span class="n">rb</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span><span class="c"># 新增的时候</span>
+    <span class="k">else</span><span class="p">:</span><span class="c1"># 新增的时候</span>
         <span class="k">pass</span>
 </pre></div>
 <p>现在记录备份的功能可以用了，我们在台账数据表<code>PcAdmin</code>的<code>save_model()</code>里加了保存旧记录的操作<code>OldRecordSave()</code></p>
-<div class="codehilite"><pre><span class="c"># pc/admin.py</span>
+<div class="codehilite"><pre><span class="c1"># pc/admin.py</span>
 <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">recordbackup.utils</span> <span class="kn">import</span> <span class="n">OldRecordSave</span>
 <span class="k">class</span> <span class="nc">PcAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
     <span class="o">......</span>
     <span class="k">def</span> <span class="nf">save_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
-        <span class="n">OldRecordSave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">change</span><span class="p">)</span>  <span class="c"># 保存旧记录的数据到备份表</span>
+        <span class="n">OldRecordSave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">change</span><span class="p">)</span>  <span class="c1"># 保存旧记录的数据到备份表</span>
         <span class="n">obj</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </pre></div>
 <p>现在我们可以做一个测试，进入PC的编辑页面，修改一个字段信息，然后保存，我们看看<code>记录备份</code>表是不是多出一条记录，内容正是PC保存前的内容。
@@ -281,7 +281,7 @@
                 </p>
                 <p>
                     ©
-                            2010-2015
+                            2010-2016
                     <a class="niu2-footer-link" href="http://snailhome.github.io">蜗牛</a>
                     /                         <a class="niu2-footer-link" href="/about.html" title="关于">关于</a>
                 </p>

@@ -109,7 +109,7 @@
             <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
                 <div id="niu2-main-content">
                     <p>先来看一个例子，该例子是让其在编辑界面里添加了个字段，其字段内容为搜索同姓氏人员的一个链接，该实现是在<code>models.py</code>里实现的</p>
-<div class="codehilite"><pre><span class="c"># models.py</span>
+<div class="codehilite"><pre><span class="c1"># models.py</span>
 <span class="kn">from</span> <span class="nn">django.utils.html</span> <span class="kn">import</span> <span class="n">format_html</span>
 <span class="k">class</span> <span class="nc">Staff</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="o">...</span>
@@ -117,12 +117,12 @@
         <span class="sd">"""</span>
 <span class="sd">        编辑界面里的扩展字段的内容以链接方式实现的方法</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="n">format_html</span><span class="p">(</span><span class="s">'&lt;a href="../../staff/?first_name__exact={}" target="_blank"&gt;{}&lt;/a&gt;'</span><span class="p">,</span>
+        <span class="k">return</span> <span class="n">format_html</span><span class="p">(</span><span class="s1">'&lt;a href="../../staff/?first_name__exact={}" target="_blank"&gt;{}&lt;/a&gt;'</span><span class="p">,</span>
                            <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span>
                            <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="p">)</span>
-    <span class="n">seek_same</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s">'同姓氏人员'</span>  <span class="c"># 短描述：即字段名</span>
-    <span class="c"># 显示HTML tag</span>
-    <span class="c"># 对于用户提交的数据, 永远不要这么设置!</span>
+    <span class="n">seek_same</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s1">'同姓氏人员'</span>  <span class="c1"># 短描述：即字段名</span>
+    <span class="c1"># 显示HTML tag</span>
+    <span class="c1"># 对于用户提交的数据, 永远不要这么设置!</span>
     <span class="n">seek_same</span><span class="o">.</span><span class="n">allow_tags</span> <span class="o">=</span> <span class="bp">True</span>
 </pre></div>
 <p>这里定义了一个<code>def seek_same(self):</code>的回调函数，用于返回一个扩展字段的内容，由于字段内容的回显会做转码处理，所以在这里我们需要用到一个<code>format_html()</code>函数，用来直接转成<code>html</code>格式。</p>
@@ -194,7 +194,7 @@
                 </p>
                 <p>
                     ©
-                            2010-2015
+                            2010-2016
                     <a class="niu2-footer-link" href="http://snailhome.github.io">蜗牛</a>
                     /                         <a class="niu2-footer-link" href="/about.html" title="关于">关于</a>
                 </p>
