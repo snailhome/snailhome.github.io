@@ -40,17 +40,19 @@ sudo zypper up
 &lt;h2 id="a5e9b0"&gt;个人必备的gnome扩展&lt;/h2&gt;
 &lt;p&gt;工具 -&amp;gt; 优化工具 -&amp;gt; 扩展 -&amp;gt; 获取得多扩展&lt;/p&gt;
 &lt;p&gt;安装后可能需要自己设置一下&lt;/p&gt;
-&lt;p&gt;hide top bar —— 全屏自动隐藏顶栏,缺少这个gnome3没法用
-Clipboard Indicator —— 剪切板
-Media player indicator —— 显示音乐播放器的状态
-Battery status —— 显示电池电量的百分比
-Netspeed —— 在顶栏上显示网速
-Removable Drive Menu —— 在顶栏显示移动盘图标
-taskbar —— 顶栏颜色等
-user themes —— 启用自定义的shell主题
-Lunar Calendar —— 阴历（依赖opensuse:typelib-1_0-LunarDate-2_0）
-Todo.txt ——  一个任务/待办项的小工具
-你们可以自己找扩展……&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;hide top bar —— 全屏自动隐藏顶栏,缺少这个gnome3没法用&lt;/li&gt;
+&lt;li&gt;Clipboard Indicator —— 剪切板&lt;/li&gt;
+&lt;li&gt;Media player indicator —— 显示音乐播放器的状态&lt;/li&gt;
+&lt;li&gt;Battery status —— 显示电池电量的百分比&lt;/li&gt;
+&lt;li&gt;Netspeed —— 在顶栏上显示网速&lt;/li&gt;
+&lt;li&gt;Removable Drive Menu —— 在顶栏显示移动盘图标&lt;/li&gt;
+&lt;li&gt;taskbar —— 顶栏颜色等&lt;/li&gt;
+&lt;li&gt;user themes —— 启用自定义的shell主题&lt;/li&gt;
+&lt;li&gt;Lunar Calendar —— 阴历（依赖opensuse:typelib-1_0-LunarDate-2_0）&lt;/li&gt;
+&lt;li&gt;Todo.txt ——  一个任务/待办项的小工具&lt;/li&gt;
+&lt;li&gt;你们可以自己找扩展……&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id="fbc224"&gt;安装图标主题&lt;/h2&gt;
 &lt;p&gt;我这里安装的是一个图标主题 &lt;code&gt;numix-icon-theme-circle&lt;/code&gt;，opensuse官网下载dvd那里（https://software.opensuse.org/421/zh_CN）搜就行，这样最方便了，（推荐这样，更方便。）&lt;/p&gt;
 &lt;h2 id="b3454c"&gt;安装外观主题&lt;/h2&gt;
