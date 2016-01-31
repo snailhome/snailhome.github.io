@@ -43,7 +43,108 @@ $ sudo gdebi kingsoft-office_9.1.0.4244~a12p3_i386.deb
 &lt;p&gt;字体文件可以从Windows系统的&lt;code&gt;C:\Windows\fonts&lt;/code&gt;复制，复制到&lt;code&gt;～/.fonts&lt;/code&gt;，没有目录就创建一个啦。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;PS. 没有找到&lt;code&gt;MT Extra&lt;/code&gt;字体&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="WPS"></category></entry><entry><title>从Windows平台到Linux平台的迁移</title><link href="http://snailhome.github.io/note/windows_to_linux.html" rel="alternate"></link><updated>2015-10-29T18:40:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-29:note/windows_to_linux.html</id><summary type="html">&lt;blockquote&gt;
+&lt;/blockquote&gt;</summary><category term="WPS"></category></entry><entry><title>调教openSUSE Leap 42.1</title><link href="http://snailhome.github.io/note/setting_opensuse.html" rel="alternate"></link><updated>2016-01-31T23:02:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2016-01-31:note/setting_opensuse.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;这两天又抽风把 &lt;code&gt;Linux Mint&lt;/code&gt; 系统改装成了 &lt;code&gt;openSUSE Leap 42.1&lt;/code&gt;，就着安装使用的情况，做一些记录。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="4300aa"&gt;&lt;code&gt;Gnome3&lt;/code&gt; 和 &lt;code&gt;KDE5&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;按默认桌面安装了&lt;code&gt;KDE5&lt;/code&gt;，&lt;code&gt;KDE&lt;/code&gt;看似自带了很多功能，各个方面都可以配置，但个人感觉带是太花俏，于是有重装成 &lt;code&gt;Gnome3&lt;/code&gt;，感觉还是 &lt;code&gt;Gnome3&lt;/code&gt; 干净，简洁。&lt;/p&gt;
+&lt;p&gt;感觉刚装的 &lt;code&gt;openSUSE&lt;/code&gt; 比其他发行版带的东西更少，好吧，重新再装起来。&lt;/p&gt;
+&lt;h2 id="4fd8a1"&gt;系统更新&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;openSUSE&lt;/code&gt; 安装使用 &lt;code&gt;zypper&lt;/code&gt; 命令&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;好奇怪，刚装的系统更新出错，非得重启以后才能更新&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;更改国内源并更新软件
+我用的是中科大源，直接终端运行以下命令。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper mr -da
+sudo zypper ar -fc https://mirrors.ustc.edu.cn/opensuse/distribution/leap/42.1/repo/oss USTC:42.1:OSS
+sudo zypper ar -fc https://mirrors.ustc.edu.cn/opensuse/distribution/leap/42.1/repo/non-oss USTC:42.1:NON-OSS
+sudo zypper ar -fc https://mirrors.ustc.edu.cn/opensuse/update/leap/42.1/oss USTC:42.1:UPDATE-OSS
+sudo zypper ar -fc https://mirrors.ustc.edu.cn/opensuse/update/leap/42.1/non-oss USTC:42.1:UPDATE-NON-OSS
+sudo zypper ref
+sudo zypper up
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;系统更新&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper up
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;搜索软件包，如&lt;code&gt;virutalbox&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper se virtualbox
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;安装软件，如&lt;code&gt;Virtualbox&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper in virtualbox virtualbox-qt
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="a5e9b0"&gt;个人必备的gnome扩展&lt;/h2&gt;
+&lt;p&gt;工具 -&amp;gt; 优化工具 -&amp;gt; 扩展 -&amp;gt; 获取得多扩展&lt;/p&gt;
+&lt;p&gt;安装后可能需要自己设置一下&lt;/p&gt;
+&lt;p&gt;hide top bar —— 全屏自动隐藏顶栏,缺少这个gnome3没法用
+Clipboard Indicator —— 剪切板
+Media player indicator —— 显示音乐播放器的状态
+Battery status —— 显示电池电量的百分比
+Netspeed —— 在顶栏上显示网速
+Removable Drive Menu —— 在顶栏显示移动盘图标
+taskbar —— 顶栏颜色等
+user themes —— 启用自定义的shell主题
+Lunar Calendar —— 阴历（依赖opensuse:typelib-1_0-LunarDate-2_0）
+Todo.txt ——  一个任务/待办项的小工具
+你们可以自己找扩展……&lt;/p&gt;
+&lt;h2 id="fbc224"&gt;安装图标主题&lt;/h2&gt;
+&lt;p&gt;我这里安装的是一个图标主题 &lt;code&gt;numix-icon-theme-circle&lt;/code&gt;，opensuse官网下载dvd那里（https://software.opensuse.org/421/zh_CN）搜就行，这样最方便了，（推荐这样，更方便。）&lt;/p&gt;
+&lt;h2 id="b3454c"&gt;安装外观主题&lt;/h2&gt;
+&lt;p&gt;同图标主题一样，这里搜索一个 &lt;code&gt;arc-theme&lt;/code&gt;，然后在 &lt;code&gt;工具 -&amp;gt; 优化工具-&amp;gt; 外观&lt;/code&gt; 的 GTK+ 和 Shell主题可以设置这个主题&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;增加Packman源，安装chromium和pepperflash
+像flash、ffmpeg这些非自由版本软件只能通过Packman源安装，flash是上网必备插件这点不用我说吧。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper ar http://mirrors.hust.edu.cn/packman/suse/openSUSE_Leap_42.1/ Packman
+sudo zypper ref
+sudo zypper in chromium chromium-pepper-flash
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;安装VLC播放器
+增加VLC源，用zypper或yast安装&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper ar http://download.videolan.org/pub/vlc/SuSE/Leap_42.1/ VLC
+sudo zypper ref
+sudo zypper in vlc
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;添加输入法
+系统自带的五笔输入法是&lt;code&gt;五笔大字集&lt;/code&gt;，但候选栏里带常出现方块字，而且不能五笔拼音混打，安装个五笔拼音输入法方便。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper in fcitx-table-cn-wubi-pinyin
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后进fcitx的‘配置当前输入法`添加、调整输入法项吧。&lt;/p&gt;
+&lt;h2 id="88b890"&gt;安装 &lt;code&gt;WPS&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;下载RPM文件：&lt;a href=""&gt;http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office-10.1.0.5444-1.a20.x86_64.rpm&lt;/a&gt;
+双击下载的RPM文件即可开始安装
+首次打开时会提示缺少字体文件，从我的百度云盘下载&lt;a href="http://pan.baidu.com/s/1gdSp53H"&gt;WPS字体&lt;/a&gt;吧
+解压后把里面的&lt;code&gt;*.ttf&lt;/code&gt;复制到&lt;code&gt;~/.fonts&lt;/code&gt;里就可以了。&lt;/p&gt;
+&lt;h2 id="ecaadc"&gt;安装Wine&lt;/h2&gt;
+&lt;p&gt;直接zypper吧&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper in wine
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="5a0afc"&gt;其它&lt;/h2&gt;
+&lt;p&gt;其它优化最后附上......&lt;/p&gt;
+&lt;h2 id="eee83a"&gt;资源&lt;/h2&gt;
+&lt;p&gt;我们需要记住一些资源：
+主站：
+&lt;a href=""&gt;http://www.suse.org.cn/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;折腾指南：
+&lt;a href=""&gt;https://lug.ustc.edu.cn/sites/opensuse-guide/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;中文社区：
+&lt;a href=""&gt;https://forum.suse.org.cn/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;仓库:
+&lt;a href=""&gt;http://software.opensuse.org/search&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;鸟哥：
+&lt;a href=""&gt;http://vbird.dic.ksu.edu.tw/&lt;/a&gt;&lt;/p&gt;</summary><category term="openSUSE"></category></entry><entry><title>从Windows平台到Linux平台的迁移</title><link href="http://snailhome.github.io/note/windows_to_linux.html" rel="alternate"></link><updated>2015-10-29T18:40:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-29:note/windows_to_linux.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;从wWindows平台到Linux平台的迁移，不是嘴皮子说说就可以了，对于完全脑盲的人，也许简单；可以对于已经在Windows平台已经有一定使用基础的人来说，必须有替代的产品才会有迁移的动力……&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;对比了从Windows到Linux迁移过程中应用替代方面的艰辛，在下面罗列一些各个专业方面的应用、工具，给自己一个留存，也给后人一些经验～&lt;/p&gt;

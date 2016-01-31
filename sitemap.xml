@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://snailhome.github.io/</loc>
-<lastmod>2016-02-01T00:13:59-00:00</lastmod>
+<lastmod>2016-02-01T00:24:33-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://snailhome.github.io/archives.html</loc>
-<lastmod>2016-02-01T00:13:59-00:00</lastmod>
+<lastmod>2016-02-01T00:24:33-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://snailhome.github.io/categories.html</loc>
-<lastmod>2016-02-01T00:13:59-00:00</lastmod>
+<lastmod>2016-02-01T00:24:33-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -34,6 +34,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://snailhome.github.io/note/wps_4_linux.html</loc>
 <lastmod>2016-01-31T23:39:11+08:00</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://snailhome.github.io/note/setting_opensuse.html</loc>
+<lastmod>2016-01-31T23:02:00+08:00</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -263,8 +270,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://snailhome.github.io/tag/fcitx.html</loc>
-<lastmod>2015-09-29T23:07:00+08:06</lastmod>
+<loc>http://snailhome.github.io/tag/mian-mi-ma.html</loc>
+<lastmod>2015-10-06T11:23:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -312,8 +319,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://snailhome.github.io/tag/mian-mi-ma.html</loc>
-<lastmod>2015-10-06T11:23:00+08:06</lastmod>
+<loc>http://snailhome.github.io/tag/chrome.html</loc>
+<lastmod>2015-07-30T23:41:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -382,6 +389,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://snailhome.github.io/tag/opensuse.html</loc>
+<lastmod>2016-01-31T23:02:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://snailhome.github.io/tag/nginx.html</loc>
 <lastmod>2015-06-15T22:06:00+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -445,8 +459,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://snailhome.github.io/tag/typecho.html</loc>
-<lastmod>2015-06-14T23:24:00+08:06</lastmod>
+<loc>http://snailhome.github.io/tag/fcitx.html</loc>
+<lastmod>2015-09-29T23:07:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -459,8 +473,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://snailhome.github.io/tag/chrome.html</loc>
-<lastmod>2015-07-30T23:41:00+08:06</lastmod>
+<loc>http://snailhome.github.io/tag/typecho.html</loc>
+<lastmod>2015-06-14T23:24:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

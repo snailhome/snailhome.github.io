@@ -3,14 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="WPS">
-        <meta name="description" content="记录WPS在Linux下的安装，以做留存">
-        <title>WPS for Linux 安装手记 - StepUp</title>
+        <meta name="keywords" content="openSUSE">
+        <meta name="description" content="记录openSUSE安装及优化、美化的过程">
+        <title>调教openSUSE Leap 42.1 - StepUp</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="/theme/font-icons/style.min.css" type="text/css" />
         <link rel="stylesheet" href="http://snailhome.github.io/theme/css/niu2.min.css" type="text/css" />
-        <link rel="canonical" href="http://snailhome.github.io/note/wps_4_linux.html" />
+        <link rel="canonical" href="http://snailhome.github.io/note/setting_opensuse.html" />
         <script type="text/javascript">window.onload=function(){};</script>
         <!--[if lt IE 9]>
             <script src="http://snailhome.github.io/theme/js/html5shiv.js"></script>
@@ -104,59 +104,116 @@
 
         <div id="body-content">
             <div class="col-md-8 col-md-offset-2">
-                <h1 id="content-heading">WPS for Linux 安装手记</h1>
+                <h1 id="content-heading">调教openSUSE Leap 42.1</h1>
             </div>
             <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
                 <div id="niu2-main-content">
                     <blockquote>
-<p><strong>问题:</strong> 我听说一个好东西Kingsoft Office（译注：就是WPS），所以我想在我的Linux上试试。我怎样才能安装Kingsoft Office呢？</p>
+<p>这两天又抽风把 <code>Linux Mint</code> 系统改装成了 <code>openSUSE Leap 42.1</code>，就着安装使用的情况，做一些记录。</p>
 </blockquote>
-<p>Kingsoft Office 是一套办公套件，支持多个平台，包括Windows, Linux, iOS 和 Android。它包含三个组件：Writer（WPS文字）用来文字处理，Presentation（WPS演示）支持幻灯片，Spereadsheets（WPS表格）是电子表格。其使用免费增值模式，其中基础版本是免费使用。比较其他的linux办公套件，如LibreOffice、 OpenOffice，其最大优势在于，Kingsoft Office能最好的兼容微软的Office（译注：版权问题？了解下wps和Office的历史问题，可以得到一些结论）。因此如果你需要在windows和linux平台间交互，Kingsoft office是一个很好的选择。</p>
-<p>WPS for Linux 官方下载地址： <a href="http://community.wps.cn/download/">http://community.wps.cn/download/</a></p>
-<h2 id="38983c">CentOS, Fedora 或 RHEL中安装Kingsoft Office</h2>
-<p>在官方页面下载RPM文件。</p>
-<p>需要使用yum命令并用"localinstall"选项来本地安装这个RPM包</p>
-<div class="codehilite"><pre>$ sudo yum localinstall kingsoft-office-9.1.0.4244-0.1.a12p3.i686.rpm
-</pre></div>
-<p>注意不要使用rpm命令安装。否者，你会得到依赖错误，而且很难解决：</p>
-<p>错误: 依赖失败:</p>
-<div class="codehilite"><pre>libICE.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
-libSM.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
-libX11.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
-libXext.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
-libXrender.so.1 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
-libc.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
-</pre></div>
-<p>基于Red Hat的发行版有多重库支持。如果你要想安装的RPM包是32位的并有32位库依赖（你的系统是64位的），一个很好的解决方法就是使用yum来安装。只要RPM在构建时候已经添加所有依赖关系，yum就可以自动使用yum库解决依赖关系。</p>
-<hr/>
-<h2 id="5bd1a0">Debian, Ubuntu 和 Linux Mint 中安装Kingsoft Office</h2>
-<p>在官方页面下载DEB包。官方RPM包同样只支持32位版本linux，但是你可以在64位中安装。</p>
-<p>DEB包同样遇到一堆依赖。因此使用gdebi命令来代替dpkg来自动解决依赖。</p>
-<div class="codehilite"><pre>$ sudo apt-get install gdebi-core
-$ sudo gdebi kingsoft-office_9.1.0.4244~a12p3_i386.deb 
-</pre></div>
-<p>启动 Kingsoft Office</p>
-<p>安装完成后，你就可以在桌面管理器轻松启动Witer（WPS文字）, Presentation（WPS演示）, and Spreadsheets（WPS表格）。</p>
-<p>不但如此，你也可以在命令行中启动Kingsoft Office。</p>
-<p>启动Wirter（WPS文字），使用这个命令：</p>
-<div class="codehilite"><pre>$ wps <span class="o">(</span>译注：原文丢失此命令<span class="o">)</span>
-</pre></div>
-<p>启动Presentation（WPS演示），使用这个命令：</p>
-<div class="codehilite"><pre>$ wpp
-</pre></div>
-<p>启动Spreadsheets（WPS表格），使用这个命令：</p>
-<div class="codehilite"><pre>$ et
-</pre></div>
-<h2 id="9b6d1a">安装缺失的字体</h2>
-<p>首次运行wps时会提示缺失字体：wingding、wingding2、wingding3、webdings、MT Extra</p>
-<p>字体文件可以从Windows系统的<code>C:\Windows\fonts</code>复制，复制到<code>～/.fonts</code>，没有目录就创建一个啦。</p>
+<h2 id="4300aa"><code>Gnome3</code> 和 <code>KDE5</code></h2>
+<p>按默认桌面安装了<code>KDE5</code>，<code>KDE</code>看似自带了很多功能，各个方面都可以配置，但个人感觉带是太花俏，于是有重装成 <code>Gnome3</code>，感觉还是 <code>Gnome3</code> 干净，简洁。</p>
+<p>感觉刚装的 <code>openSUSE</code> 比其他发行版带的东西更少，好吧，重新再装起来。</p>
+<h2 id="4fd8a1">系统更新</h2>
+<p><code>openSUSE</code> 安装使用 <code>zypper</code> 命令</p>
 <blockquote>
-<p>PS. 没有找到<code>MT Extra</code>字体</p>
+<p>好奇怪，刚装的系统更新出错，非得重启以后才能更新</p>
 </blockquote>
+<ul>
+<li>更改国内源并更新软件
+我用的是中科大源，直接终端运行以下命令。</li>
+</ul>
+<div class="codehilite"><pre>sudo zypper mr -da
+sudo zypper ar -fc https://mirrors.ustc.edu.cn/opensuse/distribution/leap/42.1/repo/oss USTC:42.1:OSS
+sudo zypper ar -fc https://mirrors.ustc.edu.cn/opensuse/distribution/leap/42.1/repo/non-oss USTC:42.1:NON-OSS
+sudo zypper ar -fc https://mirrors.ustc.edu.cn/opensuse/update/leap/42.1/oss USTC:42.1:UPDATE-OSS
+sudo zypper ar -fc https://mirrors.ustc.edu.cn/opensuse/update/leap/42.1/non-oss USTC:42.1:UPDATE-NON-OSS
+sudo zypper ref
+sudo zypper up
+</pre></div>
+<ul>
+<li>系统更新</li>
+</ul>
+<div class="codehilite"><pre>sudo zypper up
+</pre></div>
+<ul>
+<li>搜索软件包，如<code>virutalbox</code></li>
+</ul>
+<div class="codehilite"><pre>sudo zypper se virtualbox
+</pre></div>
+<ul>
+<li>安装软件，如<code>Virtualbox</code></li>
+</ul>
+<div class="codehilite"><pre>sudo zypper in virtualbox virtualbox-qt
+</pre></div>
+<h2 id="a5e9b0">个人必备的gnome扩展</h2>
+<p>工具 -&gt; 优化工具 -&gt; 扩展 -&gt; 获取得多扩展</p>
+<p>安装后可能需要自己设置一下</p>
+<p>hide top bar —— 全屏自动隐藏顶栏,缺少这个gnome3没法用
+Clipboard Indicator —— 剪切板
+Media player indicator —— 显示音乐播放器的状态
+Battery status —— 显示电池电量的百分比
+Netspeed —— 在顶栏上显示网速
+Removable Drive Menu —— 在顶栏显示移动盘图标
+taskbar —— 顶栏颜色等
+user themes —— 启用自定义的shell主题
+Lunar Calendar —— 阴历（依赖opensuse:typelib-1_0-LunarDate-2_0）
+Todo.txt ——  一个任务/待办项的小工具
+你们可以自己找扩展……</p>
+<h2 id="fbc224">安装图标主题</h2>
+<p>我这里安装的是一个图标主题 <code>numix-icon-theme-circle</code>，opensuse官网下载dvd那里（https://software.opensuse.org/421/zh_CN）搜就行，这样最方便了，（推荐这样，更方便。）</p>
+<h2 id="b3454c">安装外观主题</h2>
+<p>同图标主题一样，这里搜索一个 <code>arc-theme</code>，然后在 <code>工具 -&gt; 优化工具-&gt; 外观</code> 的 GTK+ 和 Shell主题可以设置这个主题</p>
+<ul>
+<li>增加Packman源，安装chromium和pepperflash
+像flash、ffmpeg这些非自由版本软件只能通过Packman源安装，flash是上网必备插件这点不用我说吧。</li>
+</ul>
+<div class="codehilite"><pre>sudo zypper ar http://mirrors.hust.edu.cn/packman/suse/openSUSE_Leap_42.1/ Packman
+sudo zypper ref
+sudo zypper in chromium chromium-pepper-flash
+</pre></div>
+<ul>
+<li>安装VLC播放器
+增加VLC源，用zypper或yast安装</li>
+</ul>
+<div class="codehilite"><pre>sudo zypper ar http://download.videolan.org/pub/vlc/SuSE/Leap_42.1/ VLC
+sudo zypper ref
+sudo zypper in vlc
+</pre></div>
+<ul>
+<li>添加输入法
+系统自带的五笔输入法是<code>五笔大字集</code>，但候选栏里带常出现方块字，而且不能五笔拼音混打，安装个五笔拼音输入法方便。</li>
+</ul>
+<div class="codehilite"><pre>sudo zypper in fcitx-table-cn-wubi-pinyin
+</pre></div>
+<p>然后进fcitx的‘配置当前输入法`添加、调整输入法项吧。</p>
+<h2 id="88b890">安装 <code>WPS</code></h2>
+<p>下载RPM文件：<a href="">http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office-10.1.0.5444-1.a20.x86_64.rpm</a>
+双击下载的RPM文件即可开始安装
+首次打开时会提示缺少字体文件，从我的百度云盘下载<a href="http://pan.baidu.com/s/1gdSp53H">WPS字体</a>吧
+解压后把里面的<code>*.ttf</code>复制到<code>~/.fonts</code>里就可以了。</p>
+<h2 id="ecaadc">安装Wine</h2>
+<p>直接zypper吧</p>
+<div class="codehilite"><pre>sudo zypper in wine
+</pre></div>
+<h2 id="5a0afc">其它</h2>
+<p>其它优化最后附上......</p>
+<h2 id="eee83a">资源</h2>
+<p>我们需要记住一些资源：
+主站：
+<a href="">http://www.suse.org.cn/</a></p>
+<p>折腾指南：
+<a href="">https://lug.ustc.edu.cn/sites/opensuse-guide/</a></p>
+<p>中文社区：
+<a href="">https://forum.suse.org.cn/</a></p>
+<p>仓库:
+<a href="">http://software.opensuse.org/search</a></p>
+<p>鸟哥：
+<a href="">http://vbird.dic.ksu.edu.tw/</a></p>
                 </div>
                 <div id="content-comments">
                     <!-- 多说评论框 start -->
-                    <div class="ds-thread" data-thread-key="/note/wps_4_linux.html" data-title="WPS for Linux 安装手记" data-url="http://snailhome.github.io/note/wps_4_linux.html">
+                    <div class="ds-thread" data-thread-key="/note/setting_opensuse.html" data-title="调教openSUSE Leap 42.1" data-url="http://snailhome.github.io/note/setting_opensuse.html">
                     </div>
                     <!-- 多说评论框 end -->
                     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
@@ -178,11 +235,11 @@ $ sudo gdebi kingsoft-office_9.1.0.4244~a12p3_i386.deb
             <div class="niu2-right-container col-md-2">
                 <div id="niu2-sidebar-meta" class="niu2-sidebar">
                     <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
-                    <div class="niu2-sidebar-value">2016-01-31 23:39</div>
+                    <div class="niu2-sidebar-value">2016-01-31 23:02</div>
                     <div class="niu2-sidebar-label"><i class="icon-book"></i>分类:</div>
                     <div class="niu2-sidebar-value"><a href="http://snailhome.github.io/note/index.html">笔记</a></div>
                     <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
-                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/wps.html">WPS</a><sup>1</sup></div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/opensuse.html">openSUSE</a><sup>1</sup></div>
                 </div>
 
                 <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
@@ -190,8 +247,8 @@ $ sudo gdebi kingsoft-office_9.1.0.4244~a12p3_i386.deb
                         <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
                     </div>
                     <ol id="niu2-sidebar-toc-list">
-                        <li><a href="#content-heading">WPS for Linux 安装手记</a></li>
-                        <li><a href='#38983c'>CentOS, Fedora 或 RHEL中安装Kingsoft Office</a></li><li><a href='#5bd1a0'>Debian, Ubuntu 和 Linux Mint 中安装Kingsoft Office</a></li><li><a href='#9b6d1a'>安装缺失的字体</a></li>
+                        <li><a href="#content-heading">调教openSUSE Leap 42.1</a></li>
+                        <li><a href='#4300aa'>Gnome3 和 KDE5</a></li><li><a href='#4fd8a1'>系统更新</a></li><li><a href='#a5e9b0'>个人必备的gnome扩展</a></li><li><a href='#fbc224'>安装图标主题</a></li><li><a href='#b3454c'>安装外观主题</a></li><li><a href='#88b890'>安装 WPS</a></li><li><a href='#ecaadc'>安装Wine</a></li><li><a href='#5a0afc'>其它</a></li><li><a href='#eee83a'>资源</a></li>
                         <li><a href="#content-comments">评论</a></li>
                     </ol>
                 </div>
