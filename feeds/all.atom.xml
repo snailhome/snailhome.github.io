@@ -770,7 +770,7 @@ alias git2p='cd ~/env2p/blog&amp;amp;&amp;amp;make publish&amp;amp;&amp;amp;cd o
 
 $ source ~/.bashrc  ## 即时生效
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;这样，我打开终端输入 &lt;code&gt;se&lt;/code&gt; 就直接进入虚拟环境，输入 &lt;code&gt;git2p&lt;/code&gt; 就直接生成发布文档并git到我的page里，输入 &lt;code&gt;de&lt;/code&gt; 就直接退出虚拟环境。&lt;/p&gt;
+&lt;p&gt;这样，我打开终端输入 &lt;code&gt;sa&lt;/code&gt; 就直接进入虚拟环境，输入 &lt;code&gt;git2p&lt;/code&gt; 就直接生成发布文档并git到我的page里，输入 &lt;code&gt;da&lt;/code&gt; 就直接退出虚拟环境。&lt;/p&gt;
 &lt;p&gt;但是还不够好，每次都需要输入用户名和密码，可以免输用户名和密码吗?&lt;/p&gt;
 &lt;h3 id="be3806"&gt;设置git时免输用户名和密码&lt;/h3&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ &lt;span class="nb"&gt;cd&lt;/span&gt; output/.git
