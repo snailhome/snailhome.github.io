@@ -1,49 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>StepUp</title><link href="http://snailhome.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>http://snailhome.github.io/</id><updated>2016-01-31T23:39:11+08:00</updated><entry><title>WPS for Linux 安装手记</title><link href="http://snailhome.github.io/note/wps_4_linux.html" rel="alternate"></link><updated>2016-01-31T23:39:11+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2016-01-31:note/wps_4_linux.html</id><summary type="html">&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;问题:&lt;/strong&gt; 我听说一个好东西Kingsoft Office（译注：就是WPS），所以我想在我的Linux上试试。我怎样才能安装Kingsoft Office呢？&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Kingsoft Office 是一套办公套件，支持多个平台，包括Windows, Linux, iOS 和 Android。它包含三个组件：Writer（WPS文字）用来文字处理，Presentation（WPS演示）支持幻灯片，Spereadsheets（WPS表格）是电子表格。其使用免费增值模式，其中基础版本是免费使用。比较其他的linux办公套件，如LibreOffice、 OpenOffice，其最大优势在于，Kingsoft Office能最好的兼容微软的Office（译注：版权问题？了解下wps和Office的历史问题，可以得到一些结论）。因此如果你需要在windows和linux平台间交互，Kingsoft office是一个很好的选择。&lt;/p&gt;
-&lt;p&gt;WPS for Linux 官方下载地址： &lt;a href="http://community.wps.cn/download/"&gt;http://community.wps.cn/download/&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="38983c"&gt;CentOS, Fedora 或 RHEL中安装Kingsoft Office&lt;/h2&gt;
-&lt;p&gt;在官方页面下载RPM文件。&lt;/p&gt;
-&lt;p&gt;需要使用yum命令并用"localinstall"选项来本地安装这个RPM包&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo yum localinstall kingsoft-office-9.1.0.4244-0.1.a12p3.i686.rpm
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;注意不要使用rpm命令安装。否者，你会得到依赖错误，而且很难解决：&lt;/p&gt;
-&lt;p&gt;错误: 依赖失败:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;libICE.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
-libSM.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
-libX11.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
-libXext.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
-libXrender.so.1 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
-libc.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;基于Red Hat的发行版有多重库支持。如果你要想安装的RPM包是32位的并有32位库依赖（你的系统是64位的），一个很好的解决方法就是使用yum来安装。只要RPM在构建时候已经添加所有依赖关系，yum就可以自动使用yum库解决依赖关系。&lt;/p&gt;
-&lt;hr/&gt;
-&lt;h2 id="5bd1a0"&gt;Debian, Ubuntu 和 Linux Mint 中安装Kingsoft Office&lt;/h2&gt;
-&lt;p&gt;在官方页面下载DEB包。官方RPM包同样只支持32位版本linux，但是你可以在64位中安装。&lt;/p&gt;
-&lt;p&gt;DEB包同样遇到一堆依赖。因此使用gdebi命令来代替dpkg来自动解决依赖。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo apt-get install gdebi-core
-$ sudo gdebi kingsoft-office_9.1.0.4244~a12p3_i386.deb 
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;启动 Kingsoft Office&lt;/p&gt;
-&lt;p&gt;安装完成后，你就可以在桌面管理器轻松启动Witer（WPS文字）, Presentation（WPS演示）, and Spreadsheets（WPS表格）。&lt;/p&gt;
-&lt;p&gt;不但如此，你也可以在命令行中启动Kingsoft Office。&lt;/p&gt;
-&lt;p&gt;启动Wirter（WPS文字），使用这个命令：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ wps &lt;span class="o"&gt;(&lt;/span&gt;译注：原文丢失此命令&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;启动Presentation（WPS演示），使用这个命令：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ wpp
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;启动Spreadsheets（WPS表格），使用这个命令：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ et
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h2 id="9b6d1a"&gt;安装缺失的字体&lt;/h2&gt;
-&lt;p&gt;首次运行wps时会提示缺失字体：wingding、wingding2、wingding3、webdings、MT Extra&lt;/p&gt;
-&lt;p&gt;字体文件可以从Windows系统的&lt;code&gt;C:\Windows\fonts&lt;/code&gt;复制，复制到&lt;code&gt;～/.fonts&lt;/code&gt;，没有目录就创建一个啦。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;PS. 没有找到&lt;code&gt;MT Extra&lt;/code&gt;字体&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="WPS"></category></entry><entry><title>调教openSUSE Leap 42.1</title><link href="http://snailhome.github.io/note/setting_opensuse.html" rel="alternate"></link><updated>2016-01-31T23:02:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2016-01-31:note/setting_opensuse.html</id><summary type="html">&lt;blockquote&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>StepUp</title><link href="http://snailhome.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>http://snailhome.github.io/</id><updated>2016-01-31T23:02:00+08:00</updated><entry><title>调教openSUSE Leap 42.1</title><link href="http://snailhome.github.io/note/setting_opensuse.html" rel="alternate"></link><updated>2016-01-31T23:02:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2016-01-31:note/setting_opensuse.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;这两天又抽风把 &lt;code&gt;Linux Mint&lt;/code&gt; 系统改装成了 &lt;code&gt;openSUSE Leap 42.1&lt;/code&gt;，就着安装使用的情况，做一些记录。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id="4300aa"&gt;&lt;code&gt;Gnome3&lt;/code&gt; 和 &lt;code&gt;KDE5&lt;/code&gt;&lt;/h2&gt;
@@ -144,7 +100,51 @@ sudo zypper in vlc
 &lt;p&gt;仓库:
 &lt;a href=""&gt;http://software.opensuse.org/search&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;鸟哥：
-&lt;a href=""&gt;http://vbird.dic.ksu.edu.tw/&lt;/a&gt;&lt;/p&gt;</summary><category term="openSUSE"></category></entry><entry><title>从Windows平台到Linux平台的迁移</title><link href="http://snailhome.github.io/note/windows_to_linux.html" rel="alternate"></link><updated>2015-10-29T18:40:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-29:note/windows_to_linux.html</id><summary type="html">&lt;blockquote&gt;
+&lt;a href=""&gt;http://vbird.dic.ksu.edu.tw/&lt;/a&gt;&lt;/p&gt;</summary><category term="openSUSE"></category></entry><entry><title>WPS for Linux 安装手记</title><link href="http://snailhome.github.io/note/wps_4_linux.html" rel="alternate"></link><updated>2015-10-30T00:13:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-30:note/wps_4_linux.html</id><summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;问题:&lt;/strong&gt; 我听说一个好东西Kingsoft Office（译注：就是WPS），所以我想在我的Linux上试试。我怎样才能安装Kingsoft Office呢？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Kingsoft Office 是一套办公套件，支持多个平台，包括Windows, Linux, iOS 和 Android。它包含三个组件：Writer（WPS文字）用来文字处理，Presentation（WPS演示）支持幻灯片，Spereadsheets（WPS表格）是电子表格。其使用免费增值模式，其中基础版本是免费使用。比较其他的linux办公套件，如LibreOffice、 OpenOffice，其最大优势在于，Kingsoft Office能最好的兼容微软的Office（译注：版权问题？了解下wps和Office的历史问题，可以得到一些结论）。因此如果你需要在windows和linux平台间交互，Kingsoft office是一个很好的选择。&lt;/p&gt;
+&lt;p&gt;WPS for Linux 官方下载地址： &lt;a href="http://community.wps.cn/download/"&gt;http://community.wps.cn/download/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="38983c"&gt;CentOS, Fedora 或 RHEL中安装Kingsoft Office&lt;/h2&gt;
+&lt;p&gt;在官方页面下载RPM文件。&lt;/p&gt;
+&lt;p&gt;需要使用yum命令并用"localinstall"选项来本地安装这个RPM包&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo yum localinstall kingsoft-office-9.1.0.4244-0.1.a12p3.i686.rpm
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;注意不要使用rpm命令安装。否者，你会得到依赖错误，而且很难解决：&lt;/p&gt;
+&lt;p&gt;错误: 依赖失败:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;libICE.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
+libSM.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
+libX11.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
+libXext.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
+libXrender.so.1 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
+libc.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;基于Red Hat的发行版有多重库支持。如果你要想安装的RPM包是32位的并有32位库依赖（你的系统是64位的），一个很好的解决方法就是使用yum来安装。只要RPM在构建时候已经添加所有依赖关系，yum就可以自动使用yum库解决依赖关系。&lt;/p&gt;
+&lt;hr/&gt;
+&lt;h2 id="5bd1a0"&gt;Debian, Ubuntu 和 Linux Mint 中安装Kingsoft Office&lt;/h2&gt;
+&lt;p&gt;在官方页面下载DEB包。官方RPM包同样只支持32位版本linux，但是你可以在64位中安装。&lt;/p&gt;
+&lt;p&gt;DEB包同样遇到一堆依赖。因此使用gdebi命令来代替dpkg来自动解决依赖。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo apt-get install gdebi-core
+$ sudo gdebi kingsoft-office_9.1.0.4244~a12p3_i386.deb 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;启动 Kingsoft Office&lt;/p&gt;
+&lt;p&gt;安装完成后，你就可以在桌面管理器轻松启动Witer（WPS文字）, Presentation（WPS演示）, and Spreadsheets（WPS表格）。&lt;/p&gt;
+&lt;p&gt;不但如此，你也可以在命令行中启动Kingsoft Office。&lt;/p&gt;
+&lt;p&gt;启动Wirter（WPS文字），使用这个命令：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ wps &lt;span class="o"&gt;(&lt;/span&gt;译注：原文丢失此命令&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;启动Presentation（WPS演示），使用这个命令：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ wpp
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;启动Spreadsheets（WPS表格），使用这个命令：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ et
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="9b6d1a"&gt;安装缺失的字体&lt;/h2&gt;
+&lt;p&gt;首次运行wps时会提示缺失字体：wingding、wingding2、wingding3、webdings、MT Extra&lt;/p&gt;
+&lt;p&gt;字体文件可以从Windows系统的&lt;code&gt;C:\Windows\fonts&lt;/code&gt;复制，复制到&lt;code&gt;～/.fonts&lt;/code&gt;，没有目录就创建一个啦。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PS. 没有找到&lt;code&gt;MT Extra&lt;/code&gt;字体&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="WPS"></category></entry><entry><title>从Windows平台到Linux平台的迁移</title><link href="http://snailhome.github.io/note/windows_to_linux.html" rel="alternate"></link><updated>2015-10-29T18:40:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-10-29:note/windows_to_linux.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;从wWindows平台到Linux平台的迁移，不是嘴皮子说说就可以了，对于完全脑盲的人，也许简单；可以对于已经在Windows平台已经有一定使用基础的人来说，必须有替代的产品才会有迁移的动力……&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;对比了从Windows到Linux迁移过程中应用替代方面的艰辛，在下面罗列一些各个专业方面的应用、工具，给自己一个留存，也给后人一些经验～&lt;/p&gt;
