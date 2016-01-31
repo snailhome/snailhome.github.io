@@ -183,12 +183,20 @@ Done. Your new project is available at /home/snail/env2p/blog
 </pre></div>
 <h3 id="d365c1">安装 <code>niu-x2-sidebar</code> 主题模板</h3>
 <h4 id="7f70ad">安装系统依赖</h4>
+<p>对于Debian系：</p>
 <div class="codehilite"><pre>$ sudo apt-get install python-dev libjpeg-dev zlib1g-dev
+</pre></div>
+<p>对于openSUSE:</p>
+<div class="codehilite"><pre>$ sudo zypper in gcc make git
+$ sudo zypper in python-devel libjpeg8-devel zlib-devel
 </pre></div>
 <p>这些都是<code>Pillow</code>需要用到的。</p>
 <p>生成zh_CN.UTF-8 locale</p>
 <div class="codehilite"><pre>$ sudo locale-gen zh_CN.UTF-8
 </pre></div>
+<blockquote>
+<p>openSUSE默认就是，可以不用设置这个</p>
+</blockquote>
 <h4 id="9baebf">安装 <code>python</code> 依赖</h4>
 <p>上面的主题或插件的额外依赖</p>
 <p>pelican-minify: 压缩html文件
