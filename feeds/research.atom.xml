@@ -455,12 +455,16 @@ $ git push origin master //更新到远程服务器上&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;就可以了～～&lt;/p&gt;
 &lt;p&gt;为了方便操作我做了别名&lt;/p&gt;
-&lt;h3 id="b938c7"&gt;设置别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ vim ~/.bashrc
-&lt;span class="nb"&gt;alias&lt;/span&gt; &lt;span class="nv"&gt;se2p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"cd ~/env&amp;amp;&amp;amp;source bin/activate"&lt;/span&gt;
-&lt;span class="nb"&gt;alias&lt;/span&gt; &lt;span class="nv"&gt;git2p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"cd ~/env/blog&amp;amp;&amp;amp; make publish&amp;amp;&amp;amp;cd output&amp;amp;&amp;amp;git add -A&amp;amp;&amp;amp;git commit -m 'Git My Static Blog'&amp;amp;&amp;amp;git push origin master"&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ vim ~/.bashrc
+
+#输入以下别名设置
+alias sa='source bin/activate'
+alias da='deactivate'
+alias git2p='cd ~/env2p/blog&amp;amp;&amp;amp;make publish&amp;amp;&amp;amp;cd output&amp;amp;&amp;amp; git add -A&amp;amp;&amp;amp;git commit -m "Commit Info"&amp;amp;&amp;amp;git push -u origin master&amp;amp;&amp;amp;cd -'
+
+$ source ~/.bashrc  ## 即时生效
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;这样，我打开终端输入 &lt;code&gt;se2p&lt;/code&gt; 就直接进入虚拟环境，输入 &lt;code&gt;git2p&lt;/code&gt; 就直接生成发布文档并git到我的page里。&lt;/p&gt;
+&lt;p&gt;这样，我打开终端输入 &lt;code&gt;se&lt;/code&gt; 就直接进入虚拟环境，输入 &lt;code&gt;git2p&lt;/code&gt; 就直接生成发布文档并git到我的page里，输入 &lt;code&gt;de&lt;/code&gt; 就直接退出虚拟环境。&lt;/p&gt;
 &lt;p&gt;但是还不够好，每次都需要输入用户名和密码，可以免输用户名和密码吗?&lt;/p&gt;
 &lt;h3 id="be3806"&gt;设置git时免输用户名和密码&lt;/h3&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ &lt;span class="nb"&gt;cd&lt;/span&gt; output/.git

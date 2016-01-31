@@ -564,12 +564,16 @@ $ git push origin master //更新到远程服务器上</p>
 </pre></div>
 <p>就可以了～～</p>
 <p>为了方便操作我做了别名</p>
-<h3 id="b938c7">设置别名</h3>
-<div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> $ vim ~/.bashrc
-<span class="nb">alias</span> <span class="nv">se2p</span><span class="o">=</span><span class="s2">"cd ~/env&amp;&amp;source bin/activate"</span>
-<span class="nb">alias</span> <span class="nv">git2p</span><span class="o">=</span><span class="s2">"cd ~/env/blog&amp;&amp; make publish&amp;&amp;cd output&amp;&amp;git add -A&amp;&amp;git commit -m 'Git My Static Blog'&amp;&amp;git push origin master"</span>
+<div class="codehilite"><pre>$ vim ~/.bashrc
+
+#输入以下别名设置
+alias sa='source bin/activate'
+alias da='deactivate'
+alias git2p='cd ~/env2p/blog&amp;&amp;make publish&amp;&amp;cd output&amp;&amp; git add -A&amp;&amp;git commit -m "Commit Info"&amp;&amp;git push -u origin master&amp;&amp;cd -'
+
+$ source ~/.bashrc  ## 即时生效
 </pre></div>
-<p>这样，我打开终端输入 <code>se2p</code> 就直接进入虚拟环境，输入 <code>git2p</code> 就直接生成发布文档并git到我的page里。</p>
+<p>这样，我打开终端输入 <code>se</code> 就直接进入虚拟环境，输入 <code>git2p</code> 就直接生成发布文档并git到我的page里，输入 <code>de</code> 就直接退出虚拟环境。</p>
 <p>但是还不够好，每次都需要输入用户名和密码，可以免输用户名和密码吗?</p>
 <h3 id="be3806">设置git时免输用户名和密码</h3>
 <div class="codehilite"><pre><span class="o">(</span>env2p<span class="o">)</span> $ <span class="nb">cd</span> output/.git
@@ -624,7 +628,7 @@ $ git push origin master //更新到远程服务器上</p>
                     </div>
                     <ol id="niu2-sidebar-toc-list">
                         <li><a href="#content-heading">用Pelican创建静态博客网站</a></li>
-                        <li><a href='#cbfa54'>创建运行环境</a><ol><li><a href='#b41e5d'>创建虚拟环境</a></li><li><a href='#ad57b5'>安装 pelican 支持</a></li><li><a href='#a4730b'>创建静态博客文件目录结构及初始配置</a></li><li><a href='#d365c1'>安装 niu-x2-sidebar 主题模板</a><ol><li><a href='#7f70ad'>安装系统依赖</a></li><li><a href='#9baebf'>安装 python 依赖</a></li><li><a href='#f8a47d'>安装 niu-x2-sidebar 主题</a></li><li><a href='#c2bb8d'>安装 niu-x2-sidebar 主题插件</a></li></ol></li><li><a href='#b39e48'>配置 pelicanconf.py</a></li><li><a href='#d3a354'>创建内容目录下的相关子目录</a></li></ol></li><li><a href='#b49198'>本地生成测试</a><ol><li><a href='#bac0a5'>生成输出文件</a></li><li><a href='#7795ac'>查看网站生成的效果</a></li><li><a href='#91d14b'>运行测试服务器</a></li></ol></li><li><a href='#306b20'>发布并git</a><ol><li><a href='#ec13c9'>生成ssh密钥</a></li><li><a href='#ee2e4a'>添加SSH Key到GitHub：</a></li><li><a href='#124a56'>ssh连接测试</a></li><li><a href='#a3e59c'>git静态网站</a></li><li><a href='#b938c7'>设置别名</a></li><li><a href='#be3806'>设置git时免输用户名和密码</a></li></ol></li>
+                        <li><a href='#cbfa54'>创建运行环境</a><ol><li><a href='#b41e5d'>创建虚拟环境</a></li><li><a href='#ad57b5'>安装 pelican 支持</a></li><li><a href='#a4730b'>创建静态博客文件目录结构及初始配置</a></li><li><a href='#d365c1'>安装 niu-x2-sidebar 主题模板</a><ol><li><a href='#7f70ad'>安装系统依赖</a></li><li><a href='#9baebf'>安装 python 依赖</a></li><li><a href='#f8a47d'>安装 niu-x2-sidebar 主题</a></li><li><a href='#c2bb8d'>安装 niu-x2-sidebar 主题插件</a></li></ol></li><li><a href='#b39e48'>配置 pelicanconf.py</a></li><li><a href='#d3a354'>创建内容目录下的相关子目录</a></li></ol></li><li><a href='#b49198'>本地生成测试</a><ol><li><a href='#bac0a5'>生成输出文件</a></li><li><a href='#7795ac'>查看网站生成的效果</a></li><li><a href='#91d14b'>运行测试服务器</a></li></ol></li><li><a href='#306b20'>发布并git</a><ol><li><a href='#ec13c9'>生成ssh密钥</a></li><li><a href='#ee2e4a'>添加SSH Key到GitHub：</a></li><li><a href='#124a56'>ssh连接测试</a></li><li><a href='#a3e59c'>git静态网站</a></li><li><a href='#be3806'>设置git时免输用户名和密码</a></li></ol></li>
                         <li><a href="#content-comments">评论</a></li>
                     </ol>
                 </div>
