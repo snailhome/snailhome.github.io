@@ -1,5 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>StepUp</title><link>http://snailhome.github.io/</link><description></description><atom:link href="/feeds/gua-niu.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 31 Jan 2016 23:02:00 +0800</lastBuildDate><item><title>调教openSUSE Leap 42.1</title><link>http://snailhome.github.io/note/setting_opensuse.html</link><description>&lt;blockquote&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>StepUp</title><link>http://snailhome.github.io/</link><description></description><atom:link href="/feeds/gua-niu.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 06 Feb 2016 23:44:00 +0800</lastBuildDate><item><title>openSUSE下uWSGI安装过程记录</title><link>http://snailhome.github.io/note/uwsgi_in_opensuse.html</link><description>&lt;h2 id="f411d0"&gt;说明&lt;/h2&gt;
+&lt;p&gt;uWSGI用于Django项目的运行
+登录用户：snail
+项目目录：/home/snail/e3dj19/mysite
+项目名称：mysite&lt;/p&gt;
+&lt;h2 id="1e1d9a"&gt;安装uWSGI&lt;/h2&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper in gcc make python-devel python3-devel
+sudo pip install uwsgi
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="07d521"&gt;添加Virtualenv环境及Django项目&lt;/h2&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~
+virtualenv -p python3 e3dj19
+&lt;span class="nb"&gt;cd&lt;/span&gt; e3dj19
+&lt;span class="nb"&gt;source&lt;/span&gt; bin/activate
+
+pip install django
+
+django-admin startproject mysite
+&lt;span class="nb"&gt;cd&lt;/span&gt; mysite
+./manage.py startapp blog
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;编辑Django项目&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;./manage.py runserver
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;显示正常后再继续&lt;/p&gt;
+&lt;h2 id="4b5d29"&gt;添加uWSGI配置文件&lt;/h2&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo mkdir /etc/uwsig
+sudo mkdir /etc/uwsig/vassals
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;编辑通用uwsgi配置模板&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo vim uwsgi.ini
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;uwsgi.ini配置如下：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[uwsgi]
+# Django项目的uwsgi配置模板
+# 调用模板使用以下语句：
+# prj-home = 项目目录绝对路径
+# prj-name = 项目名称
+# ini = 本模板文件.ini
+#
+# 将配置文件命名为Django的项目名
+# uwsgi单独使用用http，用于单独测试用
+#http       = :8000
+# uwsgi在Nginx中做中间件用socket
+#socket      = /tmp/uwsgi-%(prj-name).sock
+socket      = :8000
+
+pidfile     = /tmp/uwsgi-%(prj-name).pid
+chdir       = %(prj-home)
+home        = %(prj-home)/..
+module      = %(prj-name).wsgi
+
+
+master      = true
+processes   = 4
+threads      = 2
+buffer-size = 40960
+#stats      = :9191
+vacuum      = true
+#daemonize  = /tmp/uwsgi-%(prj-name).log 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;编辑django项目的uwsgi配置实例&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo vim /etc/uwsgi/vassals/e3dj19-mysite.ini
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;e3dj19-mysite.ini配置如下：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[uwsgi]
+prj-home   = /home/snail/e3dj19/mysite
+prj-name   = mysite
+ini        = /etc/uwsgi/uwsgi.ini
+socket      = :9000
+# 下面添加要变更或新增的uWSGI配置项
+# 添加ini项所指文件中有的配置项如threads项则为变更
+# threads      = 20
+# 添加文件中没有的配置项如stats项则为新增
+# stats      = :9191
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="cbf9cb"&gt;测试uWSGI的单位个项目运行情况&lt;/h2&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;uwsgi /etc/uwsgi/vassals/e3dj19-mysite.ini
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;正常运行&lt;/p&gt;
+&lt;h2 id="21aa3d"&gt;添加uWSGI的Emperor模式&lt;/h2&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;uwsgi --emperor /etc/uwsgi/vassals/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;正常运行&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo vim /etc/uwsgi/emperor.ini
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;emperor.ini配置如下：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[uwsgi]
+emperor = /etc/uwsgi/vassals
+uid = nginx
+gid = nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;测试uWSGI的Emperor模式的运行情况&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;uwsgi /etc/uwsgi/emperor.ini
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;正常运行&lt;/p&gt;
+&lt;p&gt;至此uWSGI配置多个Django应用同步运行的配置已正确配置，以后新的Django应用只需类似/etc/uwsgi/vassals/e3dj19-mysite.ini配置即可&lt;/p&gt;
+&lt;h2 id="68104a"&gt;添加到systemd&lt;/h2&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo vim /etc/systemd/system/uwsgi.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;uwsgi.service配置如下：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;[Unit]
+Description=uWSGI Emperor
+After=syslog.target
+
+[Service]
+#User=root
+Type=notify
+ExecStart=/usr/bin/uwsgi --ini /etc/uwsgi/emperor.ini
+#RuntimeDirectory=uwsgi # Requires systemd version 211 or newer
+Restart=always
+KillSignal=SIGQUIT
+StandardError=syslog
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;启动uWSGI服务并测试状态&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo systemctl start uwsgi.service
+systemctl status uwsgi
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;服务运行正常&lt;/p&gt;
+&lt;h1 id="e48e76"&gt;安装配置nginx&lt;/h1&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper in nginx
+sudo nginx -v
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;可以显示nginx版本号&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;sudo vim /etc/nginx/nginx.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;nginx.conf配置如下：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;http {
+    upstream django_uwsgi {
+        # 这是sock文件模式
+        #server unix:///tmp/uwsgi-mysite.sock;
+        # 这是端口监听模式
+        server 127.0.0.1:9000;
+    }
+
+    server {
+        listen       80;
+        ....
+        location / {
+            uwsgi_pass  django_uwsgi;
+            include     uwsgi_params;
+        }
+        ....
+
+
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;启动nginx服务&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;systemctl start nginx
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;打开浏览器输入127.0.0.1，正常显示Djnago页面。
+至此，uWSGI的配置完成，并且测试成功通过。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Sat, 06 Feb 2016 23:44:00 +0800</pubDate><guid>tag:snailhome.github.io,2016-02-06:note/uwsgi_in_opensuse.html</guid><category>uWSGI</category><category>openSUSE</category></item><item><title>调教openSUSE Leap 42.1</title><link>http://snailhome.github.io/note/setting_opensuse.html</link><description>&lt;blockquote&gt;
 &lt;p&gt;这两天又抽风把 &lt;code&gt;Linux Mint&lt;/code&gt; 系统改装成了 &lt;code&gt;openSUSE Leap 42.1&lt;/code&gt;，就着安装使用的情况，做一些记录。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id="4300aa"&gt;&lt;code&gt;Gnome3&lt;/code&gt; 和 &lt;code&gt;KDE5&lt;/code&gt;&lt;/h2&gt;
@@ -3074,43 +3230,4 @@ _   底线
 &lt;blockquote&gt;
 &lt;p&gt;简单的Markdown指南&lt;br/&gt;
 Markdown 语法说明&lt;/p&gt;
-&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Thu, 18 Jun 2015 23:55:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-06-18:note/markdown.html</guid><category>markdown</category></item><item><title>笔记本测试环境的Nginx服务配置</title><link>http://snailhome.github.io/research/nginx_conf.html</link><description>&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# vim xioms_nginx.conf 配置文件&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;# nginx 需要连接的中间件
-upstream xioms {
-    # 这是sock文件模式
-    server unix:///home/env/xioms/xioms.sock;
-    # 这是端口监听模式
-    # server 127.0.0.1:8001;
-}
-
-# 服务配置
-server {
-    # 网站端口
-    listen      8080;
-    # 域名
-    server_name localhost; # 指定为服务器IP或域名
-    charset     utf-8;
-
-    # 最大上传大小
-    client_max_body_size 75M;   # adjust to taste
-
-    # Django media 目录
-    location ^~ /media/  {
-        # Django 项目的 media 目录 
-        alias /home/env/xioms/media/;
-    }
-
-    # Django static 目录
-    location ^~ /static/ {
-        # Django 项目的 static 目录
-        alias /home/env/xioms/static/; 
-    }
-
-    # 最后把所有非静态或媒体的文件请求发给Django处理
-    location / {
-        uwsgi_pass  xioms;
-        include     uwsgi_params;  
-    }
-}
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Mon, 15 Jun 2015 22:06:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-06-15:research/nginx_conf.html</guid><category>nginx</category></item></channel></rss>
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Thu, 18 Jun 2015 23:55:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-06-18:note/markdown.html</guid><category>markdown</category></item></channel></rss>

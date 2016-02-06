@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://snailhome.github.io/</loc>
-<lastmod>2016-02-01T00:35:09-00:00</lastmod>
+<lastmod>2016-02-06T23:45:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://snailhome.github.io/archives.html</loc>
-<lastmod>2016-02-01T00:35:09-00:00</lastmod>
+<lastmod>2016-02-06T23:45:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://snailhome.github.io/categories.html</loc>
-<lastmod>2016-02-01T00:35:09-00:00</lastmod>
+<lastmod>2016-02-06T23:45:51-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -28,6 +28,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <loc>http://snailhome.github.io/about.html</loc>
 <lastmod>2015-06-14T21:34:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://snailhome.github.io/note/uwsgi_in_opensuse.html</loc>
+<lastmod>2016-02-06T23:44:00+08:00</lastmod>
+<changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -215,7 +222,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://snailhome.github.io/note/index.html</loc>
-<lastmod>2016-01-31T23:02:00+08:06</lastmod>
+<lastmod>2016-02-06T23:44:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -235,8 +242,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://snailhome.github.io/tag/code.html</loc>
-<lastmod>2015-08-09T17:52:00+08:06</lastmod>
+<loc>http://snailhome.github.io/tag/mian-mi-ma.html</loc>
+<lastmod>2015-10-06T11:23:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -270,8 +277,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://snailhome.github.io/tag/mian-mi-ma.html</loc>
-<lastmod>2015-10-06T11:23:00+08:06</lastmod>
+<loc>http://snailhome.github.io/tag/fcitx.html</loc>
+<lastmod>2015-09-29T23:07:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -298,8 +305,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://snailhome.github.io/tag/virtualenv.html</loc>
-<lastmod>2015-08-05T01:21:00+08:06</lastmod>
+<loc>http://snailhome.github.io/tag/code.html</loc>
+<lastmod>2015-08-09T17:52:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -375,6 +382,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://snailhome.github.io/tag/uwsgi.html</loc>
+<lastmod>2016-02-06T23:44:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://snailhome.github.io/tag/virtualenv.html</loc>
+<lastmod>2015-08-05T01:21:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://snailhome.github.io/tag/bao-cun.html</loc>
 <lastmod>2015-09-21T22:14:00+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -390,7 +411,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://snailhome.github.io/tag/opensuse.html</loc>
-<lastmod>2016-01-31T23:02:00+08:06</lastmod>
+<lastmod>2016-02-06T23:44:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -459,8 +480,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://snailhome.github.io/tag/fcitx.html</loc>
-<lastmod>2015-09-29T23:07:00+08:06</lastmod>
+<loc>http://snailhome.github.io/tag/typecho.html</loc>
+<lastmod>2015-06-14T23:24:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -468,13 +489,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://snailhome.github.io/tag/yum.html</loc>
 <lastmod>2015-06-15T01:08:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://snailhome.github.io/tag/typecho.html</loc>
-<lastmod>2015-06-14T23:24:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
