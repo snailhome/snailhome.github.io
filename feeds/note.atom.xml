@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>StepUp</title><link href="http://snailhome.github.io/" rel="alternate"></link><link href="/feeds/note.atom.xml" rel="self"></link><id>http://snailhome.github.io/</id><updated>2016-02-06T23:44:00+08:00</updated><entry><title>openSUSE下uWSGI安装过程记录</title><link href="http://snailhome.github.io/note/uwsgi_in_opensuse.html" rel="alternate"></link><updated>2016-02-06T23:44:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2016-02-06:note/uwsgi_in_opensuse.html</id><summary type="html">&lt;h2 id="f411d0"&gt;说明&lt;/h2&gt;
-&lt;p&gt;uWSGI用于Django项目的运行
-登录用户：snail
-项目目录：/home/snail/e3dj19/mysite
+&lt;p&gt;uWSGI用于Django项目的运行&lt;br/&gt;
+登录用户：snail&lt;br/&gt;
+项目目录：/home/snail/e3dj19/mysite&lt;br/&gt;
 项目名称：mysite&lt;/p&gt;
 &lt;h2 id="1e1d9a"&gt;安装uWSGI&lt;/h2&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper in gcc make python-devel python3-devel
