@@ -1781,7 +1781,7 @@ root  /home/html;
 &lt;h2 id="564e7c"&gt;添加输入法&lt;/h2&gt;
 &lt;p&gt;linux mint支持多种输入法框架，这方面做得还是比较好的。打开&lt;code&gt;菜单&lt;/code&gt; -&amp;gt; &lt;code&gt;首选项&lt;/code&gt; -&amp;gt; &lt;code&gt;语言设置&lt;/code&gt;窗口 －&amp;gt; &lt;code&gt;输入法&lt;/code&gt;页 -&amp;gt; 点击&lt;code&gt;添加对xxx的支持&lt;/code&gt;按钮，就可以添加相应输入法的框架了&lt;/p&gt;
 &lt;p&gt;我使用小企鹅&lt;code&gt;fcitx&lt;/code&gt;输入法，在输入法&lt;code&gt;页点击&lt;/code&gt;添加对fcitx的支持&lt;code&gt;按钮，就会开始安装进程，完成后不要点击&lt;/code&gt;安装可选部件件&lt;code&gt;，不然会一股脑给你安装了61个可选部件，我勒个去～～，那怎么做？
-关闭&lt;/code&gt;语言设置&lt;code&gt;窗口，打开&lt;/code&gt;菜单&lt;code&gt;-&amp;gt;&lt;/code&gt;系统管理&lt;code&gt;-&amp;gt;&lt;/code&gt;新立得软件包管理器&lt;code&gt;，过滤&lt;/code&gt;fcitx&lt;code&gt;，然后在列表中分别找到&lt;/code&gt;fcitx-googlepinyin&lt;code&gt;，&lt;/code&gt;fcitx-table-wubi&lt;code&gt;，&lt;/code&gt;fcitx-table&lt;code&gt;，在列表项上右键选择&lt;/code&gt;标志以便安装&lt;code&gt;，然后点击&lt;/code&gt;应用`就开始安装了。
+关闭&lt;/code&gt;语言设置&lt;code&gt;窗口，打开&lt;/code&gt;菜单&lt;code&gt;-&amp;gt;&lt;/code&gt;系统管理&lt;code&gt;-&amp;gt;&lt;/code&gt;新立得软件包管理器&lt;code&gt;，过滤&lt;/code&gt;fcitx&lt;code&gt;，然后在列表中分别找到&lt;/code&gt;fcitx-googlepinyin&lt;code&gt;，&lt;/code&gt;fcitx-table-wbpy&lt;code&gt;，在列表项上右键选择&lt;/code&gt;标志以便安装&lt;code&gt;，然后点击&lt;/code&gt;应用`就开始安装了。
 这里安装的是谷哥拼音和五笔。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;fcitx&lt;/code&gt;输入法界面比较美观，汉化也比较全面
