@@ -115,41 +115,41 @@
 <li>套件升级不影响其他应用</li>
 </ol>
 <h3 id="e655a4">安装</h3>
-<div class="codehilite"><pre>    sudo apt-get install python-virtualenv
+<div class="codehilite"><pre><span></span>    sudo apt-get install python-virtualenv
 </pre></div>
 <p>使用方法</p>
-<div class="codehilite"><pre>    virtualenv [虚拟环境名称]
+<div class="codehilite"><pre><span></span>    virtualenv [虚拟环境名称]
 </pre></div>
 <p>如，创建<strong>ENV</strong>的虚拟环境</p>
-<div class="codehilite"><pre>    virtualenv ENV
+<div class="codehilite"><pre><span></span>    virtualenv ENV
 </pre></div>
 <p>如果系统中存在python2和python3两个版本，我们要让虚拟环境基于其中一个版本，可以这样操作</p>
-<div class="codehilite"><pre>    virtualenv -p python2 ENV  #基于python2
+<div class="codehilite"><pre><span></span>    virtualenv -p python2 ENV  #基于python2
 </pre></div>
 <p>或者</p>
-<div class="codehilite"><pre>    virtualenv -p python3 ENV  #基于python3
+<div class="codehilite"><pre><span></span>    virtualenv -p python3 ENV  #基于python3
 </pre></div>
 <p>默认情况下，虚拟环境会依赖系统环境中的site packages，就是说系统中已经安装好的第三方package也会安装在虚拟环境中，如果不想依赖这些package，那么可以加上参数 <code>--no-site-packages</code> 建立虚拟环境</p>
-<div class="codehilite"><pre>    virtualenv --no-site-packages [虚拟环境名称]
+<div class="codehilite"><pre><span></span>    virtualenv --no-site-packages [虚拟环境名称]
 </pre></div>
 <p>但在新版本virtualenv中这个选项已经是默认项了。</p>
 <p>启动虚拟环境</p>
-<div class="codehilite"><pre>    cd ENV
+<div class="codehilite"><pre><span></span>    cd ENV
     source ./bin/activate
 </pre></div>
 <p>注意此时命令行会多一个(ENV)，ENV为虚拟环境名称，接下来所有模块都只会安装到该目录中去。</p>
 <p>退出虚拟环境</p>
-<div class="codehilite"><pre>    deactivate
+<div class="codehilite"><pre><span></span>    deactivate
 </pre></div>
 <p>在虚拟环境安装Python套件
 Virtualenv 附带有pip安装工具，因此需要安装的套件可以直接运行：</p>
-<div class="codehilite"><pre>    pip install [套件名称]
+<div class="codehilite"><pre><span></span>    pip install [套件名称]
 </pre></div>
 <p>如果没有启动虚拟环境，系统也安装了pip工具，那么套件将被安装在系统环境中，为了避免发生此事，可以在<code>~/.bashrc</code>文件中加上：</p>
-<div class="codehilite"><pre>    export PIP_REQUIRE_VIRTUALENV=true
+<div class="codehilite"><pre><span></span>    export PIP_REQUIRE_VIRTUALENV=true
 </pre></div>
 <p>或者让在执行pip的时候让系统自动开启虚拟环境：</p>
-<div class="codehilite"><pre>    export PIP_RESPECT_VIRTUALENV=true
+<div class="codehilite"><pre><span></span>    export PIP_RESPECT_VIRTUALENV=true
 </pre></div>
 <h2 id="c58843">Virtualenvwrapper</h2>
 <p>Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境，它可以做：</p>
@@ -160,35 +160,35 @@ Virtualenv 附带有pip安装工具，因此需要安装的套件可以直接运
 <li>...</li>
 </ol>
 <h3 id="e655a4_1">安装</h3>
-<div class="codehilite"><pre>    sudo easy_install virtualenvwrapper
+<div class="codehilite"><pre><span></span>    sudo easy_install virtualenvwrapper
 </pre></div>
 <p>此时还不能使用virtualenvwrapper，默认virtualenvwrapper安装在/usr/local/bin下面，实际上你需要运行virtualenvwrapper.sh文件才行，先别急，打开这个文件看看,里面有安装步骤，我们照着操作把环境设置好。</p>
 <p>创建目录用来存放虚拟环境</p>
-<div class="codehilite"><pre>    mkdir $HOME/.virtualenvs
+<div class="codehilite"><pre><span></span>    mkdir $HOME/.virtualenvs
 </pre></div>
 <p>在<code>~/.bashrc</code>中添加行：</p>
-<div class="codehilite"><pre>    export WORKON_HOME=$HOME/.virtualenvs
+<div class="codehilite"><pre><span></span>    export WORKON_HOME=$HOME/.virtualenvs
     source /usr/local/bin/virtualenvwrapper.sh
 </pre></div>
 <p>保存退出后运行： <code>source ~/.bashrc</code></p>
 <p>此时virtualenvwrapper就可以使用了。</p>
 <p>列出虚拟环境列表</p>
-<div class="codehilite"><pre>    workon
+<div class="codehilite"><pre><span></span>    workon
 </pre></div>
 <p>也可以使用</p>
-<div class="codehilite"><pre>    lsvirtualenv
+<div class="codehilite"><pre><span></span>    lsvirtualenv
 </pre></div>
 <p>新建虚拟环境</p>
-<div class="codehilite"><pre>    mkvirtualenv [虚拟环境名称]
+<div class="codehilite"><pre><span></span>    mkvirtualenv [虚拟环境名称]
 </pre></div>
 <p>启动/切换虚拟环境</p>
-<div class="codehilite"><pre>    workon [虚拟环境名称]
+<div class="codehilite"><pre><span></span>    workon [虚拟环境名称]
 </pre></div>
 <p>删除虚拟环境</p>
-<div class="codehilite"><pre>    rmvirtualenv [虚拟环境名称]
+<div class="codehilite"><pre><span></span>    rmvirtualenv [虚拟环境名称]
 </pre></div>
 <p>离开虚拟环境</p>
-<div class="codehilite"><pre>    deactivate
+<div class="codehilite"><pre><span></span>    deactivate
 </pre></div>
                 </div>
                 <div id="content-comments">

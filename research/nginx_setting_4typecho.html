@@ -113,9 +113,9 @@
 主要还是在于Nginx的配置上，
 赶紧贴出来，用于留存。</p>
 </blockquote>
-<div class="codehilite"><pre>$ sudo vim /etc/nginx/sites-available/default
+<div class="codehilite"><pre><span></span>$ sudo vim /etc/nginx/sites-available/default
 </pre></div>
-<div class="codehilite"><pre>location ~ .*\.php(\/.*)*$ {
+<div class="codehilite"><pre><span></span>location ~ .*\.php(\/.*)*$ {
         include fastcgi_params;
         fastcgi_index index.php;
         set $path_info "";
@@ -132,7 +132,7 @@
 </pre></div>
 <p>另外
 网站的<code>usr</code>要开启读写权限</p>
-<div class="codehilite"><pre># sudo chmod 666 -R usr
+<div class="codehilite"><pre><span></span># sudo chmod 666 -R usr
 # sudo chmod 777 -R `find usr -type d`
 </pre></div>
                 </div>

@@ -110,58 +110,58 @@
                 <div id="niu2-main-content">
                     <p>alias 即“别名”，为便于理解，你可以将其看成是一个命令的快捷方式。使用 alias 的最大好处是，可以简化输入，从而为你节省时间，并提高效率。定义的 alias 可以保存到 ~/.bashrc 文件中，以后在命令行中就可以直接使用了。</p>
 <p>要设置别名</p>
-<div class="codehilite"><pre>$ vim ~/.bashrc
+<div class="codehilite"><pre><span></span>$ vim ~/.bashrc
 </pre></div>
 <p>下面介绍了 10 个 Bash alias，个人觉得都很实用：</p>
 <h2 id="255b55">几个有用的别名用法</h2>
 <h3 id="44c31b">ssh 别名</h3>
-<div class="codehilite"><pre>alias server_name="ssh -v -l USERNAME IP ADDRESS"
+<div class="codehilite"><pre><span></span>alias server_name="ssh -v -l USERNAME IP ADDRESS"
 </pre></div>
 <p>更改 server_name、USERNAME 及 IP 地址以适应你的需要。对于经常要使用 ssh 登录远程 shell 的同学来说，这是一个值得收藏的别名。</p>
 <h3 id="769102">ls 别名</h3>
-<div class="codehilite"><pre>alias ll="ls -l"，另一个 alias la="ls -a"
+<div class="codehilite"><pre><span></span>alias ll="ls -l"，另一个 alias la="ls -a"
 </pre></div>
 <p>意思很明显，在此就不多作解释了。</p>
 <h3 id="5d5bd1">rm 别名</h3>
-<div class="codehilite"><pre>alias rm="rm -i"
+<div class="codehilite"><pre><span></span>alias rm="rm -i"
 </pre></div>
 <p>这个别名让你更加安全地执行删除操作。</p>
 <h3 id="f07115">df 别名</h3>
-<div class="codehilite"><pre>alias df="df -h"
+<div class="codehilite"><pre><span></span>alias df="df -h"
 </pre></div>
 <p>让你以 MB 或 G 为单位查看磁盘的空间。</p>
 <h3 id="8f5252">Firefox 别名</h3>
-<div class="codehilite"><pre>alias ff1="/home/jlwallen/firefox/firefox" 及 alias ff2="/home/jlwallen/firefoxb3/firefox"
+<div class="codehilite"><pre><span></span>alias ff1="/home/jlwallen/firefox/firefox" 及 alias ff2="/home/jlwallen/firefoxb3/firefox"
 </pre></div>
 <p>适合使用两个 Firefox 版本的朋友，如一个稳定版，另一个为测试版。</p>
 <h3 id="04ee60">书签别名</h3>
-<div class="codehilite"><pre>alias fftr="/home/jlwallen/firefox/firefox http://linuxtoy.org"
+<div class="codehilite"><pre><span></span>alias fftr="/home/jlwallen/firefox/firefox http://linuxtoy.org"
 </pre></div>
 <p>用于打开一个指定的网址。</p>
 <h3 id="5842eb">文件别名</h3>
-<div class="codehilite"><pre>alias emenu="aterm nano -e ~/.e16/menus/user_apps"
+<div class="codehilite"><pre><span></span>alias emenu="aterm nano -e ~/.e16/menus/user_apps"
 </pre></div>
 <p>如常常需要编辑的配置文件。</p>
 <h3 id="f8e198">apt-get update 别名</h3>
-<div class="codehilite"><pre>alias update="sudo apt-get update"
+<div class="codehilite"><pre><span></span>alias update="sudo apt-get update"
 </pre></div>
 <p>使用其他 Linux 发行版的同学可以换一下其中的 sudo apt-get update。</p>
 <h3 id="a2c9a8">rpm 批量安装别名</h3>
-<div class="codehilite"><pre>alias brpm="rpm -ivh ~/RPM/*rpm"
+<div class="codehilite"><pre><span></span>alias brpm="rpm -ivh ~/RPM/*rpm"
 </pre></div>
 <p>便于同时安装多个 rpm 包。</p>
 <h3 id="13342f">长路径别名</h3>
-<div class="codehilite"><pre>alias astart="cd ~/GNUstep/Library/AfterStep/start"
+<div class="codehilite"><pre><span></span>alias astart="cd ~/GNUstep/Library/AfterStep/start"
 </pre></div>
 <p>对于需要经常访问的路径特别长的目录也可为其定义别名。</p>
 <h2 id="a6f784">我的别名用法</h2>
 <h3 id="339219">进入虚拟环境</h3>
 <p>我有一个 <code>virtualenv</code> 的虚拟环境 <code>env2p</code> ，为了快速进入虚拟环境</p>
-<div class="codehilite"><pre>alias se2p="cd ~/env2p&amp;source bin/activate"
+<div class="codehilite"><pre><span></span>alias se2p="cd ~/env2p&amp;source bin/activate"
 </pre></div>
 <p>我只要se2p就进入了虚拟环境。</p>
 <h3 id="b05767">推送 <code>git</code> 到 <code>github.io</code></h3>
-<div class="codehilite"><pre>alias git2p="cd ~/env2p/blog&amp;&amp;make publish&amp;&amp;cd output&amp;&amp;git add -A&amp;&amp;git commit -m 'Git My Static Blog'&amp;&amp;git push origin master"
+<div class="codehilite"><pre><span></span>alias git2p="cd ~/env2p/blog&amp;&amp;make publish&amp;&amp;cd output&amp;&amp;git add -A&amp;&amp;git commit -m 'Git My Static Blog'&amp;&amp;git push origin master"
 </pre></div>
                 </div>
                 <div id="content-comments">

@@ -114,11 +114,11 @@
 项目目录：/home/snail/e3dj19/mysite<br/>
 项目名称：mysite</p>
 <h2 id="1e1d9a">安装uWSGI</h2>
-<div class="codehilite"><pre>sudo zypper in gcc make python-devel python3-devel
+<div class="codehilite"><pre><span></span>sudo zypper in gcc make python-devel python3-devel
 sudo pip install uwsgi
 </pre></div>
 <h2 id="07d521">添加Virtualenv环境及Django项目</h2>
-<div class="codehilite"><pre><span class="nb">cd</span> ~
+<div class="codehilite"><pre><span></span><span class="nb">cd</span> ~
 virtualenv -p python3 e3dj19
 <span class="nb">cd</span> e3dj19
 <span class="nb">source</span> bin/activate
@@ -130,18 +130,18 @@ django-admin startproject mysite
 ./manage.py startapp blog
 </pre></div>
 <p>编辑Django项目</p>
-<div class="codehilite"><pre>./manage.py runserver
+<div class="codehilite"><pre><span></span>./manage.py runserver
 </pre></div>
 <p>显示正常后再继续</p>
 <h2 id="4b5d29">添加uWSGI配置文件</h2>
-<div class="codehilite"><pre>sudo mkdir /etc/uwsig
+<div class="codehilite"><pre><span></span>sudo mkdir /etc/uwsig
 sudo mkdir /etc/uwsig/vassals
 </pre></div>
 <p>编辑通用uwsgi配置模板</p>
-<div class="codehilite"><pre>sudo vim uwsgi.ini
+<div class="codehilite"><pre><span></span>sudo vim uwsgi.ini
 </pre></div>
 <p>uwsgi.ini配置如下：</p>
-<div class="codehilite"><pre>[uwsgi]
+<div class="codehilite"><pre><span></span>[uwsgi]
 # Django项目的uwsgi配置模板
 # 调用模板使用以下语句：
 # prj-home = 项目目录绝对路径
@@ -170,10 +170,10 @@ vacuum      = true
 #daemonize  = /tmp/uwsgi-%(prj-name).log 
 </pre></div>
 <p>编辑django项目的uwsgi配置实例</p>
-<div class="codehilite"><pre>sudo vim /etc/uwsgi/vassals/e3dj19-mysite.ini
+<div class="codehilite"><pre><span></span>sudo vim /etc/uwsgi/vassals/e3dj19-mysite.ini
 </pre></div>
 <p>e3dj19-mysite.ini配置如下：</p>
-<div class="codehilite"><pre>[uwsgi]
+<div class="codehilite"><pre><span></span>[uwsgi]
 prj-home   = /home/snail/e3dj19/mysite
 prj-name   = mysite
 ini        = /etc/uwsgi/uwsgi.ini
@@ -185,31 +185,31 @@ socket      = :9000
 # stats      = :9191
 </pre></div>
 <h2 id="cbf9cb">测试uWSGI的单位个项目运行情况</h2>
-<div class="codehilite"><pre>uwsgi /etc/uwsgi/vassals/e3dj19-mysite.ini
+<div class="codehilite"><pre><span></span>uwsgi /etc/uwsgi/vassals/e3dj19-mysite.ini
 </pre></div>
 <p>正常运行</p>
 <h2 id="21aa3d">添加uWSGI的Emperor模式</h2>
-<div class="codehilite"><pre>uwsgi --emperor /etc/uwsgi/vassals/
+<div class="codehilite"><pre><span></span>uwsgi --emperor /etc/uwsgi/vassals/
 </pre></div>
 <p>正常运行</p>
-<div class="codehilite"><pre>sudo vim /etc/uwsgi/emperor.ini
+<div class="codehilite"><pre><span></span>sudo vim /etc/uwsgi/emperor.ini
 </pre></div>
 <p>emperor.ini配置如下：</p>
-<div class="codehilite"><pre>[uwsgi]
+<div class="codehilite"><pre><span></span>[uwsgi]
 emperor = /etc/uwsgi/vassals
 uid = nginx
 gid = nginx
 </pre></div>
 <p>测试uWSGI的Emperor模式的运行情况</p>
-<div class="codehilite"><pre>uwsgi /etc/uwsgi/emperor.ini
+<div class="codehilite"><pre><span></span>uwsgi /etc/uwsgi/emperor.ini
 </pre></div>
 <p>正常运行</p>
 <p>至此uWSGI配置多个Django应用同步运行的配置已正确配置，以后新的Django应用只需类似/etc/uwsgi/vassals/e3dj19-mysite.ini配置即可</p>
 <h2 id="68104a">添加到systemd</h2>
-<div class="codehilite"><pre>sudo vim /etc/systemd/system/uwsgi.service
+<div class="codehilite"><pre><span></span>sudo vim /etc/systemd/system/uwsgi.service
 </pre></div>
 <p>uwsgi.service配置如下：</p>
-<div class="codehilite"><pre>[Unit]
+<div class="codehilite"><pre><span></span>[Unit]
 Description=uWSGI Emperor
 After=syslog.target
 
@@ -227,19 +227,19 @@ NotifyAccess=all
 WantedBy=multi-user.target
 </pre></div>
 <p>启动uWSGI服务并测试状态</p>
-<div class="codehilite"><pre>sudo systemctl start uwsgi.service
+<div class="codehilite"><pre><span></span>sudo systemctl start uwsgi.service
 systemctl status uwsgi
 </pre></div>
 <p>服务运行正常</p>
 <h1 id="e48e76">安装配置nginx</h1>
-<div class="codehilite"><pre>sudo zypper in nginx
+<div class="codehilite"><pre><span></span>sudo zypper in nginx
 sudo nginx -v
 </pre></div>
 <p>可以显示nginx版本号</p>
-<div class="codehilite"><pre>sudo vim /etc/nginx/nginx.conf
+<div class="codehilite"><pre><span></span>sudo vim /etc/nginx/nginx.conf
 </pre></div>
 <p>nginx.conf配置如下：</p>
-<div class="codehilite"><pre>http {
+<div class="codehilite"><pre><span></span>http {
     upstream django_uwsgi {
         # 这是sock文件模式
         #server unix:///tmp/uwsgi-mysite.sock;
@@ -261,7 +261,7 @@ sudo nginx -v
 }
 </pre></div>
 <p>启动nginx服务</p>
-<div class="codehilite"><pre>systemctl start nginx
+<div class="codehilite"><pre><span></span>systemctl start nginx
 </pre></div>
 <p>打开浏览器输入127.0.0.1，正常显示Djnago页面。
 至此，uWSGI的配置完成，并且测试成功通过。</p>

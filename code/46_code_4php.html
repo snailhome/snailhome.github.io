@@ -113,7 +113,7 @@
 <h3 id="5e852f">1. 发送 SMS</h3>
 <p>在开发 Web 或者移动应用的时候，经常会遇到需要发送 SMS 给用户，或者因为登录原因，或者是为了发送信息。下面的 PHP 代码就实现了发送 SMS 的功能。</p>
 <p>为了使用任何的语言发送 SMS，需要一个 SMS gateway。大部分的 SMS 会提供一个 API，这里是使用 MSG91 作为 SMS gateway。</p>
-<div class="codehilite"><pre><span class="x">function send_sms($mobile,$msg)</span>
+<div class="codehilite"><pre><span></span><span class="x">function send_sms($mobile,$msg)</span>
 <span class="x">{</span>
 <span class="x">$authKey = "XXXXXXXXXXX";</span>
 <span class="x">date_default_timezone_set("Asia/Kolkata");</span>
@@ -170,7 +170,7 @@
 </pre></div>
 <p>其中“$authKey = "XXXXXXXXXXX";”需要你输入你的密码，“$senderId = "IKOONK";”需要你输入你的 SenderID。当输入移动号码的时候需要指定国家代码 (比如，美国是 1，印度是 91 )。</p>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$message</span> <span class="o">=</span> <span class="s2">"Hello World"</span><span class="p">;</span>
 <span class="nv">$mobile</span> <span class="o">=</span> <span class="s2">"918112998787"</span><span class="p">;</span>
 <span class="nx">send_sms</span><span class="p">(</span><span class="nv">$mobile</span><span class="p">,</span><span class="nv">$message</span><span class="p">);</span>
@@ -179,7 +179,7 @@
 <h3 id="c49a1d">2. 使用 mandrill 发送邮件</h3>
 <p>Mandrill 是一款强大的 SMTP 提供器。开发者倾向于使用一个第三方 SMTP provider 来获取更好的收件交付。</p>
 <p>下面的函数中，你需要把 “Mandrill.php” 放在同一个文件夹，作为 PHP 文件，这样就可以使用TA来发送邮件。</p>
-<div class="codehilite"><pre><span class="x">function send_email($to_email,$subject,$message1)</span>
+<div class="codehilite"><pre><span></span><span class="x">function send_email($to_email,$subject,$message1)</span>
 <span class="x">{</span>
 <span class="x">require_once 'Mandrill.php';</span>
 <span class="x">$apikey = 'XXXXXXXXXX'; //specify your api key here</span>
@@ -199,7 +199,7 @@
 </pre></div>
 <p>“$apikey = 'XXXXXXXXXX'; //specify your api key here”这里需要你指定你的 API 密钥（从 Mandrill 账户中获得）。</p>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$to</span> <span class="o">=</span> <span class="s2">"abc@example.com"</span><span class="p">;</span>
 <span class="nv">$subject</span> <span class="o">=</span> <span class="s2">"This is a test email"</span><span class="p">;</span>
 <span class="nv">$message</span> <span class="o">=</span> <span class="s2">"Hello World!"</span><span class="p">;</span>
@@ -209,7 +209,7 @@
 <p>为了达到最好的效果，最好按照 Mandrill 的教程去配置 DNS。</p>
 <h3 id="2f6989">3. PHP 函数：阻止 SQL 注入</h3>
 <p>SQL 注入或者 SQLi 常见的攻击网站的手段，使用下面的代码可以帮助你防止这些工具。</p>
-<div class="codehilite"><pre><span class="x">function clean($input)</span>
+<div class="codehilite"><pre><span></span><span class="x">function clean($input)</span>
 <span class="x">{</span>
 <span class="x">    if (is_array($input))</span>
 <span class="x">    {</span>
@@ -235,7 +235,7 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$text</span> <span class="o">=</span> <span class="s2">"&lt;script&gt;alert(1)&lt;/script&gt;"</span><span class="p">;</span>
 <span class="nv">$text</span> <span class="o">=</span> <span class="nx">clean</span><span class="p">(</span><span class="nv">$text</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$text</span><span class="p">;</span>
@@ -243,7 +243,7 @@
 </pre></div>
 <h3 id="083da9">4. 检测用户位置</h3>
 <p>使用下面的函数，可以检测用户是在哪个城市访问你的网站</p>
-<div class="codehilite"><pre><span class="x">function detect_city($ip) {</span>
+<div class="codehilite"><pre><span></span><span class="x">function detect_city($ip) {</span>
 
 <span class="x">        $default = 'UNKNOWN';</span>
 
@@ -289,7 +289,7 @@
 <span class="x">    }</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$ip</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'REMOTE_ADDR'</span><span class="p">];</span>
 <span class="nv">$city</span> <span class="o">=</span> <span class="nx">detect_city</span><span class="p">(</span><span class="nv">$ip</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$city</span><span class="p">;</span>
@@ -297,7 +297,7 @@
 </pre></div>
 <h3 id="569b1a">5. 获取 Web 页面的源代码</h3>
 <p>使用下面的函数，可以获取任意 Web 页面的 HTML 代码</p>
-<div class="codehilite"><pre><span class="x">function display_sourcecode($url)</span>
+<div class="codehilite"><pre><span></span><span class="x">function display_sourcecode($url)</span>
 <span class="x">{</span>
 <span class="x">$lines = file($url);</span>
 <span class="x">$output = "";</span>
@@ -308,14 +308,14 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$url</span> <span class="o">=</span> <span class="s2">"http://blog.koonk.com"</span><span class="p">;</span>
 <span class="nv">$source</span> <span class="o">=</span> <span class="nx">display_sourcecode</span><span class="p">(</span><span class="nv">$url</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$source</span><span class="p">;</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="a043ae">6. 计算喜欢你的 Facebook 页面的用户</h3>
-<div class="codehilite"><pre><span class="x">function fb_fan_count($facebook_name)</span>
+<div class="codehilite"><pre><span></span><span class="x">function fb_fan_count($facebook_name)</span>
 <span class="x">{</span>
 <span class="x">    $data = json_decode(file_get_contents("https://graph.facebook.com/".$facebook_name));</span>
 <span class="x">    $likes = $data-&gt;likes;</span>
@@ -323,14 +323,14 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$page</span> <span class="o">=</span> <span class="s2">"koonktechnologies"</span><span class="p">;</span>
 <span class="nv">$count</span> <span class="o">=</span> <span class="nx">fb_fan_count</span><span class="p">(</span><span class="nv">$page</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$count</span><span class="p">;</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="8bf529">7. 确定任意图片的主导颜色</h3>
-<div class="codehilite"><pre><span class="x">function dominant_color($image)</span>
+<div class="codehilite"><pre><span></span><span class="x">function dominant_color($image)</span>
 <span class="x">{</span>
 <span class="x">$i = imagecreatefromjpeg($image);</span>
 <span class="x">for ($x=0;$x&lt;imagesx($i);$x++) {</span>
@@ -352,7 +352,7 @@
 </pre></div>
 <h3 id="3de73b">8. whois 查询</h3>
 <p>使用下面的函数可以获取任何域名用户的完整细节</p>
-<div class="codehilite"><pre><span class="x">function whois_query($domain) {</span>
+<div class="codehilite"><pre><span></span><span class="x">function whois_query($domain) {</span>
 
 <span class="x">    // fix the domain name:</span>
 <span class="x">    $domain = strtolower(trim($domain));</span>
@@ -435,7 +435,7 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$domain</span> <span class="o">=</span> <span class="s2">"http://www.blog.koonk.com"</span><span class="p">;</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nx">whois_query</span><span class="p">(</span><span class="nv">$domain</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$result</span><span class="p">);</span>
@@ -443,7 +443,7 @@
 </pre></div>
 <h3 id="6a6918">9. 验证邮箱地址</h3>
 <p>有时候，当在网站填写表单，用户可能会输入错误的邮箱地址，这个函数可以验证邮箱地址是否有效。</p>
-<div class="codehilite"><pre><span class="x">function is_validemail($email)</span>
+<div class="codehilite"><pre><span></span><span class="x">function is_validemail($email)</span>
 <span class="x">{</span>
 <span class="x">$check = 0;</span>
 <span class="x">if(filter_var($email,FILTER_VALIDATE_EMAIL))</span>
@@ -454,7 +454,7 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$email</span> <span class="o">=</span> <span class="s2">"blog@koonk.com"</span><span class="p">;</span>
 <span class="nv">$check</span> <span class="o">=</span> <span class="nx">is_validemail</span><span class="p">(</span><span class="nv">$email</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$check</span><span class="p">;</span>
@@ -462,7 +462,7 @@
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="fcdec9">10. 获取用户的真实  IP</h3>
-<div class="codehilite"><pre><span class="x">function getRealIpAddr()  </span>
+<div class="codehilite"><pre><span></span><span class="x">function getRealIpAddr()  </span>
 <span class="x">{  </span>
 <span class="x">    if (!emptyempty($_SERVER['HTTP_CLIENT_IP']))  </span>
 <span class="x">    {  </span>
@@ -481,14 +481,14 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$ip</span> <span class="o">=</span> <span class="nx">getRealIpAddr</span><span class="p">();</span>
 <span class="k">echo</span> <span class="nv">$ip</span><span class="p">;</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="0e14b7">11. 转换 URL：从字符串变成超链接</h3>
 <p>如果你正在开发论坛，博客或者是一个常规的表单提交，很多时候都要用户访问一个网站。使用这个函数，URL 字符串就可以自动的转换为超链接。</p>
-<div class="codehilite"><pre><span class="x">function makeClickableLinks($text) </span>
+<div class="codehilite"><pre><span></span><span class="x">function makeClickableLinks($text) </span>
 <span class="x">{  </span>
 <span class="x"> $text = eregi_replace('(((f|ht){1}tp://)[-a-zA-Z0-9@:%_+.~#?&amp;//=]+)',  </span>
 <span class="x"> '&lt;a href="\1"&gt;\1&lt;/a&gt;', $text);  </span>
@@ -501,7 +501,7 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$text</span> <span class="o">=</span> <span class="s2">"This is my first post on http://blog.koonk.com"</span><span class="p">;</span>
 <span class="nv">$text</span> <span class="o">=</span> <span class="nx">makeClickableLinks</span><span class="p">(</span><span class="nv">$text</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$text</span><span class="p">;</span>
@@ -509,7 +509,7 @@
 </pre></div>
 <h3 id="4a162a">12. 阻止多个 IP 访问你的网站</h3>
 <p>这个代码片段可以方便你禁止某些特定的 IP 地址访问你的网站</p>
-<div class="codehilite"><pre><span class="x">if ( !file_exists('blocked_ips.txt') ) {</span>
+<div class="codehilite"><pre><span></span><span class="x">if ( !file_exists('blocked_ips.txt') ) {</span>
 <span class="x"> $deny_ips = array(</span>
 <span class="x">  '127.0.0.1',</span>
 <span class="x">  '192.168.1.1',</span>
@@ -531,7 +531,7 @@
 </pre></div>
 <h3 id="524b6e">13. 强制性文件下载</h3>
 <p>如果你需要下载特定的文件而不用另开新窗口，下面的代码片段可以帮助你。</p>
-<div class="codehilite"><pre><span class="x">function force_download($file) </span>
+<div class="codehilite"><pre><span></span><span class="x">function force_download($file) </span>
 <span class="x">{ </span>
 <span class="x">    $dir      = "../log/exports/"; </span>
 <span class="x">    if ((isset($file))&amp;&amp;(file_exists($dir.$file))) { </span>
@@ -548,18 +548,18 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="x">&lt;php</span>
+<div class="codehilite"><pre><span></span><span class="x">&lt;php</span>
 <span class="x">force_download("image.jpg");</span>
 <span class="x">?&gt;</span>
 </pre></div>
 <h3 id="09d2ee">14. 创建 JSON 数据</h3>
 <p>使用下面的 PHP 片段可以创建 JSON 数据，可以方便你创建移动应用的 Web 服务</p>
-<div class="codehilite"><pre><span class="x">$json_data = array ('id'=&gt;1,'name'=&gt;"Mohit");</span>
+<div class="codehilite"><pre><span></span><span class="x">$json_data = array ('id'=&gt;1,'name'=&gt;"Mohit");</span>
 <span class="x">echo json_encode($json_data);</span>
 </pre></div>
 <h3 id="a37b2a">15. 压缩 zip 文件</h3>
 <p>使用下面的 PHP 片段可以即时压缩 zip 文件</p>
-<div class="codehilite"><pre><span class="x">function create_zip($files = array(),$destination = '',$overwrite = false) {  </span>
+<div class="codehilite"><pre><span></span><span class="x">function create_zip($files = array(),$destination = '',$overwrite = false) {  </span>
 <span class="x">    //if the zip file already exists and overwrite is false, return false  </span>
 <span class="x">    if(file_exists($destination) &amp;&amp; !$overwrite) { return false; }  </span>
 <span class="x">    //vars  </span>
@@ -601,13 +601,13 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$files</span><span class="o">=</span><span class="k">array</span><span class="p">(</span><span class="s1">'file1.jpg'</span><span class="p">,</span> <span class="s1">'file2.jpg'</span><span class="p">,</span> <span class="s1">'file3.gif'</span><span class="p">);</span>  
 <span class="nx">create_zip</span><span class="p">(</span><span class="nv">$files</span><span class="p">,</span> <span class="s1">'myzipfile.zip'</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span> 
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="4e7fc7">16. 解压文件</h3>
-<div class="codehilite"><pre><span class="x">function unzip($location,$newLocation)</span>
+<div class="codehilite"><pre><span></span><span class="x">function unzip($location,$newLocation)</span>
 <span class="x">{</span>
 <span class="x">        if(exec("unzip $location",$arr)){</span>
 <span class="x">            mkdir($newLocation);</span>
@@ -623,12 +623,12 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nx">unzip</span><span class="p">(</span><span class="s1">'test.zip'</span><span class="p">,</span><span class="s1">'unziped/test'</span><span class="p">);</span> <span class="c1">//File would be unzipped in unziped/test folder</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="438b77">17. 缩放图片</h3>
-<div class="codehilite"><pre><span class="x">function resize_image($filename, $tmpname, $xmax, $ymax)  </span>
+<div class="codehilite"><pre><span></span><span class="x">function resize_image($filename, $tmpname, $xmax, $ymax)  </span>
 <span class="x">{  </span>
 <span class="x">    $ext = explode(".", $filename);  </span>
 <span class="x">    $ext = $ext[count($ext)-1];  </span>
@@ -662,7 +662,7 @@
 </pre></div>
 <h3 id="8d6fc6">18. 使用 mail() 发送邮件</h3>
 <p>之前我们提供了如何使用 Mandrill 发送邮件的 PHP 代码片段，但是如果你不想使用第三方服务，那么可以使用下面的 PHP 代码片段。</p>
-<div class="codehilite"><pre><span class="x">function send_mail($to,$subject,$body)</span>
+<div class="codehilite"><pre><span></span><span class="x">function send_mail($to,$subject,$body)</span>
 <span class="x">{</span>
 <span class="x">$headers = "From: KOONK\r\n";</span>
 <span class="x">$headers .= "Reply-To: blog@koonk.com\r\n";</span>
@@ -674,7 +674,7 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$to</span> <span class="o">=</span> <span class="s2">"admin@koonk.com"</span><span class="p">;</span>
 <span class="nv">$subject</span> <span class="o">=</span> <span class="s2">"This is a test mail"</span><span class="p">;</span>
 <span class="nv">$body</span> <span class="o">=</span> <span class="s2">"Hello World!"</span><span class="p">;</span>
@@ -682,7 +682,7 @@
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="166d24">19. 把秒转换成天数，小时数和分钟</h3>
-<div class="codehilite"><pre><span class="x">function secsToStr($secs) {</span>
+<div class="codehilite"><pre><span></span><span class="x">function secsToStr($secs) {</span>
 <span class="x">    if($secs&gt;=86400){$days=floor($secs/86400);$secs=$secs%86400;$r=$days.' day';if($days&lt;&gt;1){$r.='s';}if($secs&gt;0){$r.=', ';}}</span>
 <span class="x">    if($secs&gt;=3600){$hours=floor($secs/3600);$secs=$secs%3600;$r.=$hours.' hour';if($hours&lt;&gt;1){$r.='s';}if($secs&gt;0){$r.=', ';}}</span>
 <span class="x">    if($secs&gt;=60){$minutes=floor($secs/60);$secs=$secs%60;$r.=$minutes.' minute';if($minutes&lt;&gt;1){$r.='s';}if($secs&gt;0){$r.=', ';}}</span>
@@ -691,7 +691,7 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$seconds</span> <span class="o">=</span> <span class="s2">"56789"</span><span class="p">;</span>
 <span class="nv">$output</span> <span class="o">=</span> <span class="nx">secsToStr</span><span class="p">(</span><span class="nv">$seconds</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$output</span><span class="p">;</span>
@@ -699,7 +699,7 @@
 </pre></div>
 <h3 id="2dc31c">20. 数据库连接</h3>
 <p>连接 MySQL 数据库</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$DBNAME</span> <span class="o">=</span> <span class="s1">'koonk'</span><span class="p">;</span>
 <span class="nv">$HOST</span> <span class="o">=</span> <span class="s1">'localhost'</span><span class="p">;</span>
 <span class="nv">$DBUSER</span> <span class="o">=</span> <span class="s1">'root'</span><span class="p">;</span>
@@ -718,7 +718,7 @@
 </pre></div>
 <h3 id="6d426a">21. 目录清单</h3>
 <p>使用下面的 PHP 代码片段可以在一个目录中列出所有文件和文件夹</p>
-<div class="codehilite"><pre><span class="x">function list_files($dir)</span>
+<div class="codehilite"><pre><span></span><span class="x">function list_files($dir)</span>
 <span class="x">{</span>
 <span class="x">    if(is_dir($dir))</span>
 <span class="x">    {</span>
@@ -737,13 +737,13 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
     <span class="nx">list_files</span><span class="p">(</span><span class="s2">"images/"</span><span class="p">);</span> <span class="c1">//This will list all files of images folder</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="aa2c7d">22. 检测用户语言</h3>
 <p>使用下面的 PHP 代码片段可以检测用户浏览器所使用的语言</p>
-<div class="codehilite"><pre><span class="x">function get_client_language($availableLanguages, $default='en'){</span>
+<div class="codehilite"><pre><span></span><span class="x">function get_client_language($availableLanguages, $default='en'){</span>
 <span class="x">    if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {</span>
 <span class="x">        $langs=explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);</span>
 <span class="x">        foreach ($langs as $value){</span>
@@ -757,7 +757,7 @@
 <span class="x">}</span>
 </pre></div>
 <h3 id="776e06">23. 查看 CSV 文件</h3>
-<div class="codehilite"><pre><span class="x">function readCSV($csvFile){</span>
+<div class="codehilite"><pre><span></span><span class="x">function readCSV($csvFile){</span>
 <span class="x">    $file_handle = fopen($csvFile, 'r');</span>
 <span class="x">    while (!feof($file_handle) ) {</span>
 <span class="x">        $line_of_text[] = fgetcsv($file_handle, 1024);</span>
@@ -767,14 +767,14 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$csvFile</span> <span class="o">=</span> <span class="s2">"test.csv"</span><span class="p">;</span>
 <span class="nv">$csv</span> <span class="o">=</span> <span class="nx">readCSV</span><span class="p">(</span><span class="nv">$csvFile</span><span class="p">);</span>
 <span class="nv">$a</span> <span class="o">=</span> <span class="nx">csv</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span> <span class="c1">// This will get value of Column 1 &amp; Row 1</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="e2647d">24. 从 PHP 数据创建 CSV 文件</h3>
-<div class="codehilite"><pre><span class="x">function generateCsv($data, $delimiter = ',', $enclosure = '"') {</span>
+<div class="codehilite"><pre><span></span><span class="x">function generateCsv($data, $delimiter = ',', $enclosure = '"') {</span>
 <span class="x">   $handle = fopen('php://temp', 'r+');</span>
 <span class="x">   foreach ($data as $line) {</span>
 <span class="x">           fputcsv($handle, $line, $delimiter, $enclosure);</span>
@@ -788,14 +788,14 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"apple"</span><span class="p">;</span>
 <span class="nv">$data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"oranges"</span><span class="p">;</span>
 <span class="nx">generateCsv</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="nv">$delimiter</span> <span class="o">=</span> <span class="s1">','</span><span class="p">,</span> <span class="nv">$enclosure</span> <span class="o">=</span> <span class="s1">'"'</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="330684">25. 解析 XML 数据</h3>
-<div class="codehilite"><pre><span class="x">$xml_string="</span><span class="cp">&lt;?</span><span class="nx">xml</span> <span class="nx">version</span><span class="o">=</span><span class="s1">'1.0'</span><span class="cp">?&gt;</span><span class="x"></span>
+<div class="codehilite"><pre><span></span><span class="x">$xml_string="</span><span class="cp">&lt;?</span><span class="nx">xml</span> <span class="nx">version</span><span class="o">=</span><span class="s1">'1.0'</span><span class="cp">?&gt;</span><span class="x"></span>
 <span class="x">&lt;moleculedb&gt;</span>
 <span class="x">    &lt;molecule name='Benzine'&gt;</span>
 <span class="x">        &lt;symbol&gt;ben&lt;/symbol&gt;</span>
@@ -821,7 +821,7 @@
 <span class="x">}</span>
 </pre></div>
 <h3 id="88404a">26. 解析 JSON 数据</h3>
-<div class="codehilite"><pre><span class="x">$json_string='{"id":1,"name":"rolf","country":"russia","office":["google","oracle"]} ';</span>
+<div class="codehilite"><pre><span></span><span class="x">$json_string='{"id":1,"name":"rolf","country":"russia","office":["google","oracle"]} ';</span>
 <span class="x">$obj=json_decode($json_string);</span>
 <span class="x">//print the parsed data</span>
 <span class="x">echo $obj-&gt;name; //displays rolf</span>
@@ -829,7 +829,7 @@
 </pre></div>
 <h3 id="e284be">27. 获取当前页面 URL</h3>
 <p>这个 PHP 片段可以帮助你让用户登录后直接跳转到之前浏览的页面</p>
-<div class="codehilite"><pre><span class="x">function current_url()</span>
+<div class="codehilite"><pre><span></span><span class="x">function current_url()</span>
 <span class="x">{</span>
 <span class="x">$url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];</span>
 <span class="x">$validURL = str_replace("&amp;", "&amp;amp;", $url);</span>
@@ -837,12 +837,12 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="k">echo</span> <span class="s2">"Currently you are on: "</span><span class="o">.</span><span class="nx">current_url</span><span class="p">();</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="a29d24">28. 从任意的 Twitter 账号获取最新的 Tweet</h3>
-<div class="codehilite"><pre><span class="x">function my_twitter($username) </span>
+<div class="codehilite"><pre><span></span><span class="x">function my_twitter($username) </span>
 <span class="x">{</span>
 <span class="x">     $no_of_tweets = 1;</span>
 <span class="x">     $feed = "http://search.twitter.com/search.atom?q=from:" . $username . "&amp;rpp=" . $no_of_tweets;</span>
@@ -859,14 +859,14 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$handle</span> <span class="o">=</span> <span class="s2">"koonktech"</span><span class="p">;</span>
 <span class="nx">my_twitter</span><span class="p">(</span><span class="nv">$handle</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="c04b6b">29. 转发数量</h3>
 <p>使用这个 PHP 片段可以检测你的页面 URL 有多少转发数量</p>
-<div class="codehilite"><pre><span class="x">function tweetCount($url) {</span>
+<div class="codehilite"><pre><span></span><span class="x">function tweetCount($url) {</span>
 <span class="x">    $content = file_get_contents("http://api.tweetmeme.com/url_info?url=".$url);</span>
 <span class="x">    $element = new SimpleXmlElement($content);</span>
 <span class="x">    $retweets = $element-&gt;story-&gt;url_count;</span>
@@ -878,14 +878,14 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$url</span> <span class="o">=</span> <span class="s2">"http://blog.koonk.com"</span><span class="p">;</span>
 <span class="nv">$count</span> <span class="o">=</span> <span class="nx">tweetCount</span><span class="p">(</span><span class="nv">$url</span><span class="p">);</span>
 <span class="k">return</span> <span class="nv">$count</span><span class="p">;</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="d1db9a">30. 计算两个日期的差</h3>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$date1</span> <span class="o">=</span> <span class="nb">date</span><span class="p">(</span> <span class="s1">'Y-m-d'</span> <span class="p">);</span>
 <span class="nv">$date2</span> <span class="o">=</span> <span class="s2">"2015-12-04"</span><span class="p">;</span>
 <span class="nv">$diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">strtotime</span><span class="p">(</span><span class="nv">$date2</span><span class="p">)</span> <span class="o">-</span> <span class="nb">strtotime</span><span class="p">(</span><span class="nv">$date1</span><span class="p">));</span>
@@ -1003,7 +1003,7 @@
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="d22e1e">31. 删除文件夹内容</h3>
-<div class="codehilite"><pre><span class="x">function Delete($path)</span>
+<div class="codehilite"><pre><span></span><span class="x">function Delete($path)</span>
 <span class="x">{</span>
 <span class="x">    if (is_dir($path) === true)</span>
 <span class="x">    {</span>
@@ -1022,13 +1022,13 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$path</span> <span class="o">=</span> <span class="s2">"images/"</span><span class="p">;</span>
 <span class="nx">Delete</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span> <span class="c1">// This will delete images folder along with its contents.</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="d7d3c8">32. 搜索和高亮字符串中的关键字</h3>
-<div class="codehilite"><pre><span class="x">function highlighter_text($text, $words)</span>
+<div class="codehilite"><pre><span></span><span class="x">function highlighter_text($text, $words)</span>
 <span class="x">{</span>
 <span class="x">    $split_words = explode( " " , $words );</span>
 <span class="x">    foreach($split_words as $word)</span>
@@ -1041,14 +1041,14 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$string</span> <span class="o">=</span> <span class="s2">"I like chocolates and I like apples"</span><span class="p">;</span>
 <span class="nv">$words</span> <span class="o">=</span> <span class="s2">"apple"</span><span class="p">;</span>
 <span class="k">echo</span> <span class="nx">highlighter_text</span><span class="p">(</span><span class="nv">$string</span> <span class="p">,</span><span class="nv">$words</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="5153c8">33. 写入文件</h3>
-<div class="codehilite"><pre><span class="cp">&lt;?</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?</span>
 <span class="nv">$filename</span> <span class="o">=</span> <span class="s1">'blog.csv'</span><span class="p">;</span>
 <span class="nv">$fp</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="nv">$filename</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">);</span>
 <span class="nv">$output</span> <span class="o">=</span> <span class="s2">" Hello "</span><span class="p">;</span>
@@ -1059,7 +1059,7 @@
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="0e537e">34. 根据 URL 下载图片</h3>
-<div class="codehilite"><pre><span class="x">function imagefromURL($image,$rename)</span>
+<div class="codehilite"><pre><span></span><span class="x">function imagefromURL($image,$rename)</span>
 <span class="x">{</span>
 <span class="x">$ch = curl_init($image);</span>
 <span class="x">curl_setopt($ch, CURLOPT_HEADER, 0);</span>
@@ -1073,14 +1073,14 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$url</span> <span class="o">=</span> <span class="s2">"http://koonk.com/images/logo.png"</span><span class="p">;</span>
 <span class="nv">$rename</span> <span class="o">=</span> <span class="s2">"koonk.png"</span><span class="p">;</span>
 <span class="nx">imagefromURL</span><span class="p">(</span><span class="nv">$url</span><span class="p">,</span><span class="nv">$rename</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="b9502c">35. 检测 URL 是否有效</h3>
-<div class="codehilite"><pre><span class="x">function isvalidURL($url)</span>
+<div class="codehilite"><pre><span></span><span class="x">function isvalidURL($url)</span>
 <span class="x">{</span>
 <span class="x">$check = 0;</span>
 <span class="x">if (filter_var($url, FILTER_VALIDATE_URL) !== false) {</span>
@@ -1090,14 +1090,14 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$url</span> <span class="o">=</span> <span class="s2">"http://koonk.com"</span><span class="p">;</span>
 <span class="nv">$check</span> <span class="o">=</span> <span class="nx">checkvalidURL</span><span class="p">(</span><span class="nv">$url</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$check</span><span class="p">;</span> <span class="c1">//if returns 1 then URL is valid.</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="ad4346">36. 生成二维码</h3>
-<div class="codehilite"><pre><span class="x">function qr_code($data, $type = "TXT", $size ='150', $ec='L', $margin='0')  </span>
+<div class="codehilite"><pre><span></span><span class="x">function qr_code($data, $type = "TXT", $size ='150', $ec='L', $margin='0')  </span>
 <span class="x">{</span>
 <span class="x">     $types = array("URL" =--&gt; "http://", "TEL" =&gt; "TEL:", "TXT"=&gt;"", "EMAIL" =&gt; "MAILTO:");</span>
 <span class="x">    if(!in_array($type,array("URL", "TEL", "TXT", "EMAIL")))</span>
@@ -1122,13 +1122,13 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nb">header</span><span class="p">(</span><span class="s2">"Content-type: image/png"</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nx">qr_code</span><span class="p">(</span><span class="s2">"http://koonk.com"</span><span class="p">,</span> <span class="s2">"URL"</span><span class="p">);</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="4e1f7b">37. 计算两个地图坐标之间的距离</h3>
-<div class="codehilite"><pre><span class="x">function getDistanceBetweenPointsNew($latitude1, $longitude1, $latitude2, $longitude2) {</span>
+<div class="codehilite"><pre><span></span><span class="x">function getDistanceBetweenPointsNew($latitude1, $longitude1, $latitude2, $longitude2) {</span>
 <span class="x">    $theta = $longitude1 - $longitude2;</span>
 <span class="x">    $miles = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2))) + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta)));</span>
 <span class="x">    $miles = acos($miles);</span>
@@ -1142,7 +1142,7 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$point1</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">'lat'</span> <span class="o">=&gt;</span> <span class="mf">40.770623</span><span class="p">,</span> <span class="s1">'long'</span> <span class="o">=&gt;</span> <span class="o">-</span><span class="mf">73.964367</span><span class="p">);</span>
 <span class="nv">$point2</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">'lat'</span> <span class="o">=&gt;</span> <span class="mf">40.758224</span><span class="p">,</span> <span class="s1">'long'</span> <span class="o">=&gt;</span> <span class="o">-</span><span class="mf">73.917404</span><span class="p">);</span>
 <span class="nv">$distance</span> <span class="o">=</span> <span class="nx">getDistanceBetweenPointsNew</span><span class="p">(</span><span class="nv">$point1</span><span class="p">[</span><span class="s1">'lat'</span><span class="p">],</span> <span class="nv">$point1</span><span class="p">[</span><span class="s1">'long'</span><span class="p">],</span> <span class="nv">$point2</span><span class="p">[</span><span class="s1">'lat'</span><span class="p">],</span> <span class="nv">$point2</span><span class="p">[</span><span class="s1">'long'</span><span class="p">]);</span>
@@ -1152,7 +1152,7 @@
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="92cc85">38. 获取一个特定话题标签的所有 Tweets</h3>
-<div class="codehilite"><pre><span class="x">function getTweets($hash_tag) {</span>
+<div class="codehilite"><pre><span></span><span class="x">function getTweets($hash_tag) {</span>
 <span class="x">    $url = 'http://search.twitter.com/search.atom?q='.urlencode($hash_tag) ;</span>
 <span class="x">    echo "&lt;p&gt;Connecting to &lt;strong&gt;$url&lt;/strong&gt; ...&lt;/p&gt;";</span>
 <span class="x">    $ch = curl_init($url);</span>
@@ -1176,7 +1176,7 @@
 </pre></div>
 <h3 id="0e1c25">39. 添加 th,st,nd 或者 rd 作为数字的后缀</h3>
 <p>Friday the 13th</p>
-<div class="codehilite"><pre><span class="x">function ordinal($cdnl){ </span>
+<div class="codehilite"><pre><span></span><span class="x">function ordinal($cdnl){ </span>
 <span class="x">    $test_c = abs($cdnl) % 10; </span>
 <span class="x">    $ext = ((abs($cdnl) %100 &lt; 21 &amp;&amp; abs($cdnl) %100 &gt; 4) ? 'th'</span>
 <span class="x">            : (($test_c &lt; 4) ? ($test_c &lt; 3) ? ($test_c &lt; 2) ? ($test_c &lt; 1) </span>
@@ -1185,13 +1185,13 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$number</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="k">echo</span> <span class="nx">ordinal</span><span class="p">(</span><span class="nv">$number</span><span class="p">);</span> <span class="c1">//output is 10th</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="870785">40. 限制文件下载的速度</h3>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="c1">// local file that should be send to the client</span>
 <span class="nv">$local_file</span> <span class="o">=</span> <span class="s1">'test-file.zip'</span><span class="p">;</span>
 <span class="c1">// filename that the user gets as default</span>
@@ -1230,7 +1230,7 @@
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="e207df">41. 把文本转换成图片</h3>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nb">header</span><span class="p">(</span><span class="s2">"Content-type: image/png"</span><span class="p">);</span>
 <span class="nv">$string</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'text'</span><span class="p">];</span>
 <span class="nv">$im</span> <span class="o">=</span> <span class="nb">imagecreatefrompng</span><span class="p">(</span><span class="s2">"images/button.png"</span><span class="p">);</span>
@@ -1244,7 +1244,7 @@
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="cf1d8a">42. 获取远程文件的大小</h3>
-<div class="codehilite"><pre><span class="x">function remote_filesize($url, $user = "", $pw = "")</span>
+<div class="codehilite"><pre><span></span><span class="x">function remote_filesize($url, $user = "", $pw = "")</span>
 <span class="x">{</span>
 <span class="x">    ob_start();</span>
 <span class="x">    $ch = curl_init($url);</span>
@@ -1265,14 +1265,14 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$file</span> <span class="o">=</span> <span class="s2">"http://koonk.com/images/logo.png"</span><span class="p">;</span>
 <span class="nv">$size</span> <span class="o">=</span> <span class="nx">remote_filesize</span><span class="p">(</span><span class="nv">$url</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$size</span><span class="p">;</span>
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="7c6509">43. 使用 imagebrick 进行 pdf 到图像的转换</h3>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$pdf_file</span>   <span class="o">=</span> <span class="s1">'./pdf/demo.pdf'</span><span class="p">;</span>
 <span class="nv">$save_to</span>    <span class="o">=</span> <span class="s1">'./jpg/demo.jpg'</span><span class="p">;</span>     <span class="c1">//make sure that apache has permissions to write in this folder! (common problem)</span>
 <span class="c1">//execute ImageMagick command 'convert' and convert PDF to JPG with applied settings</span>
@@ -1284,7 +1284,7 @@
 <span class="cp">?&gt;</span><span class="x"></span>
 </pre></div>
 <h3 id="3611cc">44. 使用 tinyurl 生成短网址</h3>
-<div class="codehilite"><pre><span class="x">function get_tiny_url($url)  </span>
+<div class="codehilite"><pre><span></span><span class="x">function get_tiny_url($url)  </span>
 <span class="x">{  </span>
 <span class="x">    $ch = curl_init();  </span>
 <span class="x">    $timeout = 5;  </span>
@@ -1297,7 +1297,7 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$url</span> <span class="o">=</span> <span class="s2">"http://blog.koonk.com/2015/07/Hello-World"</span><span class="p">;</span>
 <span class="nv">$tinyurl</span> <span class="o">=</span> <span class="nx">get_tiny_url</span><span class="p">(</span><span class="nv">$url</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$tinyurl</span><span class="p">;</span>
@@ -1305,7 +1305,7 @@
 </pre></div>
 <h3 id="68e182">45. youtube 下载链接生成器</h3>
 <p>使用下面的 PHP 片段可以让你的用户下载 Youtube 视频</p>
-<div class="codehilite"><pre><span class="x">function str_between($string, $start, $end)</span>
+<div class="codehilite"><pre><span></span><span class="x">function str_between($string, $start, $end)</span>
 <span class="x">{ </span>
 <span class="x">$string = " ".$string; $ini = strpos($string,$start); if ($ini == 0) return ""; $ini += strlen($start); $len = strpos($string,$end,$ini) - $ini; return substr($string,$ini,$len); }</span>
 <span class="x">function get_youtube_download_link(){</span>
@@ -1326,7 +1326,7 @@
 </pre></div>
 <h3 id="8b22b3">46. Facebook 样式的时间戳</h3>
 <p>Facebook (x mins age, y hours ago etc)</p>
-<div class="codehilite"><pre><span class="x">function nicetime($date)</span>
+<div class="codehilite"><pre><span></span><span class="x">function nicetime($date)</span>
 <span class="x">{</span>
 <span class="x">    if(empty($date)) {</span>
 <span class="x">        return "No date provided";</span>
@@ -1366,7 +1366,7 @@
 <span class="x">}</span>
 </pre></div>
 <p>语法：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?php</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?php</span>
 <span class="nv">$date</span> <span class="o">=</span> <span class="s2">"2015-07-05 03:45"</span><span class="p">;</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nx">nicetime</span><span class="p">(</span><span class="nv">$date</span><span class="p">);</span> <span class="c1">// 2 days ago</span>
 <span class="cp">?&gt;</span><span class="x"></span>

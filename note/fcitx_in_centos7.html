@@ -111,33 +111,33 @@
                     <p>感觉CentOS7自带的ibus输入法用得不尽人意，考虑安装个Fcitx小企鹅输入法试试，心动不如行动，Let's go～</p>
 <h2 id="8c4cab">1. 加入EPEL源</h2>
 <p>EPEL7几乎是CentOS必备的源:</p>
-<div class="codehilite"><pre>$ sudo yum install epel-release
+<div class="codehilite"><pre><span></span>$ sudo yum install epel-release
 </pre></div>
 <h2 id="74e7ae">2. 添加mosquito-myrepo源</h2>
 <p>mosquito-myrepo是一个私人制作的第三方源，其中包含了fcitx输入法。</p>
-<div class="codehilite"><pre>项目地址： https://github.com/1dot75cm/myrepo
+<div class="codehilite"><pre><span></span>项目地址： https://github.com/1dot75cm/myrepo
 支持的发行版： Fedora 19/20/21/rawhide 以及RHEL/CentOS 7
 </pre></div>
-<div class="codehilite"><pre>$ sudo yum-config-manager --add-repo<span class="o">=</span>https://copr.fedoraproject.org/coprs/mosquito/myrepo/repo/epel-7/mosquito-myrepo-epel-7.repo
+<div class="codehilite"><pre><span></span>$ sudo yum-config-manager --add-repo<span class="o">=</span>https://copr.fedoraproject.org/coprs/mosquito/myrepo/repo/epel-7/mosquito-myrepo-epel-7.repo
 </pre></div>
 <h2 id="7cfd47">3. 卸载原来的ibus输入法</h2>
-<div class="codehilite"><pre>$ sudo yum remove ibus
+<div class="codehilite"><pre><span></span>$ sudo yum remove ibus
 $ sudo yum remove imsettings imsettings-libs im-chooser
 </pre></div>
 <h2 id="59570b">4. 安装输入法</h2>
 <p>可以选择下面的各种输入法中的某一个或多个:</p>
-<div class="codehilite"><pre>$ sudo yum install fcitx-table-wbpy <span class="c1"># 五笔拼音输入法</span>
+<div class="codehilite"><pre><span></span>$ sudo yum install fcitx-table-wbpy <span class="c1"># 五笔拼音输入法</span>
 $ sudo yum install fcitx-googlepinyin fcitx-cloudpinyin <span class="c1"># 谷歌拼音输入法</span>
 $ sudo yum install fcitx-qimpanel-configtool <span class="c1"># 输入法面板设置</span>
 </pre></div>
 <h2 id="32dbcb">5. 配置Fcitx</h2>
 <p>在~/.bashrc中添加如下内容</p>
-<div class="codehilite"><pre><span class="nb">export</span> <span class="nv">GTK_IM_MODULE</span><span class="o">=</span>fcitx
+<div class="codehilite"><pre><span></span><span class="nb">export</span> <span class="nv">GTK_IM_MODULE</span><span class="o">=</span>fcitx
 <span class="nb">export</span> <span class="nv">QT_IM_MODULE</span><span class="o">=</span>fcitx
 <span class="nb">export</span> <span class="nv">XMODIFIERS</span><span class="o">=</span>”@im<span class="o">=</span>fcitx”
 </pre></div>
 <h2 id="6d107a">6. 关闭gnome-shell 对键盘的监听，然后切换输入法为fcitx:</h2>
-<div class="codehilite"><pre>$ sudo pkill ibus-daemon
+<div class="codehilite"><pre><span></span>$ sudo pkill ibus-daemon
 $ sudo gsettings <span class="nb">set</span> org.gnome.settings-daemon.plugins.keyboard active <span class="nb">false</span>
 $ sudo imsettings-switch fcitx
 </pre></div>

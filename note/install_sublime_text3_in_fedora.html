@@ -112,22 +112,22 @@
 <p>网上找到了安装方法</p>
 <h2 id="4a98b8">1. 下载安装脚本文件</h2>
 <p>下载32位版本：</p>
-<div class="codehilite"><pre>wget https://gist.githubusercontent.com/dkd903/531a2409c40c926c66d6/raw/2c83194719f1216a7321e4b48f6b604dc8779faf/Install_Sublime_Text_3.sh -O install-sublime-text.sh
+<div class="codehilite"><pre><span></span>wget https://gist.githubusercontent.com/dkd903/531a2409c40c926c66d6/raw/2c83194719f1216a7321e4b48f6b604dc8779faf/Install_Sublime_Text_3.sh -O install-sublime-text.sh
 </pre></div>
 <p>下载64位版本：</p>
-<div class="codehilite"><pre>wget https://gist.githubusercontent.com/dkd903/8ba3f51313c1781cc571/raw/f37b1c18547d086cd45e8b484efc518260106ea9/Install_Sublime_Text_3_64.sh -O install-sublime-text.sh
+<div class="codehilite"><pre><span></span>wget https://gist.githubusercontent.com/dkd903/8ba3f51313c1781cc571/raw/f37b1c18547d086cd45e8b484efc518260106ea9/Install_Sublime_Text_3_64.sh -O install-sublime-text.sh
 </pre></div>
 <h2 id="95a39f">2. 修改文件属性为可执行</h2>
-<div class="codehilite"><pre>chmod +x install-sublime-text.sh
+<div class="codehilite"><pre><span></span>chmod +x install-sublime-text.sh
 </pre></div>
 <h2 id="5beeca">3. 执行安装脚本</h2>
-<div class="codehilite"><pre>su -c <span class="s2">"sh install-sublime-text.sh"</span>
+<div class="codehilite"><pre><span></span>su -c <span class="s2">"sh install-sublime-text.sh"</span>
 </pre></div>
 <p>现在你就可以在从菜单里找到 <code>Sublime Text 3</code> 了，或者在命令行里执行 <code>subl</code> 来运行它。</p>
 <p>如果先前你有安装过 <code>Sublime Text 2</code>，那么安装完成后就会被 <code>Sublime Text 3</code> 所替代。</p>
 <hr/>
 <p>这里列出脚本内容以供参考：</p>
-<div class="codehilite"><pre><span class="ch">#!/bin/sh</span>
+<div class="codehilite"><pre><span></span><span class="ch">#!/bin/sh</span>
 <span class="nv">SHORTCUT</span><span class="o">=</span><span class="s2">"[Desktop Entry]</span>
 <span class="s2">Name=Sublime Text 3</span>
 <span class="s2">Comment=Edit text files</span>

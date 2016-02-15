@@ -5,11 +5,11 @@
 项目目录：/home/snail/e3dj19/mysite&lt;br/&gt;
 项目名称：mysite&lt;/p&gt;
 &lt;h2 id="1e1d9a"&gt;安装uWSGI&lt;/h2&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper in gcc make python-devel python3-devel
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo zypper in gcc make python-devel python3-devel
 sudo pip install uwsgi
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="07d521"&gt;添加Virtualenv环境及Django项目&lt;/h2&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~
 virtualenv -p python3 e3dj19
 &lt;span class="nb"&gt;cd&lt;/span&gt; e3dj19
 &lt;span class="nb"&gt;source&lt;/span&gt; bin/activate
@@ -21,18 +21,18 @@ django-admin startproject mysite
 ./manage.py startapp blog
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;编辑Django项目&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;./manage.py runserver
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;./manage.py runserver
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;显示正常后再继续&lt;/p&gt;
 &lt;h2 id="4b5d29"&gt;添加uWSGI配置文件&lt;/h2&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo mkdir /etc/uwsig
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo mkdir /etc/uwsig
 sudo mkdir /etc/uwsig/vassals
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;编辑通用uwsgi配置模板&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo vim uwsgi.ini
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo vim uwsgi.ini
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;uwsgi.ini配置如下：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[uwsgi]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[uwsgi]
 # Django项目的uwsgi配置模板
 # 调用模板使用以下语句：
 # prj-home = 项目目录绝对路径
@@ -61,10 +61,10 @@ vacuum      = true
 #daemonize  = /tmp/uwsgi-%(prj-name).log 
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;编辑django项目的uwsgi配置实例&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo vim /etc/uwsgi/vassals/e3dj19-mysite.ini
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo vim /etc/uwsgi/vassals/e3dj19-mysite.ini
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;e3dj19-mysite.ini配置如下：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[uwsgi]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[uwsgi]
 prj-home   = /home/snail/e3dj19/mysite
 prj-name   = mysite
 ini        = /etc/uwsgi/uwsgi.ini
@@ -76,31 +76,31 @@ socket      = :9000
 # stats      = :9191
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="cbf9cb"&gt;测试uWSGI的单位个项目运行情况&lt;/h2&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;uwsgi /etc/uwsgi/vassals/e3dj19-mysite.ini
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uwsgi /etc/uwsgi/vassals/e3dj19-mysite.ini
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;正常运行&lt;/p&gt;
 &lt;h2 id="21aa3d"&gt;添加uWSGI的Emperor模式&lt;/h2&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;uwsgi --emperor /etc/uwsgi/vassals/
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uwsgi --emperor /etc/uwsgi/vassals/
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;正常运行&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo vim /etc/uwsgi/emperor.ini
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo vim /etc/uwsgi/emperor.ini
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;emperor.ini配置如下：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[uwsgi]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[uwsgi]
 emperor = /etc/uwsgi/vassals
 uid = nginx
 gid = nginx
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;测试uWSGI的Emperor模式的运行情况&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;uwsgi /etc/uwsgi/emperor.ini
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;uwsgi /etc/uwsgi/emperor.ini
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;正常运行&lt;/p&gt;
 &lt;p&gt;至此uWSGI配置多个Django应用同步运行的配置已正确配置，以后新的Django应用只需类似/etc/uwsgi/vassals/e3dj19-mysite.ini配置即可&lt;/p&gt;
 &lt;h2 id="68104a"&gt;添加到systemd&lt;/h2&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo vim /etc/systemd/system/uwsgi.service
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo vim /etc/systemd/system/uwsgi.service
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;uwsgi.service配置如下：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[Unit]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[Unit]
 Description=uWSGI Emperor
 After=syslog.target
 
@@ -118,19 +118,19 @@ NotifyAccess=all
 WantedBy=multi-user.target
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;启动uWSGI服务并测试状态&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo systemctl start uwsgi.service
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo systemctl start uwsgi.service
 systemctl status uwsgi
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;服务运行正常&lt;/p&gt;
 &lt;h1 id="e48e76"&gt;安装配置nginx&lt;/h1&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper in nginx
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo zypper in nginx
 sudo nginx -v
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;可以显示nginx版本号&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo vim /etc/nginx/nginx.conf
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo vim /etc/nginx/nginx.conf
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;nginx.conf配置如下：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;http {
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;http {
     upstream django_uwsgi {
         # 这是sock文件模式
         #server unix:///tmp/uwsgi-mysite.sock;
@@ -152,7 +152,7 @@ sudo nginx -v
 }
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;启动nginx服务&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;systemctl start nginx
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;systemctl start nginx
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;打开浏览器输入127.0.0.1，正常显示Djnago页面。
 至此，uWSGI的配置完成，并且测试成功通过。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Sat, 06 Feb 2016 23:44:00 +0800</pubDate><guid>tag:snailhome.github.io,2016-02-06:note/uwsgi_in_opensuse.html</guid><category>uWSGI</category><category>openSUSE</category></item><item><title>调教openSUSE Leap 42.1</title><link>http://snailhome.github.io/note/setting_opensuse.html</link><description>&lt;blockquote&gt;
@@ -170,7 +170,7 @@ sudo nginx -v
 &lt;li&gt;更改国内源并更新软件
 我用的是中科大源，直接终端运行以下命令。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper mr -da
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo zypper mr -da
 sudo zypper ar -fc https://mirrors.ustc.edu.cn/opensuse/distribution/leap/42.1/repo/oss USTC:42.1:OSS
 sudo zypper ar -fc https://mirrors.ustc.edu.cn/opensuse/distribution/leap/42.1/repo/non-oss USTC:42.1:NON-OSS
 sudo zypper ar -fc https://mirrors.ustc.edu.cn/opensuse/update/leap/42.1/oss USTC:42.1:UPDATE-OSS
@@ -181,17 +181,17 @@ sudo zypper up
 &lt;ul&gt;
 &lt;li&gt;系统更新&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper up
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo zypper up
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;搜索软件包，如&lt;code&gt;virutalbox&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper se virtualbox
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo zypper se virtualbox
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;安装软件，如&lt;code&gt;Virtualbox&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper in virtualbox virtualbox-qt
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo zypper in virtualbox virtualbox-qt
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="a5e9b0"&gt;个人必备的gnome扩展&lt;/h2&gt;
 &lt;p&gt;工具 -&amp;gt; 优化工具 -&amp;gt; 扩展 -&amp;gt; 获取得多扩展&lt;/p&gt;
@@ -217,7 +217,7 @@ sudo zypper up
 &lt;li&gt;增加Packman源，安装chromium和pepperflash
 像flash、ffmpeg这些非自由版本软件只能通过Packman源安装，flash是上网必备插件这点不用我说吧。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper ar http://mirrors.hust.edu.cn/packman/suse/openSUSE_Leap_42.1/ Packman
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo zypper ar http://mirrors.hust.edu.cn/packman/suse/openSUSE_Leap_42.1/ Packman
 sudo zypper ref
 sudo zypper in chromium chromium-pepper-flash
 &lt;/pre&gt;&lt;/div&gt;
@@ -225,7 +225,7 @@ sudo zypper in chromium chromium-pepper-flash
 &lt;li&gt;安装VLC播放器
 增加VLC源，用zypper或yast安装&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper ar http://download.videolan.org/pub/vlc/SuSE/Leap_42.1/ VLC
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo zypper ar http://download.videolan.org/pub/vlc/SuSE/Leap_42.1/ VLC
 sudo zypper ref
 sudo zypper in vlc
 &lt;/pre&gt;&lt;/div&gt;
@@ -233,7 +233,7 @@ sudo zypper in vlc
 &lt;li&gt;添加输入法
 系统自带的五笔输入法是&lt;code&gt;五笔大字集&lt;/code&gt;，但候选栏里带常出现方块字，而且不能五笔拼音混打，安装个五笔拼音输入法方便。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper in fcitx-table-cn-wubi-pinyin
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo zypper in fcitx-table-cn-wubi-pinyin
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;然后进fcitx的‘配置当前输入法`添加、调整输入法项吧。&lt;/p&gt;
 &lt;h2 id="88b890"&gt;安装 &lt;code&gt;WPS&lt;/code&gt;&lt;/h2&gt;
@@ -243,7 +243,7 @@ sudo zypper in vlc
 解压后把里面的&lt;code&gt;*.ttf&lt;/code&gt;复制到&lt;code&gt;~/.fonts&lt;/code&gt;里就可以了。&lt;/p&gt;
 &lt;h2 id="ecaadc"&gt;安装Wine&lt;/h2&gt;
 &lt;p&gt;直接zypper吧&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;sudo zypper in wine
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo zypper in wine
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="5a0afc"&gt;其它&lt;/h2&gt;
 &lt;p&gt;其它优化最后附上......&lt;/p&gt;
@@ -266,11 +266,11 @@ sudo zypper in vlc
 &lt;h2 id="38983c"&gt;CentOS, Fedora 或 RHEL中安装Kingsoft Office&lt;/h2&gt;
 &lt;p&gt;在官方页面下载RPM文件。&lt;/p&gt;
 &lt;p&gt;需要使用yum命令并用"localinstall"选项来本地安装这个RPM包&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo yum localinstall kingsoft-office-9.1.0.4244-0.1.a12p3.i686.rpm
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo yum localinstall kingsoft-office-9.1.0.4244-0.1.a12p3.i686.rpm
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;注意不要使用rpm命令安装。否者，你会得到依赖错误，而且很难解决：&lt;/p&gt;
 &lt;p&gt;错误: 依赖失败:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;libICE.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;libICE.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
 libSM.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
 libX11.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
 libXext.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
@@ -282,20 +282,20 @@ libc.so.6 is needed by kingsoft-office-9.1.0.4244-0.1.a12p3.i686
 &lt;h2 id="5bd1a0"&gt;Debian, Ubuntu 和 Linux Mint 中安装Kingsoft Office&lt;/h2&gt;
 &lt;p&gt;在官方页面下载DEB包。官方RPM包同样只支持32位版本linux，但是你可以在64位中安装。&lt;/p&gt;
 &lt;p&gt;DEB包同样遇到一堆依赖。因此使用gdebi命令来代替dpkg来自动解决依赖。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo apt-get install gdebi-core
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo apt-get install gdebi-core
 $ sudo gdebi kingsoft-office_9.1.0.4244~a12p3_i386.deb 
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;启动 Kingsoft Office&lt;/p&gt;
 &lt;p&gt;安装完成后，你就可以在桌面管理器轻松启动Witer（WPS文字）, Presentation（WPS演示）, and Spreadsheets（WPS表格）。&lt;/p&gt;
 &lt;p&gt;不但如此，你也可以在命令行中启动Kingsoft Office。&lt;/p&gt;
 &lt;p&gt;启动Wirter（WPS文字），使用这个命令：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ wps &lt;span class="o"&gt;(&lt;/span&gt;译注：原文丢失此命令&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ wps &lt;span class="o"&gt;(&lt;/span&gt;译注：原文丢失此命令&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;启动Presentation（WPS演示），使用这个命令：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ wpp
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ wpp
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;启动Spreadsheets（WPS表格），使用这个命令：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ et
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ et
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="9b6d1a"&gt;安装缺失的字体&lt;/h2&gt;
 &lt;p&gt;首次运行wps时会提示缺失字体：wingding、wingding2、wingding3、webdings、MT Extra&lt;/p&gt;
@@ -349,7 +349,7 @@ $ sudo gdebi kingsoft-office_9.1.0.4244~a12p3_i386.deb
 &lt;li&gt;Chromium 45&lt;/li&gt;
 &lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Thu, 29 Oct 2015 18:40:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-10-29:note/windows_to_linux.html</guid><category>平台迁移</category></item><item><title>Linux下安装Haroopad</title><link>http://snailhome.github.io/note/install_haroopad_on_linux.html</link><description>&lt;p&gt;在&lt;code&gt;Linux&lt;/code&gt;下安装&lt;code&gt;haroopad&lt;/code&gt;还是比较简单的。&lt;/p&gt;
 &lt;p&gt;由于我用的是 &lt;code&gt;Linux Mint 17.2&lt;/code&gt;， 是基于 &lt;code&gt;Ubuntu 14.04&lt;/code&gt; 的发行版本，所以只要下载 &lt;code&gt;.deb&lt;/code&gt; 的安装包就可以安装了。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ wget -c https://bitbucket.org/rhiokim/haroopad-download/downloads/haroopad-v0.13.1-x64.deb
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ wget -c https://bitbucket.org/rhiokim/haroopad-download/downloads/haroopad-v0.13.1-x64.deb
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;虽然安装包只有40M，可以下载速度实在太慢，好久才下全。&lt;/p&gt;
 &lt;p&gt;下载完成后直接双击安装包就可以安装了，简单～&lt;/p&gt;
@@ -395,77 +395,77 @@ $ sudo gdebi kingsoft-office_9.1.0.4244~a12p3_i386.deb
 &lt;p&gt;终于，基于Pelican的静态博客终于搭建成功了&lt;/p&gt;
 &lt;p&gt;没错这就是你看到的网站 &lt;strong&gt;&lt;a href="http://snailhome.github.io/"&gt;StepUp&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;抢建过程可以参考 &lt;strong&gt;&lt;a href="../research/build_pelican_on_python2.html"&gt;用Pelican创建静态博客网站&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Tue, 06 Oct 2015 13:11:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-10-06:essay/start_blog.html</guid><category>pelican</category><category>静态博客</category></item><item><title>如何git时免输用户名密码</title><link>http://snailhome.github.io/note/no_password_when_git.html</link><description>&lt;p&gt;我要push静态博客时都要输入用户名和密码，特麻烦，百度了一下有好几种免输密码的方式，不知所云，后来尝试了一种成功，看官看过来。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ &lt;span class="nb"&gt;cd&lt;/span&gt; output/.git
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;cd&lt;/span&gt; output/.git
 $ vim config
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;看到这一段&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[remote "origin"]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[remote "origin"]
         url = https://github.com/yourname/yourname.github.io.git
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;将其改为：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[remote "origin"]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[remote "origin"]
         url = https://yourname:password@github.com/yourname/yourname.github.io.git
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;当然，这个操作最好是在自己的机器上，毕竟用户名和密码明文放在上面，在其它机器上还是老老实实输入用户名和密码吧。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Tue, 06 Oct 2015 11:23:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-10-06:note/no_password_when_git.html</guid><category>git</category><category>免密码</category></item><item><title>10 个实用的 Bash alias</title><link>http://snailhome.github.io/note/about_alias.html</link><description>&lt;p&gt;alias 即“别名”，为便于理解，你可以将其看成是一个命令的快捷方式。使用 alias 的最大好处是，可以简化输入，从而为你节省时间，并提高效率。定义的 alias 可以保存到 ~/.bashrc 文件中，以后在命令行中就可以直接使用了。&lt;/p&gt;
 &lt;p&gt;要设置别名&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ vim ~/.bashrc
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ vim ~/.bashrc
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;下面介绍了 10 个 Bash alias，个人觉得都很实用：&lt;/p&gt;
 &lt;h2 id="255b55"&gt;几个有用的别名用法&lt;/h2&gt;
 &lt;h3 id="44c31b"&gt;ssh 别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;alias server_name="ssh -v -l USERNAME IP ADDRESS"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alias server_name="ssh -v -l USERNAME IP ADDRESS"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;更改 server_name、USERNAME 及 IP 地址以适应你的需要。对于经常要使用 ssh 登录远程 shell 的同学来说，这是一个值得收藏的别名。&lt;/p&gt;
 &lt;h3 id="769102"&gt;ls 别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;alias ll="ls -l"，另一个 alias la="ls -a"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alias ll="ls -l"，另一个 alias la="ls -a"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;意思很明显，在此就不多作解释了。&lt;/p&gt;
 &lt;h3 id="5d5bd1"&gt;rm 别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;alias rm="rm -i"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alias rm="rm -i"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;这个别名让你更加安全地执行删除操作。&lt;/p&gt;
 &lt;h3 id="f07115"&gt;df 别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;alias df="df -h"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alias df="df -h"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;让你以 MB 或 G 为单位查看磁盘的空间。&lt;/p&gt;
 &lt;h3 id="8f5252"&gt;Firefox 别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;alias ff1="/home/jlwallen/firefox/firefox" 及 alias ff2="/home/jlwallen/firefoxb3/firefox"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alias ff1="/home/jlwallen/firefox/firefox" 及 alias ff2="/home/jlwallen/firefoxb3/firefox"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;适合使用两个 Firefox 版本的朋友，如一个稳定版，另一个为测试版。&lt;/p&gt;
 &lt;h3 id="04ee60"&gt;书签别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;alias fftr="/home/jlwallen/firefox/firefox http://linuxtoy.org"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alias fftr="/home/jlwallen/firefox/firefox http://linuxtoy.org"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;用于打开一个指定的网址。&lt;/p&gt;
 &lt;h3 id="5842eb"&gt;文件别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;alias emenu="aterm nano -e ~/.e16/menus/user_apps"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alias emenu="aterm nano -e ~/.e16/menus/user_apps"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如常常需要编辑的配置文件。&lt;/p&gt;
 &lt;h3 id="f8e198"&gt;apt-get update 别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;alias update="sudo apt-get update"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alias update="sudo apt-get update"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;使用其他 Linux 发行版的同学可以换一下其中的 sudo apt-get update。&lt;/p&gt;
 &lt;h3 id="a2c9a8"&gt;rpm 批量安装别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;alias brpm="rpm -ivh ~/RPM/*rpm"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alias brpm="rpm -ivh ~/RPM/*rpm"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;便于同时安装多个 rpm 包。&lt;/p&gt;
 &lt;h3 id="13342f"&gt;长路径别名&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;alias astart="cd ~/GNUstep/Library/AfterStep/start"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alias astart="cd ~/GNUstep/Library/AfterStep/start"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;对于需要经常访问的路径特别长的目录也可为其定义别名。&lt;/p&gt;
 &lt;h2 id="a6f784"&gt;我的别名用法&lt;/h2&gt;
 &lt;h3 id="339219"&gt;进入虚拟环境&lt;/h3&gt;
 &lt;p&gt;我有一个 &lt;code&gt;virtualenv&lt;/code&gt; 的虚拟环境 &lt;code&gt;env2p&lt;/code&gt; ，为了快速进入虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;alias se2p="cd ~/env2p&amp;amp;source bin/activate"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alias se2p="cd ~/env2p&amp;amp;source bin/activate"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;我只要se2p就进入了虚拟环境。&lt;/p&gt;
 &lt;h3 id="b05767"&gt;推送 &lt;code&gt;git&lt;/code&gt; 到 &lt;code&gt;github.io&lt;/code&gt;&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;alias git2p="cd ~/env2p/blog&amp;amp;&amp;amp;make publish&amp;amp;&amp;amp;cd output&amp;amp;&amp;amp;git add -A&amp;amp;&amp;amp;git commit -m 'Git My Static Blog'&amp;amp;&amp;amp;git push origin master"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alias git2p="cd ~/env2p/blog&amp;amp;&amp;amp;make publish&amp;amp;&amp;amp;cd output&amp;amp;&amp;amp;git add -A&amp;amp;&amp;amp;git commit -m 'Git My Static Blog'&amp;amp;&amp;amp;git push origin master"
 &lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Tue, 06 Oct 2015 10:48:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-10-06:note/about_alias.html</guid><category>bash</category><category>alias</category><category>别名</category></item><item><title>用Pelican创建静态博客网站</title><link>http://snailhome.github.io/research/build_pelican_on_python2.html</link><description>&lt;blockquote&gt;
 &lt;p&gt;基于 &lt;code&gt;Pelican&lt;/code&gt; 的 &lt;code&gt;niu-x2-sidebar&lt;/code&gt; 主题的静态博客网站在 &lt;code&gt;python3.4&lt;/code&gt; 下尝试多次，均不能成功，后试过 &lt;code&gt;python2.7&lt;/code&gt; ，第一次成功，后又有配置问题导致显示不正常，经过多方调试，终得以成功，记录下安装及配置的过程，用于留存。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id="cbfa54"&gt;创建运行环境&lt;/h2&gt;
 &lt;h3 id="b41e5d"&gt;创建虚拟环境&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ &lt;span class="nb"&gt;cd&lt;/span&gt; ~
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;cd&lt;/span&gt; ~
 $ virtualenv -p python2 env2p
 New python executable in env2p/bin/python
 Installing setuptools, pip, wheel...done.
@@ -479,7 +479,7 @@ urllib3 &lt;span class="o"&gt;(&lt;/span&gt;1.12&lt;span class="o"&gt;)&lt;/span
 wheel &lt;span class="o"&gt;(&lt;/span&gt;0.24.0&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="ad57b5"&gt;安装 &lt;code&gt;pelican&lt;/code&gt; 支持&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ pip install pelican markdown
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ pip install pelican markdown
 ......
 Installing collected packages: pygments, pytz, six, feedgenerator, unidecode, python-dateutil, MarkupSafe, jinja2, docutils, blinker, pelican, markdown
 Successfully installed MarkupSafe-0.23 blinker-1.4 docutils-0.12 feedgenerator-1.7 jinja2-2.8 markdown-2.6.2 pelican-3.6.3 pygments-2.0.2 python-dateutil-2.4.2 pytz-2015.6 six-1.9.0 unidecode-0.4.18
@@ -502,7 +502,7 @@ urllib3 &lt;span class="o"&gt;(&lt;/span&gt;1.12&lt;span class="o"&gt;)&lt;/span
 wheel &lt;span class="o"&gt;(&lt;/span&gt;0.24.0&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="a4730b"&gt;创建静态博客文件目录结构及初始配置&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;(env2p) $ mkdir blog
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;(env2p) $ mkdir blog
 (env2p) $ cd blog
 (env2p) $ pelican-quickstart
 Welcome to pelican-quickstart v3.6.3.
@@ -536,15 +536,15 @@ Done. Your new project is available at /home/snail/env2p/blog
 &lt;h3 id="d365c1"&gt;安装 &lt;code&gt;niu-x2-sidebar&lt;/code&gt; 主题模板&lt;/h3&gt;
 &lt;h4 id="7f70ad"&gt;安装系统依赖&lt;/h4&gt;
 &lt;p&gt;对于Debian系：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo apt-get install python-dev libjpeg-dev zlib1g-dev
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo apt-get install python-dev libjpeg-dev zlib1g-dev
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;对于openSUSE:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo zypper in gcc make git
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo zypper in gcc make git
 $ sudo zypper in python-devel libjpeg8-devel zlib-devel
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;这些都是&lt;code&gt;Pillow&lt;/code&gt;需要用到的。&lt;/p&gt;
 &lt;p&gt;生成zh_CN.UTF-8 locale&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo locale-gen zh_CN.UTF-8
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo locale-gen zh_CN.UTF-8
 &lt;/pre&gt;&lt;/div&gt;
 &lt;blockquote&gt;
 &lt;p&gt;openSUSE默认就是，可以不用设置这个&lt;/p&gt;
@@ -555,7 +555,7 @@ $ sudo zypper in python-devel libjpeg8-devel zlib-devel
 beautifulsoup4: 解析html文件
 Pillow: PIL&lt;/p&gt;
 &lt;p&gt;使用pip安装&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ pip install pelican-minify beautifulsoup4 Pillow
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ pip install pelican-minify beautifulsoup4 Pillow
 ......
 Installing collected packages: htmlmin, pelican-minify, beautifulsoup4, Pillow
 Successfully installed Pillow-3.0.0 beautifulsoup4-4.4.1 htmlmin-0.1.10 pelican-minify-0.8
@@ -582,7 +582,7 @@ urllib3 &lt;span class="o"&gt;(&lt;/span&gt;1.12&lt;span class="o"&gt;)&lt;/span
 wheel &lt;span class="o"&gt;(&lt;/span&gt;0.24.0&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h4 id="f8a47d"&gt;安装 &lt;code&gt;niu-x2-sidebar&lt;/code&gt; 主题&lt;/h4&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ mkdir themes
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ mkdir themes
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ &lt;span class="nb"&gt;cd&lt;/span&gt; themes
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git clone https://github.com/mawenbao/niu-x2-sidebar.git
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ ls
@@ -596,7 +596,7 @@ niux2_lazyload_helper插件: 延迟加载图片
 pelican-update-date插件: 提取文章内的修改时间
 sitemap插件: 生成sitemap
 summary插件: 提取第一句话作为摘要&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ mkdir plugins
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ mkdir plugins
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ &lt;span class="nb"&gt;cd&lt;/span&gt; plugins
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git clone https://github.com/mawenbao/extract_headings.git
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git clone https://github.com/mawenbao/niux2_hermit_player.git
@@ -613,7 +613,7 @@ niux2_hermit_player  pelican-update-date    summary
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="b39e48"&gt;配置 &lt;code&gt;pelicanconf.py&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;复制了原作者关于&lt;a href="http://blog.atime.me/note/pelican-setup-summary.html"&gt;Pelican静态博客搭建总结&lt;/a&gt;的配置，并作了适当修改&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="ch"&gt;#!/usr/bin/env python&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/env python&lt;/span&gt;
 &lt;span class="c1"&gt;# -*- coding: utf-8 -*- #&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;__future__&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;unicode_literals&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OrderedDict&lt;/span&gt;
@@ -827,7 +827,7 @@ niux2_hermit_player  pelican-update-date    summary
 &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="d3a354"&gt;创建内容目录下的相关子目录&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ &lt;span class="nb"&gt;cd&lt;/span&gt; content
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ &lt;span class="nb"&gt;cd&lt;/span&gt; content
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ mkdir pages
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ mkdir static
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ mkdir extra
@@ -842,21 +842,21 @@ code  collection  essay  extra  life  note  pages  research  static
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="b49198"&gt;本地生成测试&lt;/h2&gt;
 &lt;h3 id="bac0a5"&gt;生成输出文件&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ make html
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ make html
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="7795ac"&gt;查看网站生成的效果&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ make serve
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ make serve
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;然后打开浏览器，输入 &lt;code&gt;http://127.0.0.1:8000&lt;/code&gt; 就可以看到网站的效果了。
 也可以把上面两步并成一步，自动检测文件更新并生成 &lt;code&gt;html&lt;/code&gt;&lt;/p&gt;
 &lt;h3 id="91d14b"&gt;运行测试服务器&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ make devserver
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ make devserver
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;这个方法会自动监测文件的修改，并自动生成网站，&lt;/p&gt;
 &lt;p&gt;所以当我们修改&lt;code&gt;.md&lt;/code&gt;文件保存后，直接刷新 &lt;code&gt;http://127.0.0.1:8000&lt;/code&gt; 就可以看到更新后的效果了。&lt;/p&gt;
 &lt;h2 id="306b20"&gt;发布并git&lt;/h2&gt;
 &lt;h3 id="ec13c9"&gt;生成ssh密钥&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ &lt;span class="nb"&gt;cd&lt;/span&gt; ~/.ssh
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ &lt;span class="nb"&gt;cd&lt;/span&gt; ~/.ssh
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ ls
 config  id_rsa  id_rsa.pub  known_hosts
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ mkdir key_backup
@@ -875,18 +875,18 @@ Enter same passphrase again:&amp;lt;再次输入加密串&amp;gt;
 &lt;p&gt;选择SSH Keys项，把复制的内容粘贴进去，然后点击Add Key按钮即可。&lt;/p&gt;
 &lt;h3 id="124a56"&gt;ssh连接测试&lt;/h3&gt;
 &lt;p&gt;可以输入下面的命令，看看设置是否成功，git@github.com的部分不要修改： &lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ ssh -T git@github.com
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ssh -T git@github.com
 Hi &amp;lt;em&amp;gt;username&amp;lt;/em&amp;gt;! You&lt;span class="err"&gt;'&lt;/span&gt;ve successfully authenticated, but GitHub does not provide shell access.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果有这个显示，就表示SSh连接是成功的。&lt;/p&gt;
 &lt;p&gt;下面我们就可以git网站了。&lt;/p&gt;
 &lt;h3 id="a3e59c"&gt;git静态网站&lt;/h3&gt;
 &lt;p&gt;git前&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git config --global user.email &lt;span class="s2"&gt;"you@example.com"&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git config --global user.email &lt;span class="s2"&gt;"you@example.com"&lt;/span&gt;
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git config --global user.name &lt;span class="s2"&gt;"Your Name"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;初次git时&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ &lt;span class="nb"&gt;cd&lt;/span&gt; output
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ &lt;span class="nb"&gt;cd&lt;/span&gt; output
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git init
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git add .
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git remote add origin https://github.com/snailhome/snailhome.github.io.git
@@ -894,7 +894,7 @@ Hi &amp;lt;em&amp;gt;username&amp;lt;/em&amp;gt;! You&lt;span class="err"&gt;'&l
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git push -u origin master
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;提示出错，貌似要先 &lt;code&gt;pull&lt;/code&gt; 一下，于是&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git pull origin master
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git pull origin master
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git commit -a
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git push -u origin master
 &lt;/pre&gt;&lt;/div&gt;
@@ -908,7 +908,7 @@ $ git commit * -m "what I want told to someone"  //备注信息
 $ git push origin master //更新到远程服务器上&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;以后每次要推送时&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ make publish
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ make publish
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ &lt;span class="nb"&gt;cd&lt;/span&gt; output
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git add -A
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ git commit -m &lt;span class="s2"&gt;"Commit Info"&lt;/span&gt;
@@ -916,7 +916,7 @@ $ git push origin master //更新到远程服务器上&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;就可以了～～&lt;/p&gt;
 &lt;p&gt;为了方便操作我做了别名&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ vim ~/.bashrc
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ vim ~/.bashrc
 
 #输入以下别名设置
 alias sa='source bin/activate'
@@ -928,47 +928,47 @@ $ source ~/.bashrc  ## 即时生效
 &lt;p&gt;这样，我打开终端输入 &lt;code&gt;sa&lt;/code&gt; 就直接进入虚拟环境，输入 &lt;code&gt;git2p&lt;/code&gt; 就直接生成发布文档并git到我的page里，输入 &lt;code&gt;da&lt;/code&gt; 就直接退出虚拟环境。&lt;/p&gt;
 &lt;p&gt;但是还不够好，每次都需要输入用户名和密码，可以免输用户名和密码吗?&lt;/p&gt;
 &lt;h3 id="be3806"&gt;设置git时免输用户名和密码&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ &lt;span class="nb"&gt;cd&lt;/span&gt; output/.git
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ &lt;span class="nb"&gt;cd&lt;/span&gt; output/.git
 &lt;span class="o"&gt;(&lt;/span&gt;env2p&lt;span class="o"&gt;)&lt;/span&gt; $ vim config
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;看到这一段&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[remote "origin"]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[remote "origin"]
         url = https://github.com/yourname/yourname.github.io.git
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;将其改为：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[remote "origin"]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[remote "origin"]
         url = https://yourname:password@github.com/yourname/yourname.github.io.git
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;当然，这个操作最好是在自己的机器上，毕竟用户名和密码明文放在上面，在其它机器上还是老老实实输入用户名和密码吧。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Mon, 05 Oct 2015 00:00:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-10-05:research/build_pelican_on_python2.html</guid><category>Python2</category><category>Pelican</category><category>静态博客</category></item><item><title>CentOS7下安装Fcitx小企鹅输入法</title><link>http://snailhome.github.io/note/fcitx_in_centos7.html</link><description>&lt;p&gt;感觉CentOS7自带的ibus输入法用得不尽人意，考虑安装个Fcitx小企鹅输入法试试，心动不如行动，Let's go～&lt;/p&gt;
 &lt;h2 id="8c4cab"&gt;1. 加入EPEL源&lt;/h2&gt;
 &lt;p&gt;EPEL7几乎是CentOS必备的源:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo yum install epel-release
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo yum install epel-release
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="74e7ae"&gt;2. 添加mosquito-myrepo源&lt;/h2&gt;
 &lt;p&gt;mosquito-myrepo是一个私人制作的第三方源，其中包含了fcitx输入法。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;项目地址： https://github.com/1dot75cm/myrepo
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;项目地址： https://github.com/1dot75cm/myrepo
 支持的发行版： Fedora 19/20/21/rawhide 以及RHEL/CentOS 7
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo yum-config-manager --add-repo&lt;span class="o"&gt;=&lt;/span&gt;https://copr.fedoraproject.org/coprs/mosquito/myrepo/repo/epel-7/mosquito-myrepo-epel-7.repo
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo yum-config-manager --add-repo&lt;span class="o"&gt;=&lt;/span&gt;https://copr.fedoraproject.org/coprs/mosquito/myrepo/repo/epel-7/mosquito-myrepo-epel-7.repo
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="7cfd47"&gt;3. 卸载原来的ibus输入法&lt;/h2&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo yum remove ibus
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo yum remove ibus
 $ sudo yum remove imsettings imsettings-libs im-chooser
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="59570b"&gt;4. 安装输入法&lt;/h2&gt;
 &lt;p&gt;可以选择下面的各种输入法中的某一个或多个:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo yum install fcitx-table-wbpy &lt;span class="c1"&gt;# 五笔拼音输入法&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo yum install fcitx-table-wbpy &lt;span class="c1"&gt;# 五笔拼音输入法&lt;/span&gt;
 $ sudo yum install fcitx-googlepinyin fcitx-cloudpinyin &lt;span class="c1"&gt;# 谷歌拼音输入法&lt;/span&gt;
 $ sudo yum install fcitx-qimpanel-configtool &lt;span class="c1"&gt;# 输入法面板设置&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="32dbcb"&gt;5. 配置Fcitx&lt;/h2&gt;
 &lt;p&gt;在~/.bashrc中添加如下内容&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fcitx
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;GTK_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fcitx
 &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;QT_IM_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fcitx
 &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;XMODIFIERS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;”@im&lt;span class="o"&gt;=&lt;/span&gt;fcitx”
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="6d107a"&gt;6. 关闭gnome-shell 对键盘的监听，然后切换输入法为fcitx:&lt;/h2&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ sudo pkill ibus-daemon
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo pkill ibus-daemon
 $ sudo gsettings &lt;span class="nb"&gt;set&lt;/span&gt; org.gnome.settings-daemon.plugins.keyboard active &lt;span class="nb"&gt;false&lt;/span&gt;
 $ sudo imsettings-switch fcitx
 &lt;/pre&gt;&lt;/div&gt;
@@ -986,7 +986,7 @@ $ sudo imsettings-switch fcitx
 &lt;/blockquote&gt;
 &lt;p&gt;首先我们考虑一下，各数据表数据结构各不相同，如果针对每一个数据表做一个备份表太过繁琐，所以我们考虑只用一个&lt;code&gt;TextField&lt;/code&gt;来保存旧记录内容，而把记录的各字段内容生成&lt;code&gt;Json&lt;/code&gt;的形式保存到&lt;code&gt;TextField&lt;/code&gt;中，就可以不用管各数据表的字段有多少，再附上方便检索和引用的表名、记录号、修改时间、操作人员等字段信息，那一个备份表就基本上够了。&lt;/p&gt;
 &lt;p&gt;我们在&lt;code&gt;recordbackup&lt;/code&gt;这个应用里&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# recordbackup.models.py&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# recordbackup.models.py&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.db&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;
 
 &lt;span class="c1"&gt;# Create your models here.&lt;/span&gt;
@@ -1003,7 +1003,7 @@ $ sudo imsettings-switch fcitx
         &lt;span class="n"&gt;verbose_name_plural&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;verbose_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'记录备份'&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;创建&lt;code&gt;admin.py&lt;/code&gt;用于后台查看备份数据，&lt;strong&gt;只读&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# recordbackup/admin.py&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# recordbackup/admin.py&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
 
@@ -1021,11 +1021,11 @@ $ sudo imsettings-switch fcitx
     &lt;span class="n"&gt;list_operate&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;allow_tags&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;生成相关数据表&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;./manage.py makemigrations
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;./manage.py makemigrations
 ./manage.py migrate
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;再创建一个&lt;code&gt;utils.py&lt;/code&gt;用于转换记录为&lt;code&gt;Json&lt;/code&gt;和保存旧记录功能的函数。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# recordbackup/utils.py&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# recordbackup/utils.py&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt;
 
@@ -1075,7 +1075,7 @@ $ sudo imsettings-switch fcitx
         &lt;span class="k"&gt;pass&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;现在记录备份的功能可以用了，我们在台账数据表&lt;code&gt;PcAdmin&lt;/code&gt;的&lt;code&gt;save_model()&lt;/code&gt;里加了保存旧记录的操作&lt;code&gt;OldRecordSave()&lt;/code&gt;&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# pc/admin.py&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# pc/admin.py&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;recordbackup.utils&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OldRecordSave&lt;/span&gt;
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;PcAdmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ModelAdmin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -1086,7 +1086,7 @@ $ sudo imsettings-switch fcitx
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;现在我们可以做一个测试，进入PC的编辑页面，修改一个字段信息，然后保存，我们看看&lt;code&gt;记录备份&lt;/code&gt;表是不是多出一条记录，内容正是PC保存前的内容。
 类似的，我们只要在需要保存旧数据的admin中引入&lt;code&gt;from recordbackup.utils import OldRecordSave&lt;/code&gt;，再在&lt;code&gt;save_model()&lt;/code&gt;的&lt;code&gt;obj.save()&lt;/code&gt;前加入&lt;code&gt;OldRecordSave(self, request, obj, form, change)&lt;/code&gt;就可以实现旧记录数据的保存了。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Mon, 21 Sep 2015 22:14:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-09-21:note/backup_record_before_save_in_Django.html</guid><category>Django</category><category>保存</category><category>备份</category></item><item><title>Django后台列表添加扩展列表列，字段内容以链接方式实现的方法</title><link>http://snailhome.github.io/note/extend_admin_in_django.html</link><description>&lt;p&gt;我们先来看一个例子，这是在后台数据表列表页面里添加扩展列，实现扩展操作的一个方法。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# admin.py&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# admin.py&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.urlresolvers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;reverse&lt;/span&gt;
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;BlogAdmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ModelAdmin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -1101,7 +1101,7 @@ $ sudo imsettings-switch fcitx
 &lt;p&gt;在这里定义一个回调函数&lt;code&gt;def list_operate(self, obj)：&lt;/code&gt;，用于返回一个扩展的链接的&lt;code&gt;html&lt;/code&gt;代码。&lt;/p&gt;
 &lt;p&gt;这里同时用到&lt;code&gt;reverse&lt;/code&gt;函数，用来转换链接。&lt;/p&gt;
 &lt;p&gt;另外一种是实现在编辑页面添加扩展字段的实现方式，是在models.py里实现的，可以参考 &lt;a href="extend_column_in_django.html"&gt;Djnago的Models里添加扩展字段，在编辑界面里的字段内容以链接方式实现的方法&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Thu, 17 Sep 2015 13:27:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-09-17:note/extend_admin_in_django.html</guid></item><item><title>Djnago的Models里添加扩展字段，在编辑界面里的字段内容以链接方式实现的方法</title><link>http://snailhome.github.io/note/extend_column_in_django.html</link><description>&lt;p&gt;先来看一个例子，该例子是让其在编辑界面里添加了个字段，其字段内容为搜索同姓氏人员的一个链接，该实现是在&lt;code&gt;models.py&lt;/code&gt;里实现的&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# models.py&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# models.py&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.utils.html&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;format_html&lt;/span&gt;
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Staff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="o"&gt;...&lt;/span&gt;
@@ -1123,22 +1123,22 @@ $ sudo imsettings-switch fcitx
 &lt;p&gt;网上找到了安装方法&lt;/p&gt;
 &lt;h2 id="4a98b8"&gt;1. 下载安装脚本文件&lt;/h2&gt;
 &lt;p&gt;下载32位版本：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;wget https://gist.githubusercontent.com/dkd903/531a2409c40c926c66d6/raw/2c83194719f1216a7321e4b48f6b604dc8779faf/Install_Sublime_Text_3.sh -O install-sublime-text.sh
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget https://gist.githubusercontent.com/dkd903/531a2409c40c926c66d6/raw/2c83194719f1216a7321e4b48f6b604dc8779faf/Install_Sublime_Text_3.sh -O install-sublime-text.sh
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;下载64位版本：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;wget https://gist.githubusercontent.com/dkd903/8ba3f51313c1781cc571/raw/f37b1c18547d086cd45e8b484efc518260106ea9/Install_Sublime_Text_3_64.sh -O install-sublime-text.sh
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget https://gist.githubusercontent.com/dkd903/8ba3f51313c1781cc571/raw/f37b1c18547d086cd45e8b484efc518260106ea9/Install_Sublime_Text_3_64.sh -O install-sublime-text.sh
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="95a39f"&gt;2. 修改文件属性为可执行&lt;/h2&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;chmod +x install-sublime-text.sh
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;chmod +x install-sublime-text.sh
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="5beeca"&gt;3. 执行安装脚本&lt;/h2&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;su -c &lt;span class="s2"&gt;"sh install-sublime-text.sh"&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;su -c &lt;span class="s2"&gt;"sh install-sublime-text.sh"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;现在你就可以在从菜单里找到 &lt;code&gt;Sublime Text 3&lt;/code&gt; 了，或者在命令行里执行 &lt;code&gt;subl&lt;/code&gt; 来运行它。&lt;/p&gt;
 &lt;p&gt;如果先前你有安装过 &lt;code&gt;Sublime Text 2&lt;/code&gt;，那么安装完成后就会被 &lt;code&gt;Sublime Text 3&lt;/code&gt; 所替代。&lt;/p&gt;
 &lt;hr/&gt;
 &lt;p&gt;这里列出脚本内容以供参考：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
 &lt;span class="nv"&gt;SHORTCUT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"[Desktop Entry]&lt;/span&gt;
 &lt;span class="s2"&gt;Name=Sublime Text 3&lt;/span&gt;
 &lt;span class="s2"&gt;Comment=Edit text files&lt;/span&gt;
@@ -1171,7 +1171,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;h3 id="5e852f"&gt;1. 发送 SMS&lt;/h3&gt;
 &lt;p&gt;在开发 Web 或者移动应用的时候，经常会遇到需要发送 SMS 给用户，或者因为登录原因，或者是为了发送信息。下面的 PHP 代码就实现了发送 SMS 的功能。&lt;/p&gt;
 &lt;p&gt;为了使用任何的语言发送 SMS，需要一个 SMS gateway。大部分的 SMS 会提供一个 API，这里是使用 MSG91 作为 SMS gateway。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function send_sms($mobile,$msg)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function send_sms($mobile,$msg)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;$authKey = "XXXXXXXXXXX";&lt;/span&gt;
 &lt;span class="x"&gt;date_default_timezone_set("Asia/Kolkata");&lt;/span&gt;
@@ -1228,7 +1228,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;其中“$authKey = "XXXXXXXXXXX";”需要你输入你的密码，“$senderId = "IKOONK";”需要你输入你的 SenderID。当输入移动号码的时候需要指定国家代码 (比如，美国是 1，印度是 91 )。&lt;/p&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$message&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"Hello World"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$mobile&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"918112998787"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nx"&gt;send_sms&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$mobile&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;$message&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -1237,7 +1237,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;h3 id="c49a1d"&gt;2. 使用 mandrill 发送邮件&lt;/h3&gt;
 &lt;p&gt;Mandrill 是一款强大的 SMTP 提供器。开发者倾向于使用一个第三方 SMTP provider 来获取更好的收件交付。&lt;/p&gt;
 &lt;p&gt;下面的函数中，你需要把 “Mandrill.php” 放在同一个文件夹，作为 PHP 文件，这样就可以使用TA来发送邮件。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function send_email($to_email,$subject,$message1)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function send_email($to_email,$subject,$message1)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;require_once 'Mandrill.php';&lt;/span&gt;
 &lt;span class="x"&gt;$apikey = 'XXXXXXXXXX'; //specify your api key here&lt;/span&gt;
@@ -1257,7 +1257,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;“$apikey = 'XXXXXXXXXX'; //specify your api key here”这里需要你指定你的 API 密钥（从 Mandrill 账户中获得）。&lt;/p&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$to&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"abc@example.com"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$subject&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"This is a test email"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$message&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"Hello World!"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -1267,7 +1267,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;p&gt;为了达到最好的效果，最好按照 Mandrill 的教程去配置 DNS。&lt;/p&gt;
 &lt;h3 id="2f6989"&gt;3. PHP 函数：阻止 SQL 注入&lt;/h3&gt;
 &lt;p&gt;SQL 注入或者 SQLi 常见的攻击网站的手段，使用下面的代码可以帮助你防止这些工具。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function clean($input)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function clean($input)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;    if (is_array($input))&lt;/span&gt;
 &lt;span class="x"&gt;    {&lt;/span&gt;
@@ -1293,7 +1293,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;clean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$text&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$text&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -1301,7 +1301,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="083da9"&gt;4. 检测用户位置&lt;/h3&gt;
 &lt;p&gt;使用下面的函数，可以检测用户是在哪个城市访问你的网站&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function detect_city($ip) {&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function detect_city($ip) {&lt;/span&gt;
 
 &lt;span class="x"&gt;        $default = 'UNKNOWN';&lt;/span&gt;
 
@@ -1347,7 +1347,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;    }&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$_SERVER&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'REMOTE_ADDR'&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
 &lt;span class="nv"&gt;$city&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;detect_city&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$ip&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$city&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -1355,7 +1355,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="569b1a"&gt;5. 获取 Web 页面的源代码&lt;/h3&gt;
 &lt;p&gt;使用下面的函数，可以获取任意 Web 页面的 HTML 代码&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function display_sourcecode($url)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function display_sourcecode($url)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;$lines = file($url);&lt;/span&gt;
 &lt;span class="x"&gt;$output = "";&lt;/span&gt;
@@ -1366,14 +1366,14 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"http://blog.koonk.com"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$source&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;display_sourcecode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$url&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$source&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="a043ae"&gt;6. 计算喜欢你的 Facebook 页面的用户&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function fb_fan_count($facebook_name)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function fb_fan_count($facebook_name)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;    $data = json_decode(file_get_contents("https://graph.facebook.com/".$facebook_name));&lt;/span&gt;
 &lt;span class="x"&gt;    $likes = $data-&amp;gt;likes;&lt;/span&gt;
@@ -1381,14 +1381,14 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$page&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"koonktechnologies"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$count&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;fb_fan_count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$page&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$count&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="8bf529"&gt;7. 确定任意图片的主导颜色&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function dominant_color($image)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function dominant_color($image)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;$i = imagecreatefromjpeg($image);&lt;/span&gt;
 &lt;span class="x"&gt;for ($x=0;$x&amp;lt;imagesx($i);$x++) {&lt;/span&gt;
@@ -1410,7 +1410,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="3de73b"&gt;8. whois 查询&lt;/h3&gt;
 &lt;p&gt;使用下面的函数可以获取任何域名用户的完整细节&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function whois_query($domain) {&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function whois_query($domain) {&lt;/span&gt;
 
 &lt;span class="x"&gt;    // fix the domain name:&lt;/span&gt;
 &lt;span class="x"&gt;    $domain = strtolower(trim($domain));&lt;/span&gt;
@@ -1493,7 +1493,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$domain&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"http://www.blog.koonk.com"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;whois_query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$domain&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="nb"&gt;print_r&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$result&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -1501,7 +1501,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="6a6918"&gt;9. 验证邮箱地址&lt;/h3&gt;
 &lt;p&gt;有时候，当在网站填写表单，用户可能会输入错误的邮箱地址，这个函数可以验证邮箱地址是否有效。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function is_validemail($email)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function is_validemail($email)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;$check = 0;&lt;/span&gt;
 &lt;span class="x"&gt;if(filter_var($email,FILTER_VALIDATE_EMAIL))&lt;/span&gt;
@@ -1512,7 +1512,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$email&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"blog@koonk.com"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$check&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;is_validemail&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$email&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$check&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -1520,7 +1520,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="fcdec9"&gt;10. 获取用户的真实  IP&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function getRealIpAddr()  &lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function getRealIpAddr()  &lt;/span&gt;
 &lt;span class="x"&gt;{  &lt;/span&gt;
 &lt;span class="x"&gt;    if (!emptyempty($_SERVER['HTTP_CLIENT_IP']))  &lt;/span&gt;
 &lt;span class="x"&gt;    {  &lt;/span&gt;
@@ -1539,14 +1539,14 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;getRealIpAddr&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$ip&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="0e14b7"&gt;11. 转换 URL：从字符串变成超链接&lt;/h3&gt;
 &lt;p&gt;如果你正在开发论坛，博客或者是一个常规的表单提交，很多时候都要用户访问一个网站。使用这个函数，URL 字符串就可以自动的转换为超链接。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function makeClickableLinks($text) &lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function makeClickableLinks($text) &lt;/span&gt;
 &lt;span class="x"&gt;{  &lt;/span&gt;
 &lt;span class="x"&gt; $text = eregi_replace('(((f|ht){1}tp://)[-a-zA-Z0-9@:%_+.~#?&amp;amp;//=]+)',  &lt;/span&gt;
 &lt;span class="x"&gt; '&amp;lt;a href="\1"&amp;gt;\1&amp;lt;/a&amp;gt;', $text);  &lt;/span&gt;
@@ -1559,7 +1559,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"This is my first post on http://blog.koonk.com"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;makeClickableLinks&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$text&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$text&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -1567,7 +1567,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="4a162a"&gt;12. 阻止多个 IP 访问你的网站&lt;/h3&gt;
 &lt;p&gt;这个代码片段可以方便你禁止某些特定的 IP 地址访问你的网站&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;if ( !file_exists('blocked_ips.txt') ) {&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;if ( !file_exists('blocked_ips.txt') ) {&lt;/span&gt;
 &lt;span class="x"&gt; $deny_ips = array(&lt;/span&gt;
 &lt;span class="x"&gt;  '127.0.0.1',&lt;/span&gt;
 &lt;span class="x"&gt;  '192.168.1.1',&lt;/span&gt;
@@ -1589,7 +1589,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="524b6e"&gt;13. 强制性文件下载&lt;/h3&gt;
 &lt;p&gt;如果你需要下载特定的文件而不用另开新窗口，下面的代码片段可以帮助你。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function force_download($file) &lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function force_download($file) &lt;/span&gt;
 &lt;span class="x"&gt;{ &lt;/span&gt;
 &lt;span class="x"&gt;    $dir      = "../log/exports/"; &lt;/span&gt;
 &lt;span class="x"&gt;    if ((isset($file))&amp;amp;&amp;amp;(file_exists($dir.$file))) { &lt;/span&gt;
@@ -1606,18 +1606,18 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;&amp;lt;php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;&amp;lt;php&lt;/span&gt;
 &lt;span class="x"&gt;force_download("image.jpg");&lt;/span&gt;
 &lt;span class="x"&gt;?&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="09d2ee"&gt;14. 创建 JSON 数据&lt;/h3&gt;
 &lt;p&gt;使用下面的 PHP 片段可以创建 JSON 数据，可以方便你创建移动应用的 Web 服务&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;$json_data = array ('id'=&amp;gt;1,'name'=&amp;gt;"Mohit");&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;$json_data = array ('id'=&amp;gt;1,'name'=&amp;gt;"Mohit");&lt;/span&gt;
 &lt;span class="x"&gt;echo json_encode($json_data);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="a37b2a"&gt;15. 压缩 zip 文件&lt;/h3&gt;
 &lt;p&gt;使用下面的 PHP 片段可以即时压缩 zip 文件&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function create_zip($files = array(),$destination = '',$overwrite = false) {  &lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function create_zip($files = array(),$destination = '',$overwrite = false) {  &lt;/span&gt;
 &lt;span class="x"&gt;    //if the zip file already exists and overwrite is false, return false  &lt;/span&gt;
 &lt;span class="x"&gt;    if(file_exists($destination) &amp;amp;&amp;amp; !$overwrite) { return false; }  &lt;/span&gt;
 &lt;span class="x"&gt;    //vars  &lt;/span&gt;
@@ -1659,13 +1659,13 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$files&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'file1.jpg'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'file2.jpg'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'file3.gif'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  
 &lt;span class="nx"&gt;create_zip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$files&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'myzipfile.zip'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="4e7fc7"&gt;16. 解压文件&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function unzip($location,$newLocation)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function unzip($location,$newLocation)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;        if(exec("unzip $location",$arr)){&lt;/span&gt;
 &lt;span class="x"&gt;            mkdir($newLocation);&lt;/span&gt;
@@ -1681,12 +1681,12 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nx"&gt;unzip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'test.zip'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'unziped/test'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//File would be unzipped in unziped/test folder&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="438b77"&gt;17. 缩放图片&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function resize_image($filename, $tmpname, $xmax, $ymax)  &lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function resize_image($filename, $tmpname, $xmax, $ymax)  &lt;/span&gt;
 &lt;span class="x"&gt;{  &lt;/span&gt;
 &lt;span class="x"&gt;    $ext = explode(".", $filename);  &lt;/span&gt;
 &lt;span class="x"&gt;    $ext = $ext[count($ext)-1];  &lt;/span&gt;
@@ -1720,7 +1720,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="8d6fc6"&gt;18. 使用 mail() 发送邮件&lt;/h3&gt;
 &lt;p&gt;之前我们提供了如何使用 Mandrill 发送邮件的 PHP 代码片段，但是如果你不想使用第三方服务，那么可以使用下面的 PHP 代码片段。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function send_mail($to,$subject,$body)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function send_mail($to,$subject,$body)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;$headers = "From: KOONK\r\n";&lt;/span&gt;
 &lt;span class="x"&gt;$headers .= "Reply-To: blog@koonk.com\r\n";&lt;/span&gt;
@@ -1732,7 +1732,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$to&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"admin@koonk.com"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$subject&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"This is a test mail"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$body&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"Hello World!"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -1740,7 +1740,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="166d24"&gt;19. 把秒转换成天数，小时数和分钟&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function secsToStr($secs) {&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function secsToStr($secs) {&lt;/span&gt;
 &lt;span class="x"&gt;    if($secs&amp;gt;=86400){$days=floor($secs/86400);$secs=$secs%86400;$r=$days.' day';if($days&amp;lt;&amp;gt;1){$r.='s';}if($secs&amp;gt;0){$r.=', ';}}&lt;/span&gt;
 &lt;span class="x"&gt;    if($secs&amp;gt;=3600){$hours=floor($secs/3600);$secs=$secs%3600;$r.=$hours.' hour';if($hours&amp;lt;&amp;gt;1){$r.='s';}if($secs&amp;gt;0){$r.=', ';}}&lt;/span&gt;
 &lt;span class="x"&gt;    if($secs&amp;gt;=60){$minutes=floor($secs/60);$secs=$secs%60;$r.=$minutes.' minute';if($minutes&amp;lt;&amp;gt;1){$r.='s';}if($secs&amp;gt;0){$r.=', ';}}&lt;/span&gt;
@@ -1749,7 +1749,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$seconds&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"56789"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$output&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;secsToStr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$seconds&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$output&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -1757,7 +1757,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="2dc31c"&gt;20. 数据库连接&lt;/h3&gt;
 &lt;p&gt;连接 MySQL 数据库&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$DBNAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'koonk'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$HOST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'localhost'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$DBUSER&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'root'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -1776,7 +1776,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="6d426a"&gt;21. 目录清单&lt;/h3&gt;
 &lt;p&gt;使用下面的 PHP 代码片段可以在一个目录中列出所有文件和文件夹&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function list_files($dir)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function list_files($dir)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;    if(is_dir($dir))&lt;/span&gt;
 &lt;span class="x"&gt;    {&lt;/span&gt;
@@ -1795,13 +1795,13 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
     &lt;span class="nx"&gt;list_files&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"images/"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//This will list all files of images folder&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="aa2c7d"&gt;22. 检测用户语言&lt;/h3&gt;
 &lt;p&gt;使用下面的 PHP 代码片段可以检测用户浏览器所使用的语言&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function get_client_language($availableLanguages, $default='en'){&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function get_client_language($availableLanguages, $default='en'){&lt;/span&gt;
 &lt;span class="x"&gt;    if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {&lt;/span&gt;
 &lt;span class="x"&gt;        $langs=explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);&lt;/span&gt;
 &lt;span class="x"&gt;        foreach ($langs as $value){&lt;/span&gt;
@@ -1815,7 +1815,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="776e06"&gt;23. 查看 CSV 文件&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function readCSV($csvFile){&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function readCSV($csvFile){&lt;/span&gt;
 &lt;span class="x"&gt;    $file_handle = fopen($csvFile, 'r');&lt;/span&gt;
 &lt;span class="x"&gt;    while (!feof($file_handle) ) {&lt;/span&gt;
 &lt;span class="x"&gt;        $line_of_text[] = fgetcsv($file_handle, 1024);&lt;/span&gt;
@@ -1825,14 +1825,14 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$csvFile&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"test.csv"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$csv&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;readCSV&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$csvFile&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="nv"&gt;$a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;csv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt; &lt;span class="c1"&gt;// This will get value of Column 1 &amp;amp; Row 1&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="e2647d"&gt;24. 从 PHP 数据创建 CSV 文件&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function generateCsv($data, $delimiter = ',', $enclosure = '"') {&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function generateCsv($data, $delimiter = ',', $enclosure = '"') {&lt;/span&gt;
 &lt;span class="x"&gt;   $handle = fopen('php://temp', 'r+');&lt;/span&gt;
 &lt;span class="x"&gt;   foreach ($data as $line) {&lt;/span&gt;
 &lt;span class="x"&gt;           fputcsv($handle, $line, $delimiter, $enclosure);&lt;/span&gt;
@@ -1846,14 +1846,14 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"apple"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"oranges"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nx"&gt;generateCsv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$delimiter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;','&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$enclosure&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'"'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="330684"&gt;25. 解析 XML 数据&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;$xml_string="&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="nx"&gt;xml&lt;/span&gt; &lt;span class="nx"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'1.0'&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;$xml_string="&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="nx"&gt;xml&lt;/span&gt; &lt;span class="nx"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'1.0'&lt;/span&gt;&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;span class="x"&gt;&amp;lt;moleculedb&amp;gt;&lt;/span&gt;
 &lt;span class="x"&gt;    &amp;lt;molecule name='Benzine'&amp;gt;&lt;/span&gt;
 &lt;span class="x"&gt;        &amp;lt;symbol&amp;gt;ben&amp;lt;/symbol&amp;gt;&lt;/span&gt;
@@ -1879,7 +1879,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="88404a"&gt;26. 解析 JSON 数据&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;$json_string='{"id":1,"name":"rolf","country":"russia","office":["google","oracle"]} ';&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;$json_string='{"id":1,"name":"rolf","country":"russia","office":["google","oracle"]} ';&lt;/span&gt;
 &lt;span class="x"&gt;$obj=json_decode($json_string);&lt;/span&gt;
 &lt;span class="x"&gt;//print the parsed data&lt;/span&gt;
 &lt;span class="x"&gt;echo $obj-&amp;gt;name; //displays rolf&lt;/span&gt;
@@ -1887,7 +1887,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="e284be"&gt;27. 获取当前页面 URL&lt;/h3&gt;
 &lt;p&gt;这个 PHP 片段可以帮助你让用户登录后直接跳转到之前浏览的页面&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function current_url()&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function current_url()&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;$url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];&lt;/span&gt;
 &lt;span class="x"&gt;$validURL = str_replace("&amp;amp;", "&amp;amp;amp;", $url);&lt;/span&gt;
@@ -1895,12 +1895,12 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"Currently you are on: "&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;current_url&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="a29d24"&gt;28. 从任意的 Twitter 账号获取最新的 Tweet&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function my_twitter($username) &lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function my_twitter($username) &lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;     $no_of_tweets = 1;&lt;/span&gt;
 &lt;span class="x"&gt;     $feed = "http://search.twitter.com/search.atom?q=from:" . $username . "&amp;amp;rpp=" . $no_of_tweets;&lt;/span&gt;
@@ -1917,14 +1917,14 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$handle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"koonktech"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nx"&gt;my_twitter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$handle&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="c04b6b"&gt;29. 转发数量&lt;/h3&gt;
 &lt;p&gt;使用这个 PHP 片段可以检测你的页面 URL 有多少转发数量&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function tweetCount($url) {&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function tweetCount($url) {&lt;/span&gt;
 &lt;span class="x"&gt;    $content = file_get_contents("http://api.tweetmeme.com/url_info?url=".$url);&lt;/span&gt;
 &lt;span class="x"&gt;    $element = new SimpleXmlElement($content);&lt;/span&gt;
 &lt;span class="x"&gt;    $retweets = $element-&amp;gt;story-&amp;gt;url_count;&lt;/span&gt;
@@ -1936,14 +1936,14 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"http://blog.koonk.com"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$count&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;tweetCount&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$url&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nv"&gt;$count&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="d1db9a"&gt;30. 计算两个日期的差&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$date1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;date&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s1"&gt;'Y-m-d'&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="nv"&gt;$date2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"2015-12-04"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$diff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;strtotime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$date2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nb"&gt;strtotime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$date1&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
@@ -2061,7 +2061,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="d22e1e"&gt;31. 删除文件夹内容&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function Delete($path)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function Delete($path)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;    if (is_dir($path) === true)&lt;/span&gt;
 &lt;span class="x"&gt;    {&lt;/span&gt;
@@ -2080,13 +2080,13 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"images/"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nx"&gt;Delete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$path&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// This will delete images folder along with its contents.&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="d7d3c8"&gt;32. 搜索和高亮字符串中的关键字&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function highlighter_text($text, $words)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function highlighter_text($text, $words)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;    $split_words = explode( " " , $words );&lt;/span&gt;
 &lt;span class="x"&gt;    foreach($split_words as $word)&lt;/span&gt;
@@ -2099,14 +2099,14 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"I like chocolates and I like apples"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$words&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"apple"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nx"&gt;highlighter_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$string&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;$words&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="5153c8"&gt;33. 写入文件&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;
 &lt;span class="nv"&gt;$filename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'blog.csv'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$fp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;fopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'w'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="nv"&gt;$output&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;" Hello "&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -2117,7 +2117,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="0e537e"&gt;34. 根据 URL 下载图片&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function imagefromURL($image,$rename)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function imagefromURL($image,$rename)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;$ch = curl_init($image);&lt;/span&gt;
 &lt;span class="x"&gt;curl_setopt($ch, CURLOPT_HEADER, 0);&lt;/span&gt;
@@ -2131,14 +2131,14 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"http://koonk.com/images/logo.png"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$rename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"koonk.png"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nx"&gt;imagefromURL&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;$rename&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="b9502c"&gt;35. 检测 URL 是否有效&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function isvalidURL($url)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function isvalidURL($url)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;$check = 0;&lt;/span&gt;
 &lt;span class="x"&gt;if (filter_var($url, FILTER_VALIDATE_URL) !== false) {&lt;/span&gt;
@@ -2148,14 +2148,14 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"http://koonk.com"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$check&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;checkvalidURL&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$url&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$check&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;//if returns 1 then URL is valid.&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="ad4346"&gt;36. 生成二维码&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function qr_code($data, $type = "TXT", $size ='150', $ec='L', $margin='0')  &lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function qr_code($data, $type = "TXT", $size ='150', $ec='L', $margin='0')  &lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;     $types = array("URL" =--&amp;gt; "http://", "TEL" =&amp;gt; "TEL:", "TXT"=&amp;gt;"", "EMAIL" =&amp;gt; "MAILTO:");&lt;/span&gt;
 &lt;span class="x"&gt;    if(!in_array($type,array("URL", "TEL", "TXT", "EMAIL")))&lt;/span&gt;
@@ -2180,13 +2180,13 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nb"&gt;header&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Content-type: image/png"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nx"&gt;qr_code&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"http://koonk.com"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"URL"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="4e1f7b"&gt;37. 计算两个地图坐标之间的距离&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function getDistanceBetweenPointsNew($latitude1, $longitude1, $latitude2, $longitude2) {&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function getDistanceBetweenPointsNew($latitude1, $longitude1, $latitude2, $longitude2) {&lt;/span&gt;
 &lt;span class="x"&gt;    $theta = $longitude1 - $longitude2;&lt;/span&gt;
 &lt;span class="x"&gt;    $miles = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2))) + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta)));&lt;/span&gt;
 &lt;span class="x"&gt;    $miles = acos($miles);&lt;/span&gt;
@@ -2200,7 +2200,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$point1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'lat'&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;40.770623&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'long'&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;73.964367&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="nv"&gt;$point2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'lat'&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;40.758224&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'long'&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;73.917404&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="nv"&gt;$distance&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;getDistanceBetweenPointsNew&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$point1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'lat'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="nv"&gt;$point1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'long'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="nv"&gt;$point2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'lat'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="nv"&gt;$point2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'long'&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
@@ -2210,7 +2210,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="92cc85"&gt;38. 获取一个特定话题标签的所有 Tweets&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function getTweets($hash_tag) {&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function getTweets($hash_tag) {&lt;/span&gt;
 &lt;span class="x"&gt;    $url = 'http://search.twitter.com/search.atom?q='.urlencode($hash_tag) ;&lt;/span&gt;
 &lt;span class="x"&gt;    echo "&amp;lt;p&amp;gt;Connecting to &amp;lt;strong&amp;gt;$url&amp;lt;/strong&amp;gt; ...&amp;lt;/p&amp;gt;";&lt;/span&gt;
 &lt;span class="x"&gt;    $ch = curl_init($url);&lt;/span&gt;
@@ -2234,7 +2234,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="0e1c25"&gt;39. 添加 th,st,nd 或者 rd 作为数字的后缀&lt;/h3&gt;
 &lt;p&gt;Friday the 13th&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function ordinal($cdnl){ &lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function ordinal($cdnl){ &lt;/span&gt;
 &lt;span class="x"&gt;    $test_c = abs($cdnl) % 10; &lt;/span&gt;
 &lt;span class="x"&gt;    $ext = ((abs($cdnl) %100 &amp;lt; 21 &amp;amp;&amp;amp; abs($cdnl) %100 &amp;gt; 4) ? 'th'&lt;/span&gt;
 &lt;span class="x"&gt;            : (($test_c &amp;lt; 4) ? ($test_c &amp;lt; 3) ? ($test_c &amp;lt; 2) ? ($test_c &amp;lt; 1) &lt;/span&gt;
@@ -2243,13 +2243,13 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nx"&gt;ordinal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$number&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//output is 10th&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="870785"&gt;40. 限制文件下载的速度&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="c1"&gt;// local file that should be send to the client&lt;/span&gt;
 &lt;span class="nv"&gt;$local_file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'test-file.zip'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="c1"&gt;// filename that the user gets as default&lt;/span&gt;
@@ -2288,7 +2288,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="e207df"&gt;41. 把文本转换成图片&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nb"&gt;header&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Content-type: image/png"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="nv"&gt;$string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$_GET&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'text'&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
 &lt;span class="nv"&gt;$im&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;imagecreatefrompng&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"images/button.png"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -2302,7 +2302,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="cf1d8a"&gt;42. 获取远程文件的大小&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function remote_filesize($url, $user = "", $pw = "")&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function remote_filesize($url, $user = "", $pw = "")&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;    ob_start();&lt;/span&gt;
 &lt;span class="x"&gt;    $ch = curl_init($url);&lt;/span&gt;
@@ -2323,14 +2323,14 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"http://koonk.com/images/logo.png"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;remote_filesize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$url&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="7c6509"&gt;43. 使用 imagebrick 进行 pdf 到图像的转换&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$pdf_file&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'./pdf/demo.pdf'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$save_to&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'./jpg/demo.jpg'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;     &lt;span class="c1"&gt;//make sure that apache has permissions to write in this folder! (common problem)&lt;/span&gt;
 &lt;span class="c1"&gt;//execute ImageMagick command 'convert' and convert PDF to JPG with applied settings&lt;/span&gt;
@@ -2342,7 +2342,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="3611cc"&gt;44. 使用 tinyurl 生成短网址&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function get_tiny_url($url)  &lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function get_tiny_url($url)  &lt;/span&gt;
 &lt;span class="x"&gt;{  &lt;/span&gt;
 &lt;span class="x"&gt;    $ch = curl_init();  &lt;/span&gt;
 &lt;span class="x"&gt;    $timeout = 5;  &lt;/span&gt;
@@ -2355,7 +2355,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"http://blog.koonk.com/2015/07/Hello-World"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$tinyurl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;get_tiny_url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$url&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$tinyurl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -2363,7 +2363,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="68e182"&gt;45. youtube 下载链接生成器&lt;/h3&gt;
 &lt;p&gt;使用下面的 PHP 片段可以让你的用户下载 Youtube 视频&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function str_between($string, $start, $end)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function str_between($string, $start, $end)&lt;/span&gt;
 &lt;span class="x"&gt;{ &lt;/span&gt;
 &lt;span class="x"&gt;$string = " ".$string; $ini = strpos($string,$start); if ($ini == 0) return ""; $ini += strlen($start); $len = strpos($string,$end,$ini) - $ini; return substr($string,$ini,$len); }&lt;/span&gt;
 &lt;span class="x"&gt;function get_youtube_download_link(){&lt;/span&gt;
@@ -2384,7 +2384,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="8b22b3"&gt;46. Facebook 样式的时间戳&lt;/h3&gt;
 &lt;p&gt;Facebook (x mins age, y hours ago etc)&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="x"&gt;function nicetime($date)&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;function nicetime($date)&lt;/span&gt;
 &lt;span class="x"&gt;{&lt;/span&gt;
 &lt;span class="x"&gt;    if(empty($date)) {&lt;/span&gt;
 &lt;span class="x"&gt;        return "No date provided";&lt;/span&gt;
@@ -2424,7 +2424,7 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;语法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 &lt;span class="nv"&gt;$date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"2015-07-05 03:45"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;nicetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$date&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 2 days ago&lt;/span&gt;
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
@@ -2436,41 +2436,41 @@ chmod +x &lt;span class="s2"&gt;"/usr/local/bin/subl"&lt;/span&gt;
 &lt;li&gt;套件升级不影响其他应用&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id="e655a4"&gt;安装&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    sudo apt-get install python-virtualenv
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    sudo apt-get install python-virtualenv
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;使用方法&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    virtualenv [虚拟环境名称]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    virtualenv [虚拟环境名称]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如，创建&lt;strong&gt;ENV&lt;/strong&gt;的虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    virtualenv ENV
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    virtualenv ENV
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果系统中存在python2和python3两个版本，我们要让虚拟环境基于其中一个版本，可以这样操作&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    virtualenv -p python2 ENV  #基于python2
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    virtualenv -p python2 ENV  #基于python2
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;或者&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    virtualenv -p python3 ENV  #基于python3
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    virtualenv -p python3 ENV  #基于python3
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;默认情况下，虚拟环境会依赖系统环境中的site packages，就是说系统中已经安装好的第三方package也会安装在虚拟环境中，如果不想依赖这些package，那么可以加上参数 &lt;code&gt;--no-site-packages&lt;/code&gt; 建立虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    virtualenv --no-site-packages [虚拟环境名称]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    virtualenv --no-site-packages [虚拟环境名称]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;但在新版本virtualenv中这个选项已经是默认项了。&lt;/p&gt;
 &lt;p&gt;启动虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    cd ENV
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    cd ENV
     source ./bin/activate
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;注意此时命令行会多一个(ENV)，ENV为虚拟环境名称，接下来所有模块都只会安装到该目录中去。&lt;/p&gt;
 &lt;p&gt;退出虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    deactivate
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    deactivate
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;在虚拟环境安装Python套件
 Virtualenv 附带有pip安装工具，因此需要安装的套件可以直接运行：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    pip install [套件名称]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    pip install [套件名称]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果没有启动虚拟环境，系统也安装了pip工具，那么套件将被安装在系统环境中，为了避免发生此事，可以在&lt;code&gt;~/.bashrc&lt;/code&gt;文件中加上：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    export PIP_REQUIRE_VIRTUALENV=true
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    export PIP_REQUIRE_VIRTUALENV=true
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;或者让在执行pip的时候让系统自动开启虚拟环境：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    export PIP_RESPECT_VIRTUALENV=true
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    export PIP_RESPECT_VIRTUALENV=true
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="c58843"&gt;Virtualenvwrapper&lt;/h2&gt;
 &lt;p&gt;Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境，它可以做：&lt;/p&gt;
@@ -2481,38 +2481,38 @@ Virtualenv 附带有pip安装工具，因此需要安装的套件可以直接运
 &lt;li&gt;...&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id="e655a4_1"&gt;安装&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    sudo easy_install virtualenvwrapper
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    sudo easy_install virtualenvwrapper
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;此时还不能使用virtualenvwrapper，默认virtualenvwrapper安装在/usr/local/bin下面，实际上你需要运行virtualenvwrapper.sh文件才行，先别急，打开这个文件看看,里面有安装步骤，我们照着操作把环境设置好。&lt;/p&gt;
 &lt;p&gt;创建目录用来存放虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    mkdir $HOME/.virtualenvs
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    mkdir $HOME/.virtualenvs
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;在&lt;code&gt;~/.bashrc&lt;/code&gt;中添加行：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    export WORKON_HOME=$HOME/.virtualenvs
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    export WORKON_HOME=$HOME/.virtualenvs
     source /usr/local/bin/virtualenvwrapper.sh
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;保存退出后运行： &lt;code&gt;source ~/.bashrc&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;此时virtualenvwrapper就可以使用了。&lt;/p&gt;
 &lt;p&gt;列出虚拟环境列表&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    workon
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    workon
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;也可以使用&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    lsvirtualenv
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    lsvirtualenv
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;新建虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    mkvirtualenv [虚拟环境名称]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    mkvirtualenv [虚拟环境名称]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;启动/切换虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    workon [虚拟环境名称]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    workon [虚拟环境名称]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;删除虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    rmvirtualenv [虚拟环境名称]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    rmvirtualenv [虚拟环境名称]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;离开虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;    deactivate
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    deactivate
 &lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Wed, 05 Aug 2015 01:21:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-08-05:note/virtualenv_4python.html</guid><category>python</category><category>virtualenv</category></item><item><title>Fedora22下安装五笔</title><link>http://snailhome.github.io/note/install_wubi_in_fedora.html</link><description>&lt;p&gt;Fedora22输入法以ibus为框架，因此要安装五笔输入法，也应该安装安装ibus框架下的极点或海峰五笔。&lt;/p&gt;
 &lt;h2 id="aea971"&gt;输入法安装&lt;/h2&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ su
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ su
 Password:
 # dnf install -y ibus*wubi*
 # reboot
@@ -2528,7 +2528,7 @@ Password:
 &lt;/ul&gt;
 &lt;h2 id="7fd882"&gt;输入法切换&lt;/h2&gt;
 &lt;p&gt;ibus输入法切换使用&lt;code&gt;WIN&lt;/code&gt;键加&lt;code&gt;空格&lt;/code&gt;键来切换。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Fri, 31 Jul 2015 23:48:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-07-31:note/install_wubi_in_fedora.html</guid><category>五笔</category></item><item><title>Fedora22 安装 Chrome</title><link>http://snailhome.github.io/note/install_chrome_in_fedora.html</link><description>&lt;p&gt;Fedora22 无法直接安装 Chrome，需要先添加&lt;code&gt;Chrome&lt;/code&gt;的软件仓库&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ su -
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ su -
 Password:
 &lt;span class="c1"&gt;# cat &amp;lt;&amp;lt; EOF &amp;gt; /etc/yum.repos.d/google-chrome.repo&lt;/span&gt;
 &lt;span class="o"&gt;[&lt;/span&gt;google-chrome&lt;span class="o"&gt;]&lt;/span&gt;
@@ -2540,10 +2540,10 @@ Password:
 EOF
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;现在可以安装了&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# dnf install -y google-chrome-stable&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# dnf install -y google-chrome-stable&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;但是会有一个&lt;code&gt;获取GPG密钥错误&lt;/code&gt;的提示，加一个参数就可以了：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# dnf install -y google-chrome-stable --nogpg&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# dnf install -y google-chrome-stable --nogpg&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Thu, 30 Jul 2015 23:41:00 +0800</pubDate><guid>tag:snailhome.github.io,2015-07-30:note/install_chrome_in_fedora.html</guid><category>Chrome</category></item><item><title>Markdown语法及其运用介绍</title><link>http://snailhome.github.io/note/about_markdown.html</link><description>&lt;h2 id="2bb836"&gt;一、什么是Markdown&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="Markdown" src="../images/20151005/markdown.png"/&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2738,7 +2738,7 @@ Markdown 是一种&lt;code&gt;书写&lt;/code&gt;的格式&lt;/p&gt;
 &lt;p&gt;不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。&lt;/p&gt;
 &lt;p&gt;要制约的只有一些 HTML 区块元素――比如 &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;table&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt; pre&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; 标签。&lt;/p&gt;
 &lt;p&gt;例子如下，在 Markdown 文件里加上一段 HTML 表格：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;这是一个普通段落。
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;这是一个普通段落。
 
 &amp;lt;table&amp;gt;
     &amp;lt;tr&amp;gt;
@@ -2755,27 +2755,27 @@ Markdown 是一种&lt;code&gt;书写&lt;/code&gt;的格式&lt;/p&gt;
 &lt;p&gt;在 HTML 文件中，有两个字符需要特殊处理： &lt;code&gt;&amp;lt;&lt;/code&gt; 和 &lt;code&gt;&amp;amp;&lt;/code&gt; 。 &lt;code&gt;&amp;lt;&lt;/code&gt; 符号用于起始标签，&lt;code&gt;&amp;amp;&lt;/code&gt;
 符号则用于标记 HTML 实体，如果你只是想要显示这些字符的原型，你必须要使用实体的形式，像是 &lt;code&gt;&amp;amp;lt;&lt;/code&gt; 和 &lt;code&gt;&amp;amp;amp;&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;&amp;amp; 字符尤其让网络文档编写者受折磨，如果你要打「&lt;code&gt;AT&amp;amp;T&lt;/code&gt;」 ，你必须要写成 「&lt;code&gt;AT&amp;amp;amp;T&lt;/code&gt;」。而网址中的 &lt;code&gt;&amp;amp;&lt;/code&gt; 字符也要转换。比如你要链接到：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;http://images.google.com/images?num=30&amp;amp;q=larry+bird
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;http://images.google.com/images?num=30&amp;amp;q=larry+bird
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;你必须要把网址转换写为：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;http://images.google.com/images?num=30&amp;amp;amp;q=larry+bird
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;http://images.google.com/images?num=30&amp;amp;amp;q=larry+bird
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;才能放到链接标签的 &lt;code&gt;href&lt;/code&gt; 属性里。不用说也知道这很容易忽略，这也可能是 HTML 标准检验所检查到的错误中，数量最多的。&lt;/p&gt;
 &lt;p&gt;Markdown 让你可以自然地书写字符，需要转换的由它来处理好了。如果你使用的 &lt;code&gt;&amp;amp;&lt;/code&gt; 字符是 HTML 字符实体的一部分，它会保留原状，否则它会被转换成 &lt;code&gt;&amp;amp;amp;&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;所以你如果要在文档中插入一个版权符号 &lt;code&gt;©&lt;/code&gt;，你可以这样写：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;amp;copy;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;amp;copy;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Markdown 会保留它不动。而若你写：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;AT&amp;amp;T
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;AT&amp;amp;T
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Markdown 就会将它转为：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;AT&amp;amp;amp;T
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;AT&amp;amp;amp;T
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;类似的状况也会发生在 &lt;code&gt;&amp;lt;&lt;/code&gt; 符号上，因为 Markdown 允许 &lt;u&gt;兼容 HTML&lt;/u&gt; ，如果你是把 &lt;code&gt;&amp;lt;&lt;/code&gt; 符号作为 HTML 标签的定界符使用，那 Markdown 也不会对它做任何转换，但是如果你写：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;4 &amp;lt; 5
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;4 &amp;lt; 5
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Markdown 将会把它转换为：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;4 &amp;amp;lt; 5
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;4 &amp;amp;lt; 5
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;不过需要注意的是，code 范围内，不论是行内还是区块， &lt;code&gt;&amp;lt;&lt;/code&gt; 和 &lt;code&gt;&amp;amp;&lt;/code&gt; 两个符号都一定会被转换成 HTML 实体，这项特性让你可以很容易地用 Markdown 写 HTML code （和 HTML 相对而言， HTML 语法中，你要把所有的 &lt;code&gt;&amp;lt;&lt;/code&gt; 和 &lt;code&gt;&amp;amp;&lt;/code&gt; 都转换为 HTML 实体，才能在 HTML 文件里面写出 HTML code。）&lt;/p&gt;
 &lt;h2 id="1a65a1"&gt;区块元素&lt;/h2&gt;
@@ -2788,7 +2788,7 @@ Markdown 是一种&lt;code&gt;书写&lt;/code&gt;的格式&lt;/p&gt;
 &lt;h3 id="32c65d"&gt;标题&lt;/h3&gt;
 &lt;p&gt;Markdown 支持两种标题的语法，类 Setext 和类 atx 形式。&lt;/p&gt;
 &lt;p&gt;类 Setext 形式是用底线的形式，利用 &lt;code&gt;=&lt;/code&gt; （最高阶标题）和 &lt;code&gt;-&lt;/code&gt; （第二阶标题），例如：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;This is an H1
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;This is an H1
 =============
 
 This is an H2
@@ -2796,7 +2796,7 @@ This is an H2
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;任何数量的 &lt;code&gt;=&lt;/code&gt; 和 &lt;code&gt;-&lt;/code&gt; 都可以有效果。&lt;/p&gt;
 &lt;p&gt;类 Atx 形式则是在行首插入 1 到 6 个 &lt;code&gt;#&lt;/code&gt; ，对应到标题 1 到 6 阶，例如：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;这是 H1
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;这是 H1
 =======
 
 这是 H2
@@ -2806,7 +2806,7 @@ This is an H2
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;你可以选择性地「闭合」类 atx
 样式的标题，这纯粹只是美观用的，若是觉得这样看起来比较舒适，你就可以在行尾加上 &lt;code&gt;#&lt;/code&gt;，而行尾的 &lt;code&gt;#&lt;/code&gt; 数量也不用和开头一样（行首的井字符数量决定标题的阶数）：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;# 这是 H1 #
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 这是 H1 #
 
 ## 这是 H2 ##
 
@@ -2816,7 +2816,7 @@ This is an H2
 &lt;p&gt;Blockquotes&lt;/p&gt;
 &lt;p&gt;Markdown 标记区块引用是使用类似 email 中用 &amp;gt; 的引用方式。如果你还熟悉在 email 信件中的引言部分，你就知道怎么在 Markdown 文件中建立一个区块引用，那会看起来像是你自己先断好行，然后在每行的最前面加上
 &lt;code&gt;&amp;gt;&lt;/code&gt; ：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
 &amp;gt; consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus. Vestibulum
 &amp;gt; enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
 &amp;gt;
@@ -2824,7 +2824,7 @@ This is an H2
 &amp;gt; consectetuer libero luctus adipiscing.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Markdown 也允许你偷懒只在整个段落的第一行最前面加上 &lt;code&gt;&amp;gt;&lt;/code&gt; ：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
 &amp;gt; consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus. Vestibulum
 &amp;gt; enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
 
@@ -2832,14 +2832,14 @@ This is an H2
 &amp;gt; consectetuer libero luctus adipiscing.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;区块引用可以嵌套（例如：引用内的引用），只要根据层次加上不同数量的 &lt;code&gt;&amp;gt;&lt;/code&gt; ：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;gt; This is the first level of quoting.
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; This is the first level of quoting.
 &amp;gt;
 &amp;gt; &amp;gt; This is nested blockquote.
 &amp;gt;
 &amp;gt; Back to the first level.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;引用的区块内也可以使用其他的 Markdown 语法，包括标题、列表、代码区块等：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;gt; ## 这是一个标题。
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; ## 这是一个标题。
 
 &amp;gt;
 &amp;gt; 1.  这是第一行列表项。
@@ -2853,39 +2853,39 @@ This is an H2
 &lt;h3 id="371297"&gt;列表&lt;/h3&gt;
 &lt;p&gt;Markdown 支持有序列表和无序列表。&lt;/p&gt;
 &lt;p&gt;无序列表使用星号、加号或是减号作为列表标记：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;*   Red
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;*   Red
 *   Green
 *   Blue
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;等同于：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;+   Red
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;+   Red
 +   Green
 +   Blue
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;也等同于：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;-   Red
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-   Red
 -   Green
 -   Blue
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;有序列表则使用数字接着一个英文句点：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;1.  Bird
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1.  Bird
 2.  McHale
 3.  Parish
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;很重要的一点是，你在列表标记上使用的数字并不会影响输出的 HTML 结果，上面的列表所产生的 HTML 标记为：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;ol&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;ol&amp;gt;
 &amp;lt;li&amp;gt;Bird&amp;lt;/li&amp;gt;
 &amp;lt;li&amp;gt;McHale&amp;lt;/li&amp;gt;
 &amp;lt;li&amp;gt;Parish&amp;lt;/li&amp;gt;
 &amp;lt;/ol&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果你的列表标记写成：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;1.  Bird
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1.  Bird
 1.  McHale
 1.  Parish
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;或甚至是：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;3.  Bird
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;3.  Bird
 1.  McHale
 8.  Parish
 &lt;/pre&gt;&lt;/div&gt;
@@ -2893,14 +2893,14 @@ This is an H2
 &lt;p&gt;如果你使用懒惰的写法，建议第一个项目最好还是从 1. 开始，因为 Markdown 未来可能会支持有序列表的 start 属性。&lt;/p&gt;
 &lt;p&gt;列表项目标记通常是放在最左边，但是其实也可以缩进，最多 3 个空格，项目标记后面则一定要接着至少一个空格或制表符。&lt;/p&gt;
 &lt;p&gt;要让列表看起来更漂亮，你可以把内容用固定的缩进整理好：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit
     mi posuere lectus. Vestibulum enim wisi, viverra nec, fringilla in, laoreet
     vitae, risus.
 *   Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse id sem
     consectetuer libero luctus adipiscing.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;但是如果你懒，那也行：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit
 mi posuere lectus. Vestibulum enim wisi, viverra nec, fringilla in, laoreet
 vitae, risus.
 *   Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse id sem
@@ -2908,28 +2908,28 @@ consectetuer libero luctus adipiscing.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果列表项目间用空行分开，在输出 HTML 时 Markdown 就会将项目内容用 &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt;
 标签包起来，举例来说：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;*   Bird
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;*   Bird
 *   Magic
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;会被转换为：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;ul&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;ul&amp;gt;
 &amp;lt;li&amp;gt;Bird&amp;lt;/li&amp;gt;
 &amp;lt;li&amp;gt;Magic&amp;lt;/li&amp;gt;
 &amp;lt;/ul&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;但是这个：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;*   Bird
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;*   Bird
 
 *   Magic
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;会被转换为：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;ul&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;ul&amp;gt;
 &amp;lt;li&amp;gt;&amp;lt;p&amp;gt;Bird&amp;lt;/p&amp;gt;&amp;lt;/li&amp;gt;
 &amp;lt;li&amp;gt;&amp;lt;p&amp;gt;Magic&amp;lt;/p&amp;gt;&amp;lt;/li&amp;gt;
 &amp;lt;/ul&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;列表项目可以包含多个段落，每个项目下的段落都必须缩进 4 个空格或是 1 个制表符：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;1.  This is a list item with two paragraphs. Lorem ipsum dolor sit amet,
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1.  This is a list item with two paragraphs. Lorem ipsum dolor sit amet,
     consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
 
     Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus. Donec
@@ -2938,7 +2938,7 @@ consectetuer libero luctus adipiscing.
 2.  Suspendisse id sem consectetuer libero luctus adipiscing.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果你每行都有缩进，看起来会看好很多，当然，再次地，如果你很懒惰，Markdown 也允许：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;*   This is a list item with two paragraphs.
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;*   This is a list item with two paragraphs.
 
     This is the second paragraph in the list item. You're only required to
     indent the first line. Lorem ipsum dolor sit amet, consectetuer
@@ -2947,42 +2947,42 @@ consectetuer libero luctus adipiscing.
 *   Another item in the same list.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果要在列表项目内放进引用，那 &lt;code&gt;&amp;gt;&lt;/code&gt; 就需要缩进：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;*   A list item with a blockquote:
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;*   A list item with a blockquote:
 
     &amp;gt; This is a blockquote
     &amp;gt;inside a list item.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果要放代码区块的话，该区块就需要缩进两次，也就是 8 个空格或是 2 个制表符：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;*   一列表项包含一个列表区块：
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;*   一列表项包含一个列表区块：
 
         &amp;lt;代码写在这&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;当然，项目列表很可能会不小心产生，像是下面这样的写法：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;1986.  What a great season.
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1986.  What a great season.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;换句话说，也就是在行首出现数字-句点-空白，要避免这样的状况，你可以在句点前面加上反斜杠。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;1986\. What a great season.
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1986\. What a great season.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="f2f159"&gt;代码区块&lt;/h3&gt;
 &lt;p&gt;和程序相关的写作或是标签语言原始码通常会有已经排版好的代码区块，通常这些区块我们并不希望它以一般段落文件的方式去排版，而是照原来的样子显示，Markdown 会用 &lt;code&gt;&amp;lt;pre&amp;gt;&lt;/code&gt; 和 &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; 标签来把代码区块包起来。&lt;/p&gt;
 &lt;p&gt;要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以，例如，下面的输入：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;这是一个普通段落：
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;这是一个普通段落：
 
     这是一个代码区块。
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Markdown 会转换成：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;这是一个普通段落：&amp;lt;/p&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;p&amp;gt;这是一个普通段落：&amp;lt;/p&amp;gt;
 &amp;amp;lt; pre&amp;amp;gt;&amp;lt;code&amp;gt;这是一个代码区块。 &amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;这个每行一阶的缩进（4 个空格或是 1 个制表符），都会被移除，例如：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;Here is an example of AppleScript:
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Here is an example of AppleScript:
 
     tell application "Foo"
         beep
     end tell
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;会被转换为：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;Here is an example of AppleScript:&amp;lt;/p&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;p&amp;gt;Here is an example of AppleScript:&amp;lt;/p&amp;gt;
 
 &amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;tell application "Foo"
     beep
@@ -2991,12 +2991,12 @@ end tell
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;一个代码区块会一直持续到没有缩进的那一行（或是文件结尾）。&lt;/p&gt;
 &lt;p&gt;在代码区块里面， &lt;code&gt;&amp;amp;&lt;/code&gt; 、 &lt;code&gt;&amp;lt;&lt;/code&gt; 和 &lt;code&gt;&amp;gt;&lt;/code&gt; 会自动转成 HTML 实体，这样的方式让你非常容易使用 Markdown 插入范例用的 HTML 原始码，只需要复制贴上，再加上缩进就可以了，剩下的 Markdown 都会帮你处理，例如：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;div class="footer"&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;div class="footer"&amp;gt;
     &amp;amp;copy; 2004 Foo Corporation
 &amp;lt;/div&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;会被转换为：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt; pre&amp;gt;&amp;lt;code&amp;gt;&amp;amp;lt;div class="footer"&amp;amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt; pre&amp;gt;&amp;lt;code&amp;gt;&amp;amp;lt;div class="footer"&amp;amp;gt;
     &amp;amp;amp;copy; 2004 Foo Corporation
 &amp;amp;lt;/div&amp;amp;gt;
 &amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
@@ -3004,7 +3004,7 @@ end tell
 &lt;p&gt;代码区块中，一般的 Markdown 语法不会被转换，像是星号便只是星号，这表示你可以很容易地以 Markdown 语法撰写 Markdown 语法相关的文件。&lt;/p&gt;
 &lt;h3 id="7e1eb2"&gt;分隔线&lt;/h3&gt;
 &lt;p&gt;你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;* * *
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;* * *
 
 ***
 
@@ -3019,23 +3019,23 @@ end tell
 &lt;p&gt;Markdown 支持两种形式的链接语法： 行内式和参考式两种形式。&lt;/p&gt;
 &lt;p&gt;不管是哪一种，链接文字都是用 [方括号] 来标记。&lt;/p&gt;
 &lt;p&gt;要建立一个行内式的链接，只要在方块括号后面紧接着圆括号并插入网址链接即可，如果你还想要加上链接的 title 文字，只要在网址后面，用双引号把 title 文字包起来即可，例如：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;This is [an example](http://example.com/ "Title") inline link.
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;This is [an example](http://example.com/ "Title") inline link.
 
 [This link](http://example.net/) has no title attribute.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;会产生：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;This is &amp;lt;a href="http://example.com/" title="Title"&amp;gt;an example&amp;lt;/a&amp;gt; inline link.&amp;lt;/p&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;p&amp;gt;This is &amp;lt;a href="http://example.com/" title="Title"&amp;gt;an example&amp;lt;/a&amp;gt; inline link.&amp;lt;/p&amp;gt;
 
 &amp;lt;p&amp;gt;&amp;lt;a href="http://example.net/"&amp;gt;This link&amp;lt;/a&amp;gt; has no title attribute.&amp;lt;/p&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果你是要链接到同样主机的资源，你可以使用相对路径：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;See my [About](/about/) page for details.
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;See my [About](/about/) page for details.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;参考式的链接是在链接文字的括号后面再接上另一个方括号，而在第二个方括号里面要填入用以辨识链接的标记：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;This is [an example](url/to/image "Optional title attribute") reference-style link.
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;This is [an example](url/to/image "Optional title attribute") reference-style link.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;你也可以选择性地在两个方括号中间加上一个空格：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;This is [an example](url/to/image "Optional title attribute") reference-style link.
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;This is [an example](url/to/image "Optional title attribute") reference-style link.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;接着，在文件的任意处，你可以把这个标记的链接内容定义出来：&lt;/p&gt;
 &lt;p&gt;链接内容定义的形式为：&lt;/p&gt;
@@ -3043,33 +3043,33 @@ end tell
 接着一个以上的空格或制表符 接着链接的网址 选择性地接着 title 内容，可以用单引号、双引号或是括弧包着 下面这三种链接的定义都是相同：&lt;/p&gt;
 &lt;p&gt;请注意：有一个已知的问题是 Markdown.pl 1.0.1 会忽略单引号包起来的链接 title。&lt;/p&gt;
 &lt;p&gt;链接网址也可以用尖括号包起来：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[id]: &amp;lt;http://example.com/&amp;gt;  "Optional Title Here"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[id]: &amp;lt;http://example.com/&amp;gt;  "Optional Title Here"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;你也可以把 title
 属性放到下一行，也可以加一些缩进，若网址太长的话，这样会比较好看：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[id]: http://example.com/longish/path/to/resource/here
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[id]: http://example.com/longish/path/to/resource/here
 "Optional Title Here"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;网址定义只有在产生链接的时候用到，并不会直接出现在文件之中。&lt;/p&gt;
 &lt;p&gt;链接辨别标签可以有字母、数字、空白和标点符号，但是并不区分大小写，因此下面两个链接是一样的：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[link text][a]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[link text][a]
 [link text][A]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;隐式链接标记功能让你可以省略指定链接标记，这种情形下，链接标记会视为等同于链接文字，要用隐式链接标记只要在链接文字后面加上一个空的方括号，如果你要让 "Google" 链接到 google.com，你可以简化成：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[Google][]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[Google][]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;然后定义链接内容：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[Google]: http://google.com/
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[Google]: http://google.com/
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;由于链接文字可能包含空白，所以这种简化型的标记内也许包含多个单词：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;Visit [Daring Fireball][] for more information.
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Visit [Daring Fireball][] for more information.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;然后接着定义链接：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[Daring Fireball]: http://daringfireball.net/
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[Daring Fireball]: http://daringfireball.net/
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;链接的定义可以放在文件中的任何一个地方，我比较偏好直接放在链接出现段落的后面，你也可以把它放在文件最后面，就像是注解一样。&lt;/p&gt;
 &lt;p&gt;下面是一个参考式链接的范例：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;I get 10 times more traffic from [Google] [1] than from
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;I get 10 times more traffic from [Google] [1] than from
 [Yahoo] [2] or [MSN] [3].
 
   [1]: http://google.com/        "Google"
@@ -3077,7 +3077,7 @@ end tell
   [3]: http://search.msn.com/    "MSN Search"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果改成用链接名称的方式写：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;I get 10 times more traffic from [Google][] than from
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;I get 10 times more traffic from [Google][] than from
 [Yahoo][] or [MSN][].
 
   [google]: http://google.com/        "Google"
@@ -3085,13 +3085,13 @@ end tell
   [msn]:    http://search.msn.com/    "MSN Search"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;上面两种写法都会产生下面的 HTML。&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;I get 10 times more traffic from &amp;lt;a href="http://google.com/"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;p&amp;gt;I get 10 times more traffic from &amp;lt;a href="http://google.com/"
 title="Google"&amp;gt;Google&amp;lt;/a&amp;gt; than from
 &amp;lt;a href="http://search.yahoo.com/" title="Yahoo Search"&amp;gt;Yahoo&amp;lt;/a&amp;gt;
 or &amp;lt;a href="http://search.msn.com/" title="MSN Search"&amp;gt;MSN&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;下面是用行内式写的同样一段内容的 Markdown 文件，提供作为比较之用：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;I get 10 times more traffic from [Google](http://google.com/ "Google")
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;I get 10 times more traffic from [Google](http://google.com/ "Google")
 than from [Yahoo](http://search.yahoo.com/ "Yahoo Search") or
 [MSN](http://search.msn.com/ "MSN Search").
 &lt;/pre&gt;&lt;/div&gt;
@@ -3100,7 +3100,7 @@ than from [Yahoo](http://search.yahoo.com/ "Yahoo Search") or
 &lt;h3 id="a42703"&gt;强调&lt;/h3&gt;
 &lt;p&gt;Markdown 使用星号（&lt;code&gt;*&lt;/code&gt;）和底线（&lt;code&gt;_&lt;/code&gt;）作为标记强调字词的符号，被 &lt;code&gt;*&lt;/code&gt; 或 &lt;code&gt;_&lt;/code&gt; 包围的字词会被转成用 &lt;code&gt;&amp;lt;em&amp;gt;&lt;/code&gt; 标签包围，用两个 &lt;code&gt;*&lt;/code&gt; 或 &lt;code&gt;_&lt;/code&gt; 包起来的话，则会被转成
 &lt;code&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;，例如：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;*single asterisks*
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;*single asterisks*
 
 _single underscores_
 
@@ -3109,7 +3109,7 @@ _single underscores_
 __double underscores__
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;会转成：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;em&amp;gt;single asterisks&amp;lt;/em&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;em&amp;gt;single asterisks&amp;lt;/em&amp;gt;
 
 &amp;lt;em&amp;gt;single underscores&amp;lt;/em&amp;gt;
 
@@ -3119,53 +3119,53 @@ __double underscores__
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;你可以随便用你喜欢的样式，唯一的限制是，你用什么符号开启标签，就要用什么符号结束。&lt;/p&gt;
 &lt;p&gt;强调也可以直接插在文字中间：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;un*frigging*believable
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;un*frigging*believable
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;但是&lt;strong&gt;如果你的 &lt;code&gt;*&lt;/code&gt; 和 &lt;code&gt;_&lt;/code&gt; 两边都有空白的话，它们就只会被当成普通的符号&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;如果要在文字前后直接插入普通的星号或底线，你可以用反斜线：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;\*this text is surrounded by literal asterisks\*
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;\*this text is surrounded by literal asterisks\*
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="06e004"&gt;代码&lt;/h3&gt;
 &lt;p&gt;如果要标记一小段行内代码，你可以用反引号把它包起来（```），例如：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;Use the `printf()` function.
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Use the `printf()` function.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;会产生：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;Use the &amp;lt; code&amp;gt;printf()&amp;lt;/code&amp;gt; function.&amp;lt;/p&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;p&amp;gt;Use the &amp;lt; code&amp;gt;printf()&amp;lt;/code&amp;gt; function.&amp;lt;/p&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果要在代码区段内插入反引号，你可以用多个反引号来开启和结束代码区段：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;``There is a literal backtick (`) here.``
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;``There is a literal backtick (`) here.``
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;这段语法会产生：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;&amp;lt;code&amp;gt;There is a literal backtick (`) here.&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;p&amp;gt;&amp;lt;code&amp;gt;There is a literal backtick (`) here.&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;代码区段的起始和结束端都可以放入一个空白，起始端后面一个，结束端前面一个，这样你就可以在区段的一开始就插入反引号：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;A single backtick in a code span: `` ` ``
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;A single backtick in a code span: `` ` ``
 
 A backtick-delimited string in a code span: `` `foo` ``
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;会产生：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;A single backtick in a code span: &amp;lt; code&amp;gt;`&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;p&amp;gt;A single backtick in a code span: &amp;lt; code&amp;gt;`&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
 
 &amp;lt;p&amp;gt;A backtick-delimited string in a code span: &amp;lt;code&amp;gt;`foo`&amp;lt;/code&amp;gt;&amp;lt;/p&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;在代码区段内，&lt;code&gt;&amp;amp;&lt;/code&gt; 和尖括号&lt;strong&gt;都&lt;/strong&gt;会被自动地转成 HTML 实体，这使得插入 HTML 原始码变得很容易，Markdown 会把下面这段：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;Please don't use any `&amp;lt;blink&amp;gt;` tags.
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Please don't use any `&amp;lt;blink&amp;gt;` tags.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;转为：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;Please don't use any &amp;lt;code&amp;gt;&amp;amp;lt;blink&amp;amp;gt;&amp;lt;/code&amp;gt; tags.&amp;lt;/p&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;p&amp;gt;Please don't use any &amp;lt;code&amp;gt;&amp;amp;lt;blink&amp;amp;gt;&amp;lt;/code&amp;gt; tags.&amp;lt;/p&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;你也可以这样写：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;`&amp;amp;#8212;` is the decimal-encoded equivalent of `&amp;amp;mdash;`.
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;`&amp;amp;#8212;` is the decimal-encoded equivalent of `&amp;amp;mdash;`.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;以产生：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;p&amp;gt;&amp;lt;code&amp;gt;&amp;amp;amp;#8212;&amp;lt;/code&amp;gt; is the decimal-encoded
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;p&amp;gt;&amp;lt;code&amp;gt;&amp;amp;amp;#8212;&amp;lt;/code&amp;gt; is the decimal-encoded
 equivalent of &amp;lt;code&amp;gt;&amp;amp;amp;mdash;&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="20def7"&gt;图片&lt;/h3&gt;
 &lt;p&gt;很明显地，要在纯文字应用中设计一个「自然」的语法来插入图片是有一定难度的。&lt;/p&gt;
 &lt;p&gt;Markdown 使用一种和链接很相似的语法来标记图片，同样也允许两种样式：&lt;em&gt;行内式&lt;/em&gt;和&lt;em&gt;参考式&lt;/em&gt;。&lt;/p&gt;
 &lt;p&gt;行内式的图片语法看起来像是：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;![Alt text](/path/to/img.jpg)
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;![Alt text](/path/to/img.jpg)
 
 ![Alt text](/path/to/img.jpg "Optional title")
 &lt;/pre&gt;&lt;/div&gt;
@@ -3177,10 +3177,10 @@ equivalent of &amp;lt;code&amp;gt;&amp;amp;amp;mdash;&amp;lt;/code&amp;gt;.&amp;
     'title' 文字。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;参考式的图片语法则长得像这样：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;![Alt text][id]
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;![Alt text][id]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;「id」是图片参考的名称，图片参考的定义方式则和连结参考一样：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;[id]: url/to/image  "Optional title attribute"
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[id]: url/to/image  "Optional title attribute"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;到目前为止， Markdown 还没有办法指定图片的宽高，如果你需要的话，你可以使用普通的 &lt;img&gt; 标签。&lt;/img&gt;&lt;/p&gt;
 &lt;h2 id="5a0afc"&gt;其它&lt;/h2&gt;
@@ -3188,17 +3188,17 @@ equivalent of &amp;lt;code&amp;gt;&amp;amp;amp;mdash;&amp;lt;/code&amp;gt;.&amp;
 &lt;p&gt;Markdown
 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用尖括号包起来，
 Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样，例如：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;http://example.com/&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;http://example.com/&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Markdown 会转为：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;a href="http://example.com/"&amp;gt;http://example.com/&amp;lt;/a&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;a href="http://example.com/"&amp;gt;http://example.com/&amp;lt;/a&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;邮址的自动链接也很类似，只是 Markdown 会先做一个编码转换的过程，把文字字符转成
 16 进位码的 HTML 实体，这样的格式可以糊弄一些不好的邮址收集机器人，例如：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;address@example.com&amp;gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;address@example.com&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Markdown 会转成：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&amp;lt;a href="&amp;amp;#x6D;&amp;amp;#x61;i&amp;amp;#x6C;&amp;amp;#x74;&amp;amp;#x6F;:&amp;amp;#x61;&amp;amp;#x64;&amp;amp;#x64;&amp;amp;#x72;&amp;amp;#x65;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;lt;a href="&amp;amp;#x6D;&amp;amp;#x61;i&amp;amp;#x6C;&amp;amp;#x74;&amp;amp;#x6F;:&amp;amp;#x61;&amp;amp;#x64;&amp;amp;#x64;&amp;amp;#x72;&amp;amp;#x65;
 &amp;amp;#115;&amp;amp;#115;&amp;amp;#64;&amp;amp;#101;&amp;amp;#120;&amp;amp;#x61;&amp;amp;#109;&amp;amp;#x70;&amp;amp;#x6C;e&amp;amp;#x2E;&amp;amp;#99;&amp;amp;#111;
 &amp;amp;#109;"&amp;gt;&amp;amp;#x61;&amp;amp;#x64;&amp;amp;#x64;&amp;amp;#x72;&amp;amp;#x65;&amp;amp;#115;&amp;amp;#115;&amp;amp;#64;&amp;amp;#101;&amp;amp;#120;&amp;amp;#x61;
 &amp;amp;#109;&amp;amp;#x70;&amp;amp;#x6C;e&amp;amp;#x2E;&amp;amp;#99;&amp;amp;#111;&amp;amp;#109;&amp;lt;/a&amp;gt;
@@ -3210,10 +3210,10 @@ Markdown 就会自动把它转成链接。一般网址的链接文字就和链�
 &lt;p&gt;Markdown
 可以利用反斜杠来插入一些在语法中有其它意义的符号，例如：如果你想要用星号加在文字旁边的方式来做出强调效果（但不用
 &lt;em&gt; 标签），你可以在星号的前面加上反斜杠：&lt;/em&gt;&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;\*literal asterisks\*
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;\*literal asterisks\*
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;\   反斜线
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;\   反斜线
 `   反引号
 *   星号
 _   底线

@@ -123,7 +123,7 @@ PHP是一种在服务器端执行的嵌入HTML文档的脚本语言。Jun 14, 20
 <p>CentOS7的安装及本地yum库的创建不再复述，我们这里假定CentOS7已安装好并配置内网可以联通，并且已按照前述方法创建好了本地yum库，并且防火墙已先关闭。</p>
 <blockquote>
 <p>为了方便测试，先</p>
-<div class="codehilite"><pre># systemctl stop firewalld &amp;&amp; systemctl disable firewalld
+<div class="codehilite"><pre><span></span># systemctl stop firewalld &amp;&amp; systemctl disable firewalld
 </pre></div>
 <p>以方便调试。</p>
 </blockquote>
@@ -131,18 +131,18 @@ PHP是一种在服务器端执行的嵌入HTML文档的脚本语言。Jun 14, 20
 <p>由于Nginx不在内置的Packages里，我们需要先创建Nginx的本地yum库。</p>
 <h3 id="13eddb">1. 仓库Yum仓库目录</h3>
 <p>（这里假定Nginx的yum库目录是<code>/home/yum-other/nginx/</code>）</p>
-<div class="codehilite"><pre>    # mkdir -p /home/yum-other/nginx/RPMS
+<div class="codehilite"><pre><span></span>    # mkdir -p /home/yum-other/nginx/RPMS
 </pre></div>
 <h3 id="0c4c6a">2. 下载所有Nginx的rpm软件包</h3>
 <p>从<code>http://nginx.org/packages/centos/7/x86_64/RPMS/</code>下载所有Nginx的rpm软件包，并上传到<code>/home/yum-other/nginx/RPMS</code>下</p>
 <h3 id="bd3e08">3. 创建yum索引</h3>
-<div class="codehilite"><pre>    # createrepo /home/yum-other/nginx/
+<div class="codehilite"><pre><span></span>    # createrepo /home/yum-other/nginx/
 </pre></div>
 <h3 id="c3bb82">4. 创建nginx.repo更新源配置文件</h3>
-<div class="codehilite"><pre>    # vim /etc/yum.repos.d/nginx.repo
+<div class="codehilite"><pre><span></span>    # vim /etc/yum.repos.d/nginx.repo
 </pre></div>
 <p>nginx.repo文件内容如下：</p>
-<div class="codehilite"><pre>```
+<div class="codehilite"><pre><span></span>```
 [nginx]
 name=nginx repo
 baseurl=file:///home/yum-other/nginx/
@@ -152,21 +152,21 @@ enabled=1
 </pre></div>
 <h3 id="c3c5f5">5. yum安装Nginx了</h3>
 <p>OK！现在可以直接yum安装Nginx了</p>
-<div class="codehilite"><pre>    # yum install -y nginx
+<div class="codehilite"><pre><span></span>    # yum install -y nginx
 </pre></div>
 <h3 id="d3e9e0">6. 启动Nginx服务并设为开机启动</h3>
-<div class="codehilite"><pre>    # systemctl start nginx
+<div class="codehilite"><pre><span></span>    # systemctl start nginx
     # systemctl enable nginx
 </pre></div>
 <h3 id="763bcd">7. 查看服务是否运行</h3>
-<div class="codehilite"><pre>    # ps -A|grep nginx
+<div class="codehilite"><pre><span></span>    # ps -A|grep nginx
 </pre></div>
 <p>应该有两个nginx进程
 注：可以测试采用<code>yumdownloader</code>的方式下载nginx软件包到本地安装</p>
 <h3 id="69b9f3">8. 测试网站是否建立成功</h3>
 <p>在其它电脑浏览器里打开<a href="http://CentOS7ServerIP/">http://CentOS7ServerIP/</a>
 看看是不是出现了</p>
-<div class="codehilite"><pre>    Welcome to Nginx!
+<div class="codehilite"><pre><span></span>    Welcome to Nginx!
     ...
 </pre></div>
 <p>的页面了！如有则安装成功。
@@ -176,27 +176,27 @@ enabled=1
 <hr/>
 <h2 id="72954f">另附在线安装Nginx的步骤</h2>
 <h3 id="c0b1e0">1. 在线安装Nginx更新源</h3>
-<div class="codehilite"><pre>    # rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+<div class="codehilite"><pre><span></span>    # rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
 </pre></div>
 <h3 id="82b44b">2. 安装Nginx</h3>
-<div class="codehilite"><pre>    # yum install -y nginx
+<div class="codehilite"><pre><span></span>    # yum install -y nginx
 </pre></div>
 <h2 id="e2a837">三、安装Mariadb</h2>
 <h3 id="b413e0">1. 安装Mariadb软件，</h3>
 <blockquote>
 <p>在CentOS7中已经使用Mariadb替代了MySQL</p>
 </blockquote>
-<div class="codehilite"><pre>    # yum install -y mariadb-server mariadb
+<div class="codehilite"><pre><span></span>    # yum install -y mariadb-server mariadb
 </pre></div>
 <h3 id="ccbbf3">2. 启动Mariadb服务并加入开机启动</h3>
-<div class="codehilite"><pre>    # systemctl start mariadb
+<div class="codehilite"><pre><span></span>    # systemctl start mariadb
     # systemctl enable mariadb
 </pre></div>
 <h3 id="77ad57">3. Mariadb的初始化配置</h3>
-<div class="codehilite"><pre>    # mysql_secure_installation
+<div class="codehilite"><pre><span></span>    # mysql_secure_installation
 </pre></div>
 <p>因为是初始安装，还没配置过数据库的密码，所以出现如下提示，按提示操作</p>
-<div class="codehilite"><pre>    Enter current password for root (enter for none): 回车
+<div class="codehilite"><pre><span></span>    Enter current password for root (enter for none): 回车
     Set root password? [Y/n] 回车
     New password: 输入Mariadb的root密码
     Re-enter new password: 再次输入以检验确认
@@ -206,49 +206,49 @@ enabled=1
     Reload privilege tables now? [Y/n] 回车
 </pre></div>
 <h3 id="9e438d">4. 查看服务是否运行</h3>
-<div class="codehilite"><pre>    # ps -A|grep mysqld
+<div class="codehilite"><pre><span></span>    # ps -A|grep mysqld
 </pre></div>
 <p>有两个进程</p>
-<div class="codehilite"><pre>&gt; mysqld_safe
+<div class="codehilite"><pre><span></span>&gt; mysqld_safe
 &gt;
 &gt; mysqld
 </pre></div>
 <h2 id="d03b94">四、安装PHP</h2>
 <h3 id="4a8de0">1. 安装PHP及MySQL和CGI支持组件</h3>
-<div class="codehilite"><pre>    # yum install php php-mysql php-fpm
+<div class="codehilite"><pre><span></span>    # yum install php php-mysql php-fpm
 </pre></div>
 <h3 id="0ba85e">2. 配置PHP</h3>
-<div class="codehilite"><pre>    # vim /etc/php.ini
+<div class="codehilite"><pre><span></span>    # vim /etc/php.ini
 </pre></div>
 <p>找到<code>;cgi.fix_pathinfo=1</code>这行并改为<code>cgi.fix_pathinfo=0</code></p>
 <h3 id="b50542">3. 配置CGI</h3>
-<div class="codehilite"><pre>    # vim /etc/php-fpm.d/www.conf
+<div class="codehilite"><pre><span></span>    # vim /etc/php-fpm.d/www.conf
 </pre></div>
 <p>找到Listen这行，改为</p>
-<div class="codehilite"><pre>    listen = /var/run/php-fpm/php-fpm.sock
+<div class="codehilite"><pre><span></span>    listen = /var/run/php-fpm/php-fpm.sock
 </pre></div>
 <h3 id="1b9e0c">4. 启动CGI并设为开机启动</h3>
-<div class="codehilite"><pre>    # systemctl start php-fpm
+<div class="codehilite"><pre><span></span>    # systemctl start php-fpm
     # systemctl enable php-fpm
 </pre></div>
 <h3 id="df594a">5. 测试服务是否运行</h3>
-<div class="codehilite"><pre>    ＃ ps -A|grep php-fpm
+<div class="codehilite"><pre><span></span>    ＃ ps -A|grep php-fpm
 </pre></div>
 <p>应该有6个php-fpm进程</p>
 <h2 id="f2bfbe">五、配置Nginx使之可以支持PHP</h2>
 <h3 id="9ed06f">1. 修改nginx的服务段配置</h3>
 <p>备份下Nginx配置先</p>
-<div class="codehilite"><pre>    # cp  /etc/nginx/nginx.conf   /etc/nginx/nginx.conf.bak
+<div class="codehilite"><pre><span></span>    # cp  /etc/nginx/nginx.conf   /etc/nginx/nginx.conf.bak
     # vim   /etc/nginx/nginx.conf
 </pre></div>
 <p>看看配置后面有没有server 80的配置，如果有，把整段#注释掉，我们使用default.conf的服务配置。</p>
 <h3 id="0da656">2. 修改default.conf的配置</h3>
 <p>同样先备份</p>
-<div class="codehilite"><pre>    # cp /etc/nginx/conf.d/default.conf  /etc/nginx/conf.d/default.conf.conf
+<div class="codehilite"><pre><span></span>    # cp /etc/nginx/conf.d/default.conf  /etc/nginx/conf.d/default.conf.conf
     # vim /etc/nginx/conf.d/default.conf
 </pre></div>
 <p>找到</p>
-<div class="codehilite"><pre>```
+<div class="codehilite"><pre><span></span>```
 server {
     listen       80;
     server_name  localhost;
@@ -264,7 +264,7 @@ server {
 ```
 </pre></div>
 <p>这部分，并修改为</p>
-<div class="codehilite"><pre>```
+<div class="codehilite"><pre><span></span>```
 server {
     listen       80;
     server_name localhost;
@@ -289,15 +289,15 @@ server {
 ```
 </pre></div>
 <h3 id="31e45d">3. 测试一下Nginx配置是否正确</h3>
-<div class="codehilite"><pre>    # nginx -t
+<div class="codehilite"><pre><span></span>    # nginx -t
     nginx: the configuration file /etc/nginx/nginx.conf syntax is ok 
     nginx: configuration file /etc/nginx/nginx.conf test is successful
 </pre></div>
 <h3 id="1f6aad">4. 重启Nginx服务</h3>
-<div class="codehilite"><pre>    # systemctl restart nginx
+<div class="codehilite"><pre><span></span>    # systemctl restart nginx
 </pre></div>
 <h3 id="82de9e">5. 创建测试脚本</h3>
-<div class="codehilite"><pre>    # vim /usr/share/nginx/html/info.php
+<div class="codehilite"><pre><span></span>    # vim /usr/share/nginx/html/info.php
 ```php
 &lt;?
 php phpinfo();
@@ -307,12 +307,12 @@ php phpinfo();
 <h3 id="d6472f">6. 在其它电脑里打开浏览器测试</h3>
 <p>http://http://CentOS7服务器IP/info.php
 如果没有问题的话应该显示php的信息页面</p>
-<div class="codehilite"><pre>    PHP Version 5.4.16
+<div class="codehilite"><pre><span></span>    PHP Version 5.4.16
     ...
 </pre></div>
 <h3 id="a9a453">7. 删除测试文件</h3>
 <p>测试成功后记得删除测试文件</p>
-<div class="codehilite"><pre>    # rm /usr/share/nginx/html/info.php
+<div class="codehilite"><pre><span></span>    # rm /usr/share/nginx/html/info.php
 </pre></div>
 <h2 id="60bdd5">六、安装phpmyadmin</h2>
 <blockquote>
@@ -320,18 +320,18 @@ php phpinfo();
 </blockquote>
 <h3 id="89c7ae">1. 安装epel更新源</h3>
 <p>因为php-mcrypt是phpmyadmin需要用到的，而官方的更新源没有这个包，所以才需要安装epel更新源</p>
-<div class="codehilite"><pre>    # rpm -ivh http://mirrors.ustc.edu.cn/fedora/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+<div class="codehilite"><pre><span></span>    # rpm -ivh http://mirrors.ustc.edu.cn/fedora/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
 </pre></div>
 <h3 id="0dc6bf">2. 下载 php-mcrypt 及依赖文件 libmcrypt</h3>
-<div class="codehilite"><pre>    # yumdownloader  php-mcrypt
+<div class="codehilite"><pre><span></span>    # yumdownloader  php-mcrypt
     # yumdownloader  libmcrypt
 </pre></div>
 <p>下载 phpmyadmin</p>
-<div class="codehilite"><pre>    # yumdownloader  phpmyadmin
+<div class="codehilite"><pre><span></span>    # yumdownloader  phpmyadmin
 </pre></div>
 <p>将上述文件复制到内网本地yum仓库并按照上面本地yum所述方式刷新。</p>
 <h3 id="a5dfb0">3. yum安装上述软件包</h3>
-<div class="codehilite"><pre>    # yum install -y php-mcrypt
+<div class="codehilite"><pre><span></span>    # yum install -y php-mcrypt
     # yum install -y phpmyadmin
 </pre></div>
 <p>安装时自动安装依赖文件</p>
@@ -352,7 +352,7 @@ t1lib
 <p>phpmyadmin的配置文件为：<code>/etc/phpMyAdmin/config.inc.php</code>
 同目录下还有一个<code>config.inc.php.rpmsave</code>，不知何用。</p>
 <h3 id="16d8eb">5. 链接到网站下</h3>
-<div class="codehilite"><pre>    # ln -s /usr/share/phpMyAdmin /home/html/phpMyAdmin
+<div class="codehilite"><pre><span></span>    # ln -s /usr/share/phpMyAdmin /home/html/phpMyAdmin
 </pre></div>
 <p>现在可以通过<code>http://域名/phpMyAdmin</code>来访问数据库了。
 至此LNMP建站组合已安装完毕，你可以试着上传一些php网站上去试用了，这个组合应该可以满足大多数php应用的使用要求。</p>
@@ -361,7 +361,7 @@ t1lib
 那么我们需要重新指定新的网站目录
 假定我们新的网站目录是放在<code>/home/html/</code></p>
 <h3 id="cc9ad8">1. 现在来修改nginx的配置</h3>
-<div class="codehilite"><pre>    # vim /etc/nginx/conf.d/default.conf
+<div class="codehilite"><pre><span></span>    # vim /etc/nginx/conf.d/default.conf
 找到两处
 
 ```nginx
@@ -374,10 +374,10 @@ root  /home/html;
 ```
 </pre></div>
 <h3 id="e61008">2. 重启下nginx服务</h3>
-<div class="codehilite"><pre>    # systemctrl restart nginx
+<div class="codehilite"><pre><span></span>    # systemctrl restart nginx
 </pre></div>
 <h3 id="894814">3. 现在再建个测试脚本</h3>
-<div class="codehilite"><pre>    # vim /home/html/info.php
+<div class="codehilite"><pre><span></span>    # vim /home/html/info.php
 ```php
  &lt;?
  php phpinfo();
@@ -385,38 +385,38 @@ root  /home/html;
 ```
 </pre></div>
 <h3 id="69fa5c">4. 在其它电脑上测试一下链接</h3>
-<div class="codehilite"><pre>&lt;http://http://CentOS7ServerIP/info.php&gt;
+<div class="codehilite"><pre><span></span>&lt;http://http://CentOS7ServerIP/info.php&gt;
 
 耶，403/404错误，无法访问是怎么回事呢，没改变网站目录前还可以访问的呀～～
 </pre></div>
 <h3 id="3ce91d">5. 复制原网站目录的SELinux安全性本文</h3>
 <p>原来是SELinux的安全机制限制了你的访问权限，好在我们有原来的网站目录可以参照
 查看一下原网站目录文件的SELinux安全性本文</p>
-<div class="codehilite"><pre>    ＃ ls -Z /usr/share/nginx/html
+<div class="codehilite"><pre><span></span>    ＃ ls -Z /usr/share/nginx/html
     -rw-r--r--. root root system_u:object_r:usr_t:s0       50x.html
     -rw-r--r--. root root system_u:object_r:usr_t:s0       index.html
     -rw-r--r--. root root unconfined_u:object_r:usr_t:s0   info.php
 </pre></div>
 <p>这里的<code>system_u:object_r:usr_t</code>分别代表了 用户:角色:类型的三个设置
 先不用知道这是什么意思，我们先参照该安全性本文对现在的 /home/html 进行设置</p>
-<div class="codehilite"><pre>    # chcon -R -u system_u -r object_r -t usr_t /home/html
+<div class="codehilite"><pre><span></span>    # chcon -R -u system_u -r object_r -t usr_t /home/html
 </pre></div>
 <p>现在再刷新一下浏览器，可以正常显示页面了。
 (上述这种不是最好的解决方式，在没有正确的解决方法前建议是把SELINUX关闭)
 总结一下，在没有设开机启动的情况下，开启这个建站组合我们需要开启下面几个服务</p>
-<div class="codehilite"><pre>    # systemctl start nginx
+<div class="codehilite"><pre><span></span>    # systemctl start nginx
     # systemctl start mariadb
     # systemctl start php-fpm
 </pre></div>
 <p>才能正常打开网页，如果要加入开机启动，只要</p>
-<div class="codehilite"><pre>    # systemctl enable nginx
+<div class="codehilite"><pre><span></span>    # systemctl enable nginx
     # systemctl enable mariadb
     # systemctl enable php-fpm
 </pre></div>
 <p>执行一次就可以了。</p>
 <h2 id="d240a1">八、存在问题：</h2>
 <ol>
-<li>重启后 发现<code>/etc/nginx/conf.d/default.conf</code>被改名为<code>default.conf.rpmsave</code> 了，于是<div class="codehilite"><pre># cp  /etc/nginx/conf.d/default.conf.rpmsave  /etc/nginx/conf.d/default.conf
+<li>重启后 发现<code>/etc/nginx/conf.d/default.conf</code>被改名为<code>default.conf.rpmsave</code> 了，于是<div class="codehilite"><pre><span></span># cp  /etc/nginx/conf.d/default.conf.rpmsave  /etc/nginx/conf.d/default.conf
 # systemctl restart nginx
 </pre></div>
 <p>首页重新回来了

@@ -123,7 +123,7 @@
 <li>更改国内源并更新软件
 我用的是中科大源，直接终端运行以下命令。</li>
 </ul>
-<div class="codehilite"><pre>sudo zypper mr -da
+<div class="codehilite"><pre><span></span>sudo zypper mr -da
 sudo zypper ar -fc https://mirrors.ustc.edu.cn/opensuse/distribution/leap/42.1/repo/oss USTC:42.1:OSS
 sudo zypper ar -fc https://mirrors.ustc.edu.cn/opensuse/distribution/leap/42.1/repo/non-oss USTC:42.1:NON-OSS
 sudo zypper ar -fc https://mirrors.ustc.edu.cn/opensuse/update/leap/42.1/oss USTC:42.1:UPDATE-OSS
@@ -134,17 +134,17 @@ sudo zypper up
 <ul>
 <li>系统更新</li>
 </ul>
-<div class="codehilite"><pre>sudo zypper up
+<div class="codehilite"><pre><span></span>sudo zypper up
 </pre></div>
 <ul>
 <li>搜索软件包，如<code>virutalbox</code></li>
 </ul>
-<div class="codehilite"><pre>sudo zypper se virtualbox
+<div class="codehilite"><pre><span></span>sudo zypper se virtualbox
 </pre></div>
 <ul>
 <li>安装软件，如<code>Virtualbox</code></li>
 </ul>
-<div class="codehilite"><pre>sudo zypper in virtualbox virtualbox-qt
+<div class="codehilite"><pre><span></span>sudo zypper in virtualbox virtualbox-qt
 </pre></div>
 <h2 id="a5e9b0">个人必备的gnome扩展</h2>
 <p>工具 -&gt; 优化工具 -&gt; 扩展 -&gt; 获取得多扩展</p>
@@ -170,7 +170,7 @@ sudo zypper up
 <li>增加Packman源，安装chromium和pepperflash
 像flash、ffmpeg这些非自由版本软件只能通过Packman源安装，flash是上网必备插件这点不用我说吧。</li>
 </ul>
-<div class="codehilite"><pre>sudo zypper ar http://mirrors.hust.edu.cn/packman/suse/openSUSE_Leap_42.1/ Packman
+<div class="codehilite"><pre><span></span>sudo zypper ar http://mirrors.hust.edu.cn/packman/suse/openSUSE_Leap_42.1/ Packman
 sudo zypper ref
 sudo zypper in chromium chromium-pepper-flash
 </pre></div>
@@ -178,7 +178,7 @@ sudo zypper in chromium chromium-pepper-flash
 <li>安装VLC播放器
 增加VLC源，用zypper或yast安装</li>
 </ul>
-<div class="codehilite"><pre>sudo zypper ar http://download.videolan.org/pub/vlc/SuSE/Leap_42.1/ VLC
+<div class="codehilite"><pre><span></span>sudo zypper ar http://download.videolan.org/pub/vlc/SuSE/Leap_42.1/ VLC
 sudo zypper ref
 sudo zypper in vlc
 </pre></div>
@@ -186,7 +186,7 @@ sudo zypper in vlc
 <li>添加输入法
 系统自带的五笔输入法是<code>五笔大字集</code>，但候选栏里带常出现方块字，而且不能五笔拼音混打，安装个五笔拼音输入法方便。</li>
 </ul>
-<div class="codehilite"><pre>sudo zypper in fcitx-table-cn-wubi-pinyin
+<div class="codehilite"><pre><span></span>sudo zypper in fcitx-table-cn-wubi-pinyin
 </pre></div>
 <p>然后进fcitx的‘配置当前输入法`添加、调整输入法项吧。</p>
 <h2 id="88b890">安装 <code>WPS</code></h2>
@@ -196,7 +196,7 @@ sudo zypper in vlc
 解压后把里面的<code>*.ttf</code>复制到<code>~/.fonts</code>里就可以了。</p>
 <h2 id="ecaadc">安装Wine</h2>
 <p>直接zypper吧</p>
-<div class="codehilite"><pre>sudo zypper in wine
+<div class="codehilite"><pre><span></span>sudo zypper in wine
 </pre></div>
 <h2 id="5a0afc">其它</h2>
 <p>其它优化最后附上......</p>
