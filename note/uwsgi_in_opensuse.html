@@ -108,7 +108,10 @@
             </div>
             <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
                 <div id="niu2-main-content">
-                    <h2 id="f411d0">说明</h2>
+                    <blockquote>
+<p>本文操作在openSUSE leap 42.1 Gnome和KDE环境下测试通过。</p>
+</blockquote>
+<h2 id="f411d0">说明</h2>
 <p>uWSGI用于Django项目的运行<br/>
 登录用户：snail<br/>
 项目目录：/home/snail/e3dj19/mysite<br/>
@@ -117,6 +120,9 @@
 <div class="codehilite"><pre><span></span>sudo zypper in gcc make python-devel python3-devel
 sudo pip install uwsgi
 </pre></div>
+<blockquote>
+<p><strong>注:</strong> 不要用搜索官网.ymp软件包的方式安装，再应用pip的方式安装uWSGI。</p>
+</blockquote>
 <h2 id="07d521">添加Virtualenv环境及Django项目</h2>
 <div class="codehilite"><pre><span></span><span class="nb">cd</span> ~
 virtualenv -p python3 e3dj19
