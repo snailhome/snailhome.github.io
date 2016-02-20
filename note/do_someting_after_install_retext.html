@@ -3,14 +3,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="Django, 扩展字段">
-        <meta name="description" content="Djnago的Models里添加扩展字段的方法，用于留存">
-        <title>Djnago的Models里添加扩展字段，在编辑界面里的字段内容以链接方式实现的方法 - StepUp</title>
+        <meta name="description" content="Retext原来也可以这么美">
+        <title>调教Retext - StepUp</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="/theme/font-icons/style.min.css" type="text/css" />
         <link rel="stylesheet" href="http://snailhome.github.io/theme/css/niu2.min.css" type="text/css" />
-        <link rel="canonical" href="http://snailhome.github.io/note/extend_column_in_django.html" />
+        <link rel="canonical" href="http://snailhome.github.io/note/do_someting_after_install_retext.html" />
         <script type="text/javascript">window.onload=function(){};</script>
         <!--[if lt IE 9]>
             <script src="http://snailhome.github.io/theme/js/html5shiv.js"></script>
@@ -104,34 +103,169 @@
 
         <div id="body-content">
             <div class="col-md-8 col-md-offset-2">
-                <h1 id="content-heading">Djnago的Models里添加扩展字段，在编辑界面里的字段内容以链接方式实现的方法</h1>
+                <h1 id="content-heading">调教Retext</h1>
             </div>
             <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
                 <div id="niu2-main-content">
-                    <p>先来看一个例子，该例子是让其在编辑界面里添加了个字段，其字段内容为搜索同姓氏人员的一个链接，该实现是在<code>models.py</code>里实现的</p>
-<div class="codehilite"><pre><span></span><span class="c1"># models.py</span>
-<span class="kn">from</span> <span class="nn">django.utils.html</span> <span class="kn">import</span> <span class="n">format_html</span>
-<span class="k">class</span> <span class="nc">Staff</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="o">...</span>
-    <span class="k">def</span> <span class="nf">seek_same</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">"""</span>
-<span class="sd">        编辑界面里的扩展字段的内容以链接方式实现的方法</span>
-<span class="sd">        """</span>
-        <span class="k">return</span> <span class="n">format_html</span><span class="p">(</span><span class="s1">'&lt;a href="../../staff/?first_name__exact={}" target="_blank"&gt;{}&lt;/a&gt;'</span><span class="p">,</span>
-                           <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span>
-                           <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="p">)</span>
-    <span class="n">seek_same</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s1">'同姓氏人员'</span>  <span class="c1"># 短描述：即字段名</span>
-    <span class="c1"># 显示HTML tag</span>
-    <span class="c1"># 对于用户提交的数据, 永远不要这么设置!</span>
-    <span class="n">seek_same</span><span class="o">.</span><span class="n">allow_tags</span> <span class="o">=</span> <span class="bp">True</span>
+                    <h1 id="e054af">调教Retext</h1>
+<p><strong>目录</strong></p>
+<p>[TOC]</p>
+<p>Retext几番安装后又删除，总是因为那难以接受的Markdown预览效果，后来才发现，原来Retext也是可以调教成心目中的样子，<strong>原来Retext也可以这么美</strong>。</p>
+<blockquote>
+<p>下面的很多操作都是结合网上教程，再加上在<code>openSUSE Leap 42.1</code>系统上的实际操作的结果记录下来的。</p>
+</blockquote>
+<h2 id="b64d7f">安装Retext</h2>
+<p>从openSUSE官网软件库搜索<code>Retext</code>并下载安装：<a href="https://software.opensuse.org/421/zh_CN">https://software.opensuse.org/421/zh_CN</a></p>
+<p>应该也可以pip安装：</p>
+<div class="codehilite"><pre><span></span>sudo pip install retext
 </pre></div>
-<p>这里定义了一个<code>def seek_same(self):</code>的回调函数，用于返回一个扩展字段的内容，由于字段内容的回显会做转码处理，所以在这里我们需要用到一个<code>format_html()</code>函数，用来直接转成<code>html</code>格式。</p>
-<p><code>format_html()</code> 函数第一个参数为模板字串，模板字串里的变量以"{}"标识，按位置依次与第二个参数及其后的参数对应。</p>
-<p>另外一种是实现在列表里添加扩展列的实现方式，是在<code>admin.py</code>里实现的，可以参考<a href="extend_admin_in_django.html">'Django后台列表添加扩展列，字段内容以链接方式实现的方法'</a></p>
+<h2 id="49a2b0">调教需知</h2>
+<p>Retext的配置文件在<code>~/.config/ReText project/ReText.conf</code>
+Retext的markdown扩展语法设置文件在<code>~/.config//markdown-extensions.txt</code></p>
+<p>Retext的配置项可以参考<a href="https://sourceforge.net/p/retext/wiki/Configuration%20file/">官网的说明</a></p>
+<h2 id="21f4e1">Retext的配置文件</h2>
+<p>这是我的Retextr的配置内容</p>
+<div class="codehilite"><pre><span></span>$ vim ~/.config/ReText project/ReText.conf
+</pre></div>
+<div class="codehilite"><pre><span></span>[General]
+appStyleSheet=~/.config/ReText project/-style.qss
+autoSave=true
+editorFont=Monospace
+editorFontSize=11
+font=Monospace
+fontSize=14
+highlightCurrentLine=true
+lineNumbersEnabled=true
+previewState=true
+recentFileList=/home/snail/env2p/blog/content/note/do_someting_after_install_retext.md, /home/snail/env2p/blog/content/note/extend_admin_in_django.md, /home/snail/env2p/blog/content/note/markdown.md
+restorePreviewState=true
+styleSheet=~/.config/ReText project/markdown7.css
+tabInsertsSpaces=true
+tabWidth=4
+useWebKit=true
+</pre></div>
+<ul>
+<li><strong>appStyleSheet</strong> 项是设置界面风格的,这里的style.qss我是取自<code>QDarkStyleSheet</code>里的一套暗黑风格的界面<a href="https://github.com/ColinDuquesnoy/QDarkStyleSheet/blob/master/qdarkstyle/style.qss">style.css</a>，你可以下载下来放在<code>~/.config/ReText project/</code>里，并在配置文件里指向它。但我的系统是浅色主题所以没有采用它。</li>
+<li><strong>autoSave</strong> 项是确定是否自动保存。</li>
+<li><strong>editorFont</strong> 项是设置编辑窗口字体。</li>
+<li><strong>editorFontSize</strong> 项是设置编辑窗口字体大小。</li>
+<li><strong>font</strong> 项是设置预览窗口字体。</li>
+<li><strong>fontSize</strong> 项是设置预览窗口字体大小。</li>
+<li><strong>handleWebLinks</strong> 项是否指定web链接，false为外部浏览器打开链接，true为在Retext预览界面里打开链接。</li>
+<li><strong>highlightCurrentLine</strong> 项是确定是否高亮当前编辑行。</li>
+<li><strong>lineNumbersEnabled=true</strong> 项是确定是否显示行号。  </li>
+<li><strong>previewState</strong> 项是确定预览状态。</li>
+<li><strong>recentFileList</strong> 项是保存最近的打开的文件历史。</li>
+<li><strong>restorePreviewState</strong> 项是确定是否恢复上次关闭Retext时的预览窗口状态。</li>
+<li><strong>styleSheet</strong> 项是指定预览窗口的风格模板，这里的markdown7.css是取得<a href="https://github.com/jasonm23/markdown-css-themes">markdown-css-themes</a>的<a href="https://github.com/jasonm23/markdown-css-themes/blob/gh-pages/markdown7.css">markdown7.css</a> ，你可以下载下来放在<code>~/.config/ReText project/</code>里，并在配置文件里指向它。</li>
+<li><strong>tabInsertsSpaces</strong> 项是确认是否把TAB键转换成空格。</li>
+<li><strong>tabWidth</strong> 项是指定TAB键的字符个数。</li>
+<li><strong>useWebKit</strong> 项是确定是否开启 QtWebKit engine，设置为true预览效果会较好。</li>
+</ul>
+<h2 id="56cc61">添加Markdown扩展</h2>
+<p>正常安装<code>Python-Markdown</code>后，就有一些扩展可以使用，这些扩展可以参考<a href="https://pythonhosted.org/Markdown/extensions/">官网说明</a>。</p>
+<p>这里列表了几个常用的扩展项</p>
+<ul>
+<li><strong>codehilite</strong> 添加语法高亮扩展</li>
+<li><strong>footnotes</strong>   添加脚注扩展</li>
+<li><strong>meta</strong> 添加预览时消除meta题头的扩展</li>
+<li><strong>tables</strong> 添加表格扩展</li>
+<li><strong>toc</strong> 添加目录扩展</li>
+</ul>
+<p>要打开这些扩展，编辑Retext的Markdown扩展配置文件<sup id="fnref:ext"><a class="footnote-ref" href="#fn:ext" rel="footnote">1</a></sup></p>
+<div class="codehilite"><pre><span></span>$ vim ~/.config//markdown-extensions.txt
+</pre></div>
+<div class="codehilite"><pre><span></span>codehilite
+footnotes
+meta
+tables
+toc
+</pre></div>
+<p>保存扩展配置文件，重新打开Retext后即可生效。</p>
+<ul>
+<li><strong>codehilite</strong> 语法高亮</li>
+</ul>
+<p>程序/语句段一个TAB缩进或者</p>
+<div class="codehilite"><pre><span></span>```python  
+……  
+```
+</pre></div>
+<ul>
+<li><strong>footnotes</strong> 脚注</li>
+</ul>
+<p>要脚注的后面<code>[^1]</code>
+在文后添加脚注说明</p>
+<div class="codehilite"><pre><span></span>[^1]: 这里是脚注说明
+</pre></div>
+<blockquote>
+<p>这里的<code>1</code>可以是任意一个字串，但脚注及其说明要对应</p>
+</blockquote>
+<ul>
+<li><strong>meta</strong> 预览时消除meta题头</li>
+</ul>
+<p>添加后在预览时就不会显示meta题头了</p>
+<ul>
+<li><strong>tables</strong> 允许表格</li>
+</ul>
+<div class="codehilite"><pre><span></span>|商品|价格|
+|--|--|
+|番茄|1.5|
+|马铃薯|0.8|
+|娃娃菜|1.8|
+</pre></div>
+<table>
+<thead>
+<tr>
+<th>商品</th>
+<th>价格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>番茄</td>
+<td>1.5</td>
+</tr>
+<tr>
+<td>马铃薯</td>
+<td>0.8</td>
+</tr>
+<tr>
+<td>娃娃菜</td>
+<td>1.8</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>toc</strong> 添加目录
+在需要添加目录的地放放置<code>[TOC]</code>即可。</li>
+</ul>
+<h2 id="9e68fa">添加第三方Markdown扩展</h2>
+<h3 id="9edcb1"><strong>mathjax</strong> 添加数学公式</h3>
+<p>网上介绍</p>
+<div class="codehilite"><pre><span></span>sudo apt-get install libjs-mathjax
+</pre></div>
+<p>不过这是Debian系统的安装方法，但openSUSE里怎么也找不到<code>libjs-mathjax</code>，后来在<code>Python-Markdown</code>的<a href="https://github.com/waylan/Python-Markdown/wiki/Third-Party-Extensions">第三方扩展</a>里找到了<code>python-markdown-math</code>，总算解决了<code>mathjax</code>的问题。</p>
+<div class="codehilite"><pre><span></span>sudo pip install python-markdown-math
+</pre></div>
+<p>然后一样的添加<code>mathjax</code>到Retext的扩展配置文件里。</p>
+<p>再然后我们添加一个公式<code>$a^2+b^2=c^2$</code>，看看效果：$a^2+b^2=c^2$</p>
+<blockquote>
+<p>有点讨厌，开了<code>mathjax</code>后，如果有公式存在，预览刷新后都会回到预览页面都是回到页面顶部，而且还会刷新闪动。</p>
+</blockquote>
+<h2 id="e558cd">好了，现在可以装比了～～</h2>
+<hr/>
+<div class="footnote">
+<hr/>
+<ol>
+<li id="fn:ext">
+<p>也可以在 Edit -&gt; Preferences -&gt; Markdown syntax extensions 框中添加。所有的扩展的名称都要小写，即Markdown扩展后的名称，如脚注：markdown.extensions.footnotes，则使用名称footnotes；另外，两个扩展之间用小写逗号分隔。 <a class="footnote-backref" href="#fnref:ext" rev="footnote" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+</ol>
+</div>
                 </div>
                 <div id="content-comments">
                     <!-- 多说评论框 start -->
-                    <div class="ds-thread" data-thread-key="/note/extend_column_in_django.html" data-title="Djnago的Models里添加扩展字段，在编辑界面里的字段内容以链接方式实现的方法" data-url="http://snailhome.github.io/note/extend_column_in_django.html">
+                    <div class="ds-thread" data-thread-key="/note/do_someting_after_install_retext.html" data-title="调教Retext" data-url="http://snailhome.github.io/note/do_someting_after_install_retext.html">
                     </div>
                     <!-- 多说评论框 end -->
                     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
@@ -153,12 +287,10 @@
             <div class="niu2-right-container col-md-2">
                 <div id="niu2-sidebar-meta" class="niu2-sidebar">
                     <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
-                    <div class="niu2-sidebar-value">2015-09-17 13:00</div>
+                    <div class="niu2-sidebar-value">2016-02-20 21:29</div>
                     <div class="niu2-sidebar-label"><i class="icon-book"></i>分类:</div>
                     <div class="niu2-sidebar-value"><a href="http://snailhome.github.io/note/index.html">笔记</a></div>
                     <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
-                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/django.html">Django</a><sup>2</sup></div>
-                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/kuo-zhan-zi-duan.html">扩展字段</a><sup>1</sup></div>
                 </div>
 
                 <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
@@ -166,8 +298,8 @@
                         <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
                     </div>
                     <ol id="niu2-sidebar-toc-list">
-                        <li><a href="#content-heading">Djnago的Models里添加扩展字段，在编辑界面里的字段内容以链接方式实现的方法</a></li>
-                        
+                        <li><a href="#content-heading">调教Retext</a></li>
+                        <li><a href='#e054af'>调教Retext</a><ol><li><a href='#b64d7f'>安装Retext</a></li><li><a href='#49a2b0'>调教需知</a></li><li><a href='#21f4e1'>Retext的配置文件</a></li><li><a href='#56cc61'>添加Markdown扩展</a></li><li><a href='#9e68fa'>添加第三方Markdown扩展</a><ol><li><a href='#9edcb1'>mathjax 添加数学公式</a></li></ol></li><li><a href='#e558cd'>好了，现在可以装比了～～</a></li></ol></li>
                         <li><a href="#content-comments">评论</a></li>
                     </ol>
                 </div>
