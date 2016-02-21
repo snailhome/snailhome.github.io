@@ -8,9 +8,6 @@
 &lt;/blockquote&gt;
 &lt;h2 id="b64d7f"&gt;安装Retext&lt;/h2&gt;
 &lt;p&gt;从openSUSE官网软件库搜索&lt;code&gt;Retext&lt;/code&gt;并下载安装：&lt;a href="https://software.opensuse.org/421/zh_CN"&gt;https://software.opensuse.org/421/zh_CN&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;应该也可以pip安装：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pip install retext
-&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="49a2b0"&gt;调教需知&lt;/h2&gt;
 &lt;p&gt;Retext的配置文件在&lt;code&gt;~/.config/ReText project/ReText.conf&lt;/code&gt;
 Retext的markdown扩展语法设置文件在&lt;code&gt;~/.config//markdown-extensions.txt&lt;/code&gt;&lt;/p&gt;
@@ -153,7 +150,21 @@ toc
 &lt;p&gt;也可以在 Edit -&amp;gt; Preferences -&amp;gt; Markdown syntax extensions 框中添加。所有的扩展的名称都要小写，即Markdown扩展后的名称，如脚注：markdown.extensions.footnotes，则使用名称footnotes；另外，两个扩展之间用小写逗号分隔。 &lt;a class="footnote-backref" href="#fnref:ext" rev="footnote" title="Jump back to footnote 1 in the text"&gt;↩&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</summary></entry><entry><title>openSUSE下uWSGI安装过程记录</title><link href="http://snailhome.github.io/note/uwsgi_in_opensuse.html" rel="alternate"></link><updated>2016-02-06T23:44:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2016-02-06:note/uwsgi_in_opensuse.html</id><summary type="html">&lt;blockquote&gt;
+&lt;/div&gt;</summary></entry><entry><title>PyCharm 4.5.4一个运行错误的处理</title><link href="http://snailhome.github.io/note/run_error_in_pycharm.html" rel="alternate"></link><updated>2016-02-20T14:21:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2016-02-20:note/run_error_in_pycharm.html</id><summary type="html">&lt;h1 id="8e3a7b"&gt;PyCharm 4.5.4一个运行错误的处理&lt;/h1&gt;
+&lt;p&gt;在openSUSE Leap 42.1中按惯例解压，进bin，运行&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo ~/pycharm/bin/pycharm.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;竟然出现了错误：&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;OpenJDK 64-Bit Server VM warning: ignoring option MaxPermSize=350m; support was removed in 8.0
+
+Startup Error: Unable to detect graphics environment
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在其它Linux发行版都没有问题呀！&lt;/p&gt;
+&lt;p&gt;搜索一番，无果。&lt;/p&gt;
+&lt;p&gt;后来不经意使用&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; ~/pycharm/bin/pycharm.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;正常启动了，好诡异，记录一下以备忘。&lt;/p&gt;</summary><category term="pycharm"></category></entry><entry><title>openSUSE下uWSGI安装过程记录</title><link href="http://snailhome.github.io/note/uwsgi_in_opensuse.html" rel="alternate"></link><updated>2016-02-06T23:44:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2016-02-06:note/uwsgi_in_opensuse.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;本文操作在openSUSE leap 42.1 Gnome和KDE环境下测试通过。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id="f411d0"&gt;说明&lt;/h2&gt;
@@ -1909,36 +1920,4 @@ t1lib&lt;/p&gt;
 # systemctl restart nginx
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;首页重新回来了
-再观察一下还会不会出现这种情况&lt;/p&gt;</summary><category term="CentOS7"></category><category term="Yum"></category><category term="LNMP"></category></entry><entry><title>Linux Mint 安装后要做的几件事</title><link href="http://snailhome.github.io/note/do_something_after_installed_Linux_mint17.html" rel="alternate"></link><updated>2010-01-01T08:03:00+08:00</updated><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2010-01-01:note/do_something_after_installed_Linux_mint17.html</id><summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Linux Mint 1.72 是一个粉美观的桌面 Linux 系统，网评还不错的桌面，试用看看感觉还蛮好的。
-但是要记得安装好系统后要记得先做好几件事，才能用得舒心。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="955a30"&gt;修改更新源&lt;/h2&gt;
-&lt;p&gt;系统一装完，先修改更新源在做更新，不然会等吐血
-打开&lt;code&gt;菜单&lt;/code&gt; -&amp;gt; &lt;code&gt;系统管理&lt;/code&gt; -&amp;gt; &lt;code&gt;软件源&lt;/code&gt; -&amp;gt; &lt;code&gt;官方仓库&lt;/code&gt;项
-分别选择&lt;code&gt;镜像&lt;/code&gt;里的&lt;code&gt;主要&lt;/code&gt;和&lt;code&gt;基础&lt;/code&gt;两个选项，找最快的源，我选择的是：&lt;/p&gt;
-&lt;p&gt;＊ 主要：http://mirrors.hustunique.com/linuxmint
-＊ 基础：http://mirrors.yun-idc.com/ubuntu&lt;/p&gt;
-&lt;p&gt;然后点击&lt;code&gt;更新缓存&lt;/code&gt;，然后打开终端开始更新吧&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get clean &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get update &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get upgrade -y
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h2 id="4dcca1"&gt;修改语言支持&lt;/h2&gt;
-&lt;p&gt;打开&lt;code&gt;菜单&lt;/code&gt; -&amp;gt; &lt;code&gt;首选项&lt;/code&gt; -&amp;gt; &lt;code&gt;语言设置&lt;/code&gt;窗口 －&amp;gt; &lt;code&gt;输入法&lt;/code&gt;页 -&amp;gt; 点击&lt;code&gt;添加/删除语言&lt;/code&gt;，我只保留了中英美三国语言，语言、地区都选中国，点击&lt;code&gt;应用到整个系统&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id="564e7c"&gt;添加输入法&lt;/h2&gt;
-&lt;p&gt;linux mint支持多种输入法框架，这方面做得还是比较好的。打开&lt;code&gt;菜单&lt;/code&gt; -&amp;gt; &lt;code&gt;首选项&lt;/code&gt; -&amp;gt; &lt;code&gt;语言设置&lt;/code&gt;窗口 －&amp;gt; &lt;code&gt;输入法&lt;/code&gt;页 -&amp;gt; 点击&lt;code&gt;添加对xxx的支持&lt;/code&gt;按钮，就可以添加相应输入法的框架了&lt;/p&gt;
-&lt;p&gt;我使用小企鹅&lt;code&gt;fcitx&lt;/code&gt;输入法，在输入法&lt;code&gt;页点击&lt;/code&gt;添加对fcitx的支持&lt;code&gt;按钮，就会开始安装进程，完成后不要点击&lt;/code&gt;安装可选部件件&lt;code&gt;，不然会一股脑给你安装了61个可选部件，我勒个去～～，那怎么做？
-关闭&lt;/code&gt;语言设置&lt;code&gt;窗口，打开&lt;/code&gt;菜单&lt;code&gt;-&amp;gt;&lt;/code&gt;系统管理&lt;code&gt;-&amp;gt;&lt;/code&gt;新立得软件包管理器&lt;code&gt;，过滤&lt;/code&gt;fcitx&lt;code&gt;，然后在列表中分别找到&lt;/code&gt;fcitx-googlepinyin&lt;code&gt;，&lt;/code&gt;fcitx-table-wbpy&lt;code&gt;，在列表项上右键选择&lt;/code&gt;标志以便安装&lt;code&gt;，然后点击&lt;/code&gt;应用`就开始安装了。
-这里安装的是谷哥拼音和五笔拼音。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;fcitx&lt;/code&gt;输入法界面比较美观，汉化也比较全面
-&lt;code&gt;ibus&lt;/code&gt;也安装起来用过，但界面没那么好，汉化也不全，另外还有一个不足，在&lt;code&gt;General&lt;/code&gt;页的&lt;code&gt;Show property panel:&lt;/code&gt;项应选择&lt;code&gt;Do not show&lt;/code&gt;，不然任务栏经常会被卡住&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;现在应用注销一下以使输入法生效，重新登录后就可以在任务栏上看到键盘图标了
-现在就可以用：
-&lt;em&gt; &lt;code&gt;Ctrl+空格&lt;/code&gt;：开关输入法
-&lt;/em&gt; &lt;code&gt;Ctrl+Shift&lt;/code&gt;：切换输入法&lt;/p&gt;
-&lt;h2 id="dbacf9"&gt;添加Firefox的语言包&lt;/h2&gt;
-&lt;p&gt;打开Firefox，&lt;code&gt;Open menu&lt;/code&gt; -&amp;gt; &lt;code&gt;Add-ones&lt;/code&gt;
-搜索&lt;code&gt;chinese&lt;/code&gt;，安装 &lt;code&gt;Chinese Simplified(zh-CN) Language Pack&lt;/code&gt;
-另外还可以选择安装&lt;code&gt;Firebug&lt;/code&gt;、&lt;code&gt;BaiduSearch&lt;/code&gt;
-关闭Firefox，再重新打开，界面就是中文的了&lt;/p&gt;</summary><category term="Linux Mint"></category><category term="更新源"></category><category term="输入法"></category><category term="语言包"></category></entry></feed>
+再观察一下还会不会出现这种情况&lt;/p&gt;</summary><category term="CentOS7"></category><category term="Yum"></category><category term="LNMP"></category></entry></feed>

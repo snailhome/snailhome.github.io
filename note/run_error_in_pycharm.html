@@ -3,11 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>标签 alias - StepUp</title>
+        <meta name="keywords" content="pycharm">
+        <meta name="description" content="">
+        <title>PyCharm 4.5.4一个运行错误的处理 - StepUp</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="/theme/font-icons/style.min.css" type="text/css" />
         <link rel="stylesheet" href="http://snailhome.github.io/theme/css/niu2.min.css" type="text/css" />
+        <link rel="canonical" href="http://snailhome.github.io/note/run_error_in_pycharm.html" />
         <script type="text/javascript">window.onload=function(){};</script>
         <!--[if lt IE 9]>
             <script src="http://snailhome.github.io/theme/js/html5shiv.js"></script>
@@ -101,42 +104,81 @@
 
         <div id="body-content">
             <div class="col-md-8 col-md-offset-2">
-                <h1 class="niu2-index-title"><i class="icon-tag icon-lg"></i>alias</h1>
+                <h1 id="content-heading">PyCharm 4.5.4一个运行错误的处理</h1>
             </div>
+            <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+                <div id="niu2-main-content">
+                    <h1 id="8e3a7b">PyCharm 4.5.4一个运行错误的处理</h1>
+<p>在openSUSE Leap 42.1中按惯例解压，进bin，运行</p>
+<div class="codehilite"><pre><span></span>sudo ~/pycharm/bin/pycharm.sh
+</pre></div>
+<p>竟然出现了错误：</p>
+<div class="codehilite"><pre><span></span>OpenJDK 64-Bit Server VM warning: ignoring option MaxPermSize=350m; support was removed in 8.0
 
-            <div class="col-md-8 col-md-offset-2">
-                <div class="niu2-index-article">
-                    <div class="niu2-index-article-title">
-                        <span>
-                            <a href="http://snailhome.github.io/note/about_alias.html">10 个实用的 Bash alias</a>
-                        </span>
+Startup Error: Unable to detect graphics environment
+</pre></div>
+<p>在其它Linux发行版都没有问题呀！</p>
+<p>搜索一番，无果。</p>
+<p>后来不经意使用</p>
+<div class="codehilite"><pre><span></span> ~/pycharm/bin/pycharm.sh
+</pre></div>
+<p>正常启动了，好诡异，记录一下以备忘。</p>
+                </div>
+                <div id="content-comments">
+                    <!-- 多说评论框 start -->
+                    <div class="ds-thread" data-thread-key="/note/run_error_in_pycharm.html" data-title="PyCharm 4.5.4一个运行错误的处理" data-url="http://snailhome.github.io/note/run_error_in_pycharm.html">
                     </div>
-                    <div class="niu2-meta-index">
-                        <span class="niu2-meta-date-index">
-                            <i class="icon-calendar"></i>2015-10-06
-                        </span>
-                        <span class="niu2-meta-category-index">
-                            <i class="icon-book"></i><a href="http://snailhome.github.io/note/index.html">笔记</a>
-                        </span>
-                        <span class="niu2-meta-tag-index">
-                            <i class="icon-tag"></i>
-                            <a href="http://snailhome.github.io/tag/bash.html">bash</a>
-                            <a href="http://snailhome.github.io/tag/alias.html">alias</a>
-                            <a href="http://snailhome.github.io/tag/bie-ming.html">别名</a>
-                        </span>
-                    </div>
-                    <div class="niu2-article-summary">
-                        <p>介绍几个个实用的 Bash alias用法</p>
-                    </div>
+                    <!-- 多说评论框 end -->
+                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                    <script type="text/javascript">
+                        var duoshuoQuery = { short_name: 'snailhome' };
+                        (function() {
+                            var ds = document.createElement('script');
+                            ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                            ds.charset = 'UTF-8';
+                            (document.getElementsByTagName('head')[0] 
+                             || document.getElementsByTagName('body')[0]).appendChild(ds);
+                        })();
+                    </script>
+                    <!-- 多说公共JS代码 end -->
                 </div>
 
-
-
             </div>
+            <div class="niu2-right-container col-md-2">
+                <div id="niu2-sidebar-meta" class="niu2-sidebar">
+                    <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
+                    <div class="niu2-sidebar-value">2016-02-20 14:21</div>
+                    <div class="niu2-sidebar-label"><i class="icon-book"></i>分类:</div>
+                    <div class="niu2-sidebar-value"><a href="http://snailhome.github.io/note/index.html">笔记</a></div>
+                    <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/pycharm.html">pycharm</a><sup>1</sup></div>
+                </div>
+
+                <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+                    <div class="niu2-sidebar-label">
+                        <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
+                    </div>
+                    <ol id="niu2-sidebar-toc-list">
+                        <li><a href="#content-heading">PyCharm 4.5.4一个运行错误的处理</a></li>
+                        <li><a href='#8e3a7b'>PyCharm 4.5.4一个运行错误的处理</a>
+                        <li><a href="#content-comments">评论</a></li>
+                    </ol>
+                </div>
+            </div>
+            <div id="niu2-toolbar">
+                <ul class="list-unstyled">
+                    <li><a id="niu2-toolbar-ctrlsidebar" href="#" title="隐藏侧边栏"><i class="icon-3x icon-hide-sidebar"></i></a></li>
+                </ul>
+                <div id="niu2-toolbar-showsidebar" data-title="显示侧边栏"></div>
+                <div id="niu2-toolbar-github" data-repo=""></div>
+                <div id="niu2-toolbar-bitbucket" data-repo=""></div>
+            </div>
+            <div id="niu2-toc" data-style="fixed"></div>
         </div>
 
         <div class="niu2-footer">
-            <div id="body-footer" class="col-md-8 col-md-offset-2">
+            <div id="body-footer" class="col-md-6 col-md-offset-2">
                 <hr/>
                 <p>
                     Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
@@ -171,6 +213,7 @@
         <script type="text/javascript" src="http://snailhome.github.io/theme/js/niu2.min.js"></script>
         <script type="text/javascript" src="/theme/js/bootstrap.min.js"></script>
         <script type="text/javascript">
+            onContentLoaded();
         </script>
     </body>
 </html>
