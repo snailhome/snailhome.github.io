@@ -3,14 +3,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="typecho, nginx">
-        <meta name="description" content="几经折腾，终于把Typecho架上来了，主要还是在于Nginx的配置上，赶紧贴出来，用于留存。">
-        <title>Typecho的Nginx设置 - StepUp</title>
+        <meta name="description" content="Sublime Text 3 安装配置记录">
+        <title>Sublime Text 3 安装配置记录 - StepUp</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="/theme/font-icons/style.min.css" type="text/css" />
         <link rel="stylesheet" href="http://snailhome.github.io/theme/css/niu2.min.css" type="text/css" />
-        <link rel="canonical" href="http://snailhome.github.io/research/nginx_setting_4typecho.html" />
+        <link rel="canonical" href="http://snailhome.github.io/note/setting_sublime_text3.html" />
         <script type="text/javascript">window.onload=function(){};</script>
         <!--[if lt IE 9]>
             <script src="http://snailhome.github.io/theme/js/html5shiv.js"></script>
@@ -104,41 +103,21 @@
 
         <div id="body-content">
             <div class="col-md-8 col-md-offset-2">
-                <h1 id="content-heading">Typecho的Nginx设置</h1>
+                <h1 id="content-heading">Sublime Text 3 安装配置记录</h1>
             </div>
             <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
                 <div id="niu2-main-content">
-                    <blockquote>
-<p>几经折腾，终于把Typecho架上来了，
-主要还是在于Nginx的配置上，
-赶紧贴出来，用于留存。</p>
-</blockquote>
-<div class="codehilite"><pre><span></span>$ sudo vim /etc/nginx/sites-available/default
-</pre></div>
-<div class="codehilite"><pre><span></span>location ~ .*\.php(\/.*)*$ {
-        include fastcgi_params;
-        fastcgi_index index.php;
-        set $path_info "";
-        set $real_script_name $fastcgi_script_name;
-        if ($fastcgi_script_name ~ "^(.+?\.php)(/.+)$") {
-                set $real_script_name $1;
-                set $path_info $2;
-        }
-        fastcgi_param SCRIPT_FILENAME $document_root$real_script_name;
-        fastcgi_param SCRIPT_NAME $real_script_name;
-        fastcgi_param PATH_INFO $path_info;
-        fastcgi_pass unix:/var/run/php5-fpm.sock;
-}
-</pre></div>
-<p>另外
-网站的<code>usr</code>要开启读写权限</p>
-<div class="codehilite"><pre><span></span># sudo chmod 666 -R usr
-# sudo chmod 777 -R `find usr -type d`
-</pre></div>
+                    <h1 id="cae213">Sublime Text 3 安装配置记录</h1>
+<p><strong>目录</strong></p>
+<p>[TOC]</p>
+<h2 id="d22849">Sublime Text 3 安装</h2>
+<p>到openSUSE 官网下载安装：
+<a href="https://software.opensuse.org/package/sublime-text-beta">https://software.opensuse.org/package/sublime-text-beta</a>。</p>
+<h2 id="0101f9">配置Sublime Text 3</h2>
                 </div>
                 <div id="content-comments">
                     <!-- 多说评论框 start -->
-                    <div class="ds-thread" data-thread-key="/research/nginx_setting_4typecho.html" data-title="Typecho的Nginx设置" data-url="http://snailhome.github.io/research/nginx_setting_4typecho.html">
+                    <div class="ds-thread" data-thread-key="/note/setting_sublime_text3.html" data-title="Sublime Text 3 安装配置记录" data-url="http://snailhome.github.io/note/setting_sublime_text3.html">
                     </div>
                     <!-- 多说评论框 end -->
                     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
@@ -160,12 +139,10 @@
             <div class="niu2-right-container col-md-2">
                 <div id="niu2-sidebar-meta" class="niu2-sidebar">
                     <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
-                    <div class="niu2-sidebar-value">2015-06-14 23:24</div>
-                    <div class="niu2-sidebar-label"><i class="icon-flask"></i>分类:</div>
-                    <div class="niu2-sidebar-value"><a href="http://snailhome.github.io/research/index.html">研究</a></div>
+                    <div class="niu2-sidebar-value">2016-02-20 21:29</div>
+                    <div class="niu2-sidebar-label"><i class="icon-book"></i>分类:</div>
+                    <div class="niu2-sidebar-value"><a href="http://snailhome.github.io/note/index.html">笔记</a></div>
                     <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
-                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/typecho.html">typecho</a><sup>1</sup></div>
-                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/nginx.html">nginx</a><sup>2</sup></div>
                 </div>
 
                 <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
@@ -173,8 +150,8 @@
                         <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
                     </div>
                     <ol id="niu2-sidebar-toc-list">
-                        <li><a href="#content-heading">Typecho的Nginx设置</a></li>
-                        
+                        <li><a href="#content-heading">Sublime Text 3 安装配置记录</a></li>
+                        <li><a href='#cae213'>Sublime Text 3 安装配置记录</a><ol><li><a href='#d22849'>Sublime Text 3 安装</a></li><li><a href='#0101f9'>配置Sublime Text 3</a></li></ol></li>
                         <li><a href="#content-comments">评论</a></li>
                     </ol>
                 </div>

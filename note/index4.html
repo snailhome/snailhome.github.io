@@ -3,14 +3,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="typecho, nginx">
-        <meta name="description" content="几经折腾，终于把Typecho架上来了，主要还是在于Nginx的配置上，赶紧贴出来，用于留存。">
-        <title>Typecho的Nginx设置 - StepUp</title>
+        <title>笔记 - StepUp</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="/theme/font-icons/style.min.css" type="text/css" />
         <link rel="stylesheet" href="http://snailhome.github.io/theme/css/niu2.min.css" type="text/css" />
-        <link rel="canonical" href="http://snailhome.github.io/research/nginx_setting_4typecho.html" />
         <script type="text/javascript">window.onload=function(){};</script>
         <!--[if lt IE 9]>
             <script src="http://snailhome.github.io/theme/js/html5shiv.js"></script>
@@ -104,94 +101,54 @@
 
         <div id="body-content">
             <div class="col-md-8 col-md-offset-2">
-                <h1 id="content-heading">Typecho的Nginx设置</h1>
+                <h1 class="niu2-index-title"><i class="icon-book"></i>笔记</h1>
             </div>
-            <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
-                <div id="niu2-main-content">
-                    <blockquote>
-<p>几经折腾，终于把Typecho架上来了，
-主要还是在于Nginx的配置上，
-赶紧贴出来，用于留存。</p>
-</blockquote>
-<div class="codehilite"><pre><span></span>$ sudo vim /etc/nginx/sites-available/default
-</pre></div>
-<div class="codehilite"><pre><span></span>location ~ .*\.php(\/.*)*$ {
-        include fastcgi_params;
-        fastcgi_index index.php;
-        set $path_info "";
-        set $real_script_name $fastcgi_script_name;
-        if ($fastcgi_script_name ~ "^(.+?\.php)(/.+)$") {
-                set $real_script_name $1;
-                set $path_info $2;
-        }
-        fastcgi_param SCRIPT_FILENAME $document_root$real_script_name;
-        fastcgi_param SCRIPT_NAME $real_script_name;
-        fastcgi_param PATH_INFO $path_info;
-        fastcgi_pass unix:/var/run/php5-fpm.sock;
-}
-</pre></div>
-<p>另外
-网站的<code>usr</code>要开启读写权限</p>
-<div class="codehilite"><pre><span></span># sudo chmod 666 -R usr
-# sudo chmod 777 -R `find usr -type d`
-</pre></div>
-                </div>
-                <div id="content-comments">
-                    <!-- 多说评论框 start -->
-                    <div class="ds-thread" data-thread-key="/research/nginx_setting_4typecho.html" data-title="Typecho的Nginx设置" data-url="http://snailhome.github.io/research/nginx_setting_4typecho.html">
+
+            <div class="col-md-8 col-md-offset-2">
+                <div class="niu2-index-article">
+                    <div class="niu2-index-article-title">
+                        <span>
+                            <a href="http://snailhome.github.io/note/do_something_after_installed_Linux_mint17.html">Linux Mint 安装后要做的几件事</a>
+                        </span>
                     </div>
-                    <!-- 多说评论框 end -->
-                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-                    <script type="text/javascript">
-                        var duoshuoQuery = { short_name: 'snailhome' };
-                        (function() {
-                            var ds = document.createElement('script');
-                            ds.type = 'text/javascript';ds.async = true;
-                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                            ds.charset = 'UTF-8';
-                            (document.getElementsByTagName('head')[0] 
-                             || document.getElementsByTagName('body')[0]).appendChild(ds);
-                        })();
-                    </script>
-                    <!-- 多说公共JS代码 end -->
+                    <div class="niu2-meta-index">
+                        <span class="niu2-meta-date-index">
+                            <i class="icon-calendar"></i>2010-01-01
+                        </span>
+                        <span class="niu2-meta-category-index">
+                            <i class="icon-book"></i><a href="http://snailhome.github.io/note/index.html">笔记</a>
+                        </span>
+                        <span class="niu2-meta-tag-index">
+                            <i class="icon-tag"></i>
+                            <a href="http://snailhome.github.io/tag/linux-mint.html">Linux Mint</a>
+                            <a href="http://snailhome.github.io/tag/geng-xin-yuan.html">更新源</a>
+                            <a href="http://snailhome.github.io/tag/shu-ru-fa.html">输入法</a>
+                            <a href="http://snailhome.github.io/tag/yu-yan-bao.html">语言包</a>
+                        </span>
+                    </div>
+                    <div class="niu2-article-summary">
+                        <p>Linux Mint 1.72 是一个粉美观的桌面 Linux 系统，网评还不错的桌面，试用看看感觉还蛮好的。但是要记得安装好系统后要记得先做好几件事，才能用得舒心。</p>
+                    </div>
                 </div>
 
-            </div>
-            <div class="niu2-right-container col-md-2">
-                <div id="niu2-sidebar-meta" class="niu2-sidebar">
-                    <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
-                    <div class="niu2-sidebar-value">2015-06-14 23:24</div>
-                    <div class="niu2-sidebar-label"><i class="icon-flask"></i>分类:</div>
-                    <div class="niu2-sidebar-value"><a href="http://snailhome.github.io/research/index.html">研究</a></div>
-                    <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
-                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/typecho.html">typecho</a><sup>1</sup></div>
-                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/nginx.html">nginx</a><sup>2</sup></div>
-                </div>
 
-                <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
-                    <div class="niu2-sidebar-label">
-                        <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
-                    </div>
-                    <ol id="niu2-sidebar-toc-list">
-                        <li><a href="#content-heading">Typecho的Nginx设置</a></li>
-                        
-                        <li><a href="#content-comments">评论</a></li>
-                    </ol>
-                </div>
-            </div>
-            <div id="niu2-toolbar">
-                <ul class="list-unstyled">
-                    <li><a id="niu2-toolbar-ctrlsidebar" href="#" title="隐藏侧边栏"><i class="icon-3x icon-hide-sidebar"></i></a></li>
+
+                <ul class="pagination">
+                    <li>
+                        <a href="http://snailhome.github.io/note/index3.html">
+                        <i class="icon-caret-left icon-lg"></i></a>
+                    </li>
+                    <li><a href="http://snailhome.github.io/note/index.html">1</a></li>
+                    <li><a href="http://snailhome.github.io/note/index2.html">2</a></li>
+                    <li><a href="http://snailhome.github.io/note/index3.html">3</a></li>
+                    <li class="active"><span>4</span></li>
+                    <li class="disabled"><span><i class="icon-caret-right icon-lg"></i></span></li>
                 </ul>
-                <div id="niu2-toolbar-showsidebar" data-title="显示侧边栏"></div>
-                <div id="niu2-toolbar-github" data-repo=""></div>
-                <div id="niu2-toolbar-bitbucket" data-repo=""></div>
             </div>
-            <div id="niu2-toc" data-style="fixed"></div>
         </div>
 
         <div class="niu2-footer">
-            <div id="body-footer" class="col-md-6 col-md-offset-2">
+            <div id="body-footer" class="col-md-8 col-md-offset-2">
                 <hr/>
                 <p>
                     Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
@@ -226,7 +183,6 @@
         <script type="text/javascript" src="http://snailhome.github.io/theme/js/niu2.min.js"></script>
         <script type="text/javascript" src="/theme/js/bootstrap.min.js"></script>
         <script type="text/javascript">
-            onContentLoaded();
         </script>
     </body>
 </html>
