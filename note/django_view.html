@@ -3,14 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="五笔">
-        <meta name="description" content="本文介绍了Fedora22下安装五笔输入法的过程">
-        <title>Fedora22下安装五笔 - StepUp</title>
+        <meta name="keywords" content="django, view">
+        <meta name="description" content="关于Django的view使用备忘">
+        <title>Django的view23事 - StepUp</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="/theme/font-icons/style.min.css" type="text/css" />
         <link rel="stylesheet" href="http://snailhome.github.io/theme/css/niu2.min.css" type="text/css" />
-        <link rel="canonical" href="http://snailhome.github.io/note/install_wubi_in_fedora.html" />
+        <link rel="canonical" href="http://snailhome.github.io/note/django_view.html" />
         <script type="text/javascript">window.onload=function(){};</script>
         <!--[if lt IE 9]>
             <script src="http://snailhome.github.io/theme/js/html5shiv.js"></script>
@@ -104,32 +104,75 @@
 
         <div id="body-content">
             <div class="col-md-8 col-md-offset-2">
-                <h1 id="content-heading">Fedora22下安装五笔</h1>
+                <h1 id="content-heading">Django的view23事</h1>
             </div>
             <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
                 <div id="niu2-main-content">
-                    <p>Fedora22输入法以ibus为框架，因此要安装五笔输入法，也应该安装安装ibus框架下的极点或海峰五笔。</p>
-<h2 id="aea971">输入法安装</h2>
-<div class="codehilite"><pre><span></span>$ su
-Password:
-# dnf install -y ibus*wubi*
-# reboot
+                    <p>以<code>demo</code>app为例。</p>
+<p>view的一般步骤
+1. 构造 <code>Context</code>，这是给模板传值的变量
+2. 返回一个以模板构造生成的页面</p>
+<h2 id="dea12e">用 <code>render</code> 还是用 <code>render_to_response</code></h2>
+<p>render() 结合一个给定的模板和一个给定的上下文字典，并返回一个渲染后的 HttpResponse 对象。</p>
+<p>render() 与以一个强制使用RequestContext的context_instance 参数调用render_to_response() 相同。</p>
+<p>所以，如果使用 <code>render</code></p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">view1</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'hello'</span><span class="p">,</span> <span class="s1">'Hello The World!'</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">'demo/hello.html'</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 </pre></div>
-<p>后面一个操作就是重启系统
-重启登录系统后：</p>
-<ul>
-<li>点击屏幕右上角，点击<code>工具图标</code>，</li>
-<li>在打开的窗口里点击<code>个人</code>，点击<code>区域和语言</code>，</li>
-<li>点击<code>区域和语言</code>对话框的<code>输入源</code>下的<code>+</code>，</li>
-<li>选择<code>添加输入源</code>里的<code>汉语（中国）</code>，</li>
-<li>选择<code>汉语（极点五笔86（极爽词库 6.0））</code>或<code>汉语（海峰五笔86）</code>，点击<code>添加</code></li>
-</ul>
-<h2 id="7fd882">输入法切换</h2>
-<p>ibus输入法切换使用<code>WIN</code>键加<code>空格</code>键来切换。</p>
+<p>如果使用 <code>render_to_response</code></p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">view2</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">RequestContext</span><span class="p">()</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">push</span><span class="p">({</span><span class="s1">'hello'</span><span class="p">,</span> <span class="s1">'Hello The World!'</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s1">'demo/hello.html'</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</pre></div>
+<p>需要好好比较一下差异。</p>
+<h2 id="33f747">@装饰器</h2>
+<p>在一些view里我们经常要做一些重复性的工作，如判断是否已登录，否则跳转到登录页面，这些操作都必须在开始功能代码前进行，那我们就可以用@装饰器来减少代码。</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">view1</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">reporter_is_login</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'_se_reporter_is_login'</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="c1"># 非登录状态的轩到登录页面</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">reporter_is_login</span><span class="p">:</span>
+        <span class="n">resolved_login_url</span> <span class="o">=</span> <span class="n">resolve_url</span><span class="p">(</span><span class="s1">'demo:login'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">resolved_login_url</span><span class="p">)</span>
+    <span class="c1"># 以下功能代码</span>
+    <span class="o">....</span>
+</pre></div>
+<p>view2,view3的前端也都是这样的操作，那么我们用装饰器来实现</p>
+<p>在<code>demo</code>app目录下创建文件<code>decorator,py</code></p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">redirect</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">resolve_url</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+
+
+<span class="k">def</span> <span class="nf">demo_login_required</span><span class="p">(</span><span class="n">reporter_login_url</span><span class="o">=</span><span class="s1">'demo:login'</span><span class="p">):</span>
+    <span class="c1"># 报修未登录跳转到登录页面的装饰器</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="nd">@functools.wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">reporter_is_login</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'_se_reporter_is_login'</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+            <span class="c1"># 非登录状态的轩到登录页面</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">reporter_is_login</span><span class="p">:</span>
+                <span class="n">resolved_login_url</span> <span class="o">=</span> <span class="n">resolve_url</span><span class="p">(</span><span class="n">reporter_login_url</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">resolved_login_url</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># 对应wrapper的参数</span>
+        <span class="k">return</span> <span class="n">wrapper</span>
+    <span class="k">return</span> <span class="n">decorator</span>
+</pre></div>
+<p>然后我们在需要做登记判断的view前加上装饰器，如修改<code>view1</code></p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">demo.decorator</span> <span class="kn">import</span> <span class="n">demo_login_required</span>
+
+<span class="nd">@demo_login_required</span>
+<span class="k">def</span> <span class="nf">view1</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="c1"># 以下功能代码</span>
+    <span class="o">....</span>
+</pre></div>
+<h2 id="04bd0c">过滤器</h2>
                 </div>
                 <div id="content-comments">
                     <!-- 多说评论框 start -->
-                    <div class="ds-thread" data-thread-key="/note/install_wubi_in_fedora.html" data-title="Fedora22下安装五笔" data-url="http://snailhome.github.io/note/install_wubi_in_fedora.html">
+                    <div class="ds-thread" data-thread-key="/note/django_view.html" data-title="Django的view23事" data-url="http://snailhome.github.io/note/django_view.html">
                     </div>
                     <!-- 多说评论框 end -->
                     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
@@ -151,11 +194,12 @@ Password:
             <div class="niu2-right-container col-md-2">
                 <div id="niu2-sidebar-meta" class="niu2-sidebar">
                     <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
-                    <div class="niu2-sidebar-value">2015-07-31 23:48</div>
+                    <div class="niu2-sidebar-value">2016-10-12 21:35</div>
                     <div class="niu2-sidebar-label"><i class="icon-book"></i>分类:</div>
                     <div class="niu2-sidebar-value"><a href="http://snailhome.github.io/note/index.html">笔记</a></div>
                     <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
-                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/wu-bi.html">五笔</a><sup>1</sup></div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/django.html">django</a><sup>4</sup></div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/view.html">view</a><sup>1</sup></div>
                 </div>
 
                 <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
@@ -163,8 +207,8 @@ Password:
                         <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
                     </div>
                     <ol id="niu2-sidebar-toc-list">
-                        <li><a href="#content-heading">Fedora22下安装五笔</a></li>
-                        <li><a href='#aea971'>输入法安装</a></li><li><a href='#7fd882'>输入法切换</a></li>
+                        <li><a href="#content-heading">Django的view23事</a></li>
+                        <li><a href='#dea12e'>用 render 还是用 render_to_response</a></li><li><a href='#33f747'>@装饰器</a></li><li><a href='#04bd0c'>过滤器</a></li>
                         <li><a href="#content-comments">评论</a></li>
                     </ol>
                 </div>

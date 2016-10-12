@@ -3,14 +3,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="五笔">
-        <meta name="description" content="本文介绍了Fedora22下安装五笔输入法的过程">
-        <title>Fedora22下安装五笔 - StepUp</title>
+        <title>标签 view - StepUp</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="/theme/font-icons/style.min.css" type="text/css" />
         <link rel="stylesheet" href="http://snailhome.github.io/theme/css/niu2.min.css" type="text/css" />
-        <link rel="canonical" href="http://snailhome.github.io/note/install_wubi_in_fedora.html" />
         <script type="text/javascript">window.onload=function(){};</script>
         <!--[if lt IE 9]>
             <script src="http://snailhome.github.io/theme/js/html5shiv.js"></script>
@@ -104,84 +101,41 @@
 
         <div id="body-content">
             <div class="col-md-8 col-md-offset-2">
-                <h1 id="content-heading">Fedora22下安装五笔</h1>
+                <h1 class="niu2-index-title"><i class="icon-tag icon-lg"></i>view</h1>
             </div>
-            <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
-                <div id="niu2-main-content">
-                    <p>Fedora22输入法以ibus为框架，因此要安装五笔输入法，也应该安装安装ibus框架下的极点或海峰五笔。</p>
-<h2 id="aea971">输入法安装</h2>
-<div class="codehilite"><pre><span></span>$ su
-Password:
-# dnf install -y ibus*wubi*
-# reboot
-</pre></div>
-<p>后面一个操作就是重启系统
-重启登录系统后：</p>
-<ul>
-<li>点击屏幕右上角，点击<code>工具图标</code>，</li>
-<li>在打开的窗口里点击<code>个人</code>，点击<code>区域和语言</code>，</li>
-<li>点击<code>区域和语言</code>对话框的<code>输入源</code>下的<code>+</code>，</li>
-<li>选择<code>添加输入源</code>里的<code>汉语（中国）</code>，</li>
-<li>选择<code>汉语（极点五笔86（极爽词库 6.0））</code>或<code>汉语（海峰五笔86）</code>，点击<code>添加</code></li>
-</ul>
-<h2 id="7fd882">输入法切换</h2>
-<p>ibus输入法切换使用<code>WIN</code>键加<code>空格</code>键来切换。</p>
-                </div>
-                <div id="content-comments">
-                    <!-- 多说评论框 start -->
-                    <div class="ds-thread" data-thread-key="/note/install_wubi_in_fedora.html" data-title="Fedora22下安装五笔" data-url="http://snailhome.github.io/note/install_wubi_in_fedora.html">
+
+            <div class="col-md-8 col-md-offset-2">
+                <div class="niu2-index-article">
+                    <div class="niu2-index-article-title">
+                        <span>
+                            <a href="http://snailhome.github.io/note/django_view.html">Django的view23事</a>
+                        </span>
                     </div>
-                    <!-- 多说评论框 end -->
-                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-                    <script type="text/javascript">
-                        var duoshuoQuery = { short_name: 'snailhome' };
-                        (function() {
-                            var ds = document.createElement('script');
-                            ds.type = 'text/javascript';ds.async = true;
-                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                            ds.charset = 'UTF-8';
-                            (document.getElementsByTagName('head')[0] 
-                             || document.getElementsByTagName('body')[0]).appendChild(ds);
-                        })();
-                    </script>
-                    <!-- 多说公共JS代码 end -->
+                    <div class="niu2-meta-index">
+                        <span class="niu2-meta-date-index">
+                            <i class="icon-calendar"></i>2016-10-12
+                        </span>
+                        <span class="niu2-meta-category-index">
+                            <i class="icon-book"></i><a href="http://snailhome.github.io/note/index.html">笔记</a>
+                        </span>
+                        <span class="niu2-meta-tag-index">
+                            <i class="icon-tag"></i>
+                            <a href="http://snailhome.github.io/tag/django.html">django</a>
+                            <a href="http://snailhome.github.io/tag/view.html">view</a>
+                        </span>
+                    </div>
+                    <div class="niu2-article-summary">
+                        <p>关于Django的view使用备忘</p>
+                    </div>
                 </div>
 
-            </div>
-            <div class="niu2-right-container col-md-2">
-                <div id="niu2-sidebar-meta" class="niu2-sidebar">
-                    <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
-                    <div class="niu2-sidebar-value">2015-07-31 23:48</div>
-                    <div class="niu2-sidebar-label"><i class="icon-book"></i>分类:</div>
-                    <div class="niu2-sidebar-value"><a href="http://snailhome.github.io/note/index.html">笔记</a></div>
-                    <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
-                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/wu-bi.html">五笔</a><sup>1</sup></div>
-                </div>
 
-                <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
-                    <div class="niu2-sidebar-label">
-                        <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
-                    </div>
-                    <ol id="niu2-sidebar-toc-list">
-                        <li><a href="#content-heading">Fedora22下安装五笔</a></li>
-                        <li><a href='#aea971'>输入法安装</a></li><li><a href='#7fd882'>输入法切换</a></li>
-                        <li><a href="#content-comments">评论</a></li>
-                    </ol>
-                </div>
+
             </div>
-            <div id="niu2-toolbar">
-                <ul class="list-unstyled">
-                    <li><a id="niu2-toolbar-ctrlsidebar" href="#" title="隐藏侧边栏"><i class="icon-3x icon-hide-sidebar"></i></a></li>
-                </ul>
-                <div id="niu2-toolbar-showsidebar" data-title="显示侧边栏"></div>
-                <div id="niu2-toolbar-github" data-repo=""></div>
-                <div id="niu2-toolbar-bitbucket" data-repo=""></div>
-            </div>
-            <div id="niu2-toc" data-style="fixed"></div>
         </div>
 
         <div class="niu2-footer">
-            <div id="body-footer" class="col-md-6 col-md-offset-2">
+            <div id="body-footer" class="col-md-8 col-md-offset-2">
                 <hr/>
                 <p>
                     Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
@@ -216,7 +170,6 @@ Password:
         <script type="text/javascript" src="http://snailhome.github.io/theme/js/niu2.min.js"></script>
         <script type="text/javascript" src="/theme/js/bootstrap.min.js"></script>
         <script type="text/javascript">
-            onContentLoaded();
         </script>
     </body>
 </html>

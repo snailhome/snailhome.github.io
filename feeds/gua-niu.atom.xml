@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>StepUp</title><link href="http://snailhome.github.io/" rel="alternate"></link><link href="/feeds/gua-niu.atom.xml" rel="self"></link><id>http://snailhome.github.io/</id><updated>2016-10-12T20:48:00+08:00</updated><entry><title>Django的Form验证的一个小问题</title><link href="http://snailhome.github.io/note/django_form_is_valid.html" rel="alternate"></link><published>2016-10-12T20:48:00+08:00</published><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2016-10-12:note/django_form_is_valid.html</id><summary type="html">&lt;p&gt;在学习The django book 的时候，运行下面代码&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>StepUp</title><link href="http://snailhome.github.io/" rel="alternate"></link><link href="/feeds/gua-niu.atom.xml" rel="self"></link><id>http://snailhome.github.io/</id><updated>2016-10-12T21:35:00+08:00</updated><entry><title>Django的view23事</title><link href="http://snailhome.github.io/note/django_view.html" rel="alternate"></link><published>2016-10-12T21:35:00+08:00</published><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2016-10-12:note/django_view.html</id><summary type="html">&lt;p&gt;以&lt;code&gt;demo&lt;/code&gt;app为例。&lt;/p&gt;
+&lt;p&gt;view的一般步骤
+1. 构造 &lt;code&gt;Context&lt;/code&gt;，这是给模板传值的变量
+2. 返回一个以模板构造生成的页面&lt;/p&gt;
+&lt;h2 id="dea12e"&gt;用 &lt;code&gt;render&lt;/code&gt; 还是用 &lt;code&gt;render_to_response&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;render() 结合一个给定的模板和一个给定的上下文字典，并返回一个渲染后的 HttpResponse 对象。&lt;/p&gt;
+&lt;p&gt;render() 与以一个强制使用RequestContext的context_instance 参数调用render_to_response() 相同。&lt;/p&gt;
+&lt;p&gt;所以，如果使用 &lt;code&gt;render&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;view1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;context&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;'hello'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Hello The World!'&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'demo/hello.html'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果使用 &lt;code&gt;render_to_response&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;view2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;context&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RequestContext&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;push&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;'hello'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Hello The World!'&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render_to_response&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'demo/hello.html'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;需要好好比较一下差异。&lt;/p&gt;
+&lt;h2 id="33f747"&gt;@装饰器&lt;/h2&gt;
+&lt;p&gt;在一些view里我们经常要做一些重复性的工作，如判断是否已登录，否则跳转到登录页面，这些操作都必须在开始功能代码前进行，那我们就可以用@装饰器来减少代码。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;view1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;reporter_is_login&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;session&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'_se_reporter_is_login'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# 非登录状态的轩到登录页面&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;reporter_is_login&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;resolved_login_url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;resolve_url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'demo:login'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;redirect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;resolved_login_url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# 以下功能代码&lt;/span&gt;
+    &lt;span class="o"&gt;....&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;view2,view3的前端也都是这样的操作，那么我们用装饰器来实现&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;demo&lt;/code&gt;app目录下创建文件&lt;code&gt;decorator,py&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.shortcuts&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;redirect&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.shortcuts&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;resolve_url&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;functools&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;demo_login_required&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;reporter_login_url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'demo:login'&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# 报修未登录跳转到登录页面的装饰器&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;decorator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="nd"&gt;@functools.wraps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;wrapper&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;reporter_is_login&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;session&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'_se_reporter_is_login'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="c1"&gt;# 非登录状态的轩到登录页面&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;reporter_is_login&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;resolved_login_url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;resolve_url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;reporter_login_url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;redirect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;resolved_login_url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# 对应wrapper的参数&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wrapper&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;decorator&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后我们在需要做登记判断的view前加上装饰器，如修改&lt;code&gt;view1&lt;/code&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;demo.decorator&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;demo_login_required&lt;/span&gt;
+
+&lt;span class="nd"&gt;@demo_login_required&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;view1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# 以下功能代码&lt;/span&gt;
+    &lt;span class="o"&gt;....&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="04bd0c"&gt;过滤器&lt;/h2&gt;</summary><category term="django"></category><category term="view"></category></entry><entry><title>Django的Form验证的一个小问题</title><link href="http://snailhome.github.io/note/django_form_is_valid.html" rel="alternate"></link><published>2016-10-12T20:48:00+08:00</published><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2016-10-12:note/django_form_is_valid.html</id><summary type="html">&lt;p&gt;在学习The django book 的时候，运行下面代码&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_valid&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cleaned_data&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -2621,85 +2681,4 @@ function nicetime($date)
     $result = nicetime($date); // 2 days ago
 ?&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;摘自：&lt;a href="http://www.oschina.net/question/2012764_246023"&gt;开源中国&lt;/a&gt;&lt;/p&gt;</summary><category term="php"></category><category term="code"></category></entry><entry><title>Python虚拟环境工具：virtualenv</title><link href="http://snailhome.github.io/note/virtualenv_4python.html" rel="alternate"></link><published>2015-08-05T01:21:00+08:00</published><author><name>蜗牛</name></author><id>tag:snailhome.github.io,2015-08-05:note/virtualenv_4python.html</id><summary type="html">&lt;p&gt;virtualenv用于创建独立的Python环境，多个Python相互独立，互不影响，它能够：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;在没有权限的情况下安装新套件&lt;/li&gt;
-&lt;li&gt;不同应用可以使用不同的套件版本&lt;/li&gt;
-&lt;li&gt;套件升级不影响其他应用&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id="e655a4"&gt;安装&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    sudo apt-get install python-virtualenv
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;使用方法&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    virtualenv [虚拟环境名称]
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;如，创建&lt;strong&gt;ENV&lt;/strong&gt;的虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    virtualenv ENV
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;如果系统中存在python2和python3两个版本，我们要让虚拟环境基于其中一个版本，可以这样操作&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    virtualenv -p python2 ENV  #基于python2
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;或者&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    virtualenv -p python3 ENV  #基于python3
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;默认情况下，虚拟环境会依赖系统环境中的site packages，就是说系统中已经安装好的第三方package也会安装在虚拟环境中，如果不想依赖这些package，那么可以加上参数 &lt;code&gt;--no-site-packages&lt;/code&gt; 建立虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    virtualenv --no-site-packages [虚拟环境名称]
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;但在新版本virtualenv中这个选项已经是默认项了。&lt;/p&gt;
-&lt;p&gt;启动虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    cd ENV
-    source ./bin/activate
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;注意此时命令行会多一个(ENV)，ENV为虚拟环境名称，接下来所有模块都只会安装到该目录中去。&lt;/p&gt;
-&lt;p&gt;退出虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    deactivate
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;在虚拟环境安装Python套件
-Virtualenv 附带有pip安装工具，因此需要安装的套件可以直接运行：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    pip install [套件名称]
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;如果没有启动虚拟环境，系统也安装了pip工具，那么套件将被安装在系统环境中，为了避免发生此事，可以在&lt;code&gt;~/.bashrc&lt;/code&gt;文件中加上：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    export PIP_REQUIRE_VIRTUALENV=true
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;或者让在执行pip的时候让系统自动开启虚拟环境：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    export PIP_RESPECT_VIRTUALENV=true
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h2 id="c58843"&gt;Virtualenvwrapper&lt;/h2&gt;
-&lt;p&gt;Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境，它可以做：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;将所有虚拟环境整合在一个目录下&lt;/li&gt;
-&lt;li&gt;管理（新增，删除，复制）虚拟环境&lt;/li&gt;
-&lt;li&gt;切换虚拟环境&lt;/li&gt;
-&lt;li&gt;...&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id="e655a4_1"&gt;安装&lt;/h3&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    sudo easy_install virtualenvwrapper
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;此时还不能使用virtualenvwrapper，默认virtualenvwrapper安装在/usr/local/bin下面，实际上你需要运行virtualenvwrapper.sh文件才行，先别急，打开这个文件看看,里面有安装步骤，我们照着操作把环境设置好。&lt;/p&gt;
-&lt;p&gt;创建目录用来存放虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    mkdir $HOME/.virtualenvs
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;在&lt;code&gt;~/.bashrc&lt;/code&gt;中添加行：&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    export WORKON_HOME=$HOME/.virtualenvs
-    source /usr/local/bin/virtualenvwrapper.sh
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;保存退出后运行： &lt;code&gt;source ~/.bashrc&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;此时virtualenvwrapper就可以使用了。&lt;/p&gt;
-&lt;p&gt;列出虚拟环境列表&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    workon
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;也可以使用&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    lsvirtualenv
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;新建虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    mkvirtualenv [虚拟环境名称]
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;启动/切换虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    workon [虚拟环境名称]
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;删除虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    rmvirtualenv [虚拟环境名称]
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;离开虚拟环境&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    deactivate
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="python"></category><category term="virtualenv"></category></entry></feed>
+&lt;p&gt;摘自：&lt;a href="http://www.oschina.net/question/2012764_246023"&gt;开源中国&lt;/a&gt;&lt;/p&gt;</summary><category term="php"></category><category term="code"></category></entry></feed>
