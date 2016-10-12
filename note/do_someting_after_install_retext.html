@@ -52,7 +52,7 @@
                                       (2)</a></li>
                                <li><a href="http://snailhome.github.io/note/index.html">
                                       <i class="icon-book"></i>笔记
-                                      (22)</a></li>
+                                      (23)</a></li>
                                <li><a href="http://snailhome.github.io/research/index.html">
                                       <i class="icon-flask"></i>研究
                                       (3)</a></li>
@@ -244,7 +244,9 @@ toc
 <p>不过这是Debian系统的安装方法，但openSUSE里怎么也找不到<code>libjs-mathjax</code>，后来在<code>Python-Markdown</code>的<a href="https://github.com/waylan/Python-Markdown/wiki/Third-Party-Extensions">第三方扩展</a>里找到了<code>python-markdown-math</code>，总算解决了<code>mathjax</code>的问题。</p>
 <div class="codehilite"><pre><span></span>sudo pip install python-markdown-math
 </pre></div>
-<p>然后一样的添加<code>mathjax</code>到Retext的扩展配置文件里。</p>
+<p>s
+然后一样的添加<code>mathjax</code>到Retext的扩展配置文件里。
+要看到公式的效果，还必须在<code>编辑</code>菜单下开启<code>使用WebKit渲染</code>。</p>
 <p>再然后我们添加一个公式<code>$a^2+b^2=c^2$</code>，看看效果：$a^2+b^2=c^2$</p>
 <blockquote>
 <p>有点讨厌，开了<code>mathjax</code>后，如果有公式存在，预览刷新后都会回到预览页面都是回到页面顶部，而且还会刷新闪动。</p>

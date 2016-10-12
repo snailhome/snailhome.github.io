@@ -3,11 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>分类 - StepUp</title>
+        <meta name="keywords" content="django, is_valid()">
+        <meta name="description" content="Django的Form中is_valid验证的一个小问题">
+        <title>Django的Form验证的一个小问题 - StepUp</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="/theme/font-icons/style.min.css" type="text/css" />
         <link rel="stylesheet" href="http://snailhome.github.io/theme/css/niu2.min.css" type="text/css" />
+        <link rel="canonical" href="http://snailhome.github.io/note/django的form验证的一个小问题.html" />
         <script type="text/javascript">window.onload=function(){};</script>
         <!--[if lt IE 9]>
             <script src="http://snailhome.github.io/theme/js/html5shiv.js"></script>
@@ -100,27 +103,75 @@
         </div>
 
         <div id="body-content">
-    <div class="niu2-page">
-      <h1>分类</h1>
-      <ul class="niu2-category-list">
+            <div class="col-md-8 col-md-offset-2">
+                <h1 id="content-heading">Django的Form验证的一个小问题</h1>
+            </div>
+            <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+                <div id="niu2-main-content">
+                    <p>在学习The django book 的时候，运行下面代码</p>
+<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">:</span>
+    <span class="n">cd</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span>
+</pre></div>
+<p>出现了下面的错误
+'ContactForm' object has no attribute 'cleaned_data'</p>
+<p>但是实际上这个方法是存在的，后来检查代码发现把is_valid()后面的括号给遗漏掉了，就出现这个问题，后来加上就好了，</p>
+<div class="codehilite"><pre><span></span>    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+        <span class="n">cd</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span>
+</pre></div>
+<p>记录以备忘</p>
+                </div>
+                <div id="content-comments">
+                    <!-- 多说评论框 start -->
+                    <div class="ds-thread" data-thread-key="/note/django的form验证的一个小问题.html" data-title="Django的Form验证的一个小问题" data-url="http://snailhome.github.io/note/django的form验证的一个小问题.html">
+                    </div>
+                    <!-- 多说评论框 end -->
+                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                    <script type="text/javascript">
+                        var duoshuoQuery = { short_name: 'snailhome' };
+                        (function() {
+                            var ds = document.createElement('script');
+                            ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                            ds.charset = 'UTF-8';
+                            (document.getElementsByTagName('head')[0] 
+                             || document.getElementsByTagName('body')[0]).appendChild(ds);
+                        })();
+                    </script>
+                    <!-- 多说公共JS代码 end -->
+                </div>
 
-        <li><a href="http://snailhome.github.io/code/index.html">
-            <i class="icon-code"></i>代码
-        </a>(1)</li>
+            </div>
+            <div class="niu2-right-container col-md-2">
+                <div id="niu2-sidebar-meta" class="niu2-sidebar">
+                    <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
+                    <div class="niu2-sidebar-value">2016-10-12 20:48</div>
+                    <div class="niu2-sidebar-label"><i class="icon-book"></i>分类:</div>
+                    <div class="niu2-sidebar-value"><a href="http://snailhome.github.io/note/index.html">笔记</a></div>
+                    <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/django.html">django</a><sup>3</sup></div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/is_valid.html">is_valid()</a><sup>1</sup></div>
+                </div>
 
-        <li><a href="http://snailhome.github.io/essay/index.html">
-            <i class="icon-leaf"></i>随笔
-        </a>(2)</li>
-
-        <li><a href="http://snailhome.github.io/note/index.html">
-            <i class="icon-book"></i>笔记
-        </a>(23)</li>
-
-        <li><a href="http://snailhome.github.io/research/index.html">
-            <i class="icon-flask"></i>研究
-        </a>(3)</li>
-      </ul>
-    </div>
+                <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+                    <div class="niu2-sidebar-label">
+                        <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
+                    </div>
+                    <ol id="niu2-sidebar-toc-list">
+                        <li><a href="#content-heading">Django的Form验证的一个小问题</a></li>
+                        
+                        <li><a href="#content-comments">评论</a></li>
+                    </ol>
+                </div>
+            </div>
+            <div id="niu2-toolbar">
+                <ul class="list-unstyled">
+                    <li><a id="niu2-toolbar-ctrlsidebar" href="#" title="隐藏侧边栏"><i class="icon-3x icon-hide-sidebar"></i></a></li>
+                </ul>
+                <div id="niu2-toolbar-showsidebar" data-title="显示侧边栏"></div>
+                <div id="niu2-toolbar-github" data-repo=""></div>
+                <div id="niu2-toolbar-bitbucket" data-repo=""></div>
+            </div>
+            <div id="niu2-toc" data-style="fixed"></div>
         </div>
 
         <div class="niu2-footer">
@@ -159,6 +210,7 @@
         <script type="text/javascript" src="http://snailhome.github.io/theme/js/niu2.min.js"></script>
         <script type="text/javascript" src="/theme/js/bootstrap.min.js"></script>
         <script type="text/javascript">
+            onContentLoaded();
         </script>
     </body>
 </html>

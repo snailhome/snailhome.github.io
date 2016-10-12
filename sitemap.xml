@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://snailhome.github.io/</loc>
-<lastmod>2016-06-13T16:53:28-00:00</lastmod>
+<lastmod>2016-10-12T21:30:33-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://snailhome.github.io/archives.html</loc>
-<lastmod>2016-06-13T16:53:28-00:00</lastmod>
+<lastmod>2016-10-12T21:30:33-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://snailhome.github.io/categories.html</loc>
-<lastmod>2016-06-13T16:53:28-00:00</lastmod>
+<lastmod>2016-10-12T21:30:33-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -28,6 +28,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <loc>http://snailhome.github.io/about.html</loc>
 <lastmod>2015-06-14T21:34:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://snailhome.github.io/note/django的form验证的一个小问题.html</loc>
+<lastmod>2016-10-12T20:48:00+08:00</lastmod>
+<changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -243,7 +250,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://snailhome.github.io/note/index.html</loc>
-<lastmod>2016-02-21T14:21:00+08:06</lastmod>
+<lastmod>2016-10-12T20:48:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -375,8 +382,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://snailhome.github.io/tag/wu-bi.html</loc>
-<lastmod>2015-07-31T23:48:00+08:06</lastmod>
+<loc>http://snailhome.github.io/tag/is_valid.html</loc>
+<lastmod>2016-10-12T20:48:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -488,7 +495,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://snailhome.github.io/tag/django.html</loc>
-<lastmod>2015-09-21T22:14:00+08:06</lastmod>
+<lastmod>2016-10-12T20:48:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -517,6 +524,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://snailhome.github.io/tag/pycharm.html</loc>
 <lastmod>2016-02-21T14:21:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://snailhome.github.io/tag/wu-bi.html</loc>
+<lastmod>2015-07-31T23:48:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>StepUp</title><link>http://snailhome.github.io/</link><description></description><lastBuildDate>Sun, 21 Feb 2016 14:21:00 +0800</lastBuildDate><item><title>PyCharm 4.5.4一个运行错误的处理</title><link>http://snailhome.github.io/note/run_error_in_pycharm.html</link><description>&lt;h1 id="8e3a7b"&gt;PyCharm 4.5.4一个运行错误的处理&lt;/h1&gt;
+<rss version="2.0"><channel><title>StepUp</title><link>http://snailhome.github.io/</link><description></description><lastBuildDate>Wed, 12 Oct 2016 20:48:00 +0800</lastBuildDate><item><title>Django的Form验证的一个小问题</title><link>http://snailhome.github.io/note/django%E7%9A%84form%E9%AA%8C%E8%AF%81%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98.html</link><description>&lt;p&gt;在学习The django book 的时候，运行下面代码&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_valid&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cleaned_data&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;出现了下面的错误
+'ContactForm' object has no attribute 'cleaned_data'&lt;/p&gt;
+&lt;p&gt;但是实际上这个方法是存在的，后来检查代码发现把is_valid()后面的括号给遗漏掉了，就出现这个问题，后来加上就好了，&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_valid&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cleaned_data&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;记录以备忘&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Wed, 12 Oct 2016 20:48:00 +0800</pubDate><guid isPermaLink="false">tag:snailhome.github.io,2016-10-12:note/django的form验证的一个小问题.html</guid><category>django</category><category>is_valid()</category></item><item><title>PyCharm 4.5.4一个运行错误的处理</title><link>http://snailhome.github.io/note/run_error_in_pycharm.html</link><description>&lt;h1 id="8e3a7b"&gt;PyCharm 4.5.4一个运行错误的处理&lt;/h1&gt;
 &lt;p&gt;在openSUSE Leap 42.1中按惯例解压，进bin，运行&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo ~/pycharm/bin/pycharm.sh
 &lt;/pre&gt;&lt;/div&gt;
@@ -150,7 +160,9 @@ toc
 &lt;p&gt;不过这是Debian系统的安装方法，但openSUSE里怎么也找不到&lt;code&gt;libjs-mathjax&lt;/code&gt;，后来在&lt;code&gt;Python-Markdown&lt;/code&gt;的&lt;a href="https://github.com/waylan/Python-Markdown/wiki/Third-Party-Extensions"&gt;第三方扩展&lt;/a&gt;里找到了&lt;code&gt;python-markdown-math&lt;/code&gt;，总算解决了&lt;code&gt;mathjax&lt;/code&gt;的问题。&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pip install python-markdown-math
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;然后一样的添加&lt;code&gt;mathjax&lt;/code&gt;到Retext的扩展配置文件里。&lt;/p&gt;
+&lt;p&gt;s
+然后一样的添加&lt;code&gt;mathjax&lt;/code&gt;到Retext的扩展配置文件里。
+要看到公式的效果，还必须在&lt;code&gt;编辑&lt;/code&gt;菜单下开启&lt;code&gt;使用WebKit渲染&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;再然后我们添加一个公式&lt;code&gt;$a^2+b^2=c^2$&lt;/code&gt;，看看效果：$a^2+b^2=c^2$&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;有点讨厌，开了&lt;code&gt;mathjax&lt;/code&gt;后，如果有公式存在，预览刷新后都会回到预览页面都是回到页面顶部，而且还会刷新闪动。&lt;/p&gt;
@@ -1116,7 +1128,8 @@ $ source ~/.bashrc  ## 即时生效
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[remote "origin"]
         url = https://yourname:password@github.com/yourname/yourname.github.io.git
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;当然，这个操作最好是在自己的机器上，毕竟用户名和密码明文放在上面，在其它机器上还是老老实实输入用户名和密码吧。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Mon, 05 Oct 2015 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:snailhome.github.io,2015-10-05:research/build_pelican_on_python2.html</guid><category>Python2</category><category>Pelican</category><category>静态博客</category></item><item><title>CentOS7下安装Fcitx小企鹅输入法</title><link>http://snailhome.github.io/note/fcitx_in_centos7.html</link><description>&lt;p&gt;感觉CentOS7自带的ibus输入法用得不尽人意，考虑安装个Fcitx小企鹅输入法试试，心动不如行动，Let's go～&lt;/p&gt;
+&lt;p&gt;当然，这个操作最好是在自己的机器上，毕竟用户名和密码明文放在上面，在其它机器上还是老老实实输入用户名和密码吧。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Mon, 05 Oct 2015 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:snailhome.github.io,2015-10-05:research/build_pelican_on_python2.html</guid><category>Python2</category><category>Pelican</category><category>静态博客</category></item><item><title>CentOS7下安装Fcitx小企鹅输入法</title><link>http://snailhome.github.io/note/fcitx_in_centos7.html</link><description>&lt;h1 id="bdd33a"&gt;CentOS7下安装Fcitx小企鹅输入法&lt;/h1&gt;
+&lt;p&gt;感觉CentOS7自带的ibus输入法用得不尽人意，考虑安装个Fcitx小企鹅输入法试试，心动不如行动，Let's go～&lt;/p&gt;
 &lt;h2 id="8c4cab"&gt;1. 加入EPEL源&lt;/h2&gt;
 &lt;p&gt;EPEL7几乎是CentOS必备的源:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo yum install epel-release
@@ -2689,21 +2702,4 @@ Virtualenv 附带有pip安装工具，因此需要安装的套件可以直接运
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;离开虚拟环境&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    deactivate
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Wed, 05 Aug 2015 01:21:00 +0800</pubDate><guid isPermaLink="false">tag:snailhome.github.io,2015-08-05:note/virtualenv_4python.html</guid><category>python</category><category>virtualenv</category></item><item><title>Fedora22下安装五笔</title><link>http://snailhome.github.io/note/install_wubi_in_fedora.html</link><description>&lt;p&gt;Fedora22输入法以ibus为框架，因此要安装五笔输入法，也应该安装安装ibus框架下的极点或海峰五笔。&lt;/p&gt;
-&lt;h2 id="aea971"&gt;输入法安装&lt;/h2&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ su
-Password:
-# dnf install -y ibus*wubi*
-# reboot
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;后面一个操作就是重启系统
-重启登录系统后：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;点击屏幕右上角，点击&lt;code&gt;工具图标&lt;/code&gt;，&lt;/li&gt;
-&lt;li&gt;在打开的窗口里点击&lt;code&gt;个人&lt;/code&gt;，点击&lt;code&gt;区域和语言&lt;/code&gt;，&lt;/li&gt;
-&lt;li&gt;点击&lt;code&gt;区域和语言&lt;/code&gt;对话框的&lt;code&gt;输入源&lt;/code&gt;下的&lt;code&gt;+&lt;/code&gt;，&lt;/li&gt;
-&lt;li&gt;选择&lt;code&gt;添加输入源&lt;/code&gt;里的&lt;code&gt;汉语（中国）&lt;/code&gt;，&lt;/li&gt;
-&lt;li&gt;选择&lt;code&gt;汉语（极点五笔86（极爽词库 6.0））&lt;/code&gt;或&lt;code&gt;汉语（海峰五笔86）&lt;/code&gt;，点击&lt;code&gt;添加&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="7fd882"&gt;输入法切换&lt;/h2&gt;
-&lt;p&gt;ibus输入法切换使用&lt;code&gt;WIN&lt;/code&gt;键加&lt;code&gt;空格&lt;/code&gt;键来切换。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Fri, 31 Jul 2015 23:48:00 +0800</pubDate><guid isPermaLink="false">tag:snailhome.github.io,2015-07-31:note/install_wubi_in_fedora.html</guid><category>五笔</category></item></channel></rss>
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Wed, 05 Aug 2015 01:21:00 +0800</pubDate><guid isPermaLink="false">tag:snailhome.github.io,2015-08-05:note/virtualenv_4python.html</guid><category>python</category><category>virtualenv</category></item></channel></rss>
