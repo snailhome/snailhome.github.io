@@ -6,8 +6,8 @@
 &lt;p&gt;出现了下面的错误
 'ContactForm' object has no attribute 'cleaned_data'&lt;/p&gt;
 &lt;p&gt;但是实际上这个方法是存在的，后来检查代码发现把is_valid()后面的括号给遗漏掉了，就出现这个问题，后来加上就好了，&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_valid&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-        &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cleaned_data&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_valid&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cleaned_data&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;记录以备忘&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">蜗牛</dc:creator><pubDate>Wed, 12 Oct 2016 20:48:00 +0800</pubDate><guid isPermaLink="false">tag:snailhome.github.io,2016-10-12:note/django的form验证的一个小问题.html</guid><category>django</category><category>is_valid()</category></item><item><title>PyCharm 4.5.4一个运行错误的处理</title><link>http://snailhome.github.io/note/run_error_in_pycharm.html</link><description>&lt;h1 id="8e3a7b"&gt;PyCharm 4.5.4一个运行错误的处理&lt;/h1&gt;
 &lt;p&gt;在openSUSE Leap 42.1中按惯例解压，进bin，运行&lt;/p&gt;

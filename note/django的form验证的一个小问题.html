@@ -115,8 +115,8 @@
 <p>出现了下面的错误
 'ContactForm' object has no attribute 'cleaned_data'</p>
 <p>但是实际上这个方法是存在的，后来检查代码发现把is_valid()后面的括号给遗漏掉了，就出现这个问题，后来加上就好了，</p>
-<div class="codehilite"><pre><span></span>    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
-        <span class="n">cd</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span>
+<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+    <span class="n">cd</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span>
 </pre></div>
 <p>记录以备忘</p>
                 </div>
