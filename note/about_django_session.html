@@ -3,11 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>标签 扩展字段 - StepUp</title>
+        <meta name="keywords" content="django, session">
+        <meta name="description" content="关于django的session配置的介绍">
+        <title>django配置session过期时间 - StepUp</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="/theme/font-icons/style.min.css" type="text/css" />
         <link rel="stylesheet" href="http://snailhome.github.io/theme/css/niu2.min.css" type="text/css" />
+        <link rel="canonical" href="http://snailhome.github.io/note/about_django_session.html" />
         <script type="text/javascript">window.onload=function(){};</script>
         <!--[if lt IE 9]>
             <script src="http://snailhome.github.io/theme/js/html5shiv.js"></script>
@@ -101,41 +104,74 @@
 
         <div id="body-content">
             <div class="col-md-8 col-md-offset-2">
-                <h1 class="niu2-index-title"><i class="icon-tag icon-lg"></i>扩展字段</h1>
+                <h1 id="content-heading">django配置session过期时间</h1>
             </div>
-
-            <div class="col-md-8 col-md-offset-2">
-                <div class="niu2-index-article">
-                    <div class="niu2-index-article-title">
-                        <span>
-                            <a href="http://snailhome.github.io/note/extend_column_in_django.html">Djnago的Models里添加扩展字段，在编辑界面里的字段内容以链接方式实现的方法</a>
-                        </span>
+            <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
+                <div id="niu2-main-content">
+                    <p><code>settings.py</code>中</p>
+<div class="codehilite"><pre><span></span><span class="n">SESSION_COOKIE_AGE</span><span class="o">=</span><span class="mi">60</span><span class="o">*</span><span class="mi">30</span>  <span class="c1"># 30分钟。</span>
+<span class="n">SESSION_EXPIRE_AT_BROWSER_CLOSE</span><span class="o">=</span><span class="bp">False</span>  <span class="c1"># False：会话cookie可以在用户浏览器中保持有效期。True：关闭浏览器，则Cookie失效。</span>
+<span class="n">SESSION_COOKIE_DOMAIN</span><span class="o">=</span><span class="n">domain</span>  <span class="c1"># domain: 生效站点</span>
+<span class="n">SESSION_COOKIE_NAME</span><span class="o">=</span><span class="n">name</span>  <span class="c1"># name: cookie中保存session的名称</span>
+<span class="c1"># Session使用比较简单，在request.session是一个字典类。session是保存在数据库中的。 </span>
+</pre></div>
+                </div>
+                <div id="content-comments">
+                    <!-- 多说评论框 start -->
+                    <div class="ds-thread" data-thread-key="/note/about_django_session.html" data-title="django配置session过期时间" data-url="http://snailhome.github.io/note/about_django_session.html">
                     </div>
-                    <div class="niu2-meta-index">
-                        <span class="niu2-meta-date-index">
-                            <i class="icon-calendar"></i>2015-09-17
-                        </span>
-                        <span class="niu2-meta-category-index">
-                            <i class="icon-book"></i><a href="http://snailhome.github.io/note/index.html">笔记</a>
-                        </span>
-                        <span class="niu2-meta-tag-index">
-                            <i class="icon-tag"></i>
-                            <a href="http://snailhome.github.io/tag/django.html">Django</a>
-                            <a href="http://snailhome.github.io/tag/kuo-zhan-zi-duan.html">扩展字段</a>
-                        </span>
-                    </div>
-                    <div class="niu2-article-summary">
-                        <p>Djnago的Models里添加扩展字段的方法，用于留存</p>
-                    </div>
+                    <!-- 多说评论框 end -->
+                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                    <script type="text/javascript">
+                        var duoshuoQuery = { short_name: 'snailhome' };
+                        (function() {
+                            var ds = document.createElement('script');
+                            ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                            ds.charset = 'UTF-8';
+                            (document.getElementsByTagName('head')[0] 
+                             || document.getElementsByTagName('body')[0]).appendChild(ds);
+                        })();
+                    </script>
+                    <!-- 多说公共JS代码 end -->
                 </div>
 
-
-
             </div>
+            <div class="niu2-right-container col-md-2">
+                <div id="niu2-sidebar-meta" class="niu2-sidebar">
+                    <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
+                    <div class="niu2-sidebar-value">2016-10-13 15:48</div>
+                    <div class="niu2-sidebar-label"><i class="icon-book"></i>分类:</div>
+                    <div class="niu2-sidebar-value"><a href="http://snailhome.github.io/note/index.html">笔记</a></div>
+                    <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/django.html">django</a><sup>5</sup></div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/session.html">session</a><sup>1</sup></div>
+                </div>
+
+                <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
+                    <div class="niu2-sidebar-label">
+                        <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
+                    </div>
+                    <ol id="niu2-sidebar-toc-list">
+                        <li><a href="#content-heading">django配置session过期时间</a></li>
+                        
+                        <li><a href="#content-comments">评论</a></li>
+                    </ol>
+                </div>
+            </div>
+            <div id="niu2-toolbar">
+                <ul class="list-unstyled">
+                    <li><a id="niu2-toolbar-ctrlsidebar" href="#" title="隐藏侧边栏"><i class="icon-3x icon-hide-sidebar"></i></a></li>
+                </ul>
+                <div id="niu2-toolbar-showsidebar" data-title="显示侧边栏"></div>
+                <div id="niu2-toolbar-github" data-repo=""></div>
+                <div id="niu2-toolbar-bitbucket" data-repo=""></div>
+            </div>
+            <div id="niu2-toc" data-style="fixed"></div>
         </div>
 
         <div class="niu2-footer">
-            <div id="body-footer" class="col-md-8 col-md-offset-2">
+            <div id="body-footer" class="col-md-6 col-md-offset-2">
                 <hr/>
                 <p>
                     Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, 
@@ -170,6 +206,7 @@
         <script type="text/javascript" src="http://snailhome.github.io/theme/js/niu2.min.js"></script>
         <script type="text/javascript" src="/theme/js/bootstrap.min.js"></script>
         <script type="text/javascript">
+            onContentLoaded();
         </script>
     </body>
 </html>

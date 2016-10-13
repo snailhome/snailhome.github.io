@@ -3,14 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="python, virtualenv">
-        <meta name="description" content="本文介绍了Python虚拟环境工具virtualenv的简单使用方法">
-        <title>Python虚拟环境工具：virtualenv - StepUp</title>
+        <meta name="keywords" content="python, format, print">
+        <meta name="description" content="python中的格式化输出用法总结">
+        <title>python中的格式化输出用法总结 - StepUp</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
         <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css" />
         <link rel="stylesheet" href="/theme/font-icons/style.min.css" type="text/css" />
         <link rel="stylesheet" href="http://snailhome.github.io/theme/css/niu2.min.css" type="text/css" />
-        <link rel="canonical" href="http://snailhome.github.io/note/virtualenv_4python.html" />
+        <link rel="canonical" href="http://snailhome.github.io/note/format_print_python.html" />
         <script type="text/javascript">window.onload=function(){};</script>
         <!--[if lt IE 9]>
             <script src="http://snailhome.github.io/theme/js/html5shiv.js"></script>
@@ -104,96 +104,88 @@
 
         <div id="body-content">
             <div class="col-md-8 col-md-offset-2">
-                <h1 id="content-heading">Python虚拟环境工具：virtualenv</h1>
+                <h1 id="content-heading">python中的格式化输出用法总结</h1>
             </div>
             <div id="niu2-left-container" class="col-md-6 col-md-offset-2 with-right-border">
                 <div id="niu2-main-content">
-                    <p>virtualenv用于创建独立的Python环境，多个Python相互独立，互不影响，它能够：</p>
-<ol>
-<li>在没有权限的情况下安装新套件</li>
-<li>不同应用可以使用不同的套件版本</li>
-<li>套件升级不影响其他应用</li>
-</ol>
-<h3 id="e655a4">安装</h3>
-<div class="codehilite"><pre><span></span>    sudo apt-get install python-virtualenv
+                    <blockquote>
+<p>这篇文章主要介绍了python中的格式化输出用法,分析了Python格式化输出的种类并结合实例形式总结了针对浮点数的格式化输出方法,需要的朋友可以参考下</p>
+</blockquote>
+<p>本文实例总结了<code>python</code>中的格式化输出用法。分享给大家供大家参考，具体如下：</p>
+<p><code>Python</code>一共有两种格式化输出语法。</p>
+<p>一种是类似于C语言printf的方式，称为 <code>Formatting Expression</code></p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="s1">'</span><span class="si">%s</span><span class="s1"> </span><span class="si">%d</span><span class="s1">-</span><span class="si">%d</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="s1">'hello'</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="s1">'hello 7-1'</span>
 </pre></div>
-<p>使用方法</p>
-<div class="codehilite"><pre><span></span>    virtualenv [虚拟环境名称]
+<p>另一种是类似于<code>C#</code>的方式，称为<code>String Formatting Method Calls</code></p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="s1">'{0} {1}:{2}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">,</span> <span class="s1">'1'</span><span class="p">,</span> <span class="s1">'7'</span><span class="p">)</span>
+<span class="s1">'hello 1:7'</span>
 </pre></div>
-<p>如，创建<strong>ENV</strong>的虚拟环境</p>
-<div class="codehilite"><pre><span></span>    virtualenv ENV
+<p>第一种方式可以指定浮点数的精度，例如</p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="s1">'</span><span class="si">%.3f</span><span class="s1">'</span> <span class="o">%</span> <span class="mf">1.234567869</span>
+<span class="s1">'1.235'</span>
 </pre></div>
-<p>如果系统中存在python2和python3两个版本，我们要让虚拟环境基于其中一个版本，可以这样操作</p>
-<div class="codehilite"><pre><span></span>    virtualenv -p python2 ENV  #基于python2
+<p>运行时动态指定浮点数的精度</p>
+<p>但是当代码在运行中如何动态地通过参数来指定浮点数的精度呢？</p>
+<p>python的神奇之处在于它又提供了一种非常方便的语法。只需要在 <code>typecode（这里是f</code>）之前加一个 <code>*</code>，浮点数的精度就用它前面的数字来指定。</p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<span class="o">...</span> <span class="s1">'</span><span class="si">%.*f</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mf">1.234234234234234</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="s1">'1'</span>
+<span class="s1">'1.2'</span>
+<span class="s1">'1.23'</span>
+<span class="s1">'1.234'</span>
+<span class="s1">'1.2342'</span>
 </pre></div>
-<p>或者</p>
-<div class="codehilite"><pre><span></span>    virtualenv -p python3 ENV  #基于python3
+<p>通过输出结果可以看出，精度都是在运行时动态指定，这样就省去了格式化字符串的拼凑。</p>
+<p>使用 <code>String Formatting Method Calls</code> 可以更简洁地完成功能。</p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<span class="o">...</span>  <span class="s1">'{0:.{1}f}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="s1">'0'</span>
+<span class="s1">'0.3'</span>
+<span class="s1">'0.33'</span>
+<span class="s1">'0.333'</span>
+<span class="s1">'0.3333'</span>
 </pre></div>
-<p>默认情况下，虚拟环境会依赖系统环境中的site packages，就是说系统中已经安装好的第三方package也会安装在虚拟环境中，如果不想依赖这些package，那么可以加上参数 <code>--no-site-packages</code> 建立虚拟环境</p>
-<div class="codehilite"><pre><span></span>    virtualenv --no-site-packages [虚拟环境名称]
+<p>实现一个简单的模板工具</p>
+<p>Django提供的模板语言，可以让我们通过一个<code>dict（字典）</code>把<code>python</code>变量绑定的<code>html</code>文件中，其实利用<code>python</code>的格式化输出我们也可以仅仅做一个文本替换功能。</p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">replay</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">... Hello World Cup...</span>
+<span class="s2">... Germany vs Brazil</span>
+<span class="s2">... </span><span class="si">%(germany)d</span><span class="s2"> : </span><span class="si">%(brazil)d</span><span class="s2">"""</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">replay</span> <span class="o">%</span> <span class="p">{</span><span class="s1">'germany'</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">'brazil'</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="n">Hello</span> <span class="n">World</span> <span class="n">Cup</span><span class="o">...</span>
+<span class="n">Germany</span> <span class="n">vs</span> <span class="n">Brazil</span>
+<span class="mi">7</span> <span class="p">:</span> <span class="mi">1</span>
 </pre></div>
-<p>但在新版本virtualenv中这个选项已经是默认项了。</p>
-<p>启动虚拟环境</p>
-<div class="codehilite"><pre><span></span>    cd ENV
-    source ./bin/activate
+<p>还可以这样玩</p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">germany</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">brazil</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">'</span><span class="si">%(germany)d</span><span class="s1"> : </span><span class="si">%(brazil)d</span><span class="s1">'</span> <span class="o">%</span> <span class="nb">vars</span><span class="p">()</span>
+<span class="s1">'7 : 1'</span>
 </pre></div>
-<p>注意此时命令行会多一个(ENV)，ENV为虚拟环境名称，接下来所有模块都只会安装到该目录中去。</p>
-<p>退出虚拟环境</p>
-<div class="codehilite"><pre><span></span>    deactivate
+<p>在格式化字符串中访问对象属性和字典键值</p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="s1">'My {1[kind]} runs {0.platform}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="p">{</span><span class="s1">'kind'</span><span class="p">:</span> <span class="s1">'pc'</span><span class="p">})</span>
+<span class="s1">'My pc runs linux'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">'My {map[kind]} runs {sys.platform}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">=</span><span class="n">sys</span><span class="p">,</span> <span class="nb">map</span><span class="o">=</span><span class="p">{</span><span class="s1">'kind'</span><span class="p">:</span> <span class="s1">'pc'</span><span class="p">})</span>
+<span class="s1">'My pc runs linux'</span>
 </pre></div>
-<p>在虚拟环境安装Python套件
-Virtualenv 附带有pip安装工具，因此需要安装的套件可以直接运行：</p>
-<div class="codehilite"><pre><span></span>    pip install [套件名称]
-</pre></div>
-<p>如果没有启动虚拟环境，系统也安装了pip工具，那么套件将被安装在系统环境中，为了避免发生此事，可以在<code>~/.bashrc</code>文件中加上：</p>
-<div class="codehilite"><pre><span></span>    export PIP_REQUIRE_VIRTUALENV=true
-</pre></div>
-<p>或者让在执行pip的时候让系统自动开启虚拟环境：</p>
-<div class="codehilite"><pre><span></span>    export PIP_RESPECT_VIRTUALENV=true
-</pre></div>
-<h2 id="c58843">Virtualenvwrapper</h2>
-<p>Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境，它可以做：</p>
-<ol>
-<li>将所有虚拟环境整合在一个目录下</li>
-<li>管理（新增，删除，复制）虚拟环境</li>
-<li>切换虚拟环境</li>
-<li>...</li>
-</ol>
-<h3 id="e655a4_1">安装</h3>
-<div class="codehilite"><pre><span></span>    sudo easy_install virtualenvwrapper
-</pre></div>
-<p>此时还不能使用virtualenvwrapper，默认virtualenvwrapper安装在/usr/local/bin下面，实际上你需要运行virtualenvwrapper.sh文件才行，先别急，打开这个文件看看,里面有安装步骤，我们照着操作把环境设置好。</p>
-<p>创建目录用来存放虚拟环境</p>
-<div class="codehilite"><pre><span></span>    mkdir $HOME/.virtualenvs
-</pre></div>
-<p>在<code>~/.bashrc</code>中添加行：</p>
-<div class="codehilite"><pre><span></span>    export WORKON_HOME=$HOME/.virtualenvs
-    source /usr/local/bin/virtualenvwrapper.sh
-</pre></div>
-<p>保存退出后运行： <code>source ~/.bashrc</code></p>
-<p>此时virtualenvwrapper就可以使用了。</p>
-<p>列出虚拟环境列表</p>
-<div class="codehilite"><pre><span></span>    workon
-</pre></div>
-<p>也可以使用</p>
-<div class="codehilite"><pre><span></span>    lsvirtualenv
-</pre></div>
-<p>新建虚拟环境</p>
-<div class="codehilite"><pre><span></span>    mkvirtualenv [虚拟环境名称]
-</pre></div>
-<p>启动/切换虚拟环境</p>
-<div class="codehilite"><pre><span></span>    workon [虚拟环境名称]
-</pre></div>
-<p>删除虚拟环境</p>
-<div class="codehilite"><pre><span></span>    rmvirtualenv [虚拟环境名称]
-</pre></div>
-<p>离开虚拟环境</p>
-<div class="codehilite"><pre><span></span>    deactivate
+<p>在格式化字符串中通过下标（正整数）访问<code>list</code>元素</p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">somelist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s1">'SPAM'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">'first={0[0]}, third={0[2]}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">somelist</span><span class="p">)</span>
+<span class="s1">'first=S, third=A'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">'first={0}, last={1}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">somelist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">somelist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="s1">'first=P, last=M'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">parts</span> <span class="o">=</span> <span class="n">somelist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">somelist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">somelist</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">'first={0}, last={1}, middle={2}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">parts</span><span class="p">)</span>
+<span class="s2">"first=S, last=M, middle=['P', 'A']"</span>
+<span class="o">&gt;&gt;&gt;</span>
 </pre></div>
                 </div>
                 <div id="content-comments">
                     <!-- 多说评论框 start -->
-                    <div class="ds-thread" data-thread-key="/note/virtualenv_4python.html" data-title="Python虚拟环境工具：virtualenv" data-url="http://snailhome.github.io/note/virtualenv_4python.html">
+                    <div class="ds-thread" data-thread-key="/note/format_print_python.html" data-title="python中的格式化输出用法总结" data-url="http://snailhome.github.io/note/format_print_python.html">
                     </div>
                     <!-- 多说评论框 end -->
                     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
@@ -215,12 +207,13 @@ Virtualenv 附带有pip安装工具，因此需要安装的套件可以直接运
             <div class="niu2-right-container col-md-2">
                 <div id="niu2-sidebar-meta" class="niu2-sidebar">
                     <div class="niu2-sidebar-label"><i class="icon-calendar"></i>发布时间:</div>
-                    <div class="niu2-sidebar-value">2015-08-05 01:21</div>
+                    <div class="niu2-sidebar-value">2016-10-13 15:48</div>
                     <div class="niu2-sidebar-label"><i class="icon-book"></i>分类:</div>
                     <div class="niu2-sidebar-value"><a href="http://snailhome.github.io/note/index.html">笔记</a></div>
                     <div class="niu2-sidebar-label"><i class="icon-tag"></i>标签:</div>
                     <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/python.html">python</a><sup>2</sup></div>
-                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/virtualenv.html">virtualenv</a><sup>1</sup></div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/format.html">format</a><sup>1</sup></div>
+                    <div class="niu2-sidebar-inter-value niu2-sidebar-tag"><a href="http://snailhome.github.io/tag/print.html">print</a><sup>1</sup></div>
                 </div>
 
                 <div id="niu2-sidebar-toc" class="niu2-sidebar" data-status="closed">
@@ -228,8 +221,8 @@ Virtualenv 附带有pip安装工具，因此需要安装的套件可以直接运
                         <i id="niu2-sidebar-toc-ctrl" class="icon-open-tocs"></i>目录
                     </div>
                     <ol id="niu2-sidebar-toc-list">
-                        <li><a href="#content-heading">Python虚拟环境工具：virtualenv</a></li>
-                        <li><a href='#e655a4'>安装</a></li><li><a href='#c58843'>Virtualenvwrapper</a><ol><li><a href='#e655a4_1'>安装</a></li></ol></li>
+                        <li><a href="#content-heading">python中的格式化输出用法总结</a></li>
+                        
                         <li><a href="#content-comments">评论</a></li>
                     </ol>
                 </div>
